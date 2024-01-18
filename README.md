@@ -1,5 +1,11 @@
 # adventure-mode-godot
-Adventure Mode is a 3D third person template for the Godot engine that combines the basic movement and exploration mechanics, and base combat experience, ofThe Legend of Zelda: Breath of the Wild, Tears of the Kingdom; and Elden Ring or it's souls based predecessors. 
+Adventure Mode is a 3D third person template for the Godot engine that combines the basic movement and exploration mechanics, and base combat experience of a wide variety of games:
+- The Legend of Zelda: Breath of the Wild
+- The Legend of Zelda: Tears of the Kingdom
+- Dark Souls 1,2,3
+- Not Bloodborne, I hate Bloodborne. Just go play Devil May Cry
+- Elden Ring
+
 
 ## Key Features
 - Moving and jumping around 3D space in a variety of modes, walking, running, jumping, climbing, swimming, flying. 
