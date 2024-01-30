@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://nfkiy46shhrx"]
+[gd_scene load_steps=47 format=3 uid="uid://nfkiy46shhrx"]
 
 [ext_resource type="PackedScene" uid="uid://cc3m6m4bf5i8c" path="res://prefabs/shrub.tscn" id="1_8mt6y"]
 [ext_resource type="Script" path="res://scripts/playerSocket_adventure.gd" id="1_imwoy"]
@@ -6,6 +6,7 @@
 [ext_resource type="Material" uid="uid://dy4whonqn8sbo" path="res://art/materials/grass.tres" id="3_ufa3e"]
 [ext_resource type="Script" path="res://scripts/actor.gd" id="3_vya3i"]
 [ext_resource type="Material" uid="uid://w4aoyuyy5ldg" path="res://art/materials/dirt.tres" id="4_8or8u"]
+[ext_resource type="PackedScene" uid="uid://d1kn5jkj8t6w7" path="res://art/Character/skeleton.glb" id="7_337gv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_th6xf"]
 
@@ -613,10 +614,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_ke2ik")
 
 [node name="graphics" type="Node3D" parent="actor"]
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="actor/graphics"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_kv7hw")
+
+[node name="skeleton" parent="actor" instance=ExtResource("7_337gv")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 
