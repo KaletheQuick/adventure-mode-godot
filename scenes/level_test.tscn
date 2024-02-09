@@ -487,8 +487,11 @@ data = PackedVector3Array(3.00337, 0, -7.25079, -5.18963e-07, 0, -7.8482, 1.5311
 
 [node name="Player Sockets" type="Node" parent="."]
 
-[node name="p1_psock_adventure" type="Node" parent="Player Sockets"]
+[node name="p1_psock_adventure" type="Node" parent="Player Sockets" node_paths=PackedStringArray("thrall", "test_second_thrall", "mainCam")]
 script = ExtResource("1_imwoy")
+thrall = NodePath("../../actor")
+test_second_thrall = NodePath("../../actor2")
+mainCam = NodePath("../../Camera")
 
 [node name="terrain" type="Node3D" parent="."]
 
@@ -595,8 +598,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.75854, -1.11475e-06, 12.751
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.21874, -0.964573, 0.147483, 0.456157, 0.0325297, 0.889305, -0.862597, 0.261802, 0.432881, 0, 0, 0)
 
-[node name="actor" parent="." node_paths=PackedStringArray("mainCam") instance=ExtResource("6_bskg6")]
-mainCam = NodePath("../Camera")
+[node name="actor" parent="." instance=ExtResource("6_bskg6")]
+
+[node name="actor2" parent="." instance=ExtResource("6_bskg6")]
+transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, -5.86003, 0, 1.41589)
 
 [node name="Camera" type="Camera3D" parent="." node_paths=PackedStringArray("target_current")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 3.917, 6.818)
