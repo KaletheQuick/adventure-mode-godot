@@ -54,7 +54,7 @@ func _physics_process(delta):
 	var go_dir = (mv_x + mv_z)
 
 	var animation_tree = $AnimationTree
-	animation_tree.set("parameters/BlendSpace2D/blend_position", Vector2(( global_basis.inverse() * -go_dir).x,-( global_basis.inverse() * -go_dir).z))
+	animation_tree.set("parameters/blend_position", Vector2(( global_basis.inverse() * -go_dir).x,-( global_basis.inverse() * -go_dir).z))
 	print(global_basis.inverse() * -go_dir)
 	# Get the motion delta.
 	velocity = ((animation_tree.get_root_motion_rotation_accumulator().inverse() * get_quaternion()) * animation_tree.get_root_motion_position() / delta) * 2
