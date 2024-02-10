@@ -1,11 +1,12 @@
-[gd_scene load_steps=43 format=3 uid="uid://nfkiy46shhrx"]
+[gd_scene load_steps=44 format=3 uid="uid://nfkiy46shhrx"]
 
 [ext_resource type="PackedScene" uid="uid://cc3m6m4bf5i8c" path="res://prefabs/shrub.tscn" id="1_8mt6y"]
 [ext_resource type="Script" path="res://scripts/playerSocket_adventure.gd" id="1_imwoy"]
 [ext_resource type="Script" path="res://scripts/camera_control.gd" id="1_pxbmp"]
 [ext_resource type="Material" uid="uid://dy4whonqn8sbo" path="res://art/materials/grass.tres" id="3_ufa3e"]
 [ext_resource type="Material" uid="uid://w4aoyuyy5ldg" path="res://art/materials/dirt.tres" id="4_8or8u"]
-[ext_resource type="PackedScene" uid="uid://chwqjvpft7wxd" path="res://prefabs/actor.tscn" id="6_bskg6"]
+[ext_resource type="PackedScene" path="res://prefabs/actor.tscn" id="6_bskg6"]
+[ext_resource type="Script" path="res://scripts/combo_bar.gd" id="7_q3xl4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_th6xf"]
 
@@ -607,3 +608,12 @@ transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 3.917, 6.818)
 script = ExtResource("1_pxbmp")
 target_current = NodePath("../actor")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 54.0
+offset_bottom = 77.0
+script = ExtResource("7_q3xl4")

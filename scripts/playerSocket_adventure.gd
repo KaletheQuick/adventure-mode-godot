@@ -66,6 +66,8 @@ func _collect_inputs(delta):
 
 	go_dir.y = Input.get_axis(player_prefix + "crouch", player_prefix + "jump")
 	
+
+	
 	if primary_thrall: 
 		thrall.handle_movement(go_dir)
 	else:
@@ -73,3 +75,5 @@ func _collect_inputs(delta):
 
 
 	dot.global_position = thrall.global_position + go_dir
+
+
