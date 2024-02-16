@@ -35,7 +35,7 @@ func _process(delta):
 	if thrall == null:
 		return
 	_collect_inputs(delta)
-
+	#print(delta)
 	# SECTION Debug test of moving to new thralls
 	if Input.is_action_just_pressed("p1_dodge"):		
 		primary_thrall = !primary_thrall
