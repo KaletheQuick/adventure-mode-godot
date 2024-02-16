@@ -23,9 +23,9 @@ func _process(delta):
 		target_position.y += 3
 		var distance_to_target = target_current.global_transform.origin.distance_to(global_transform.origin)
 		var distance_difference = zoom_square - target_position.y
-		if Input.is_action_just_pressed("zoom"):
-			zoom_target += -15
-			global_transform.origin += -global_basis.z * distance_difference * zoom_speed * delta
+		#if Input.is_action_just_pressed("zoom"):
+		#	zoom_target += -15
+		#	global_transform.origin += -global_basis.z * distance_difference * zoom_speed * delta
 			
 		if distance_to_target > 8.0 or distance_to_target < 2.0 :
 			global_transform.origin = target_current.global_transform.origin - target_current.global_transform.basis.z

@@ -7,42 +7,58 @@ const JUMP_VELOCITY = 6.5
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+
 @onready var combo_bar = get_node("/root/level_test/CanvasLayer/ProgressBar")
 
 var desired_move = Vector3.ZERO
+var jump_dbounce = false # Have we recently jumped?
+var LDT = 0.01 # Last delta time, calling get_process_delta_time() in the physics loop was causing issues
 
 func _ready():
 	pass
 
-func _physics_process(delta):
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y -= gravity * delta
+func _process(delta):
+	LDT = delta
+##	if jump_dbounce and is_on_floor() and desired_move.y < 0.5: # if we have completed a jump arc, and are not desiring to jump
+#		jump_dbounce = false
 
+func _physics_process(delta):
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept"):
-		print("character JUMPED")  # This will print whenever the jump button is pressed.
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
 		if combo_bar:
 			combo_bar.fill_combo_bar(10)
-
-
-		if is_on_floor():
-			print("Player is on floor and will jump now")
-			velocity.y = JUMP_VELOCITY
-		
-
 
 	# Get the input direction and handle the movement/deceleration.
 
 	var animation_tree = $AnimationTree
-	animation_tree.set("parameters/blend_position", Vector2(( global_basis.inverse() * -desired_move).x,-( global_basis.inverse() * -desired_move).z))
-	print(global_basis.inverse() * -desired_move)
+	animation_tree.set("parameters/Move Walk/blend_position", Vector2(( global_basis.inverse() * -desired_move).x,-( global_basis.inverse() * -desired_move).z))
+	if(desired_move.y > 0.5):# and jump_dbounce == false) :
+		#jump_dbounce = true
+		animation_tree.set("parameters/Jump w vel/blend_position", velocity.length())
+		animation_tree.set("parameters/conditions/jump", true)
+	else:
+		animation_tree.set("parameters/conditions/jump", false)
+	animation_tree.set("parameters/conditions/land", is_on_floor())
+	#print(global_basis.inverse() * -desired_move)
+	# NOTE - Old vel
+	#if not is_on_floor():
+	var old_fallVel = velocity.y
 	# Get the motion delta.
-	velocity = ((animation_tree.get_root_motion_rotation_accumulator().inverse() * get_quaternion()) * animation_tree.get_root_motion_position() / delta) * 2
+	velocity = ((animation_tree.get_root_motion_rotation_accumulator().inverse() * get_quaternion()) * animation_tree.get_root_motion_position() / LDT) * 2
+
+	# Add the gravity.
+	if not is_on_floor():
+		velocity.y = old_fallVel # + velocity.y
+		velocity.y -= gravity * delta
+	print(animation_tree.get_root_motion_position().length())
+
 	# global_basis * (animation_tree.get_root_motion_position_accumulator())
 	quaternion = quaternion * ((animation_tree.get_root_motion_rotation() / delta) * 10)
 	animation_tree.get_root_motion_scale()
 	
+
+
 	
 
 	# Get the actual blended value of the animation.
