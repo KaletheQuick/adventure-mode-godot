@@ -41,13 +41,13 @@ func _process(delta):
 	_follow()
 	# move
 	# look
-	_look()
+	#_look()
+	focus_a(delta)
 	# zoom ? 
 	global_position += cam_velocity * delta
 	#rotation_degrees.y += cam_rot_velocity.x * (cam_rot_velocity.x**2)
 	#rotation_degrees.x += cam_rot_velocity.y * (cam_rot_velocity.y**2)
 	#rotation_degrees.x = clampf(rotation_degrees.x, -60, 80)
-
 
 func _follow():
 	var dir_to_target = (target_current.global_position + follow_offset) - global_position
@@ -76,3 +76,24 @@ func _look():
 	cam_rot_velocity.y = (midscreen.y - target_screenPos.y) * 0.06 
 	print(cam_rot_velocity)
 #	look_at(target_current.global_position)
+
+func focus_a(delta : float):
+	var target_scrPos = unproject_position(target_current.global_position)
+	var scr_pos = get_viewport().size * 0.5
+	var scr_delta = scr_pos - target_scrPos
+	#print(scr_delta)
+	var move_angle = -global_transform.looking_at(target_current.global_position).basis.z
+	#move_angle.y=0
+	var moi_angle = project_ray_normal(scr_pos)
+	var delbo = move_angle.signed_angle_to(moi_angle, Vector3.UP)
+	#print(delbo)
+	rotate(Vector3(0,1,0), -delbo * delta)
+#	if scr_delta.x > 0:
+#		rotate(Vector3(0,1,0), 0.001 * scr_delta.length() * delta * spd_fac_a)
+#	else:
+#		rotate(Vector3(0,1,0), -0.001 * scr_delta.length() * delta * spd_fac_a)
+
+	if scr_delta.y > 0 && rotation.x < 1 && rotation.x > -1:
+		rotate_object_local(Vector3(1,0,0), 0.001 * scr_delta.length() * delta)
+	else:
+		rotate_object_local(Vector3(1,0,0), -0.001 * scr_delta.length() * delta)
