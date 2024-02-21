@@ -19,8 +19,8 @@ var smoothing = 0.1
 
 # SECTION New shit
 var cam_velocity = Vector3.ZERO
-var leash_dist_current = 4
-var follow_offset = Vector3(0, 3, 0.001)
+var leash_dist_current = 6
+var follow_offset = Vector3(0, 3, 0)
 
 var cam_rot_velocity = Vector2.ZERO
 
@@ -29,6 +29,8 @@ var cam_rot_velocity = Vector2.ZERO
 func _ready():
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	#prev_mouse_pos = get_viewport().get_mouse_position() # Replace with function body.
+
+
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -38,62 +40,38 @@ func _process(delta):
 
 	# Order 
 	# follow
-	_follow()
+	_follow(delta)
 	# move
 	# look
-	#_look()
-	focus_a(delta)
+	_look(delta)
 	# zoom ? 
-	global_position += cam_velocity * delta
-	#rotation_degrees.y += cam_rot_velocity.x * (cam_rot_velocity.x**2)
-	#rotation_degrees.x += cam_rot_velocity.y * (cam_rot_velocity.y**2)
-	#rotation_degrees.x = clampf(rotation_degrees.x, -60, 80)
 
-func _follow():
+func _follow(delta):
 	var dir_to_target = (target_current.global_position + follow_offset) - global_position
-	#print(dir_to_target)
 	var dist_beyond_leash = leash_dist_current - dir_to_target.length()
-	dist_beyond_leash = dist_beyond_leash**2 if dist_beyond_leash >0 else -(dist_beyond_leash**2 )
+	dist_beyond_leash = dist_beyond_leash**2 if dist_beyond_leash >0 else -(dist_beyond_leash**2 ) 
 	dir_to_target = dir_to_target.normalized()
 	cam_velocity = -dir_to_target * dist_beyond_leash
 	# add in extra Y movement to keep the camera on our desired plane
 	var y_mov = global_position.y  - (target_current.global_position.y + follow_offset.y)
 	cam_velocity.y -= y_mov
+	# Apply 
+	global_position += cam_velocity * delta
 
-func _look():
+func _look(delta):
 	# transform target to screen space
 	var target_screenPos = unproject_position(target_current.global_position)
 	var midscreen = get_viewport().size / 2
+	# Get direction to target
 	var target_vector = (global_position-target_current.global_position).normalized()
 	var something = global_basis.z
 	something.y = 0
 	something = something.normalized()
+	# Calculate rotation
 	var x_rot = (something).signed_angle_to(target_vector -Vector3(0,target_vector.y, 0), Vector3.UP)
-	something = (global_basis.z -global_basis.x).normalized()
-	var y_rot = (global_basis.z).signed_angle_to(target_vector-global_basis.x, Vector3.LEFT)
-	#var difference = midscreen - target_screenPos
 	cam_rot_velocity.x = x_rot * 10
-	cam_rot_velocity.y = (midscreen.y - target_screenPos.y) * 0.06 
-	print(cam_rot_velocity)
-#	look_at(target_current.global_position)
-
-func focus_a(delta : float):
-	var target_scrPos = unproject_position(target_current.global_position)
-	var scr_pos = get_viewport().size * 0.5
-	var scr_delta = scr_pos - target_scrPos
-	#print(scr_delta)
-	var move_angle = -global_transform.looking_at(target_current.global_position).basis.z
-	#move_angle.y=0
-	var moi_angle = project_ray_normal(scr_pos)
-	var delbo = move_angle.signed_angle_to(moi_angle, Vector3.UP)
-	#print(delbo)
-	rotate(Vector3(0,1,0), -delbo * delta)
-#	if scr_delta.x > 0:
-#		rotate(Vector3(0,1,0), 0.001 * scr_delta.length() * delta * spd_fac_a)
-#	else:
-#		rotate(Vector3(0,1,0), -0.001 * scr_delta.length() * delta * spd_fac_a)
-
-	if scr_delta.y > 0 && rotation.x < 1 && rotation.x > -1:
-		rotate_object_local(Vector3(1,0,0), 0.001 * scr_delta.length() * delta)
-	else:
-		rotate_object_local(Vector3(1,0,0), -0.001 * scr_delta.length() * delta)
+	cam_rot_velocity.y = clampf((midscreen.y - target_screenPos.y) * 0.06 , -5, 5) # TODO - Remove magic numbers
+	# Apply 
+	rotation_degrees.y += cam_rot_velocity.x * (cam_rot_velocity.x**2) * delta
+	rotation_degrees.x += cam_rot_velocity.y * (cam_rot_velocity.y**2) * delta
+	rotation_degrees.x = clampf(rotation_degrees.x, -60, 80)
