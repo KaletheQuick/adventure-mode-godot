@@ -63,7 +63,7 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y = old_fallVel # + velocity.y
 		velocity.y -= gravity * delta
-	print(animation_tree.get_root_motion_position().length())
+	#print(animation_tree.get_root_motion_position().length())
 
 	# global_basis * (animation_tree.get_root_motion_position_accumulator())
 	quaternion = quaternion * ((animation_tree.get_root_motion_rotation() / delta) * 10)

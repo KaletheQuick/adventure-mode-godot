@@ -45,12 +45,12 @@ func _process(delta):
 		test_second_thrall.dethrall()
 		thrall.enthrall()
 		mainCam.target_current = thrall
-		print("Character 1 Enthralled.")
+		#print("Character 1 Enthralled.")
 	else:
 		thrall.dethrall() 
 		test_second_thrall.enthrall()
 		mainCam.target_current = test_second_thrall
-		print("Character 2 Enthralled")
+		#print("Character 2 Enthralled")
 	# !SECTION
 
 
