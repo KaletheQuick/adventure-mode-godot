@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://chwqjvpft7wxd"]
+[gd_scene load_steps=43 format=3 uid="uid://chwqjvpft7wxd"]
 
 [ext_resource type="Script" path="res://scripts/actor.gd" id="1_u4ehk"]
 [ext_resource type="Texture2D" uid="uid://cl2g7xqkb6amj" path="res://art/Character/skeleton_SkeletonA.png" id="2_52v54"]
@@ -17,14 +17,21 @@
 [ext_resource type="Animation" uid="uid://bk2gpbln7ywrf" path="res://art/Character/animations/walk_rifle.res" id="10_weder"]
 [ext_resource type="Animation" uid="uid://b63vfbuy5bk35" path="res://art/Character/animations/move_walk/turn_left.res" id="11_dyllo"]
 [ext_resource type="Animation" uid="uid://bos8k72arhccv" path="res://art/Character/animations/run_01.res" id="11_r0jyg"]
+[ext_resource type="Animation" uid="uid://cdxrbk0hvuxn4" path="res://art/Character/animations/glide_idle.res" id="12_d7fop"]
 [ext_resource type="Animation" uid="uid://nktpgqsbtad1" path="res://art/Character/animations/move_walk/turn_right.res" id="12_q07ts"]
+[ext_resource type="Animation" uid="uid://c5nqsw25orf4f" path="res://art/Character/animations/glide_forward.res" id="13_yvv4c"]
+[ext_resource type="Animation" uid="uid://bxy2ufse6owud" path="res://art/Character/animations/glide_left.res" id="14_3gv25"]
+[ext_resource type="Animation" uid="uid://efiuovs6mecm" path="res://art/Character/animations/glide_right.res" id="15_arh1w"]
+[ext_resource type="Animation" uid="uid://c81yooq51fcyd" path="res://art/Character/animations/glide_slow_back.res" id="16_v2xsn"]
+[ext_resource type="Animation" uid="uid://b0tkwyvwtnuwd" path="res://art/Character/animations/glide_slow_left.res" id="17_il77w"]
+[ext_resource type="Animation" uid="uid://ca5ja8v656r5k" path="res://art/Character/animations/glide_slow_right.res" id="18_ulwyh"]
 [ext_resource type="Animation" uid="uid://bdh2hlqm3s5gq" path="res://art/Character/animations/turn_left.res" id="19_kuj80"]
 [ext_resource type="Animation" uid="uid://c8u40xvlsm4ib" path="res://art/Character/animations/turn_right.res" id="20_fnace"]
 [ext_resource type="Animation" uid="uid://bmf0rlqn15qa4" path="res://art/Character/animations/jump_standing.res" id="21_3irul"]
 [ext_resource type="Animation" uid="uid://b4o7v47hhoxe8" path="res://art/Character/animations/airborne.res" id="22_riho3"]
 [ext_resource type="Animation" uid="uid://b11ik8c4pwulo" path="res://art/Character/animations/land.res" id="23_m1tqm"]
-[ext_resource type="AnimationNodeBlendSpace2D" uid="uid://dukebmuejahjs" path="res://art/Character/animator components/walk_blendspace.tres" id="24_5vj0f"]
 [ext_resource type="Animation" uid="uid://rvy0vbywcfeg" path="res://art/Character/animations/jump_arc.res" id="24_7u6lp"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://coym3jr0vat8x" path="res://art/Character/animator components/walk_root.tres" id="29_u8sk4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ke2ik"]
 
@@ -348,6 +355,17 @@ _data = {
 "walk_rifle": ExtResource("10_weder")
 }
 
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qc1fp"]
+_data = {
+"glide_forward": ExtResource("13_yvv4c"),
+"glide_idle": ExtResource("12_d7fop"),
+"glide_left": ExtResource("14_3gv25"),
+"glide_right": ExtResource("15_arh1w"),
+"glide_slow_back": ExtResource("16_v2xsn"),
+"glide_slow_left": ExtResource("17_il77w"),
+"glide_slow_right": ExtResource("18_ulwyh")
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1qjxe"]
 _data = {
 "airborne": ExtResource("22_riho3"),
@@ -365,65 +383,8 @@ _data = {
 "walk_right_sharp": ExtResource("10_68wfe")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xdgyt"]
-animation = &"walk/jump_standing"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_os8ff"]
-animation = &"walk/jump_arc"
-
-[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_dcyjj"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_xdgyt")
-blend_point_0/pos = 0.0
-blend_point_1/node = SubResource("AnimationNodeAnimation_os8ff")
-blend_point_1/pos = 1.0
-value_label = "0"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yx5ig"]
-animation = &"walk/airborne"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hi4b0"]
-animation = &"walk/jump_standing"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bj3bm"]
-animation = &"walk/land"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tddch"]
-advance_mode = 2
-advance_condition = &"land"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1qtnw"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_slw4a"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_86anj"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bibi4"]
-advance_mode = 2
-advance_condition = &"jump"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rhslg"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_6wchk"]
-"states/Jump w vel/node" = SubResource("AnimationNodeBlendSpace1D_dcyjj")
-"states/Jump w vel/position" = Vector2(428.333, 63.5556)
-"states/Move Walk/node" = ExtResource("24_5vj0f")
-"states/Move Walk/position" = Vector2(229.667, 105.222)
-states/Start/position = Vector2(77.3333, 105.333)
-states/walk_airborne/node = SubResource("AnimationNodeAnimation_yx5ig")
-states/walk_airborne/position = Vector2(641.222, 64.3333)
-states/walk_jump_standing/node = SubResource("AnimationNodeAnimation_hi4b0")
-states/walk_jump_standing/position = Vector2(416.333, -2.33333)
-states/walk_land/node = SubResource("AnimationNodeAnimation_bj3bm")
-states/walk_land/position = Vector2(416.827, 144.333)
-transitions = ["walk_airborne", "walk_land", SubResource("AnimationNodeStateMachineTransition_tddch"), "walk_jump_standing", "walk_airborne", SubResource("AnimationNodeStateMachineTransition_1qtnw"), "walk_land", "Move Walk", SubResource("AnimationNodeStateMachineTransition_slw4a"), "Jump w vel", "walk_airborne", SubResource("AnimationNodeStateMachineTransition_86anj"), "Move Walk", "Jump w vel", SubResource("AnimationNodeStateMachineTransition_bibi4"), "Start", "Move Walk", SubResource("AnimationNodeStateMachineTransition_rhslg")]
-graph_offset = Vector2(-266, -82)
+[sub_resource type="PrismMesh" id="PrismMesh_6ugnc"]
+size = Vector3(0.575, 1.025, 0.3)
 
 [node name="actor" type="CharacterBody3D"]
 script = ExtResource("1_u4ehk")
@@ -870,10 +831,12 @@ mesh = SubResource("ArrayMesh_1rvvb")
 skin = SubResource("Skin_4bx15")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="skeleton"]
+root_motion_track = NodePath("char/Skeleton3D:Root")
 libraries = {
 "": SubResource("AnimationLibrary_wj084"),
 "dodge": ExtResource("4_5ducm"),
 "from_old": SubResource("AnimationLibrary_v64fa"),
+"glider": SubResource("AnimationLibrary_qc1fp"),
 "walk": SubResource("AnimationLibrary_1qjxe")
 }
 
@@ -884,16 +847,24 @@ libraries = {
 "": SubResource("AnimationLibrary_wj084"),
 "dodge": ExtResource("4_5ducm"),
 "from_old": SubResource("AnimationLibrary_v64fa"),
+"glider": SubResource("AnimationLibrary_qc1fp"),
 "walk": SubResource("AnimationLibrary_1qjxe")
 }
-tree_root = SubResource("AnimationNodeStateMachine_6wchk")
+tree_root = ExtResource("29_u8sk4")
 anim_player = NodePath("../skeleton/AnimationPlayer")
 parameters/conditions/jump = false
 parameters/conditions/land = false
 "parameters/Jump w vel/blend_position" = 0.119192
-"parameters/Move Walk/blend_position" = Vector2(0.00215054, -0.00364959)
+"parameters/Move Walk/blend_position" = Vector2(0.0129032, -0.00867057)
 "parameters/Move Walk/0/TimeScale/scale" = 1.5
 "parameters/Move Walk/5/TimeScale/scale" = 5.0
 "parameters/Move Walk/6/TimeScale/scale" = 5.0
 "parameters/Move Walk/7/TimeScale/scale" = 10.0
 "parameters/Move Walk/8/TimeScale/scale" = 10.0
+
+[node name="RootMotionView" type="RootMotionView" parent="."]
+animation_path = NodePath("../AnimationTree")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("PrismMesh_6ugnc")

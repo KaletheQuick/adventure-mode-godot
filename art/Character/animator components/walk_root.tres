@@ -1,0 +1,63 @@
+[gd_resource type="AnimationNodeStateMachine" load_steps=14 format=3 uid="uid://coym3jr0vat8x"]
+
+[ext_resource type="AnimationNodeBlendSpace2D" uid="uid://dukebmuejahjs" path="res://art/Character/animator components/walk_blendspace.tres" id="1_f2otq"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xdgyt"]
+animation = &"walk/jump_standing"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_os8ff"]
+animation = &"walk/jump_arc"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_dcyjj"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_xdgyt")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_os8ff")
+blend_point_1/pos = 1.0
+value_label = "0"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yx5ig"]
+animation = &"walk/airborne"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hi4b0"]
+animation = &"walk/jump_standing"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bj3bm"]
+animation = &"walk/land"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tddch"]
+advance_mode = 2
+advance_condition = &"land"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1qtnw"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_slw4a"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_86anj"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bibi4"]
+advance_mode = 2
+advance_condition = &"jump"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rhslg"]
+advance_mode = 2
+
+[resource]
+"states/Jump w vel/node" = SubResource("AnimationNodeBlendSpace1D_dcyjj")
+"states/Jump w vel/position" = Vector2(428.333, 63.5556)
+"states/Move Walk/node" = ExtResource("1_f2otq")
+"states/Move Walk/position" = Vector2(229.667, 105.222)
+states/Start/position = Vector2(77.3333, 105.333)
+states/walk_airborne/node = SubResource("AnimationNodeAnimation_yx5ig")
+states/walk_airborne/position = Vector2(641.222, 64.3333)
+states/walk_jump_standing/node = SubResource("AnimationNodeAnimation_hi4b0")
+states/walk_jump_standing/position = Vector2(416.333, -2.33333)
+states/walk_land/node = SubResource("AnimationNodeAnimation_bj3bm")
+states/walk_land/position = Vector2(416.827, 144.333)
+transitions = ["walk_airborne", "walk_land", SubResource("AnimationNodeStateMachineTransition_tddch"), "walk_jump_standing", "walk_airborne", SubResource("AnimationNodeStateMachineTransition_1qtnw"), "walk_land", "Move Walk", SubResource("AnimationNodeStateMachineTransition_slw4a"), "Jump w vel", "walk_airborne", SubResource("AnimationNodeStateMachineTransition_86anj"), "Move Walk", "Jump w vel", SubResource("AnimationNodeStateMachineTransition_bibi4"), "Start", "Move Walk", SubResource("AnimationNodeStateMachineTransition_rhslg")]
+graph_offset = Vector2(-345, -138)
