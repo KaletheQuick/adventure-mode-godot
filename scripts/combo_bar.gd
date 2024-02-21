@@ -20,4 +20,4 @@ func _process(delta: float) -> void:
 func fill_combo_bar(amount: float):
     combo_value += amount
     value = clamp(combo_value, 0, max_value)
-    print("Combo bar filled to: ", value, "/", max_value)
+    #print("Combo bar filled to: ", value, "/", max_value)

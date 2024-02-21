@@ -43,7 +43,7 @@ func _physics_process(delta):
 
 	# Get the input direction and handle the movement/deceleration.
 
-	var animation_tree = $AnimationTree
+	var animation_tree : AnimationTree = $AnimationTree
 	animation_tree.set("parameters/Move Walk/blend_position", Vector2(( global_basis.inverse() * -desired_move).x,-( global_basis.inverse() * -desired_move).z))
 	if(desired_move.y > 0.5):# and jump_dbounce == false) :
 		#jump_dbounce = true
@@ -63,13 +63,12 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y = old_fallVel # + velocity.y
 		velocity.y -= gravity * delta
-	print(animation_tree.get_root_motion_position().length())
+	#print(animation_tree.get_root_motion_position().length())
 
 	# global_basis * (animation_tree.get_root_motion_position_accumulator())
 	quaternion = quaternion * ((animation_tree.get_root_motion_rotation() / delta) * 10)
 	animation_tree.get_root_motion_scale()
 	
-
 
 	
 
