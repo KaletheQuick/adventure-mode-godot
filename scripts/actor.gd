@@ -20,7 +20,7 @@ func _ready():
 
 func stop_movement():
 	desired_move = Vector3.ZERO
-	velocity = Vector3.ZERO
+#	velocity = Vector3.ZERO
 
 func dethrall():
 	stop_movement()

@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeBlendSpace2D" load_steps=20 format=3 uid="uid://dukebmuejahjs"]
+[gd_resource type="AnimationNodeBlendSpace2D" load_steps=23 format=3 uid="uid://dukebmuejahjs"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qyuku"]
 animation = &"from_old/run_01"
@@ -6,7 +6,7 @@ animation = &"from_old/run_01"
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_lccqx"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_da2v0"]
-graph_offset = Vector2(-393.333, -197.333)
+graph_offset = Vector2(-164, 170.667)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_qyuku")
 nodes/Animation/position = Vector2(0, 213.333)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_lccqx")
@@ -15,16 +15,16 @@ nodes/output/position = Vector2(613.333, 373.333)
 node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i6s4s"]
-animation = &"T_pose"
+animation = &"walk_jog_run/idle_wjr"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kfjrj"]
-animation = &"T_pose"
+animation = &"walk_jog_run/idle_wjr"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_b7e4s"]
-animation = &"T_pose"
+animation = &"walk_jog_run/idle_wjr"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gul4e"]
-animation = &"T_pose"
+animation = &"walk_jog_run/idle_wjr"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vl7et"]
 animation = &"walk/turn_right 2"
@@ -78,6 +78,19 @@ nodes/TimeScale/position = Vector2(613.333, 373.333)
 nodes/output/position = Vector2(986.667, 373.333)
 node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d8j4w"]
+animation = &"walk_jog_run/walk_fwd"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_c3vcs"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_0ty3j"]
+graph_offset = Vector2(-368, 50.6667)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_d8j4w")
+nodes/Animation/position = Vector2(-320, 133.333)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_c3vcs")
+nodes/TimeScale/position = Vector2(10.6667, 171.333)
+node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
+
 [resource]
 blend_point_0/node = SubResource("AnimationNodeBlendTree_da2v0")
 blend_point_0/pos = Vector2(0, 1)
@@ -97,3 +110,5 @@ blend_point_7/node = SubResource("AnimationNodeBlendTree_k0cbc")
 blend_point_7/pos = Vector2(0.1, -0.9)
 blend_point_8/node = SubResource("AnimationNodeBlendTree_pfw83")
 blend_point_8/pos = Vector2(-0.1, -0.9)
+blend_point_9/node = SubResource("AnimationNodeBlendTree_0ty3j")
+blend_point_9/pos = Vector2(0, 0.4)

@@ -37,21 +37,18 @@ func _process(delta):
 		return
 	_collect_inputs(delta)
 	#print(delta)
-	# SECTION Debug test of moving to new thralls
 	if Input.is_action_just_pressed("p1_dodge"):		
 		primary_thrall = !primary_thrall
-
-	if primary_thrall: 
-		test_second_thrall.dethrall()
-		thrall.enthrall()
-		mainCam.target_current = thrall
-		#print("Character 1 Enthralled.")
-	else:
-		thrall.dethrall() 
-		test_second_thrall.enthrall()
-		mainCam.target_current = test_second_thrall
-		#print("Character 2 Enthralled")
-	# !SECTION
+		if primary_thrall: 
+			test_second_thrall.dethrall()
+			thrall.enthrall()
+			mainCam.target_current = thrall
+			#print("Character 1 Enthralled.")
+		else:
+			thrall.dethrall() 
+			test_second_thrall.enthrall()
+			mainCam.target_current = test_second_thrall
+			#print("Character 2 Enthralled")
 
 
 func _collect_inputs(delta):
