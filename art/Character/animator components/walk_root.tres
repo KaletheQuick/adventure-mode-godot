@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=14 format=3 uid="uid://coym3jr0vat8x"]
+[gd_resource type="AnimationNodeStateMachine" load_steps=20 format=3 uid="uid://coym3jr0vat8x"]
 
 [ext_resource type="AnimationNodeBlendSpace2D" uid="uid://dukebmuejahjs" path="res://art/Character/animator components/walk_blendspace.tres" id="1_f2otq"]
 
@@ -14,6 +14,12 @@ blend_point_0/pos = 0.0
 blend_point_1/node = SubResource("AnimationNodeAnimation_os8ff")
 blend_point_1/pos = 1.0
 value_label = "0"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ewgqc"]
+animation = &"combat_sword/combat_block_shield"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_scgyj"]
+animation = &"combat_sword/combat_idle"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yx5ig"]
 animation = &"walk/airborne"
@@ -47,17 +53,41 @@ advance_condition = &"jump"
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rhslg"]
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gt3rp"]
+xfade_time = 5.0
+advance_mode = 2
+advance_expression = "block == true"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_74m8c"]
+xfade_time = 5.0
+advance_mode = 2
+advance_expression = "block == false"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_473xn"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "attack_light == true"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_33gl8"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "attack_light == false"
+
 [resource]
 "states/Jump w vel/node" = SubResource("AnimationNodeBlendSpace1D_dcyjj")
 "states/Jump w vel/position" = Vector2(428.333, 63.5556)
 "states/Move Walk/node" = ExtResource("1_f2otq")
 "states/Move Walk/position" = Vector2(229.667, 105.222)
 states/Start/position = Vector2(77.3333, 105.333)
+states/combat_sword_combat_block_shield/node = SubResource("AnimationNodeAnimation_ewgqc")
+states/combat_sword_combat_block_shield/position = Vector2(442.667, 232)
+states/combat_sword_combat_idle/node = SubResource("AnimationNodeAnimation_scgyj")
+states/combat_sword_combat_idle/position = Vector2(390.667, 344.333)
 states/walk_airborne/node = SubResource("AnimationNodeAnimation_yx5ig")
 states/walk_airborne/position = Vector2(641.222, 64.3333)
 states/walk_jump_standing/node = SubResource("AnimationNodeAnimation_hi4b0")
 states/walk_jump_standing/position = Vector2(416.333, -2.33333)
 states/walk_land/node = SubResource("AnimationNodeAnimation_bj3bm")
 states/walk_land/position = Vector2(416.827, 144.333)
-transitions = ["walk_airborne", "walk_land", SubResource("AnimationNodeStateMachineTransition_tddch"), "walk_jump_standing", "walk_airborne", SubResource("AnimationNodeStateMachineTransition_1qtnw"), "walk_land", "Move Walk", SubResource("AnimationNodeStateMachineTransition_slw4a"), "Jump w vel", "walk_airborne", SubResource("AnimationNodeStateMachineTransition_86anj"), "Move Walk", "Jump w vel", SubResource("AnimationNodeStateMachineTransition_bibi4"), "Start", "Move Walk", SubResource("AnimationNodeStateMachineTransition_rhslg")]
-graph_offset = Vector2(-345, -138)
+transitions = ["walk_airborne", "walk_land", SubResource("AnimationNodeStateMachineTransition_tddch"), "walk_jump_standing", "walk_airborne", SubResource("AnimationNodeStateMachineTransition_1qtnw"), "walk_land", "Move Walk", SubResource("AnimationNodeStateMachineTransition_slw4a"), "Jump w vel", "walk_airborne", SubResource("AnimationNodeStateMachineTransition_86anj"), "Move Walk", "Jump w vel", SubResource("AnimationNodeStateMachineTransition_bibi4"), "Start", "Move Walk", SubResource("AnimationNodeStateMachineTransition_rhslg"), "Move Walk", "combat_sword_combat_block_shield", SubResource("AnimationNodeStateMachineTransition_gt3rp"), "combat_sword_combat_block_shield", "Move Walk", SubResource("AnimationNodeStateMachineTransition_74m8c"), "Move Walk", "combat_sword_combat_idle", SubResource("AnimationNodeStateMachineTransition_473xn"), "combat_sword_combat_idle", "Move Walk", SubResource("AnimationNodeStateMachineTransition_33gl8")]
+graph_offset = Vector2(-384, -51)

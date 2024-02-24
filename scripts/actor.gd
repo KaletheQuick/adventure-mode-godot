@@ -14,7 +14,8 @@ var desired_move = Vector3.ZERO
 
 var jump_dbounce = false # Have we recently jumped?
 var LDT = 0.01 # Last delta time, calling get_process_delta_time() in the physics loop was causing issues
-
+var block = false
+var attack_light = false
 func _ready():
 	pass
 

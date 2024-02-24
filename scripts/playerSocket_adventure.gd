@@ -76,8 +76,12 @@ func _collect_inputs(delta):
 	
 	if primary_thrall: 
 		thrall.handle_movement(go_dir)
+		thrall.block = true if Input.get_action_strength("p1_block") > 0.5 else false
+		thrall.attack_light = true if Input.get_action_strength("p1_attack_light") > 0.5 else false
 	else:
 		test_second_thrall.handle_movement(go_dir)
+		test_second_thrall.block = true if Input.get_action_strength("p1_block") > 0.5 else false
+		test_second_thrall.attack_light = true if Input.get_action_strength("p1_attack_light") > 0.5 else false
 
 
 	dot.global_position = thrall.global_position + go_dir

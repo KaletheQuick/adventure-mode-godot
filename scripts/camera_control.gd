@@ -19,8 +19,8 @@ var smoothing = 0.1
 
 # SECTION New shit
 var cam_velocity = Vector3.ZERO
-var leash_dist_current = 6
-var follow_offset = Vector3(0, 3, 0)
+var leash_dist_current = 3
+var follow_offset = Vector3(0, 2.3, 0)
 
 var cam_rot_velocity = Vector2.ZERO
 
