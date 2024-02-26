@@ -54,12 +54,12 @@ advance_condition = &"jump"
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gt3rp"]
-xfade_time = 5.0
+xfade_time = 1.0
 advance_mode = 2
 advance_expression = "block == true"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_74m8c"]
-xfade_time = 5.0
+xfade_time = 1.0
 advance_mode = 2
 advance_expression = "block == false"
 
@@ -80,7 +80,7 @@ advance_expression = "attack_light == false"
 "states/Move Walk/position" = Vector2(229.667, 105.222)
 states/Start/position = Vector2(77.3333, 105.333)
 states/combat_sword_combat_block_shield/node = SubResource("AnimationNodeAnimation_ewgqc")
-states/combat_sword_combat_block_shield/position = Vector2(442.667, 232)
+states/combat_sword_combat_block_shield/position = Vector2(602.667, 285.333)
 states/combat_sword_combat_idle/node = SubResource("AnimationNodeAnimation_scgyj")
 states/combat_sword_combat_idle/position = Vector2(390.667, 344.333)
 states/walk_airborne/node = SubResource("AnimationNodeAnimation_yx5ig")

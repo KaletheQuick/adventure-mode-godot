@@ -619,9 +619,13 @@ target_current = NodePath("../actor")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.508387)
 mesh = SubResource("CylinderMesh_nes8p")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="UserInterface" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+[node name="ProgressBar" type="ProgressBar" parent="UserInterface"]
 offset_left = 50.0
 offset_top = 50.0
 offset_right = 54.0
