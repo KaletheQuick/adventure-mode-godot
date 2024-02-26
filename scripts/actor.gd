@@ -38,7 +38,7 @@ func _process(delta):
 func _physics_process(delta):
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+		#velocity.y = JUMP_VELOCITY
 		if combo_bar:
 			combo_bar.fill_combo_bar(10)
 
@@ -46,12 +46,15 @@ func _physics_process(delta):
 
 	var animation_tree : AnimationTree = $AnimationTree
 	animation_tree.set("parameters/Move Walk/blend_position", Vector2(( global_basis.inverse() * -desired_move).x,-( global_basis.inverse() * -desired_move).z))
-	if(desired_move.y > 0.5):# and jump_dbounce == false) :
-		#jump_dbounce = true
-		animation_tree.set("parameters/Jump w vel/blend_position", velocity.length())
+	if(desired_move.y > 0.5 and jump_dbounce == false) :
+		jump_dbounce = true
+		print(velocity.length())
+		animation_tree.set("parameters/Jump w vel/blend_position", velocity.length() * 0.1) # TODO remove magic number. This is here to map a velocity range to animation blend 0-1
 		animation_tree.set("parameters/conditions/jump", true)
 	else:
 		animation_tree.set("parameters/conditions/jump", false)
+	if desired_move.y < 0.5 and jump_dbounce == true:
+		jump_dbounce = false
 	animation_tree.set("parameters/conditions/land", is_on_floor())
 	#print(global_basis.inverse() * -desired_move)
 	# NOTE - Old vel
