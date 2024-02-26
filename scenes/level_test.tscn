@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 [gd_scene load_steps=46 format=3 uid="uid://nfkiy46shhrx"]
+=======
+[gd_scene load_steps=48 format=3 uid="uid://nfkiy46shhrx"]
+>>>>>>> Leveling-bar
 
 [ext_resource type="PackedScene" uid="uid://cc3m6m4bf5i8c" path="res://prefabs/shrub.tscn" id="1_8mt6y"]
 [ext_resource type="Script" path="res://scripts/playerSocket_adventure.gd" id="1_imwoy"]
@@ -7,7 +11,11 @@
 [ext_resource type="Material" uid="uid://w4aoyuyy5ldg" path="res://art/materials/dirt.tres" id="4_8or8u"]
 [ext_resource type="PackedScene" uid="uid://chwqjvpft7wxd" path="res://prefabs/actor.tscn" id="6_bskg6"]
 [ext_resource type="Script" path="res://scripts/combo_bar.gd" id="7_q3xl4"]
+<<<<<<< HEAD
 [ext_resource type="Script" path="res://scripts/situation_gantry.gd" id="8_tht1g"]
+=======
+[ext_resource type="Script" path="res://scenes/Leveling_Progress.gd" id="8_t1khn"]
+>>>>>>> Leveling-bar
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_th6xf"]
 
@@ -491,6 +499,11 @@ bottom_radius = 1.0
 height = 1.0
 radial_segments = 4
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dygs2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hwkaj"]
+bg_color = Color(0.733333, 0.682353, 0, 1)
+
 [node name="level_test" type="Node3D"]
 
 [node name="Player Sockets" type="Node" parent="."]
@@ -629,8 +642,36 @@ offset_right = 54.0
 offset_bottom = 77.0
 script = ExtResource("7_q3xl4")
 
+<<<<<<< HEAD
 [node name="Node3D" type="Node3D" parent="."]
 script = ExtResource("8_tht1g")
 
 [node name="RayCast3D" type="RayCast3D" parent="Node3D"]
 collide_with_areas = true
+=======
+[node name="Leveling_Bar" type="CanvasLayer" parent="."]
+
+[node name="Leveling_Progress" type="ProgressBar" parent="Leveling_Bar"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -181.0
+offset_top = -36.0
+offset_right = 182.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxEmpty_dygs2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hwkaj")
+show_percentage = false
+script = ExtResource("8_t1khn")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Leveling_Bar/Leveling_Progress"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -29.0
+offset_right = 364.0
+offset_bottom = -6.0
+>>>>>>> Leveling-bar
