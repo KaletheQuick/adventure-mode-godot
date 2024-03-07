@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="GutTests" failures="13" tests="12" >
+  <testsuite name="res://scripts/testing/test_adem.gd" tests="12" failures="13" skipped="0" >
+      <testcase name="test_one" assertions="5" status="fail" classname="res://scripts/testing/test_adem.gd" >
+      <failure message="failed">[-1] expected to equal [1]:  level should not go below negative
+            at line 25</failure></testcase>
+      <testcase name="test_two" assertions="1" status="pass" classname="res://scripts/testing/test_adem.gd" >
+      </testcase>
+      <testcase name="test_three" assertions="31" status="fail" classname="res://scripts/testing/test_adem.gd" >
+      <failure message="failed">[31] expected to equal [30]:  Leveling past 30
+            at line 59</failure></testcase>
+      <testcase name="test_four" assertions="1" status="fail" classname="res://scripts/testing/test_adem.gd" >
+      <failure message="failed">[100.0] expected to equal [4.0]:  Did not gain exp correctly
+            at line 71</failure></testcase>
+      <testcase name="test_five" assertions="2" status="pass" classname="res://scripts/testing/test_adem.gd" >
+      </testcase>
+      <testcase name="test_six" assertions="2" status="fail" classname="res://scripts/testing/test_adem.gd" >
+      <failure message="failed">[10] expected to equal [5]:  Level did not change to 5
+            at line 96</failure></testcase>
+      <testcase name="test_seven" assertions="1" status="pass" classname="res://scripts/testing/test_adem.gd" >
+      </testcase>
+      <testcase name="test_eight" assertions="4" status="fail" classname="res://scripts/testing/test_adem.gd" >
+      <failure message="failed">[11.0] expected to equal [576.0]:  Went over 30
+            at line 127</failure></testcase>
+      <testcase name="test_nine" assertions="1" status="fail" classname="res://scripts/testing/test_adem.gd" >
+      <failure message="failed">[13.0] expected to equal [-24.0]:  player_death calculation wasnt correct
+            at line 149</failure></testcase>
+      <testcase name="test_ten" assertions="1" status="pass" classname="res://scripts/testing/test_adem.gd" >
+      </testcase>
+      <testcase name="test_eleven" assertions="3" status="fail" classname="res://scripts/testing/test_adem.gd" >
+      <failure message="failed">[101] expected to equal [100]:  Health did not update with level
+            at line 170</failure></testcase>
+      <testcase name="test_twelve" assertions="1" status="fail" classname="res://scripts/testing/test_adem.gd" >
+      <failure message="failed">[2] expected to equal [1]:  level didnt go to actor
+            at line 181</failure></testcase>
+      </testsuite>
+  </testsuites>

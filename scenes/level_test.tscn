@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://nfkiy46shhrx"]
+[gd_scene load_steps=49 format=3 uid="uid://nfkiy46shhrx"]
 
 [ext_resource type="PackedScene" uid="uid://cc3m6m4bf5i8c" path="res://prefabs/shrub.tscn" id="1_8mt6y"]
 [ext_resource type="Script" path="res://scripts/playerSocket_adventure.gd" id="1_imwoy"]
@@ -7,7 +7,7 @@
 [ext_resource type="Material" uid="uid://w4aoyuyy5ldg" path="res://art/materials/dirt.tres" id="4_8or8u"]
 [ext_resource type="PackedScene" uid="uid://chwqjvpft7wxd" path="res://prefabs/actor.tscn" id="6_bskg6"]
 [ext_resource type="Script" path="res://scripts/combo_bar.gd" id="7_q3xl4"]
-[ext_resource type="Script" path="res://scenes/Leveling_Progress.gd" id="8_t1khn"]
+[ext_resource type="Script" path="res://scripts/Leveling_Progress.gd" id="8_t1khn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_th6xf"]
 
@@ -491,6 +491,20 @@ bottom_radius = 1.0
 height = 1.0
 radial_segments = 4
 
+[sub_resource type="GDScript" id="GDScript_8n88y"]
+script/source = "extends CanvasLayer
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dygs2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hwkaj"]
@@ -635,6 +649,7 @@ offset_bottom = 77.0
 script = ExtResource("7_q3xl4")
 
 [node name="Leveling_Bar" type="CanvasLayer" parent="."]
+script = SubResource("GDScript_8n88y")
 
 [node name="Leveling_Progress" type="ProgressBar" parent="Leveling_Bar"]
 anchors_preset = 7

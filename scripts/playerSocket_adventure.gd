@@ -11,7 +11,10 @@ extends Node
 @export var player_prefix = "p1_" # used for local multiplayer
 @export var test_second_thrall : CharacterBody3D
 var primary_thrall = true
-
+var level : int = 1
+var health = 100
+var strength = 5 
+var armor = 5 
 @export var mainCam : Camera3D 
 
 var dot : MeshInstance3D # debug
