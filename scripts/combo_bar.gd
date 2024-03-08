@@ -16,6 +16,10 @@ func _process(delta: float) -> void:
     if combo_value < 0:
         combo_value = 0
         value = combo_value
+    
+    if combo_value > max_value:
+        combo_value = 100
+        value = combo_value
 
 func fill_combo_bar(amount: float):
     combo_value += amount

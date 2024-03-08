@@ -1,0 +1,285 @@
+PS C:\Users\ahmed\Desktop\Group Project\adventure-mode-godot> Godot Engine v4.2.1.stable.official.b09f793f5 - https://godotengine.org
+TextServer: Added interface "Dummy"
+TextServer: Added interface "ICU / HarfBuzz / Graphite (Built-in)"
+WARNING: GENERAL - Message Id Number: 0 | Message Id Name: Loader Message
+        windows_read_data_files_in_registry: Registry lookup failed to get layer manifest files.
+        Objects - 1
+                Object[0] - VK_OBJECT_TYPE_INSTANCE, Handle 3020939637424
+     at: _debug_messenger_callback (drivers/vulkan/vulkan_context.cpp:264)
+Vulkan devices:
+  #0: NVIDIA NVIDIA GeForce RTX 4060 Ti - Supported, Discrete
+  #1: Intel Intel(R) UHD Graphics 630 - Supported, Integrated
+Vulkan API 1.3.242 - Forward+ - Using Vulkan Device #0: NVIDIA - NVIDIA GeForce RTX 4060 Ti
+Optional extension VK_KHR_incremental_present not found
+Optional extension VK_GOOGLE_display_timing not found
+- Vulkan Variable Rate Shading supported:
+  Pipeline fragment shading rate
+  Primitive fragment shading rate
+  Attachment fragment shading rate, min texel size: (16, 16), max texel size: (16, 16)
+- Vulkan multiview supported:
+  max view count: 32
+  max instances: 134217727
+- Vulkan subgroup:
+  size: 32
+  min size: 32
+  max size: 32
+  stages: STAGE_VERTEX, STAGE_TESSELLATION_CONTROL, STAGE_TESSELLATION_EVALUATION, STAGE_GEOMETRY, STAGE_FRAGMENT, STAGE_COMPUTE, STAGE_RAYGEN_KHR, STAGE_ANY_HIT_KHR, STAGE_CLOSEST_HIT_KHR, STAGE_MISS_KHR, STAGE_INTERSECTION_KHR, STAGE_CALLABLE_KHR, STAGE_TASK_NV, STAGE_MESH_NV
+  supported ops: FEATURE_BASIC, FEATURE_VOTE, FEATURE_ARITHMETIC, FEATURE_BALLOT, FEATURE_SHUFFLE, FEATURE_SHUFFLE_RELATIVE, FEATURE_CLUSTERED, FEATURE_QUAD, FEATURE_PARTITIONED_NV
+  quad operations in all stages
+Startup PSO cache (3.9 MiB)
+Using "winink" pen tablet driver...
+Creating VMA small objects pool for memory type index 1
+Shader 'CanvasSdfShaderRD' (group 0) SHA256: ccda596da71a96af6897be3bc63633145694ec79105c5674ee719a025f168249
+Shader 'SkeletonShaderRD' (group 0) SHA256: db547e2a7abfceddca6daece649af33b18189dc08eaa37cef9dc5860862b91ee
+Shader 'SortShaderRD' (group 0) SHA256: 0635218ab1b23b93c0e100ad9a6fe7be993089593c96fb6f498e0f9d047ce9f4
+Shader 'ParticlesShaderRD' (group 0) SHA256: bfea0e55dd78696fd416c3513873f5a94bc956c2a61b8292eb5d078690e41591
+Shader 'ParticlesCopyShaderRD' (group 0) SHA256: b640b70d21ec3903c8e257f1d54ef3c64236018b36feffb7a955f8cbf2b977c4
+Shader 'CanvasShaderRD' (group 0) SHA256: f2af9ca0e26c0e8049ed431865d8fd5d14faf79f1ba8dade11df8dbd611652c3
+Shader 'CanvasOcclusionShaderRD' (group 0) SHA256: 6e1f14f7d04af941e1d2300431ef37d7e2742684dce4fbe7495def98a3b1cb4d
+Shader 'ClusterRenderShaderRD' (group 0) SHA256: 2135e66bae082ab8c6b6d9b8513777bd4aae70f47ed40a170cc241c0696d57dd
+Shader 'ClusterStoreShaderRD' (group 0) SHA256: e7c19c07bf7cf7209e469a9fbb06d30b27bf29d7ad91bc47e74e0631765b2d86
+Shader 'ClusterDebugShaderRD' (group 0) SHA256: 96afdc9dc3999abd6dc9e98643b3d58644ec856e4fa4ea20f9f69e1b225d6af8
+Shader 'SceneForwardClusteredShaderRD' (group 0) SHA256: d5ded1b6d087f9d205de57ed54272037445fd80bbbab48e31e53a3fe33da0710
+Shader 'SceneForwardClusteredShaderRD' (group 1) SHA256: 48092b10c0c4dd4c2e716f8fc6f699428872bad85dd07c65b7903c8732acba2a
+Shader 'SceneForwardClusteredShaderRD' (group 2) SHA256: 5878195f2ab9a62223312633ac117c7b61974128c353968d1e66c80efb298e03
+Shader 'SceneForwardClusteredShaderRD' (group 3) SHA256: 13816f69baf68044a6820cb07e9d2c069d84975407c2560320b8a551545e42cb
+Shader 'ResolveShaderRD' (group 0) SHA256: bbae2281243fdb9a2fc1e014df1debab098cfa3fcafe9ee75283d37df2d1fddf
+Shader 'TaaResolveShaderRD' (group 0) SHA256: 75850220cf4a882155831df3c46894bb18d5c770308ec844ff00d09520802a9b
+Shader 'Fsr2DepthClipPassShaderRD' (group 0) SHA256: 2830090de5d5209b66e51f2bab8566480a2115c0f1b50534f9a18ac00b9be4bd
+Shader 'Fsr2ReconstructPreviousDepthPassShaderRD' (group 0) SHA256: 50cb1c922c840f610233f20009f23a81457ee61a0e4986a85e5c08a63ef7c6cfShader 'Fsr2LockPassShaderRD' (group 0) SHA256: d6dbbf3057a3df42cf35700040550925b590fa22b318da4e9dde695a9c9601bd
+Shader 'Fsr2AccumulatePassShaderRD' (group 0) SHA256: 22be82431e6f4ca678118ab070b427f8ab2bac9cf229056893e06dbcf9b88115
+Shader 'Fsr2RcasPassShaderRD' (group 0) SHA256: 618153e882d42170c18f28a260da6d5c589acded5900975af70585065a59e085
+Shader 'Fsr2ComputeLuminancePyramidPassShaderRD' (group 0) SHA256: 9dcae72fdad619f6b0b4df518e764e82400773504dc6dc42dee94342522a2cb6 
+Shader 'Fsr2AutogenReactivePassShaderRD' (group 0) SHA256: 309b444059a2b40ba093bf12cc4b01b327ea377105f38fd3c9b62395b068c3e0
+Shader 'Fsr2TcrAutogenPassShaderRD' (group 0) SHA256: c0cd163bbfd61c6a3eb0b3dd9ce53a8191ed96d9c49f766122816258c829426a
+Shader 'SsEffectsDownsampleShaderRD' (group 0) SHA256: 33191663db775b3239324c8e7c70b322003c7ba4f3bf509584e1cdc8ce90ca14
+Shader 'SsilShaderRD' (group 0) SHA256: 7fd8e5f50a5704489ee2a7c2a433125ad7fa0d3a259d399af638bce1edcb8450
+Shader 'SsilImportanceMapShaderRD' (group 0) SHA256: 673bf3ed83df4540ff07c5b6592d8117847d322f44fc54c541a41052868672ad
+Shader 'SsilBlurShaderRD' (group 0) SHA256: c4823d0e827d0dd34f66eeeb04a52753c801e7a782e63057003523827a7ebfac
+Shader 'SsilInterleaveShaderRD' (group 0) SHA256: 18f771bd553cb304db576babd51d4c4cc63df20ac2052fb0e4133f9fbdf5aa3e
+Shader 'SsaoShaderRD' (group 0) SHA256: 21e4ef08ca2c349ce5ab040c40233a23516ece7c756639d914d6617b909985b7
+Shader 'SsaoImportanceMapShaderRD' (group 0) SHA256: fc0834566ddf20cc312e6a1eafc6e4ead6ebc5874b1beec4f8b7100879adf9b9
+Shader 'SsaoBlurShaderRD' (group 0) SHA256: 6649d2399f3866ffbde70be4eae7644fbfe70907923fd36a10552342f768b48d
+Shader 'SsaoInterleaveShaderRD' (group 0) SHA256: 1420d433267675277657dbe4a189eb1a8ee79b1dfbd47038e6acf926e1b3b91b
+Shader 'ScreenSpaceReflectionScaleShaderRD' (group 0) SHA256: c17a8a99b2bfaf1a0e3fdeaf2afc912e685a8f581ca9ad3208b2637c78d43699      
+Shader 'ScreenSpaceReflectionShaderRD' (group 0) SHA256: b5d41ffd66ed21e4cb5bb10d7d6c9f1b2575907979e8577ecaadc91765c64733
+Shader 'ScreenSpaceReflectionFilterShaderRD' (group 0) SHA256: 60f8b0befc8ae01c09adc3d4b34f7900bc1430b089054913d923605e7a0ca9c4     
+Shader 'SubsurfaceScatteringShaderRD' (group 0) SHA256: 91e1ac945dad61f48411d0a1244e6636634e9785333c014ac318fcee04b72741
+Shader 'SkyShaderRD' (group 0) SHA256: c773b40a48cb349a2f34006aace7b0ef1aaa8fad530160990a9634fcf019aebe
+Shader 'VoxelGiShaderRD' (group 0) SHA256: 26adaa157a0dbc77aaeb10cd9840a3cfeddb4699002202c4069ea0aca1b684eb
+Shader 'VoxelGiDebugShaderRD' (group 0) SHA256: 10e6f56ab62c32c6283301052f7f3efd8733a2dd8c54b5c8e8875b4019be3530
+Shader 'SdfgiPreprocessShaderRD' (group 0) SHA256: 5d3bf192407ce0131d8d17e264d302c13eb17f8284e643e96071c3c2f09b45a8
+Shader 'SdfgiDirectLightShaderRD' (group 0) SHA256: 2d9e0cdb42a45dcec8d6fa71bc0e820405887a0f06b540f9cfb9a3d5b0d05c53
+Shader 'SdfgiIntegrateShaderRD' (group 0) SHA256: 15a2e64db17d8aafc8f3d8d2a528747c64d294e8034e7b9e4e86e5ee994d66c2
+Shader 'GiShaderRD' (group 0) SHA256: fc70dbaf4b894ea97a0300ec38724bb52936be2bd53a8e3d056f28d9938a1c87
+Shader 'SdfgiDebugShaderRD' (group 0) SHA256: 1d7fbd21ccb6e9825acc51d893c06bb4030178286b008b840821fd317fc5302b
+Shader 'SdfgiDebugProbesShaderRD' (group 0) SHA256: 90121919d39f8150a9149d5e7eca75d0f2b06d679f544f696bdb941a6cf51810
+Shader 'VolumetricFogShaderRD' (group 0) SHA256: c6ff2f4ac52f1179cd0f6c29737304d12ed6b90feae4187f34b38d5228ae1765
+Shader 'VolumetricFogProcessShaderRD' (group 0) SHA256: 8d17101913be2888afe1d04fa9287ce1137a8385e86202f4b2a3c6946d3d8982
+Shader 'BokehDofShaderRD' (group 0) SHA256: c8b02e9d9aed942a821d35f533288d4fd0a2faaf2c7b58b53c8a92c6c3544feb
+Shader 'CopyShaderRD' (group 0) SHA256: b3d9672c50ef509a18599d840e170b4531f88fdffb8f3b73d085bf572599743d
+Shader 'CopyToFbShaderRD' (group 0) SHA256: 100799ce54eea0950d2a761842afbdb825c4274cd7ae712042a99dd1738b306b
+Shader 'CubeToDpShaderRD' (group 0) SHA256: 660d8fbdedf9d936fc5b9136a097854da9e921113edfdd404a556bcd4fad6f8a
+Shader 'CubemapDownsamplerShaderRD' (group 0) SHA256: 7fa47c7b9bdb49d907907d1270a1c655307ed89c6d440c039a74c00a0f65519e
+Shader 'CubemapFilterShaderRD' (group 0) SHA256: 1f5612e43bd985ba7545d1f652d72bb4a8251a8320475ebca00f62518d75f98b
+Shader 'CubemapRoughnessShaderRD' (group 0) SHA256: 10ad3612c713073a9477ce1395ccb37e510a332370ed0c0a810e1a066533c13a
+Shader 'SpecularMergeShaderRD' (group 0) SHA256: fee8ef8ea7ed18eeeebcfa2a626d54c6a503d5b75a9d775d7fb17a7e2dddc698
+Shader 'ShadowFrustumShaderRD' (group 0) SHA256: 12fb0f35abe27d7c2578b5bdeaf4517d45f710f9b66ab66f57794d77f90c2fd5
+Shader 'MotionVectorsShaderRD' (group 0) SHA256: ca45f570f7b085fd508662270a09a17e42436227dd37e8f5a22034bbb70d8a94
+Shader 'LuminanceReduceShaderRD' (group 0) SHA256: ad94b0824e25b988f4792cd9be4cb80f042918016d83b4d9683034bbeffdd811
+Shader 'TonemapShaderRD' (group 0) SHA256: 886811888c9b1fc45eecfdd383f8c7087ea62f74178fadb6ff561a568aade71b
+Shader 'VrsShaderRD' (group 0) SHA256: b747acdb722b2faf724266877a5336a0141453c1632b280cdff87b47c108f7c9
+Shader 'FsrUpscaleShaderRD' (group 0) SHA256: 5d97f0e27e6b49e530b561b06452e04bbf6b4763e0b831ea8650c098644f446a
+Shader 'BlitShaderRD' (group 0) SHA256: 72c6e59fbd6bdca88a055003cd3614ebdbc4b9fed5efefb796128c188d379986
+WASAPI: Activated output_device using IAudioClient3 interface
+WASAPI: wFormatTag = 65534
+WASAPI: nChannels = 2
+WASAPI: nSamplesPerSec = 48000
+WASAPI: nAvgBytesPerSec = 384000
+WASAPI: nBlockAlign = 8
+WASAPI: wBitsPerSample = 32
+WASAPI: cbSize = 22
+WASAPI: mix_rate = 48000
+WASAPI: fundamental_period_frames = 16
+WASAPI: min_period_frames = 128
+WASAPI: max_period_frames = 480
+WASAPI: selected a period frame size of 480
+WASAPI: detected 2 channels
+WASAPI: audio buffer frames: 480 calculated latency: 10ms
+
+TextServer: Primary interface set to: "ICU / HarfBuzz / Graphite (Built-in)".
+CORE API HASH: 915626997
+EDITOR API HASH: 1313472085
+Loaded system CA certificates
+
+
+ ---  Gut  ---
+[INFO]:  using [C:/Users/ahmed/AppData/Roaming/Godot/app_userdata/Adventure-mode-godot] for temporary output.
+Godot version:  4.2.1
+GUT version:  9.2.1
+
+
+res://tests/test_combo_bar_fills_on_jump.gd.gd
+* test_combo_bar_fills_on_jump
+    [Orphans]:  1 new orphan in test.
+* test_combo_bar_does_not_fill_when_not_jumping
+    -- Awaiting 5 second(s) -- 
+    [Orphans]:  1 new orphan in test.
+* test_combo_bar_maximum_limit
+    -- Awaiting 1 second(s) -- 
+    [Failed]:  [200.0] expected to equal [100.0]:  Combo bar should NOT go past 100.
+      at line -1
+    [Orphans]:  1 new orphan in test.
+* test_combo_bar_starts_draining
+    -- Awaiting 1 second(s) -- 
+[Orphans]:  3 new orphans in script.
+[WARNING]:  Test script has 1 unfreed children.  Increase log level for more details.
+3/4 passed.
+
+
+res://tests/test_raycast_is_enabled_on_ready.gd
+* test_raycast_is_enabled_on_ready
+    [Orphans]:  1 new orphan in test.
+NO COLLISION AT ALL
+NO COLLISION AT ALL
+NO COLLISION AT ALL
+NO COLLISION AT ALL
+NO COLLISION AT ALL
+NO COLLISION AT ALL
+NO COLLISION AT ALL
+NO COLLISION AT ALL
+1/1 passed.
+
+
+res://tests/test_raycasting_open_space.gd
+* test_raycast_detects_open_space
+    -- Awaiting 1 second(s) -- 
+    -- Awaiting 0.5 second(s) --
+    [Orphans]:  1 new orphan in test.
+NO COLLISION AT ALL
+NO COLLISION AT ALL
+NO COLLISION AT ALL
+NO COLLISION AT ALL
+NO COLLISION AT ALL
+NO COLLISION AT ALL
+NO COLLISION AT ALL
+NO COLLISION AT ALL
+NO COLLISION AT ALL
+NO COLLISION AT ALL
+NO COLLISION AT ALL
+NO COLLISION AT ALL
+1/1 passed.
+
+
+res://tests/test_terrain_detection.gd
+* test_terrain_detection
+    -- Awaiting 2 second(s) -- 
+    [Orphans]:  1 new orphan in test.
+[Orphans]:  1 new orphan in script.
+1/1 passed.
+
+
+res://tests/test_transition_between_enthrall_and_dethrall.gd
+* test_movement_stops_on_dethrall
+1/1 passed.
+
+
+
+
+==============================================
+= Run Summary
+==============================================
+
+res://tests/test_combo_bar_fills_on_jump.gd.gd
+- test_combo_bar_maximum_limit
+    [Failed]:  [200.0] expected to equal [100.0]:  Combo bar should NOT go past 100.
+          at line -1
+
+---- Totals ----
+Warnings          1
+
+Scripts           5
+Tests             8
+  Passing         7
+  Failing         1
+Asserts           9
+Time              0.526s
+
+
+[Orphans]:  4 new orphans in total.
+Note:  This count does not include GUT objects that will be freed upon exit.
+       It also does not include any orphans created by global scripts
+       loaded before tests were ran.
+Total orphans = 9
+
+---- 1 failing tests ----
+
+XR: Clearing primary interface
+XR: Removed interface "Native mobile"
+XR: Removed interface "OpenXR"
+ERROR: 1 RID allocations of type 'N10RendererRD14TextureStorage7TextureE' were leaked at exit.
+ERROR: 3 RID allocations of type 'N18RendererCanvasCull4ItemE' were leaked at exit.
+WARNING: 1 RID of type "Texture" was leaked.
+     at: finalize (drivers/vulkan/rendering_device_vulkan.cpp:9624)
+ERROR: 1 RID allocations of type 'PN18TextServerAdvanced12FontAdvancedE' were leaked at exit.
+WARNING: ObjectDB instances leaked at exit (run with --verbose for details).
+     at: cleanup (core/object/object.cpp:2208)
+Leaked instance: GDScriptNativeClass:-9222877806378089751
+Leaked instance: FontFile:-9222678245017648048 - Resource path:
+Leaked instance: StyleBoxFlat:-9222544104599059309 - Resource path:
+Leaked instance: StyleBoxFlat:-9222543554843245420 - Resource path:
+Leaked instance: ImageTexture:-9221413806645705409 - Resource path: 
+Leaked instance: GDScript:-9221929477599132158 - Resource path: res://scripts/combo_bar.gd
+Leaked instance: Object:1742176174212637
+Leaked instance: ProgressBar:1738327883515422 - Node name:
+Leaked instance: Object:1738877639329316
+Leaked instance: Object:1736128860259895
+Leaked instance: ProgressBar:1741626418398783 - Node name: 
+Leaked instance: ProgressBar:1735579104446027 - Node name:
+Hint: Leaked instances typically happen when nodes are removed from the scene tree (with `remove_child()`) but not freed (with `free()` or `queue_free()`).
+ERROR: Resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:493)
+Resource still in use: res://scripts/combo_bar.gd (GDScript)
+Orphan StringName: _make_custom_tooltip (static: 0, total: 3)
+Orphan StringName: _enter_tree (static: 0, total: 3)
+Orphan StringName: _unhandled_input (static: 0, total: 3)
+Orphan StringName: _ready (static: 1, total: 4)
+Orphan StringName: _has_point (static: 0, total: 3)
+Orphan StringName: _exit_tree (static: 0, total: 3)
+Orphan StringName: _has_alpha (static: 0, total: 1)
+Orphan StringName: background (static: 0, total: 3)
+Orphan StringName: _setup_local_to_scene (static: 0, total: 5)
+Orphan StringName: _test_mask (static: 0, total: 2)
+Orphan StringName: combo_value (static: 0, total: 7)
+Orphan StringName: _get_draw_rect (static: 0, total: 2)
+Orphan StringName: drain_rate (static: 0, total: 7)
+Orphan StringName: font_size (static: 0, total: 3)
+Orphan StringName: Font (static: 0, total: 1)
+Orphan StringName: fill_combo_bar (static: 0, total: 1)
+Orphan StringName: _drop_data (static: 0, total: 3)
+Orphan StringName: _input (static: 0, total: 3)
+Orphan StringName: _get_width (static: 0, total: 1)
+Orphan StringName: _shortcut_input (static: 0, total: 3)
+Orphan StringName: font_outline_color (static: 0, total: 3)
+Orphan StringName: _get_height (static: 0, total: 1)
+Orphan StringName: _draw_rect_region (static: 0, total: 1)
+Orphan StringName: _process (static: 0, total: 4)
+Orphan StringName: _is_pixel_opaque (static: 0, total: 1)
+Orphan StringName: time_since_last_drain (static: 0, total: 7)
+Orphan StringName: _unhandled_key_input (static: 0, total: 3)
+Orphan StringName: _gui_input (static: 0, total: 3)
+Orphan StringName: _get_tooltip (static: 0, total: 3)
+Orphan StringName: fill (static: 0, total: 3)
+Orphan StringName: _can_drop_data (static: 0, total: 3)
+Orphan StringName: _get_configuration_warnings (static: 0, total: 3)
+Orphan StringName: _value_changed (static: 0, total: 3)
+Orphan StringName: _draw (static: 0, total: 6)
+Orphan StringName: font (static: 0, total: 3)
+Orphan StringName: _get_minimum_size (static: 0, total: 5)
+Orphan StringName: _draw_rect (static: 0, total: 1)
+Orphan StringName: _get_drag_data (static: 0, total: 3)
+Orphan StringName: outline_size (static: 0, total: 3)
+Orphan StringName: font_color (static: 0, total: 3)
+Orphan StringName: _physics_process (static: 0, total: 3)
+Orphan StringName: ProgressBar (static: 1, total: 2)
+StringName: 43 unclaimed string names at exit.
