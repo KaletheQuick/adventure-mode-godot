@@ -48,7 +48,7 @@ func before_each():
 
 func after_each():
 	doll.queue_free()
-
+# test test test
 
 # Acceptance test  - BLACK BOX
 func test_garmet_equip():
