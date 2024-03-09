@@ -82,7 +82,7 @@ func conflicting_items(item):
 
 func conflict_check(item):
 	var bones = item.bones # the spots this item occupies
-	for thing in things_worn:
+	for thing in things_worn: # Fuck me, really do jesis
 		for bone in bones:
 			if bone in thing.bones:
 				return true
