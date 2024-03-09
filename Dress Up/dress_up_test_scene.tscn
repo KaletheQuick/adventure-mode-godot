@@ -1,0 +1,77 @@
+[gd_scene load_steps=13 format=3 uid="uid://cvrtei5mg3l66"]
+
+[ext_resource type="PackedScene" uid="uid://chwqjvpft7wxd" path="res://prefabs/actor.tscn" id="1_uga7h"]
+[ext_resource type="Script" path="res://Dress Up/DresserUpper.gd" id="2_6dr5i"]
+[ext_resource type="Script" path="res://Dress Up/DU_cam_control.gd" id="3_qlpsu"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_btebg"]
+top_radius = 0.9
+bottom_radius = 1.0
+height = 0.2
+radial_segments = 9
+rings = 1
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_160hx"]
+data = PackedVector3Array(0, 0.1, 0.9, 0.5785, 0.1, 0.6894, 0, 0, 0.95, 0.5785, 0.1, 0.6894, 0.6106, 0, 0.7277, 0, 0, 0.95, 0.5785, 0.1, 0.6894, 0.8863, 0.1, 0.1563, 0.6106, 0, 0.7277, 0.8863, 0.1, 0.1563, 0.9356, 0, 0.165, 0.6106, 0, 0.7277, 0.8863, 0.1, 0.1563, 0.7794, 0.1, -0.45, 0.9356, 0, 0.165, 0.7794, 0.1, -0.45, 0.8227, 0, -0.475, 0.9356, 0, 0.165, 0.7794, 0.1, -0.45, 0.3078, 0.1, -0.8457, 0.8227, 0, -0.475, 0.3078, 0.1, -0.8457, 0.3249, 0, -0.8927, 0.8227, 0, -0.475, 0.3078, 0.1, -0.8457, -0.3078, 0.1, -0.8457, 0.3249, 0, -0.8927, -0.3078, 0.1, -0.8457, -0.3249, 0, -0.8927, 0.3249, 0, -0.8927, -0.3078, 0.1, -0.8457, -0.7794, 0.1, -0.45, -0.3249, 0, -0.8927, -0.7794, 0.1, -0.45, -0.8227, 0, -0.475, -0.3249, 0, -0.8927, -0.7794, 0.1, -0.45, -0.8863, 0.1, 0.1563, -0.8227, 0, -0.475, -0.8863, 0.1, 0.1563, -0.9356, 0, 0.165, -0.8227, 0, -0.475, -0.8863, 0.1, 0.1563, -0.5785, 0.1, 0.6894, -0.9356, 0, 0.165, -0.5785, 0.1, 0.6894, -0.6106, 0, 0.7277, -0.9356, 0, 0.165, -0.5785, 0.1, 0.6894, 0, 0.1, 0.9, -0.6106, 0, 0.7277, 0, 0.1, 0.9, 0, 0, 0.95, -0.6106, 0, 0.7277, 0, 0, 0.95, 0.6106, 0, 0.7277, 0, -0.1, 1, 0.6106, 0, 0.7277, 0.6428, -0.1, 0.766, 0, -0.1, 1, 0.6106, 0, 0.7277, 0.9356, 0, 0.165, 0.6428, -0.1, 0.766, 0.9356, 0, 0.165, 0.9848, -0.1, 0.1736, 0.6428, -0.1, 0.766, 0.9356, 0, 0.165, 0.8227, 0, -0.475, 0.9848, -0.1, 0.1736, 0.8227, 0, -0.475, 0.866, -0.1, -0.5, 0.9848, -0.1, 0.1736, 0.8227, 0, -0.475, 0.3249, 0, -0.8927, 0.866, -0.1, -0.5, 0.3249, 0, -0.8927, 0.342, -0.1, -0.9397, 0.866, -0.1, -0.5, 0.3249, 0, -0.8927, -0.3249, 0, -0.8927, 0.342, -0.1, -0.9397, -0.3249, 0, -0.8927, -0.342, -0.1, -0.9397, 0.342, -0.1, -0.9397, -0.3249, 0, -0.8927, -0.8227, 0, -0.475, -0.342, -0.1, -0.9397, -0.8227, 0, -0.475, -0.866, -0.1, -0.5, -0.342, -0.1, -0.9397, -0.8227, 0, -0.475, -0.9356, 0, 0.165, -0.866, -0.1, -0.5, -0.9356, 0, 0.165, -0.9848, -0.1, 0.1736, -0.866, -0.1, -0.5, -0.9356, 0, 0.165, -0.6106, 0, 0.7277, -0.9848, -0.1, 0.1736, -0.6106, 0, 0.7277, -0.6428, -0.1, 0.766, -0.9848, -0.1, 0.1736, -0.6106, 0, 0.7277, 0, 0, 0.95, -0.6428, -0.1, 0.766, 0, 0, 0.95, 0, -0.1, 1, -0.6428, -0.1, 0.766, 0, 0.1, 0, 0.5785, 0.1, 0.6894, 0, 0.1, 0.9, 0, 0.1, 0, 0.8863, 0.1, 0.1563, 0.5785, 0.1, 0.6894, 0, 0.1, 0, 0.7794, 0.1, -0.45, 0.8863, 0.1, 0.1563, 0, 0.1, 0, 0.3078, 0.1, -0.8457, 0.7794, 0.1, -0.45, 0, 0.1, 0, -0.3078, 0.1, -0.8457, 0.3078, 0.1, -0.8457, 0, 0.1, 0, -0.7794, 0.1, -0.45, -0.3078, 0.1, -0.8457, 0, 0.1, 0, -0.8863, 0.1, 0.1563, -0.7794, 0.1, -0.45, 0, 0.1, 0, -0.5785, 0.1, 0.6894, -0.8863, 0.1, 0.1563, 0, 0.1, 0, 0, 0.1, 0.9, -0.5785, 0.1, 0.6894, 0, -0.1, 0, 0, -0.1, 1, 0.6428, -0.1, 0.766, 0, -0.1, 0, 0.6428, -0.1, 0.766, 0.9848, -0.1, 0.1736, 0, -0.1, 0, 0.9848, -0.1, 0.1736, 0.866, -0.1, -0.5, 0, -0.1, 0, 0.866, -0.1, -0.5, 0.342, -0.1, -0.9397, 0, -0.1, 0, 0.342, -0.1, -0.9397, -0.342, -0.1, -0.9397, 0, -0.1, 0, -0.342, -0.1, -0.9397, -0.866, -0.1, -0.5, 0, -0.1, 0, -0.866, -0.1, -0.5, -0.9848, -0.1, 0.1736, 0, -0.1, 0, -0.9848, -0.1, 0.1736, -0.6428, -0.1, 0.766, 0, -0.1, 0, -0.6428, -0.1, 0.766, 0, -0.1, 1)
+
+[sub_resource type="Gradient" id="Gradient_dxtj8"]
+offsets = PackedFloat32Array(0.94686, 1)
+colors = PackedColorArray(0.65061, 0.660783, 0.662148, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1k8hg"]
+gradient = SubResource("Gradient_dxtj8")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+metadata/_snap_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pen0h"]
+albedo_texture = SubResource("GradientTexture2D_1k8hg")
+uv1_triplanar = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_41aqd"]
+material = SubResource("StandardMaterial3D_pen0h")
+size = Vector2(50, 50)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ycya6"]
+
+[sub_resource type="Sky" id="Sky_s04nt"]
+sky_material = SubResource("ProceduralSkyMaterial_ycya6")
+
+[sub_resource type="Environment" id="Environment_f61wp"]
+background_mode = 2
+sky = SubResource("Sky_s04nt")
+
+[node name="DressUp_testScene" type="Node3D"]
+
+[node name="actor" parent="." instance=ExtResource("1_uga7h")]
+
+[node name="DresserUpper" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("2_6dr5i")
+actor = NodePath("../actor")
+
+[node name="dias" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="dias"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+mesh = SubResource("CylinderMesh_btebg")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="dias/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="dias/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_160hx")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="dias"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
+mesh = SubResource("PlaneMesh_41aqd")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.333461, -0.562535, 0.756543, 0, 0.802474, 0.596687, -0.942764, -0.198972, 0.267594, 0, -1, 0)
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target_character")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
+script = ExtResource("3_qlpsu")
+target_character = NodePath("../actor")
+camera_height_bounds = Vector2(0, 2)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_f61wp")

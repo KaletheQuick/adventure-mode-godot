@@ -15,6 +15,16 @@ run/main_scene="res://scenes/level_test.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gut/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://Dress Up/": "purple"
+}
+
 [input]
 
 p1_move_up={
