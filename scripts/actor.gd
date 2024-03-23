@@ -16,6 +16,7 @@ var jump_dbounce = false # Have we recently jumped?
 var LDT = 0.01 # Last delta time, calling get_process_delta_time() in the physics loop was causing issues
 var block = false
 var attack_light = false
+
 func _ready():
 	pass
 
@@ -34,6 +35,8 @@ func _process(delta):
 	LDT = delta
 ##	if jump_dbounce and is_on_floor() and desired_move.y < 0.5: # if we have completed a jump arc, and are not desiring to jump
 #		jump_dbounce = false
+	if desired_move.length_squared() > 0.01:
+		$Dir_arrow.look_at(global_position + desired_move)
 
 func _physics_process(delta):
 	# Handle jump.

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bkdv1dt3ply5s"
+path="res://.godot/imported/step_gravel_05.ogg-4781e6a37c52ac4c6610f891b011f673.oggvorbisstr"
+
+[deps]
+
+source_file="res://art/audio/footstep sounds/step_gravel_05.ogg"
+dest_files=["res://.godot/imported/step_gravel_05.ogg-4781e6a37c52ac4c6610f891b011f673.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

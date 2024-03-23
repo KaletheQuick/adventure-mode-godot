@@ -24,6 +24,9 @@ var follow_offset = Vector3(0, 2.3, 0)
 
 var cam_rot_velocity = Vector2.ZERO
 
+var camLookSpeed = 2
+var camLookAccell = 5
+var camLookVel = Vector3.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -42,6 +45,7 @@ func _process(delta):
 	# follow
 	_follow(delta)
 	# move
+	player_look(delta)
 	# look
 	_look(delta)
 	# zoom ? 
@@ -75,3 +79,9 @@ func _look(delta):
 	rotation_degrees.y += cam_rot_velocity.x * (cam_rot_velocity.x**2) * delta
 	rotation_degrees.x += cam_rot_velocity.y * (cam_rot_velocity.y**2) * delta
 	rotation_degrees.x = clampf(rotation_degrees.x, -60, 80)
+
+
+func player_look(delta):
+	var disLook =  Input.get_vector("p1_look_left", "p1_look_right", "p1_look_dn", "p1_look_up")
+	camLookVel += ((global_basis.x * disLook.x) + (global_basis.y * disLook.y)) * delta * camLookAccell
+	global_position += camLookVel * delta * camLookSpeed
