@@ -16,12 +16,25 @@ var level_prompt = false
 var save_file = false 
 var playerSocket 
 var test_text
+var item_1 = false 
+var item_2 = false 
+var item_3 = false
+var exp_multiplier = false
+
 # Called when the node enters the scene tree for the first time.
+
 func _ready():
 	progress_bar = $Leveling_Progress # Replace with function body.
 	playerSocket = $playerSocket_adventure
 	update_text()
 	text_label = $RichTextLabel
+	var terrain = $terrain
+	if terrain:
+		for child in terrain.get_children():
+			if child.name.find("mesa") == 0:
+				zone_discovered()
+				print("zone has changed")
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -33,10 +46,14 @@ func _process(delta):
 	if level <= 30: 
 		update_text()
 
+
 func update_text():
 	if text_label:
 		text_label.bbcode_text = "Level %s Experience %s / %s" % [str(level), str(experience), str(experience_required)]
 	test_text = "Level %s Experience %s / %s" % [str(level), str(experience), str(experience_required)]
+
+func zone_discovered():
+	exp_gain(10)
 
 func req_exp(level):
 	if level < 1: 
@@ -47,6 +64,8 @@ func req_exp(level):
 		return round(pow(level,1.8) + level * 4)
 
 func exp_gain(amount):
+	if exp_multiplier:
+		amount += amount * 2
 	exp_total += amount
 	experience += amount
 	while experience >= experience_required:
@@ -64,6 +83,7 @@ func saved_level(level_save,exp):
 		level_up()
 		c += 1
 	req_exp(level)
+	reward_check()
 
 func player_death():
 	exp_loss = experience - round(pow(level,2) + level *2)
@@ -81,6 +101,21 @@ func level_down(exp_loss):
 			grip -= stat 
 	experience_required = req_exp(level+1)
 
+func debuff_effect(ammount):
+	var factor = ammount
+	level -= ammount
+	strength -= ammount/3
+	health -= ammount/3
+	armor -= ammount/3
+	await 10
+	debuff_disable(ammount)
+
+func debuff_disable(factor):
+	level += factor
+	strength += factor *3
+	health += factor * 3
+	armor += factor * 3 
+
 func level_up():
 	if level <= 30:
 		level+=1
@@ -96,3 +131,18 @@ func level_up():
 			playerSocket.health = health 
 		exp_total = experience_required
 		experience_required = req_exp(level+1)
+
+func update_stat_text():
+	pass
+	
+func stat_lookup():
+	if Input.is_action_pressed("stats"):
+		pass
+
+func reward_check():
+	if level == 5: 
+		item_1 == true 
+	if level == 10: 
+		item_2 == true 
+	if level == 15:
+		item_3 == true
