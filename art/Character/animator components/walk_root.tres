@@ -15,11 +15,11 @@ blend_point_1/node = SubResource("AnimationNodeAnimation_os8ff")
 blend_point_1/pos = 1.0
 value_label = "0"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_scgyj"]
+animation = &"combat_sword/combat_attack_r-l"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ewgqc"]
 animation = &"combat_sword/combat_block_shield"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_scgyj"]
-animation = &"combat_sword/combat_idle"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yx5ig"]
 animation = &"walk/airborne"
@@ -54,12 +54,12 @@ advance_condition = &"jump"
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gt3rp"]
-xfade_time = 1.0
+xfade_time = 0.1
 advance_mode = 2
 advance_expression = "block == true"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_74m8c"]
-xfade_time = 1.0
+xfade_time = 0.1
 advance_mode = 2
 advance_expression = "block == false"
 
@@ -79,15 +79,15 @@ advance_expression = "attack_light == false"
 "states/Move Walk/node" = ExtResource("1_f2otq")
 "states/Move Walk/position" = Vector2(229.667, 105.222)
 states/Start/position = Vector2(77.3333, 105.333)
+states/attack_light/node = SubResource("AnimationNodeAnimation_scgyj")
+states/attack_light/position = Vector2(390.667, 344.333)
 states/combat_sword_combat_block_shield/node = SubResource("AnimationNodeAnimation_ewgqc")
 states/combat_sword_combat_block_shield/position = Vector2(602.667, 285.333)
-states/combat_sword_combat_idle/node = SubResource("AnimationNodeAnimation_scgyj")
-states/combat_sword_combat_idle/position = Vector2(390.667, 344.333)
 states/walk_airborne/node = SubResource("AnimationNodeAnimation_yx5ig")
 states/walk_airborne/position = Vector2(641.222, 64.3333)
 states/walk_jump_standing/node = SubResource("AnimationNodeAnimation_hi4b0")
 states/walk_jump_standing/position = Vector2(416.333, -2.33333)
 states/walk_land/node = SubResource("AnimationNodeAnimation_bj3bm")
 states/walk_land/position = Vector2(416.827, 144.333)
-transitions = ["walk_airborne", "walk_land", SubResource("AnimationNodeStateMachineTransition_tddch"), "walk_jump_standing", "walk_airborne", SubResource("AnimationNodeStateMachineTransition_1qtnw"), "walk_land", "Move Walk", SubResource("AnimationNodeStateMachineTransition_slw4a"), "Jump w vel", "walk_airborne", SubResource("AnimationNodeStateMachineTransition_86anj"), "Move Walk", "Jump w vel", SubResource("AnimationNodeStateMachineTransition_bibi4"), "Start", "Move Walk", SubResource("AnimationNodeStateMachineTransition_rhslg"), "Move Walk", "combat_sword_combat_block_shield", SubResource("AnimationNodeStateMachineTransition_gt3rp"), "combat_sword_combat_block_shield", "Move Walk", SubResource("AnimationNodeStateMachineTransition_74m8c"), "Move Walk", "combat_sword_combat_idle", SubResource("AnimationNodeStateMachineTransition_473xn"), "combat_sword_combat_idle", "Move Walk", SubResource("AnimationNodeStateMachineTransition_33gl8")]
-graph_offset = Vector2(-384, -51)
+transitions = ["walk_airborne", "walk_land", SubResource("AnimationNodeStateMachineTransition_tddch"), "walk_jump_standing", "walk_airborne", SubResource("AnimationNodeStateMachineTransition_1qtnw"), "walk_land", "Move Walk", SubResource("AnimationNodeStateMachineTransition_slw4a"), "Jump w vel", "walk_airborne", SubResource("AnimationNodeStateMachineTransition_86anj"), "Move Walk", "Jump w vel", SubResource("AnimationNodeStateMachineTransition_bibi4"), "Start", "Move Walk", SubResource("AnimationNodeStateMachineTransition_rhslg"), "Move Walk", "combat_sword_combat_block_shield", SubResource("AnimationNodeStateMachineTransition_gt3rp"), "combat_sword_combat_block_shield", "Move Walk", SubResource("AnimationNodeStateMachineTransition_74m8c"), "Move Walk", "attack_light", SubResource("AnimationNodeStateMachineTransition_473xn"), "attack_light", "Move Walk", SubResource("AnimationNodeStateMachineTransition_33gl8")]
+graph_offset = Vector2(-112, 167)

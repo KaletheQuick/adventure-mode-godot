@@ -1,12 +1,12 @@
 [gd_resource type="AnimationNodeBlendSpace2D" load_steps=23 format=3 uid="uid://dukebmuejahjs"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qyuku"]
-animation = &"from_old/run_01"
+animation = &"walk_jog_run/jog_fwd"
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_lccqx"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_da2v0"]
-graph_offset = Vector2(-164, 170.667)
+graph_offset = Vector2(-323, 100.667)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_qyuku")
 nodes/Animation/position = Vector2(0, 213.333)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_lccqx")
@@ -84,7 +84,7 @@ animation = &"walk_jog_run/walk_fwd"
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_c3vcs"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_0ty3j"]
-graph_offset = Vector2(-368, 50.6667)
+graph_offset = Vector2(-451, 96)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_d8j4w")
 nodes/Animation/position = Vector2(-320, 133.333)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_c3vcs")

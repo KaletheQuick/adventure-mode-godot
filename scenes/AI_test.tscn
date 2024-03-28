@@ -111,6 +111,46 @@ transform = Transform3D(-0.199611, -0.70584, 0.679665, -0.314926, 0.703037, 0.63
 size = Vector3(2.72058, 5.28253, 4.0567)
 material = ExtResource("3_yyr3u")
 
+[node name="CSGBox3D4" type="CSGBox3D" parent="terrain/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.58, -1, -20.429)
+size = Vector3(3, 5, 2)
+material = ExtResource("3_yyr3u")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="terrain/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.58, 5.96046e-08, -22.429)
+size = Vector3(3, 5, 2)
+material = ExtResource("3_yyr3u")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="terrain/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.58, 1, -24.429)
+size = Vector3(3, 5, 2)
+material = ExtResource("3_yyr3u")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="terrain/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.58, 1, -18.429)
+size = Vector3(3, 5, 2)
+material = ExtResource("3_yyr3u")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="terrain/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.58, 2, -16.429)
+size = Vector3(3, 5, 2)
+material = ExtResource("3_yyr3u")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="terrain/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.58, 2, -16.429)
+size = Vector3(3, 5, 2)
+material = ExtResource("3_yyr3u")
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="terrain/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.58, 3, -16.429)
+size = Vector3(3, 5, 2)
+material = ExtResource("3_yyr3u")
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="terrain/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.58, 3, -21.429)
+size = Vector3(3, 5, 2)
+material = ExtResource("3_yyr3u")
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_26iue")
 
@@ -155,6 +195,7 @@ script = ExtResource("5_k2bmb")
 transform = Transform3D(0.510543, 0.543452, 0.666338, 0, 0.774944, -0.632029, -0.859852, 0.322678, 0.395642, 7.72349, 4.367, 6.818)
 script = ExtResource("6_bedoa")
 target_current = NodePath("../actor")
+cam_sens = 1.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Camera"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.508387)

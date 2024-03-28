@@ -31,11 +31,11 @@ animation/remove_immutable_tracks=true
 import_script/path=""
 _subresources={
 "animations": {
-"combat_block_shield": {
+"combat_attack_r-l": {
 "save_to_file/enabled": true,
 "save_to_file/keep_custom_tracks": "",
-"save_to_file/path": "res://art/Character/animations/combat_sword/combat_block_shield.res",
-"settings/loop_mode": 1,
+"save_to_file/path": "res://art/Character/animations/combat_sword/combat_attack_r-l.res",
+"settings/loop_mode": 0,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
 "slice_1/name": "",
@@ -1830,10 +1830,10 @@ _subresources={
 "slice_99/start_frame": 0,
 "slices/amount": 0
 },
-"combat_block_sword": {
+"combat_block_shield": {
 "save_to_file/enabled": true,
 "save_to_file/keep_custom_tracks": "",
-"save_to_file/path": "res://art/Character/animations/combat_sword/combat_block_sword.res",
+"save_to_file/path": "res://art/Character/animations/combat_sword/combat_block_shield.res",
 "settings/loop_mode": 1,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,

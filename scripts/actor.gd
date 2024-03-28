@@ -17,6 +17,17 @@ var LDT = 0.01 # Last delta time, calling get_process_delta_time() in the physic
 var block = false
 var attack_light = false
 
+@onready var animation_tree : AnimationTree = $AnimationTree 
+
+# SECTION Faux ModeSwitcher
+@export var defaultANIMO : AnimationRootNode
+@export var glideANIMO : AnimationRootNode
+var termnalVel = -1.0
+var gliding = false
+var lastDesiredMoveY = 0
+var j_bounce = false
+
+
 func _ready():
 	pass
 
@@ -32,11 +43,14 @@ func enthrall():
 	#TODO - Make check player/ai authority
 
 func _process(delta):
+
+
 	LDT = delta
 ##	if jump_dbounce and is_on_floor() and desired_move.y < 0.5: # if we have completed a jump arc, and are not desiring to jump
 #		jump_dbounce = false
-	if desired_move.length_squared() > 0.01:
-		$Dir_arrow.look_at(global_position + desired_move)
+	if desired_move != Vector3.ZERO and desired_move.length_squared() > 0.01:
+		pass
+	#	$Dir_arrow.look_at(global_position + desired_move)
 
 func _physics_process(delta):
 	# Handle jump.
@@ -47,7 +61,15 @@ func _physics_process(delta):
 
 	# Get the input direction and handle the movement/deceleration.
 
-	var animation_tree : AnimationTree = $AnimationTree
+	if gliding:
+		if is_on_floor() or Input.is_action_just_pressed("p1_crouch"):
+			print("Switch to walking")
+			gliding = false
+			animation_tree.tree_root = defaultANIMO
+	else: # walking
+		glideInputCheck()
+
+	
 	animation_tree.set("parameters/Move Walk/blend_position", Vector2(( global_basis.inverse() * -desired_move).x,-( global_basis.inverse() * -desired_move).z))
 	if(desired_move.y > 0.5 and jump_dbounce == false) :
 		jump_dbounce = true
@@ -67,9 +89,12 @@ func _physics_process(delta):
 	velocity = ((animation_tree.get_root_motion_rotation_accumulator().inverse() * get_quaternion()) * animation_tree.get_root_motion_position() / LDT) * 2
 
 	# Add the gravity.
-	if not is_on_floor():
+	if not is_on_floor():# && desired_move.y < 0.1:
 		velocity.y = old_fallVel # + velocity.y
 		velocity.y -= gravity * delta
+		# NOTE Special case
+		if gliding:
+			velocity.y = clampf(velocity.y, termnalVel, 999999999)
 	#print(animation_tree.get_root_motion_position().length())
 
 	# global_basis * (animation_tree.get_root_motion_position_accumulator())
@@ -86,6 +111,26 @@ func _physics_process(delta):
 
 	move_and_slide()
 	_TEMPORARY_fall_death()
+	lastDesiredMoveY = desired_move.y
+
+func swap_ANIMO():
+	animation_tree.tree_root = defaultANIMO
+	animation_tree.tree_root = glideANIMO
+
+func glideInputCheck():
+	# if not groounded 
+	# if desired move was 
+	if is_on_floor() == false:
+		if Input.is_action_just_pressed("p1_jump"):
+			print("Glide")
+		#if desired_move.y > 0.5 and lastDesiredMoveY < 0.1 and Input.is_action_just_pressed("p1_jump"):
+			animation_tree.tree_root = glideANIMO
+			gliding = true
+
+func landed_check():
+	if is_on_floor() or Input.is_action_just_pressed("p1_crouch"):
+		animation_tree.tree_root = defaultANIMO
+
 
 func handle_movement(movement : Vector3):
 	desired_move = movement

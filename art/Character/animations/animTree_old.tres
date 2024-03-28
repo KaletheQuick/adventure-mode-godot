@@ -118,7 +118,7 @@ blend_point_15/pos = Vector2(0.1, -1)
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_fehb0"]
 
 [resource]
-graph_offset = Vector2(-638.182, -211.808)
+graph_offset = Vector2(-484, 24)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_2ycu5")
 nodes/Animation/position = Vector2(-67.598, 338.739)
 nodes/BlendSpace2D/node = SubResource("AnimationNodeBlendSpace2D_2jjec")
