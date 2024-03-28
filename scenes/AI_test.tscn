@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b7rn70xxa62fw"]
+[gd_scene load_steps=17 format=3 uid="uid://b7rn70xxa62fw"]
 
 [ext_resource type="Script" path="res://scripts/playerSocket_adventure.gd" id="1_cm27n"]
 [ext_resource type="Material" uid="uid://c1lmf8kes7c51" path="res://art/materials/unified_earth_material.material" id="3_yyr3u"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://scripts/combo_bar.gd" id="7_ok1ji"]
 [ext_resource type="Script" path="res://scripts/AI/ai_hide.gd" id="8_s2oab"]
 [ext_resource type="AudioStream" uid="uid://hxog1lltd7d4" path="res://art/audio/506911__nox_sound__ambiance_wind_forest_moderate_loop_stereo.wav" id="9_jfx7a"]
+[ext_resource type="PackedScene" uid="uid://d3xpjq6g2jknf" path="res://prefabs/collectable.tscn" id="12_2pvcf"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_crgvg"]
 
@@ -227,3 +228,30 @@ volume_db = -20.662
 autoplay = true
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+
+[node name="collectable" parent="." instance=ExtResource("12_2pvcf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 5)
+
+[node name="collectable2" parent="." instance=ExtResource("12_2pvcf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.94922, -0.309601, 4.26891)
+
+[node name="collectable3" parent="." instance=ExtResource("12_2pvcf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.1081, -0.309839, 4.79143)
+
+[node name="collectable4" parent="." instance=ExtResource("12_2pvcf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.7858, -0.309841, -3.653)
+
+[node name="collectable5" parent="." instance=ExtResource("12_2pvcf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.3407, -0.30984, -7.2453)
+
+[node name="collectable6" parent="." instance=ExtResource("12_2pvcf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.19826, -0.30984, -4.05696)
+
+[node name="collectable7" parent="." instance=ExtResource("12_2pvcf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2349, 4.63113, -16.2345)
+
+[node name="collectable8" parent="." instance=ExtResource("12_2pvcf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.3882, 4.63113, -21.5897)
+
+[node name="collectable9" parent="." instance=ExtResource("12_2pvcf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2144, 1.63113, -22.5621)
