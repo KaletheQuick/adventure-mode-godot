@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://d3xpjq6g2jknf"]
+
+[ext_resource type="Script" path="res://scripts/collectable.gd" id="1_nm1gy"]
+[ext_resource type="AudioStream" uid="uid://bf76j61v56u05" path="res://art/audio/sfx/pickupCoin.wav" id="2_s7qlt"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_i7ih2"]
+
+[sub_resource type="Gradient" id="Gradient_fui4o"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xmcda"]
+gradient = SubResource("Gradient_fui4o")
+fill = 1
+fill_from = Vector2(0.401709, 0.57265)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vf4sp"]
+albedo_color = Color(0.905882, 0.682353, 0, 1)
+metallic = 1.0
+roughness = 0.26
+normal_scale = -6.95
+normal_texture = SubResource("GradientTexture2D_xmcda")
+
+[sub_resource type="TorusMesh" id="TorusMesh_qvpay"]
+inner_radius = 0.4
+outer_radius = 0.5
+rings = 6
+ring_segments = 3
+
+[sub_resource type="Animation" id="Animation_k6yb4"]
+resource_name = "coin_spin"
+loop_mode = 1
+step = 0.25
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107, 0.25, 1, 0.5, -0.5, 0.5, 0.5, 0.5, 1, 3.09086e-08, -0.707107, 0.707107, 3.09086e-08, 0.75, 1, 0.5, 0.5, -0.5, 0.5, 1, 1, 0.707107, -6.18172e-08, 6.18172e-08, 0.707107)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iygu8"]
+_data = {
+"coin_spin": SubResource("Animation_k6yb4")
+}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_k22an"]
+top_radius = 0.4
+bottom_radius = 0.4
+height = 0.001
+radial_segments = 6
+rings = 1
+
+[node name="collectable" type="Area3D"]
+script = ExtResource("1_nm1gy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_i7ih2")
+
+[node name="coin" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.9999, 0.0141163, -6.17043e-10, 0, -4.37114e-08, -1, -0.0141163, 0.9999, -4.3707e-08, 0, 0.5, 0)
+material_override = SubResource("StandardMaterial3D_vf4sp")
+mesh = SubResource("TorusMesh_qvpay")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="coin"]
+libraries = {
+"": SubResource("AnimationLibrary_iygu8")
+}
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="coin"]
+material_override = SubResource("StandardMaterial3D_vf4sp")
+mesh = SubResource("CylinderMesh_k22an")
+
+[node name="aud" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_s7qlt")
