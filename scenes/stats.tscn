@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://b41b5tmc7cd34"]
+
+[ext_resource type="Script" path="res://scenes/Stats.gd" id="1_48b2n"]
+
+[node name="Stats" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 333.0
+offset_top = 144.0
+offset_right = 780.0
+offset_bottom = 435.0
+script = ExtResource("1_48b2n")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 166.0
+offset_top = 104.0
+offset_right = 326.0
+offset_bottom = 207.0
+text = "health
+armor
+"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 324.0
+offset_top = 396.0
+offset_right = 468.0
+offset_bottom = 427.0
+text = "Back"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

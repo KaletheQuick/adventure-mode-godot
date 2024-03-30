@@ -140,3 +140,7 @@ func handle_movement(movement : Vector3):
 func _TEMPORARY_fall_death():
 	if global_position.y <= -20:
 		global_position = Vector3(0,1,0)
+
+
+func _on_coin_body_entered(body):
+	pass # Replace with function body.
