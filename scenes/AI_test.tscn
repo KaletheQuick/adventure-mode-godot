@@ -248,10 +248,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.3407, -0.30984, -7.2453)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.19826, -0.30984, -4.05696)
 
 [node name="collectable7" parent="." instance=ExtResource("12_2pvcf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2349, 4.63113, -16.2345)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2349, 4.74474, -16.2345)
 
 [node name="collectable8" parent="." instance=ExtResource("12_2pvcf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.3882, 4.63113, -21.5897)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.3882, 4.92579, -21.5897)
 
 [node name="collectable9" parent="." instance=ExtResource("12_2pvcf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2144, 1.63113, -22.5621)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2144, 2.04766, -22.5621)
