@@ -1,0 +1,52 @@
+[gd_scene load_steps=2 format=3 uid="uid://w8eqt78yexeu"]
+
+[ext_resource type="Script" path="res://scenes/menu_pause.gd" id="1_e5scy"]
+
+[node name="Menu_Pause" type="Control"]
+layout_mode = 3
+anchor_right = 0.991319
+anchor_bottom = 0.962963
+offset_left = 11.0
+offset_top = 1.0
+offset_right = 13.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e5scy")
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.45979
+anchor_top = 0.258786
+anchor_right = 0.576923
+anchor_bottom = 0.816294
+offset_left = -509.0
+offset_top = -161.0
+offset_right = 459.0
+offset_bottom = 112.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Resume" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Resume"
+
+[node name="Stats" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Stats
+"
+
+[node name="Exit" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Exit"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Stats" to="." method="_on_stats_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
