@@ -9,6 +9,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 
 @onready var combo_bar = get_node("/root/level_test/CanvasLayer/ProgressBar")
+@onready var combo_system = preload("combo_system.gd").new()
 
 var desired_move = Vector3.ZERO
 
@@ -29,7 +30,8 @@ var j_bounce = false
 
 
 func _ready():
-	pass
+	add_child(combo_system)
+	#TODO IMPLEMENT SIGNAL CALL TO COMBO_SYSTEM.GD
 
 func stop_movement():
 	desired_move = Vector3.ZERO
