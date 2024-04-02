@@ -22,7 +22,8 @@ enabled=PackedStringArray()
 [file_customization]
 
 folder_colors={
-"res://Dress Up/": "purple"
+"res://Dress Up/": "purple",
+"res://Modular Mobility/": "green"
 }
 
 [input]

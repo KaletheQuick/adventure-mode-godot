@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeBlendSpace2D" load_steps=23 format=3 uid="uid://dukebmuejahjs"]
+[gd_resource type="AnimationNodeBlendSpace2D" load_steps=24 format=3 uid="uid://dukebmuejahjs"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qyuku"]
 animation = &"walk_jog_run/jog_fwd"
@@ -16,6 +16,9 @@ node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i6s4s"]
 animation = &"walk_jog_run/idle_wjr"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t3s4j"]
+animation = &"walk_jog_run/run_fwd"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kfjrj"]
 animation = &"walk_jog_run/idle_wjr"
@@ -93,7 +96,7 @@ node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
 
 [resource]
 blend_point_0/node = SubResource("AnimationNodeBlendTree_da2v0")
-blend_point_0/pos = Vector2(0, 1)
+blend_point_0/pos = Vector2(0, 0.7)
 blend_point_1/node = SubResource("AnimationNodeAnimation_i6s4s")
 blend_point_1/pos = Vector2(0, 0.1)
 blend_point_2/node = SubResource("AnimationNodeAnimation_kfjrj")
@@ -112,3 +115,5 @@ blend_point_8/node = SubResource("AnimationNodeBlendTree_pfw83")
 blend_point_8/pos = Vector2(-0.1, -0.9)
 blend_point_9/node = SubResource("AnimationNodeBlendTree_0ty3j")
 blend_point_9/pos = Vector2(0, 0.4)
+blend_point_10/node = SubResource("AnimationNodeAnimation_t3s4j")
+blend_point_10/pos = Vector2(0, 1)

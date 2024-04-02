@@ -159,6 +159,7 @@ environment = SubResource("Environment_26iue")
 transform = Transform3D(-0.21874, -0.964573, 0.147483, 0.456157, 0.0325297, 0.889305, -0.862597, 0.261802, 0.432881, 0, 0, 0)
 
 [node name="actor" parent="." instance=ExtResource("5_iccpj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.298199, 0)
 
 [node name="footall_sfx" type="Node" parent="actor"]
 script = ExtResource("5_k2bmb")

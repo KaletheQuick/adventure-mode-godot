@@ -29,6 +29,7 @@ var j_bounce = false
 
 
 func _ready():
+	animation_tree.tree_root = defaultANIMO
 	pass
 
 func stop_movement():
