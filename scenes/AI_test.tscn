@@ -166,6 +166,7 @@ script = ExtResource("5_k2bmb")
 
 [node name="guy flee" parent="." instance=ExtResource("5_iccpj")]
 transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, -0.588409, 0, 10.4148)
+visible = false
 
 [node name="ai_flee" type="Node" parent="guy flee" node_paths=PackedStringArray("fleeFrom")]
 script = ExtResource("6_bobkc")
@@ -176,6 +177,7 @@ script = ExtResource("5_k2bmb")
 
 [node name="guy follow" parent="." instance=ExtResource("5_iccpj")]
 transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 7.5088, 0, 10.4148)
+visible = false
 
 [node name="ai_follow" type="Node" parent="guy follow" node_paths=PackedStringArray("followGuy")]
 script = ExtResource("7_kvtot")
@@ -186,6 +188,7 @@ script = ExtResource("5_k2bmb")
 
 [node name="guy hide" parent="." instance=ExtResource("5_iccpj")]
 transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, -7.80253, 0, 10.4148)
+visible = false
 
 [node name="ai_hide" type="Node" parent="guy hide"]
 script = ExtResource("8_s2oab")

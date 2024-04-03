@@ -7,13 +7,18 @@ class_name MovementPackage
 
 @export var anim_library : AnimationLibrary
 
-var thrall : CharacterBody3D
 
 func apply():
 	pass
 
-func transfer_situation_check():
-	pass
+func transfer_situation_check(thrall : Actor) -> bool:
+	printerr("ERROR - Abstract method")
+	return false # We are abstract kinda, always not be here
 
-func release_situation_check():
+func release_situation_check(thrall : Actor) -> bool:
+	printerr("ERROR - Abstract method")
+	return true # We are abstract kinda, always not be here
+
+func move_thrall(thrall : Actor, delta : float):
+	printerr("ERROR - Abstract method")
 	pass
