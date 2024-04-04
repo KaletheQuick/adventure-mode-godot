@@ -25,7 +25,7 @@ func move_thrall(thrall : Actor, delta : float):
 	# if gliding we know we arent on the ground
 	thrall.velocity.y = old_fallVel # + velocity.y
 	thrall.velocity.y -= 1 * delta
-	thrall.velocity.y = clampf(thrall.velocity.y, termnalVel, 999999999)
+	thrall.velocity.y = clampf(thrall.velocity.y, termnalVel, -(termnalVel * 2))
 	thrall.quaternion = thrall.quaternion * ((thrall.animation_tree.get_root_motion_rotation() / delta) * 10)
 
 	thrall.move_and_slide()

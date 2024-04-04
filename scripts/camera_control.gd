@@ -65,7 +65,7 @@ func _follow(delta):
 func _look(delta):
 	# transform target to screen space
 	var target_screenPos = unproject_position(target_current.global_position)
-	var midscreen = get_viewport().size / 2
+	var midscreen = get_viewport().size * 0.8
 	# Get direction to target
 	var target_vector = (global_position-target_current.global_position).normalized()
 	var something = global_basis.z
@@ -84,4 +84,5 @@ func _look(delta):
 func player_look(delta):
 	var disLook =  Input.get_vector("p1_look_left", "p1_look_right", "p1_look_dn", "p1_look_up")
 	camLookVel += ((global_basis.x * disLook.x) + (global_basis.y * disLook.y)) * delta * camLookAccell
+	camLookVel -= camLookVel * (0.9 * delta)
 	global_position += camLookVel * delta * camLookSpeed

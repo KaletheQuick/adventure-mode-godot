@@ -152,6 +152,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.58, 3, -21.429)
 size = Vector3(3, 5, 2)
 material = ExtResource("3_yyr3u")
 
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="terrain/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 26)
+material_override = ExtResource("3_yyr3u")
+radius = 10.0
+height = 5.0
+sides = 32
+material = ExtResource("3_yyr3u")
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_26iue")
 
@@ -166,7 +174,6 @@ script = ExtResource("5_k2bmb")
 
 [node name="guy flee" parent="." instance=ExtResource("5_iccpj")]
 transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, -0.588409, 0, 10.4148)
-visible = false
 
 [node name="ai_flee" type="Node" parent="guy flee" node_paths=PackedStringArray("fleeFrom")]
 script = ExtResource("6_bobkc")
@@ -177,7 +184,6 @@ script = ExtResource("5_k2bmb")
 
 [node name="guy follow" parent="." instance=ExtResource("5_iccpj")]
 transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 7.5088, 0, 10.4148)
-visible = false
 
 [node name="ai_follow" type="Node" parent="guy follow" node_paths=PackedStringArray("followGuy")]
 script = ExtResource("7_kvtot")
@@ -188,7 +194,6 @@ script = ExtResource("5_k2bmb")
 
 [node name="guy hide" parent="." instance=ExtResource("5_iccpj")]
 transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, -7.80253, 0, 10.4148)
-visible = false
 
 [node name="ai_hide" type="Node" parent="guy hide"]
 script = ExtResource("8_s2oab")
@@ -197,7 +202,7 @@ script = ExtResource("8_s2oab")
 script = ExtResource("5_k2bmb")
 
 [node name="Camera" type="Camera3D" parent="." node_paths=PackedStringArray("target_current")]
-transform = Transform3D(0.510543, 0.543452, 0.666338, 0, 0.774944, -0.632029, -0.859852, 0.322678, 0.395642, 7.72349, 4.367, 6.818)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 8)
 script = ExtResource("6_bedoa")
 target_current = NodePath("../actor")
 cam_sens = 1.0
@@ -223,8 +228,6 @@ offset_top = 50.0
 offset_right = 54.0
 offset_bottom = 77.0
 script = ExtResource("7_ok1ji")
-
-[node name="Area3D" type="Area3D" parent="."]
 
 [node name="audio level ambiance" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_jfx7a")

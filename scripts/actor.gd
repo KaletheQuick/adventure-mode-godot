@@ -84,7 +84,7 @@ func _physics_process(delta):
 	if(desired_move.y > 0.5 and jump_dbounce == false) :
 		jump_dbounce = true
 		print(velocity.length())
-		animation_tree.set("parameters/Jump w vel/blend_position", velocity.length() * 0.1) # TODO remove magic number. This is here to map a velocity range to animation blend 0-1
+		animation_tree.set("parameters/Jump w vel/blend_position", (desired_move * Vector3(1,0,1)).length() * 0.1) # TODO remove magic number. This is here to map a velocity range to animation blend 0-1
 		animation_tree.set("parameters/conditions/jump", true)
 	else:
 		animation_tree.set("parameters/conditions/jump", false)
@@ -172,10 +172,14 @@ func movement_package_checks():
 		if movement_sets[x].transfer_situation_check(self):
 			current_moveset = x
 			animation_tree.tree_root = movement_sets[current_moveset].anim_tree
+			animation_tree.active = false
+			animation_tree.active = true
 			return # quit early, good job everyone!
 
 	# Check to see if we need to bail out of our current state
 	if movement_sets[current_moveset].release_situation_check(self):
 		current_moveset = 0
 		animation_tree.tree_root = movement_sets[current_moveset].anim_tree
+		#animation_tree.active = false
+		#animation_tree.active = true
 
