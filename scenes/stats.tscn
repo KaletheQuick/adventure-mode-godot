@@ -4,29 +4,88 @@
 
 [node name="Stats" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-offset_left = 333.0
-offset_top = 144.0
-offset_right = 780.0
-offset_bottom = 435.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -322.0
+offset_right = 576.0
+offset_bottom = 323.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_48b2n")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-layout_mode = 0
-offset_left = 166.0
-offset_top = 104.0
-offset_right = 326.0
-offset_bottom = 207.0
-text = "health
-armor
-"
+[node name="Stats_Label" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 220.0
+offset_top = 113.5
+offset_right = 453.0
+offset_bottom = 344.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Level:
+
+Health:
+
+Armor:
+
+Strength:
+
+Grip:"
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
-offset_left = 324.0
-offset_top = 396.0
-offset_right = 468.0
-offset_bottom = 427.0
+offset_left = 197.0
+offset_top = 362.0
+offset_right = 341.0
+offset_bottom = 393.0
 text = "Back"
 
+[node name="Control" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_left = 158.0
+offset_top = -16.0
+offset_right = 198.0
+offset_bottom = 24.0
+
+[node name="Health Inc" type="Button" parent="Control"]
+offset_left = 13.0
+offset_top = 177.0
+offset_right = 41.0
+offset_bottom = 208.0
+text = "+"
+
+[node name="Armor Inc" type="Button" parent="Control"]
+offset_left = 12.0
+offset_top = 223.0
+offset_right = 40.0
+offset_bottom = 254.0
+text = "+"
+
+[node name="Strength Inc" type="Button" parent="Control"]
+offset_left = 14.0
+offset_top = 269.0
+offset_right = 42.0
+offset_bottom = 300.0
+text = "+"
+
+[node name="Grip Inc" type="Button" parent="Control"]
+offset_left = 13.0
+offset_top = 318.0
+offset_right = 41.0
+offset_bottom = 349.0
+text = "+"
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Control/Health Inc" to="." method="_on_health_inc_pressed"]
+[connection signal="pressed" from="Control/Armor Inc" to="." method="_on_armor_inc_pressed"]
+[connection signal="pressed" from="Control/Strength Inc" to="." method="_on_strength_inc_pressed"]
+[connection signal="pressed" from="Control/Grip Inc" to="." method="_on_grip_inc_pressed"]

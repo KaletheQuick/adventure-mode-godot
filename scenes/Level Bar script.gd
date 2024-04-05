@@ -21,7 +21,9 @@ var item_2 = false
 var item_3 = false
 var exp_multiplier = false
 var player_position
-
+signal level_up_sig
+signal update
+var stats_label
 # Called when the node enters the scene tree for the first time.
 
 func _ready():
@@ -31,7 +33,10 @@ func _ready():
 	text_label = $Level_Label
 	exp_label = $Experience_Label
 	var terrain = $terrain
+	var stats_node = get_node("../../Stats")
+	stats_label = get_node("../../Stats_Label")
 	var area = get_node("../../terrain/Coin")
+	stats_node.connect("level_inc",_inc_process)
 	if area:
 		area.connect("_entered",_area_entered)
 	else: 
@@ -46,9 +51,9 @@ func _process(delta):
 	if level < 1:
 		level = 1
 	
-	#if Input.is_action_pressed("p1_jump"):
-		#gain = 1
-		#exp_gain(gain)
+	if Input.is_action_pressed("p1_jump"):
+		gain = 1
+		exp_gain(gain)
 	if level <= 30: 
 		update_text()
 
@@ -80,7 +85,16 @@ func exp_gain(amount):
 	if value > 99:
 			value = 0
 	value = experience / experience_required * 100.0
-
+func _inc_process(value):
+	if value == "health":
+		health += 10
+	if value == "armor":
+		armor += 10
+	if value == "strength":
+		strength += 5
+	if value == "grip":
+		grip += 5
+	emit_signal ("update")
 func saved_level(level_save,exp):
 	level = level_save
 	exp_gain(exp)
@@ -127,16 +141,13 @@ func level_up():
 		level+=1
 		level_prompt= true
 		var stat = level/0.5 
-		health += 1
-		strength += 1 
-		armor += 1 
-		grip += 1
 		if playerSocket:
 			print("playersocket call")
 			playerSocket.level = level
 			playerSocket.health = health 
 		exp_total = experience_required
 		experience_required = req_exp(level+1)
+		emit_signal("level_up_sig")
 
 func update_stat_text():
 	pass
