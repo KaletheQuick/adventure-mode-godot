@@ -35,7 +35,7 @@ radial_segments = 4
 [node name="p1_psock_adventure" type="Node" parent="Player Sockets" node_paths=PackedStringArray("thrall", "test_second_thrall", "mainCam")]
 script = ExtResource("1_cm27n")
 thrall = NodePath("../../actor")
-test_second_thrall = NodePath("../../guy flee")
+test_second_thrall = NodePath("../../guy follow")
 mainCam = NodePath("../../Camera")
 
 [node name="terrain" type="Node3D" parent="."]
@@ -152,6 +152,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.58, 3, -21.429)
 size = Vector3(3, 5, 2)
 material = ExtResource("3_yyr3u")
 
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="terrain/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 26)
+material_override = ExtResource("3_yyr3u")
+radius = 10.0
+height = 5.0
+sides = 32
+material = ExtResource("3_yyr3u")
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_26iue")
 
@@ -159,6 +167,7 @@ environment = SubResource("Environment_26iue")
 transform = Transform3D(-0.21874, -0.964573, 0.147483, 0.456157, 0.0325297, 0.889305, -0.862597, 0.261802, 0.432881, 0, 0, 0)
 
 [node name="actor" parent="." instance=ExtResource("5_iccpj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.298199, 0)
 
 [node name="footall_sfx" type="Node" parent="actor"]
 script = ExtResource("5_k2bmb")
@@ -193,7 +202,7 @@ script = ExtResource("8_s2oab")
 script = ExtResource("5_k2bmb")
 
 [node name="Camera" type="Camera3D" parent="." node_paths=PackedStringArray("target_current")]
-transform = Transform3D(0.510543, 0.543452, 0.666338, 0, 0.774944, -0.632029, -0.859852, 0.322678, 0.395642, 7.72349, 4.367, 6.818)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 8)
 script = ExtResource("6_bedoa")
 target_current = NodePath("../actor")
 cam_sens = 1.0
@@ -219,8 +228,6 @@ offset_top = 50.0
 offset_right = 54.0
 offset_bottom = 77.0
 script = ExtResource("7_ok1ji")
-
-[node name="Area3D" type="Area3D" parent="."]
 
 [node name="audio level ambiance" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_jfx7a")

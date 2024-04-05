@@ -57,7 +57,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("SphereShape3D_i7ih2")
 
 [node name="coin" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.00689684, -0.999976, 4.37103e-08, 0, -4.37114e-08, -1, 0.999976, -0.00689684, 3.01471e-10, 0, 0.5, 0)
+transform = Transform3D(-0.549226, 0.835674, -3.65285e-08, 0, -4.37114e-08, -1, -0.835674, -0.549226, 2.40074e-08, 0, 0.5, 0)
 material_override = SubResource("StandardMaterial3D_vf4sp")
 mesh = SubResource("TorusMesh_qvpay")
 

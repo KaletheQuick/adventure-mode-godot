@@ -63,9 +63,12 @@ func _follow(delta):
 	global_position += cam_velocity * delta
 
 func _look(delta):
+	if target_curr != Vector3.ZERO:
+		_look_target_lock(delta)
+		return
 	# transform target to screen space
 	var target_screenPos = unproject_position(target_current.global_position)
-	var midscreen = get_viewport().size / 2
+	var midscreen = get_viewport().size * 0.8
 	# Get direction to target
 	var target_vector = (global_position-target_current.global_position).normalized()
 	var something = global_basis.z
@@ -80,8 +83,28 @@ func _look(delta):
 	rotation_degrees.x += cam_rot_velocity.y * (cam_rot_velocity.y**2) * delta
 	rotation_degrees.x = clampf(rotation_degrees.x, -60, 80)
 
+func _look_target_lock(delta):
+	# transform target to screen space
+	var target_screenPos = unproject_position(target_curr)
+	var midscreen = get_viewport().size * 0.2
+	# Get direction to target
+	var target_vector = (global_position-target_curr).normalized()
+	var something = global_basis.z
+	something.y = 0
+	something = something.normalized()
+	# Calculate rotation
+	var x_rot = (something).signed_angle_to(target_vector -Vector3(0,target_vector.y, 0), Vector3.UP)
+	cam_rot_velocity.x = x_rot * 10
+	cam_rot_velocity.y = clampf((midscreen.y - target_screenPos.y) * 0.06 , -5, 5) # TODO - Remove magic numbers
+	# Apply 
+	rotation_degrees.y += cam_rot_velocity.x * (cam_rot_velocity.x**2) * delta
+	rotation_degrees.x += cam_rot_velocity.y * (cam_rot_velocity.y**2) * delta
+	rotation_degrees.x = clampf(rotation_degrees.x, -60, 80)
+
+
 
 func player_look(delta):
 	var disLook =  Input.get_vector("p1_look_left", "p1_look_right", "p1_look_dn", "p1_look_up")
 	camLookVel += ((global_basis.x * disLook.x) + (global_basis.y * disLook.y)) * delta * camLookAccell
+	camLookVel -= camLookVel * (0.9 * delta)
 	global_position += camLookVel * delta * camLookSpeed

@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=18 format=3 uid="uid://cf7bwupncf1cj"]
+[gd_resource type="AnimationNodeStateMachine" load_steps=17 format=3 uid="uid://cf7bwupncf1cj"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_73mwi"]
 animation = &"glider/glide_idle"
@@ -64,11 +64,6 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n2bfw"]
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ht11d"]
-switch_mode = 2
-advance_mode = 2
-advance_condition = &"jump"
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w6ysj"]
 switch_mode = 2
 advance_mode = 2
@@ -82,5 +77,5 @@ states/walk_airborne/node = SubResource("AnimationNodeAnimation_tvor1")
 states/walk_airborne/position = Vector2(352.667, 99.9547)
 states/walk_jump_arc/node = SubResource("AnimationNodeAnimation_36vgo")
 states/walk_jump_arc/position = Vector2(795.333, 203)
-transitions = ["Start", "walk_airborne", SubResource("AnimationNodeStateMachineTransition_swm56"), "walk_airborne", "Move Walk", SubResource("AnimationNodeStateMachineTransition_n2bfw"), "Move Walk", "End", SubResource("AnimationNodeStateMachineTransition_ht11d"), "Move Walk", "walk_jump_arc", SubResource("AnimationNodeStateMachineTransition_w6ysj")]
-graph_offset = Vector2(-89, -148)
+transitions = ["Start", "walk_airborne", SubResource("AnimationNodeStateMachineTransition_swm56"), "walk_airborne", "Move Walk", SubResource("AnimationNodeStateMachineTransition_n2bfw"), "Move Walk", "walk_jump_arc", SubResource("AnimationNodeStateMachineTransition_w6ysj")]
+graph_offset = Vector2(-18, -114)
