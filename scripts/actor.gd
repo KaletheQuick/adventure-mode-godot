@@ -32,7 +32,14 @@ var gliding = false
 var lastDesiredMoveY = 0
 var j_bounce = false
 
+var sprint = false
+
 @export var force_switch = false
+
+# SECTION Variables for weapon and shiled hurt/hit boxes
+@export var right_weapon : ShapeCast3D
+var right_ouchtime = false
+@export var hit_effect : PackedScene
 
 func _ready():
 #	animation_tree.tree_root = defaultANIMO
@@ -78,6 +85,8 @@ func _physics_process(delta):
 #			animation_tree.tree_root = defaultANIMO
 #	else: # walking
 #		glideInputCheck()
+	if right_ouchtime:
+		hurtbox_check()
 
 	
 	animation_tree.set("parameters/Move Walk/blend_position", Vector2(( global_basis.inverse() * -desired_move).x,-( global_basis.inverse() * -desired_move).z))
@@ -183,3 +192,25 @@ func movement_package_checks():
 		#animation_tree.active = false
 		#animation_tree.active = true
 
+var attackID = 0
+
+func anim_hurtbox_activate_right(duration : float):
+	right_weapon.add_exception(self)
+	right_weapon.force_shapecast_update()
+	right_ouchtime = true
+	right_weapon.get_node("debug_hitbox").visible = true
+	attackID = randi()
+	await get_tree().create_timer(duration).timeout
+	right_ouchtime = false
+	right_weapon.get_node("debug_hitbox").visible = false
+	right_weapon.clear_exceptions()
+
+func hurtbox_check():
+	for x in range(right_weapon.get_collision_count()):
+		var nHit = hit_effect.instantiate()
+		get_tree().root.add_child(nHit)
+		nHit.global_position = right_weapon.get_collision_point(x)
+		nHit.look_at(right_weapon.get_collision_point(x) + right_weapon.get_collision_normal(x))
+		nHit.emitting = true
+		print("OUCH!" + right_weapon.get_collider(x).name)
+		right_weapon.add_exception_rid(right_weapon.get_collider_rid(x))

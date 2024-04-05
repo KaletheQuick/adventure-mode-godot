@@ -16,6 +16,14 @@ var primary_thrall = true
 
 var dot : MeshInstance3D # debug
 
+# Input checks for dodge vs sprint
+# Soulslike = Dodge and sprint are same button. Tap or hold for difference
+var dodge_sprint_threshold = 0.2
+var ds_timer = 0.0
+
+# variables for z targeting
+var look_lock = false
+
 func _ready():
 	pass # Replace with function body.
 	
@@ -37,6 +45,7 @@ func _process(delta):
 		return
 	_collect_inputs(delta)
 	#print(delta)
+	return
 	if Input.is_action_just_pressed("p1_dodge"):		
 		primary_thrall = !primary_thrall
 		if primary_thrall: 
@@ -72,18 +81,35 @@ func _collect_inputs(delta):
 
 	go_dir.y = Input.get_axis(player_prefix + "crouch", player_prefix + "jump")
 	
-
-	
-	if primary_thrall: 
-		thrall.handle_movement(go_dir)
-		thrall.block = true if Input.get_action_strength("p1_block") > 0.5 else false
-		thrall.attack_light = true if Input.get_action_strength("p1_attack_light") > 0.5 else false
+	# SECTION - Dodge and sprinting
+	if Input.is_action_just_released(player_prefix + "dodge"):
+		if ds_timer <= dodge_sprint_threshold:
+			print("dodge!")
+	if Input.is_action_pressed(player_prefix + "dodge"):
+		ds_timer += delta
+		if ds_timer > dodge_sprint_threshold:
+			thrall.sprint = true
 	else:
-		test_second_thrall.handle_movement(go_dir)
-		test_second_thrall.block = true if Input.get_action_strength("p1_block") > 0.5 else false
-		test_second_thrall.attack_light = true if Input.get_action_strength("p1_attack_light") > 0.5 else false
+		thrall.sprint = false
+		ds_timer = 0
+	
+	thrall.handle_movement(go_dir)
+	thrall.block = true if Input.get_action_strength("p1_block") > 0.5 else false
+	thrall.attack_light = true if Input.get_action_strength("p1_attack_light") > 0.5 else false
 
 
 	dot.global_position = thrall.global_position + go_dir
 
-	dot.global_position = thrall.global_position + go_dir
+	# SECTION - Camera and lock on stuff
+	if Input.is_action_just_pressed(player_prefix + "look_lock"):
+		look_lock = !look_lock
+		if look_lock:
+			print("look lock")
+		else:
+			print("look unlock")
+	if look_lock:
+		mainCam.target_curr = test_second_thrall.global_position + Vector3(0,2,0)
+		dot.global_position = test_second_thrall.global_position + Vector3(0,2,0)
+	else:
+		mainCam.target_curr = Vector3.ZERO
+

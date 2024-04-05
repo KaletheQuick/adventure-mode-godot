@@ -35,7 +35,7 @@ radial_segments = 4
 [node name="p1_psock_adventure" type="Node" parent="Player Sockets" node_paths=PackedStringArray("thrall", "test_second_thrall", "mainCam")]
 script = ExtResource("1_cm27n")
 thrall = NodePath("../../actor")
-test_second_thrall = NodePath("../../guy flee")
+test_second_thrall = NodePath("../../guy follow")
 mainCam = NodePath("../../Camera")
 
 [node name="terrain" type="Node3D" parent="."]
