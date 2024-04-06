@@ -4,7 +4,8 @@
 
 [node name="Menu_Pause" type="Control"]
 layout_mode = 3
-anchor_right = 0.991319
+anchor_top = -0.00617284
+anchor_right = 0.986111
 anchor_bottom = 0.962963
 offset_left = 11.0
 offset_top = 1.0
@@ -35,7 +36,7 @@ layout_mode = 2
 
 [node name="Resume" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 0
+size_flags_vertical = 8
 text = "Resume"
 
 [node name="Stats" type="Button" parent="MarginContainer/VBoxContainer"]
@@ -45,6 +46,7 @@ text = "Stats
 
 [node name="Exit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 8
 text = "Exit"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]

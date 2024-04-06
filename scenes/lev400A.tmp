@@ -638,11 +638,9 @@ shape = SubResource("CylinderShape3D_smet4")
 transform = Transform3D(-0.21874, -0.964573, 0.147483, 0.456157, 0.0325297, 0.889305, -0.862597, 0.261802, 0.432881, 0, 0, 0)
 
 [node name="actor" parent="." instance=ExtResource("6_bskg6")]
-movement_sets = Array[Resource("res://Modular Mobility/MovementPackage.gd")]([])
 
 [node name="actor2" parent="." instance=ExtResource("6_bskg6")]
 transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, -5.86003, 0, 1.41589)
-movement_sets = Array[Resource("res://Modular Mobility/MovementPackage.gd")]([])
 
 [node name="Camera" type="Camera3D" parent="." node_paths=PackedStringArray("target_current")]
 transform = Transform3D(0.510543, 0.543452, 0.666338, 0, 0.774944, -0.632029, -0.859852, 0.322678, 0.395642, 7.72349, 4.367, 6.818)
@@ -671,7 +669,7 @@ offset_right = 54.0
 offset_bottom = 77.0
 script = ExtResource("7_q3xl4")
 
-[node name="LevelBar" type="ProgressBar" parent="user_interface"]
+[node name="Level Bar" type="ProgressBar" parent="user_interface"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -688,14 +686,14 @@ theme_override_styles/background = SubResource("StyleBoxEmpty_cmv8j")
 theme_override_styles/fill = SubResource("StyleBoxFlat_4luul")
 script = ExtResource("8_wd7iq")
 
-[node name="Level_Label" type="RichTextLabel" parent="user_interface/LevelBar"]
+[node name="Level_Label" type="RichTextLabel" parent="user_interface/Level Bar"]
 layout_mode = 1
 offset_left = 6.0
 offset_top = -29.0
 offset_right = 237.0
 offset_bottom = -2.0
 
-[node name="Experience_Label" type="RichTextLabel" parent="user_interface/LevelBar"]
+[node name="Experience_Label" type="RichTextLabel" parent="user_interface/Level Bar"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -713,7 +711,6 @@ offset_bottom = -4.0
 size_flags_horizontal = 4
 
 [node name="Stats" parent="." instance=ExtResource("12_cbt3k")]
-visible = false
 anchors_preset = 4
 anchor_left = 0.0
 anchor_right = 0.0
