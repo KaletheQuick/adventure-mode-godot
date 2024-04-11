@@ -34,7 +34,7 @@ _subresources={
 "jog_fwd": {
 "save_to_file/enabled": true,
 "save_to_file/keep_custom_tracks": "",
-"save_to_file/path": "res://art/Character/animations/walk_jog_run/jog_fwd.res",
+"save_to_file/path": "res://art/Character/animations/walk_jog_run/jog_fwd.tres",
 "settings/loop_mode": 1,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
@@ -1833,7 +1833,7 @@ _subresources={
 "run_fwd": {
 "save_to_file/enabled": true,
 "save_to_file/keep_custom_tracks": "",
-"save_to_file/path": "res://art/Character/animations/walk_jog_run/run_fwd.res",
+"save_to_file/path": "res://art/Character/animations/walk_jog_run/run_fwd.tres",
 "settings/loop_mode": 1,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
@@ -3632,7 +3632,7 @@ _subresources={
 "walk_fwd": {
 "save_to_file/enabled": true,
 "save_to_file/keep_custom_tracks": "",
-"save_to_file/path": "res://art/Character/animations/walk_jog_run/walk_fwd.res",
+"save_to_file/path": "res://art/Character/animations/walk_jog_run/walk_fwd.tres",
 "settings/loop_mode": 1,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,

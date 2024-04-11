@@ -88,6 +88,15 @@ use_collision = true
 size = Vector3(100, 12, 100)
 material = ExtResource("3_yyr3u")
 
+[node name="CSGTorus3D" type="CSGTorus3D" parent="terrain/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 0.988159, 0.153434, 0, -0.153434, 0.988159, -28.4095, 2.25911, -29.0041)
+operation = 2
+inner_radius = 10.0
+outer_radius = 20.0
+sides = 16
+ring_sides = 8
+material = ExtResource("4_sdu1q")
+
 [node name="CSGBox3D3" type="CSGBox3D" parent="terrain/CSGBox3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.08951, 0)
 operation = 2
@@ -169,22 +178,18 @@ height = 5.0
 sides = 32
 material = ExtResource("3_yyr3u")
 
-[node name="CSGTorus3D" type="CSGTorus3D" parent="terrain/CSGBox3D"]
-transform = Transform3D(1, 0, 0, 0, 0.988159, 0.153434, 0, -0.153434, 0.988159, -28.4095, 2.25911, -29.0041)
-operation = 2
-inner_radius = 10.0
-outer_radius = 20.0
-sides = 16
-ring_sides = 8
-material = ExtResource("4_sdu1q")
+[node name="water" type="Node3D" parent="terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.245, -0.946693, -29)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="terrain"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.245, -3.94669, -29)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="terrain/water"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
 mesh = SubResource("BoxMesh_gpeg3")
+skeleton = NodePath("../..")
 
-[node name="water" type="Area3D" parent="terrain/MeshInstance3D"]
+[node name="water" type="Area3D" parent="terrain/water"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/MeshInstance3D/water"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/water/water"]
 shape = SubResource("BoxShape3D_jx4kd")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
