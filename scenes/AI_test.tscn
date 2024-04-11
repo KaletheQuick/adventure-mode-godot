@@ -1,8 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://b7rn70xxa62fw"]
+[gd_scene load_steps=21 format=3 uid="uid://b7rn70xxa62fw"]
 
 [ext_resource type="Script" path="res://scripts/playerSocket_adventure.gd" id="1_cm27n"]
 [ext_resource type="Material" uid="uid://c1lmf8kes7c51" path="res://art/materials/unified_earth_material.material" id="3_yyr3u"]
 [ext_resource type="PackedScene" uid="uid://cc3m6m4bf5i8c" path="res://prefabs/shrub.tscn" id="4_joxge"]
+[ext_resource type="Material" uid="uid://w4aoyuyy5ldg" path="res://art/materials/dirt.tres" id="4_sdu1q"]
+[ext_resource type="Material" uid="uid://bjyyib2vuovje" path="res://art/materials/water_quick.tres" id="4_tmanx"]
 [ext_resource type="PackedScene" uid="uid://chwqjvpft7wxd" path="res://prefabs/actor.tscn" id="5_iccpj"]
 [ext_resource type="Script" path="res://scripts/footall_sfx.gd" id="5_k2bmb"]
 [ext_resource type="Script" path="res://scripts/camera_control.gd" id="6_bedoa"]
@@ -12,6 +14,13 @@
 [ext_resource type="Script" path="res://scripts/AI/ai_hide.gd" id="8_s2oab"]
 [ext_resource type="AudioStream" uid="uid://hxog1lltd7d4" path="res://art/audio/506911__nox_sound__ambiance_wind_forest_moderate_loop_stereo.wav" id="9_jfx7a"]
 [ext_resource type="PackedScene" uid="uid://d3xpjq6g2jknf" path="res://prefabs/collectable.tscn" id="12_2pvcf"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_gpeg3"]
+material = ExtResource("4_tmanx")
+size = Vector3(40, 6, 40)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jx4kd"]
+size = Vector3(40, 6, 40)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_crgvg"]
 
@@ -74,15 +83,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.26423, -8.99667e-07, 10.291
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.75854, -1.11475e-06, 12.7513)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="terrain"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.868866, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.23773, 0)
 use_collision = true
-size = Vector3(100, 9.26227, 100)
+size = Vector3(100, 12, 100)
 material = ExtResource("3_yyr3u")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="terrain/CSGBox3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.96668, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.08951, 0)
 operation = 2
-size = Vector3(99, 4.81531, 99)
+size = Vector3(99, 13.061, 99)
 material = ExtResource("3_yyr3u")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="terrain/CSGBox3D"]
@@ -159,6 +168,24 @@ radius = 10.0
 height = 5.0
 sides = 32
 material = ExtResource("3_yyr3u")
+
+[node name="CSGTorus3D" type="CSGTorus3D" parent="terrain/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 0.988159, 0.153434, 0, -0.153434, 0.988159, -28.4095, 2.25911, -29.0041)
+operation = 2
+inner_radius = 10.0
+outer_radius = 20.0
+sides = 16
+ring_sides = 8
+material = ExtResource("4_sdu1q")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.245, -5.05196, -29)
+mesh = SubResource("BoxMesh_gpeg3")
+
+[node name="water" type="Area3D" parent="terrain/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/MeshInstance3D/water"]
+shape = SubResource("BoxShape3D_jx4kd")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_26iue")
