@@ -23,7 +23,7 @@
 [ext_resource type="Animation" uid="uid://rmh402mjftus" path="res://art/Character/animations/bayonet_hvy.res" id="9_1cosr"]
 [ext_resource type="Animation" uid="uid://yciiclgp2mul" path="res://art/Character/animations/move_walk/walk_right.res" id="9_78ojm"]
 [ext_resource type="Animation" uid="uid://c132ndy8mnrih" path="res://art/Character/animations/move_walk/walk_right_sharp.res" id="10_68wfe"]
-[ext_resource type="AnimationLibrary" path="res://art/Character/animations/animationLib_climb.tres" id="10_f5itg"]
+[ext_resource type="AnimationLibrary" uid="uid://dg1aitbg1i77i" path="res://art/Character/animations/animationLib_climb.tres" id="10_f5itg"]
 [ext_resource type="Animation" uid="uid://bk2gpbln7ywrf" path="res://art/Character/animations/walk_rifle.res" id="10_weder"]
 [ext_resource type="Animation" uid="uid://b63vfbuy5bk35" path="res://art/Character/animations/move_walk/turn_left.res" id="11_dyllo"]
 [ext_resource type="AnimationLibrary" uid="uid://iuuxa6ncl6g0" path="res://art/Character/animations/swim/aLib_swim.tres" id="11_f0n1c"]
@@ -1020,7 +1020,7 @@ blend_shapes/chest = 0.0
 blend_shapes/waist_thin = 0.0
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="skeleton/char/Skeleton3D"]
-transform = Transform3D(0.320147, -0.449351, -0.83402, -0.594328, 0.590305, -0.546181, 0.737753, 0.67054, -0.0780775, -0.566483, 1.92823, 0.29857)
+transform = Transform3D(0.320146, -0.449351, -0.834021, -0.594329, 0.590305, -0.546181, 0.737753, 0.67054, -0.0780784, -0.566483, 1.92823, 0.29857)
 bone_name = "hand.R"
 bone_idx = 10
 
@@ -1046,7 +1046,7 @@ mesh = SubResource("CapsuleMesh_gx1d1")
 skeleton = NodePath("../..")
 
 [node name="BoneAttachment3D2" type="BoneAttachment3D" parent="skeleton/char/Skeleton3D"]
-transform = Transform3D(0.319695, 0.449313, 0.834214, 0.594527, 0.590418, -0.545843, -0.737789, 0.670466, -0.0783755, 0.566464, 1.92838, 0.298565)
+transform = Transform3D(0.319693, 0.449312, 0.834215, 0.594529, 0.590418, -0.545841, -0.737788, 0.670466, -0.0783759, 0.566464, 1.92838, 0.298565)
 bone_name = "hand.L"
 bone_idx = 33
 
@@ -1064,7 +1064,7 @@ transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("CylinderShape3D_l4p8o")
 
 [node name="hurtbox" type="BoneAttachment3D" parent="skeleton/char/Skeleton3D"]
-transform = Transform3D(1, 0.000163385, -1.23193e-05, -0.000163603, 0.99979, -0.0204757, 8.97128e-06, 0.0204757, 0.99979, -4.90061e-05, 1.57799, 0.000259615)
+transform = Transform3D(1, 0.000163386, -1.23192e-05, -0.000163603, 0.99979, -0.0204762, 8.9711e-06, 0.0204762, 0.99979, -4.90061e-05, 1.578, 0.000259861)
 bone_name = "chest"
 bone_idx = 3
 

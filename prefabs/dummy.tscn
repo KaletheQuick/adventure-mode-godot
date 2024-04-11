@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=3 uid="uid://bo6gr877fhbv0"]
+[gd_scene load_steps=81 format=3 uid="uid://mrncqbjkc3ci"]
 
 [ext_resource type="Script" path="res://scripts/actor.gd" id="1_11h4w"]
 [ext_resource type="Resource" uid="uid://ba3i5roa0cxxe" path="res://Modular Mobility/movesets/mvpk_walk.tres" id="2_63jq2"]
@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cy3xuqnfe0du6" path="res://art/Character/skeleton_SkeletonN.png" id="9_iwwpf"]
 [ext_resource type="Animation" uid="uid://dd8epmtg0edal" path="res://art/Character/animations/walk_combat_fwd.res" id="10_xcxt6"]
 [ext_resource type="AnimationLibrary" uid="uid://iuuxa6ncl6g0" path="res://art/Character/animations/swim/aLib_swim.tres" id="11_x7kj2"]
-[ext_resource type="AnimationLibrary" path="res://art/Character/animations/animationLib_climb.tres" id="12_fos0v"]
+[ext_resource type="AnimationLibrary" uid="uid://dg1aitbg1i77i" path="res://art/Character/animations/animationLib_climb.tres" id="12_fos0v"]
 [ext_resource type="Animation" uid="uid://dydbdx8dlduw7" path="res://art/Character/animations/combat_sword/combat_attack_r-l.res" id="13_s5p4w"]
 [ext_resource type="Animation" uid="uid://d6wwhfl8cosd" path="res://art/Character/animations/combat_sword/combat_block_shield.res" id="14_4c1sc"]
 [ext_resource type="Animation" uid="uid://x81gg07eneel" path="res://art/Character/animations/combat_sword/combat_block_sword.res" id="15_16ngj"]
@@ -48,7 +48,7 @@
 [ext_resource type="Animation" uid="uid://dgib28xacfffk" path="res://art/Character/animations/walk_jog_run/jog_fwd.res" id="46_wqsgk"]
 [ext_resource type="Animation" uid="uid://bpoxhpfu1wjmy" path="res://art/Character/animations/walk_jog_run/run_fwd.res" id="47_ihodd"]
 [ext_resource type="Animation" uid="uid://cqpnl8yol4vnq" path="res://art/Character/animations/walk_jog_run/walk_fwd.res" id="48_h5df7"]
-[ext_resource type="AnimationNodeStateMachine" uid="uid://dwtney1a7wwfb" path="res://art/Character/animator components/swim_root.tres" id="49_tgj4g"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://cl5ymw2k40a1r" path="res://art/Character/animator components/swim_root.tres" id="49_tgj4g"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ke2ik"]
 

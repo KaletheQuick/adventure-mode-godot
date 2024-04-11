@@ -4,7 +4,7 @@
 [ext_resource type="Material" uid="uid://c1lmf8kes7c51" path="res://art/materials/unified_earth_material.material" id="3_yyr3u"]
 [ext_resource type="PackedScene" uid="uid://cc3m6m4bf5i8c" path="res://prefabs/shrub.tscn" id="4_joxge"]
 [ext_resource type="Material" uid="uid://w4aoyuyy5ldg" path="res://art/materials/dirt.tres" id="4_sdu1q"]
-[ext_resource type="Material" uid="uid://bjyyib2vuovje" path="res://art/materials/water_quick.tres" id="4_tmanx"]
+[ext_resource type="Material" uid="uid://c6llc8lhqck4e" path="res://art/materials/water_quick.tres" id="4_tmanx"]
 [ext_resource type="PackedScene" uid="uid://chwqjvpft7wxd" path="res://prefabs/actor.tscn" id="5_iccpj"]
 [ext_resource type="Script" path="res://scripts/footall_sfx.gd" id="5_k2bmb"]
 [ext_resource type="Script" path="res://scripts/camera_control.gd" id="6_bedoa"]
@@ -83,7 +83,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.26423, -8.99667e-07, 10.291
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.75854, -1.11475e-06, 12.7513)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="terrain"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.23773, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.23773, 0)
 use_collision = true
 size = Vector3(100, 12, 100)
 material = ExtResource("3_yyr3u")
@@ -179,7 +179,7 @@ ring_sides = 8
 material = ExtResource("4_sdu1q")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="terrain"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.245, -5.05196, -29)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.245, -3.94669, -29)
 mesh = SubResource("BoxMesh_gpeg3")
 
 [node name="water" type="Area3D" parent="terrain/MeshInstance3D"]

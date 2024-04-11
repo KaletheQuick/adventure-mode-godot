@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=12 format=3 uid="uid://4nf5j7v880qt"]
+[gd_resource type="AnimationLibrary" load_steps=12 format=3 uid="uid://dg1aitbg1i77i"]
 
 [ext_resource type="Animation" uid="uid://bj6tovf64qqr8" path="res://art/Character/animations/climb/climb_dn.tres" id="1_8et3h"]
 [ext_resource type="Animation" uid="uid://cqno5nhodyi6y" path="res://art/Character/animations/climb/climb_idle.tres" id="2_p05fu"]
