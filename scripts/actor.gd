@@ -17,6 +17,8 @@ var jump_dbounce = false # Have we recently jumped?
 var LDT = 0.01 # Last delta time, calling get_process_delta_time() in the physics loop was causing issues
 var block = false
 var attack_light = false
+var attack_jump = false
+var attack_heavy = false
 
 @onready var animation_tree : AnimationTree = $AnimationTree 
 
@@ -56,6 +58,14 @@ func enthrall():
 	return
 	#TODO - Make check player/ai authority
 
+func _input(event):
+	if event.is_action_pressed("p1_attack_light"):
+		attack_light = true  # Set flag for light attack
+	elif event.is_action_pressed("heavy_attack"):
+		attack_heavy = true  # Set flag for heavy attack
+	elif event.is_action_pressed("jump_attack"):
+		attack_jump = true  # Set flag for jump attack
+
 func _process(delta):
 	if force_switch:
 		force_switch = false
@@ -67,6 +77,16 @@ func _process(delta):
 	if desired_move != Vector3.ZERO and desired_move.length_squared() > 0.01:
 		pass
 	#	$Dir_arrow.look_at(global_position + desired_move)
+	if attack_light or attack_heavy or attack_jump:
+		for i in range(movement_sets.size()):
+			if movement_sets[i] is mvpk_attack:
+				current_moveset = i
+				movement_sets[current_moveset].move_thrall(self, delta)
+				attack_light = false
+				attack_heavy = false
+				attack_jump = false  # Reset the jump attack flag
+				break
+
 	movement_package_checks()
 
 func _physics_process(delta):
