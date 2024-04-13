@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://wtyt8ya7p7fd"]
+
+[ext_resource type="Script" path="res://Area3D - BERRY.gd" id="1_h0pwu"]
+[ext_resource type="AudioStream" uid="uid://bf76j61v56u05" path="res://art/audio/sfx/pickupCoin.wav" id="2_x5vig"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ytxyi"]
+albedo_color = Color(1, 0, 0.0313726, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_5tl42"]
+material = SubResource("StandardMaterial3D_ytxyi")
+radius = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wtyve"]
+albedo_color = Color(0, 0.364706, 0, 1)
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_3pvvc"]
+material = SubResource("StandardMaterial3D_wtyve")
+radius = 0.1
+radial_steps = 5
+sections = 2
+section_length = 0.01
+section_rings = 2
+
+[node name="Area3D - BERRY" type="Area3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.02984, 0)
+script = ExtResource("1_h0pwu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+
+[node name="Berry" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.493862, 0)
+mesh = SubResource("SphereMesh_5tl42")
+
+[node name="Stem" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.734424, 0)
+mesh = SubResource("TubeTrailMesh_3pvvc")
+
+[node name="audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_x5vig")
+volume_db = 0.5
