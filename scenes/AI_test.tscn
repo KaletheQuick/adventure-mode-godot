@@ -30,6 +30,10 @@ sky_material = SubResource("ProceduralSkyMaterial_crgvg")
 [sub_resource type="Environment" id="Environment_26iue"]
 background_mode = 2
 sky = SubResource("Sky_5nnoq")
+ambient_light_source = 3
+ambient_light_color = Color(0.588235, 0.721569, 1, 1)
+tonemap_white = 2.1
+volumetric_fog_emission_energy = 1.85
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_nes8p"]
 top_radius = 0.035
@@ -196,7 +200,8 @@ shape = SubResource("BoxShape3D_jx4kd")
 environment = SubResource("Environment_26iue")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.21874, -0.964573, 0.147483, 0.456157, 0.0325297, 0.889305, -0.862597, 0.261802, 0.432881, 0, 0, 0)
+transform = Transform3D(-0.964015, -0.229582, -0.13404, -0.115459, -0.0925997, 0.988987, -0.239465, 0.968874, 0.0627602, 0, 0, 0)
+shadow_enabled = true
 
 [node name="actor" parent="." instance=ExtResource("5_iccpj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.298199, 0)
@@ -220,6 +225,7 @@ transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819
 [node name="ai_follow" type="Node" parent="guy follow" node_paths=PackedStringArray("followGuy")]
 script = ExtResource("7_kvtot")
 followGuy = NodePath("../../actor")
+follow = false
 
 [node name="footall_sfx2" type="Node" parent="guy follow"]
 script = ExtResource("5_k2bmb")

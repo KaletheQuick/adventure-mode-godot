@@ -210,6 +210,7 @@ bind/60/bone = -1
 bind/60/pose = Transform3D(-1, -4.63485e-07, -2.08785e-13, 1.03942e-06, 4.47034e-07, 0.999997, -5.28779e-07, 1, 3.27825e-07, 0.16315, -0.037006, -0.0150298)
 
 [resource]
+resource_name = "boots of wading"
 script = ExtResource("1_o1j52")
 mesh = SubResource("ArrayMesh_e524d")
 skin = SubResource("Skin_mg6qa")
