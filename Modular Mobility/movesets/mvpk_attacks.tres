@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="mvpk_attack" load_steps=2 format=3 uid="uid://tvxxt43squwk"]
+
+[ext_resource type="Script" path="res://scripts/combo_test.gd" id="1_mcukq"]
+
+[resource]
+script = ExtResource("1_mcukq")
+name = ""
