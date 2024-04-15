@@ -18,7 +18,8 @@ func shape_check(thrall : Actor) -> bool:
 	var shape = thrall.get_node("water_cast") #NOTE Stand in situation gantry
 	for x in range(shape.get_collision_count()):
 		#print(shape.get_collider(x).name)
-		if shape.get_collider(x).name == area_type:
+		
+		if is_instance_valid(shape.get_collider(x)) and  shape.get_collider(x).name == area_type:
 			return true
 	return false
 

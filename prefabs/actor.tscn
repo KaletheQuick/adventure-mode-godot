@@ -1217,7 +1217,7 @@ blend_shapes/chest = 0.0
 blend_shapes/waist_thin = 0.0
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="skeleton/char/Skeleton3D"]
-transform = Transform3D(0.168433, -0.424275, -0.889731, -0.781258, 0.49293, -0.382956, 0.601054, 0.759612, -0.248443, -0.56647, 1.92842, 0.29856)
+transform = Transform3D(0.168432, -0.424276, -0.889731, -0.781259, 0.49293, -0.382955, 0.601054, 0.759612, -0.248444, -0.566471, 1.92843, 0.29856)
 bone_name = "hand.R"
 bone_idx = 10
 
@@ -1243,7 +1243,7 @@ mesh = SubResource("CapsuleMesh_gx1d1")
 skeleton = NodePath("../..")
 
 [node name="BoneAttachment3D2" type="BoneAttachment3D" parent="skeleton/char/Skeleton3D"]
-transform = Transform3D(0.142504, 0.432075, 0.890508, 0.80458, 0.473446, -0.35847, -0.576493, 0.767568, -0.28017, 0.566514, 1.92819, 0.298555)
+transform = Transform3D(0.142504, 0.432075, 0.890507, 0.804579, 0.473446, -0.35847, -0.576493, 0.767567, -0.280171, 0.566514, 1.9282, 0.298555)
 bone_name = "hand.L"
 bone_idx = 33
 
@@ -1261,7 +1261,7 @@ transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("CylinderShape3D_l4p8o")
 
 [node name="hurtbox" type="BoneAttachment3D" parent="skeleton/char/Skeleton3D"]
-transform = Transform3D(0.999759, 0.0218709, -0.00165304, -0.021897, 0.9996, -0.0179173, 0.00126051, 0.0179492, 0.999838, -0.00654762, 1.57766, 0.00103825)
+transform = Transform3D(0.999759, 0.0218708, -0.00165307, -0.021897, 0.9996, -0.017917, 0.00126055, 0.0179489, 0.999838, -0.00654764, 1.57766, 0.00103849)
 bone_name = "chest"
 bone_idx = 3
 

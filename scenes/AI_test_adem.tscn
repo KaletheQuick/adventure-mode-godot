@@ -62,50 +62,49 @@ mainCam = NodePath("../../Camera")
 transform = Transform3D(-0.206938, 0, 0.978354, 0, 1, 0, -0.978354, 0, -0.206938, -20.6781, 9.71327e-09, -0.111107)
 
 [node name="Area3D - BERRY" parent="terrain/shrub" instance=ExtResource("3_u1mtn")]
-transform = Transform3D(0.500001, 0, 2.98023e-08, 0, 0.5, 0, -2.98023e-08, 0, 0.500001, -0.0947614, 0.355066, 0.447989)
-collect_test = true
+transform = Transform3D(1, 0, 5.96045e-08, 0, 1, 0, -5.96045e-08, 0, 1, -0.0947614, 0.355066, 0.447989)
 
 [node name="Area3D - BERRY2" parent="terrain/shrub" instance=ExtResource("3_u1mtn")]
-transform = Transform3D(0.500001, 0, 0, 0, 0.5, 0, 0, 0, 0.500001, -0.336364, 0.355066, -0.23041)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.336364, 0.355066, -0.23041)
 
 [node name="Area3D - BERRY3" parent="terrain/shrub" instance=ExtResource("3_u1mtn")]
-transform = Transform3D(0.500001, 0, 2.98023e-08, 0, 0.5, 0, -2.98023e-08, 0, 0.500001, 0.375952, 0.355066, -0.198294)
+transform = Transform3D(1, 0, 5.96045e-08, 0, 1, 0, -5.96045e-08, 0, 1, 0.375952, 0.355066, -0.198294)
 
 [node name="shrub2" parent="terrain" instance=ExtResource("2_bt12q")]
 transform = Transform3D(-0.934416, 0, -0.356184, 0, 1, 0, 0.356184, 0, -0.934416, -20.9968, 3.66043e-06, 1.76458)
 
 [node name="Area3D - BERRY" parent="terrain/shrub2" instance=ExtResource("3_u1mtn")]
-transform = Transform3D(0.5, 0, 2.23517e-08, 0, 0.5, 0, -2.23517e-08, 0, 0.5, -0.0947599, 0.355066, 0.448)
+transform = Transform3D(1, 0, 4.47034e-08, 0, 1, 0, -4.47034e-08, 0, 1, -0.0947599, 0.355066, 0.448)
 
 [node name="Area3D - BERRY3" parent="terrain/shrub2" instance=ExtResource("3_u1mtn")]
-transform = Transform3D(0.500001, 0, 0, 0, 0.5, 0, 0, 0, 0.500001, -0.336364, 0.355066, -0.23041)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.336364, 0.355066, -0.23041)
 
 [node name="Area3D - BERRY4" parent="terrain/shrub2" instance=ExtResource("3_u1mtn")]
-transform = Transform3D(0.500001, 0, 2.98023e-08, 0, 0.5, 0, -2.98023e-08, 0, 0.500001, 0.375952, 0.355066, -0.198294)
+transform = Transform3D(1, 0, 5.96045e-08, 0, 1, 0, -5.96045e-08, 0, 1, 0.375952, 0.355066, -0.198294)
 
 [node name="shrub3" parent="terrain" instance=ExtResource("2_bt12q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.264, 0, 10.26)
 
 [node name="Area3D - BERRY" parent="terrain/shrub3" instance=ExtResource("3_u1mtn")]
-transform = Transform3D(0.5, 0, 2.23517e-08, 0, 0.5, 0, -2.23517e-08, 0, 0.5, -0.0947599, 0.355066, 0.448)
+transform = Transform3D(1, 0, 4.47034e-08, 0, 1, 0, -4.47034e-08, 0, 1, -0.0947599, 0.355066, 0.448)
 
 [node name="Area3D - BERRY2" parent="terrain/shrub3" instance=ExtResource("3_u1mtn")]
-transform = Transform3D(0.500001, 0, 0, 0, 0.5, 0, 0, 0, 0.500001, -0.336364, 0.355066, -0.23041)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.336364, 0.355066, -0.23041)
 
 [node name="Area3D - BERRY3" parent="terrain/shrub3" instance=ExtResource("3_u1mtn")]
-transform = Transform3D(0.500001, 0, 2.98023e-08, 0, 0.5, 0, -2.98023e-08, 0, 0.500001, 0.375952, 0.355066, -0.198294)
+transform = Transform3D(1, 0, 5.96045e-08, 0, 1, 0, -5.96045e-08, 0, 1, 0.375952, 0.355066, -0.198294)
 
 [node name="shrub4" parent="terrain" instance=ExtResource("2_bt12q")]
 transform = Transform3D(0.16701, 0, -0.985955, 0, 1, 0, 0.985955, 0, 0.16701, 4.485, 0, -12.986)
 
 [node name="Area3D - BERRY" parent="terrain/shrub4" instance=ExtResource("3_u1mtn")]
-transform = Transform3D(0.5, 0, 2.23517e-08, 0, 0.5, 0, -2.23517e-08, 0, 0.5, -0.094759, 0.355066, 0.448)
+transform = Transform3D(1, 0, 4.47035e-08, 0, 1, 0, -4.47035e-08, 0, 1, -0.094758, 0.355066, 0.693859)
 
 [node name="Area3D - BERRY2" parent="terrain/shrub4" instance=ExtResource("3_u1mtn")]
-transform = Transform3D(0.500001, 0, 0, 0, 0.5, 0, 0, 0, 0.500001, -0.336364, 0.355066, -0.23041)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.428641, 0.355066, -0.23041)
 
 [node name="Area3D - BERRY3" parent="terrain/shrub4" instance=ExtResource("3_u1mtn")]
-transform = Transform3D(0.500001, 0, 2.98023e-08, 0, 0.5, 0, -2.98023e-08, 0, 0.500001, 0.375952, 0.355066, -0.198294)
+transform = Transform3D(1, 0, 5.96045e-08, 0, 1, 0, -5.96045e-08, 0, 1, 0.479107, 0.355066, -0.198295)
 
 [node name="shrub5" parent="terrain" instance=ExtResource("2_bt12q")]
 transform = Transform3D(0.16701, 0, -0.985955, 0, 1, 0, 0.985955, 0, 0.16701, -1.657, 0, -15.712)
@@ -117,13 +116,13 @@ transform = Transform3D(-0.992405, 0, -0.123013, 0, 1, 0, 0.123013, 0, -0.992405
 transform = Transform3D(-0.389478, 0, 0.921036, 0, 1, 0, -0.921036, 0, -0.389478, -5.685, 0, -13.505)
 
 [node name="Area3D - BERRY" parent="terrain/shrub7" instance=ExtResource("3_u1mtn")]
-transform = Transform3D(0.5, 0, 2.23517e-08, 0, 0.5, 0, -2.23517e-08, 0, 0.5, -0.0947599, 0.355066, 0.448)
+transform = Transform3D(1, 0, 4.47034e-08, 0, 1, 0, -4.47034e-08, 0, 1, -0.0947599, 0.355066, 0.448)
 
 [node name="Area3D - BERRY2" parent="terrain/shrub7" instance=ExtResource("3_u1mtn")]
-transform = Transform3D(0.500001, 0, 0, 0, 0.5, 0, 0, 0, 0.500001, -0.336364, 0.355066, -0.23041)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.336364, 0.355066, -0.23041)
 
 [node name="Area3D - BERRY3" parent="terrain/shrub7" instance=ExtResource("3_u1mtn")]
-transform = Transform3D(0.500001, 0, 2.98023e-08, 0, 0.5, 0, -2.98023e-08, 0, 0.500001, 0.375952, 0.355066, -0.198294)
+transform = Transform3D(1, 0, 5.96045e-08, 0, 1, 0, -5.96045e-08, 0, 1, 0.375952, 0.355066, -0.198294)
 
 [node name="shrub8" parent="terrain" instance=ExtResource("2_bt12q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.49, 4.53009e-06, -8.18316)
