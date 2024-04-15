@@ -18,7 +18,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	return
 	var go_dir = Vector3.ZERO#(followGuy.global_position - thrall.global_position).normalized() * 0.1
 	if thrall.global_position.distance_to(followGuy.global_position) > leashDist:
 		goTo = find_somewhere_to_go()

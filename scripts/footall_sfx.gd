@@ -36,7 +36,8 @@ func _ready():
 	get_tree().root.add_child.call_deferred(left_aud)
 	get_tree().root.add_child.call_deferred(right_aud)
 	for kid in get_parent().get_node("skeleton/char/Skeleton3D").get_children():
-		print(kid)
+		pass
+		#print(kid)
 	setup_footfall(get_parent().get_node("skeleton/char/Skeleton3D"))
 
 	randSoundQue.append_array(sounds)

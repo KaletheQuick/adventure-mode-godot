@@ -9,7 +9,7 @@ const JUMP_VELOCITY = 6.5
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 
-@onready var combo_bar = get_node("/root/level_test/CanvasLayer/ProgressBar")
+#@onready var combo_bar = get_node("/root/level_test/CanvasLayer/ProgressBar")
 
 var desired_move = Vector3.ZERO
 
@@ -92,9 +92,10 @@ func _process(delta):
 func _physics_process(delta):
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		pass
 		#velocity.y = JUMP_VELOCITY
-		if combo_bar:
-			combo_bar.fill_combo_bar(10)
+##		if combo_bar:
+#			combo_bar.fill_combo_bar(10)
 
 	# Get the input direction and handle the movement/deceleration.
 #	return

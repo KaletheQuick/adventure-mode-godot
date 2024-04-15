@@ -765,7 +765,7 @@ metadata/_snap_enabled = true
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_kyuof"]
 
-[node name="actor" type="CharacterBody3D" node_paths=PackedStringArray("right_weapon")]
+[node name="actor2" type="CharacterBody3D" node_paths=PackedStringArray("right_weapon")]
 script = ExtResource("1_u4ehk")
 movement_sets = Array[Resource("res://Modular Mobility/MovementPackage.gd")]([ExtResource("2_4jbd7"), ExtResource("3_yihif"), ExtResource("4_ud0ya"), ExtResource("5_1114p")])
 defaultANIMO = ExtResource("29_u8sk4")
@@ -1272,6 +1272,7 @@ transform = Transform3D(1, -1.77636e-15, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_16nk1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="skeleton/char/Skeleton3D/hurtbox/hurtbox_torso"]
+visible = false
 mesh = SubResource("CapsuleMesh_xudnl")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="skeleton"]
