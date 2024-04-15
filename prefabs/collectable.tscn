@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/collectable.gd" id="1_nm1gy"]
 [ext_resource type="AudioStream" uid="uid://bf76j61v56u05" path="res://art/audio/sfx/pickupCoin.wav" id="2_s7qlt"]
-[ext_resource type="Material" uid="uid://bbo7bxnhxbg8j" path="res://art/materials/gold.tres" id="2_w2062"]
+[ext_resource type="Material" uid="uid://bmho6d4v6f88s" path="res://art/materials/gold.tres" id="2_w2062"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_i7ih2"]
 

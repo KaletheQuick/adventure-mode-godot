@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dabon04sekkep"]
+[gd_scene load_steps=21 format=3 uid="uid://7akb7b2gcaj1"]
 
 [ext_resource type="Script" path="res://scripts/playerSocket_adventure.gd" id="1_6cp8o"]
 [ext_resource type="PackedScene" uid="uid://cc3m6m4bf5i8c" path="res://prefabs/shrub.tscn" id="2_rp12a"]
@@ -198,14 +198,16 @@ environment = SubResource("Environment_26iue")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.21874, -0.964573, 0.147483, 0.456157, 0.0325297, 0.889305, -0.862597, 0.261802, 0.432881, 0, 0, 0)
 
-[node name="actor" parent="." instance=ExtResource("6_nbx7n")]
+[node name="actor" parent="." node_paths=PackedStringArray("right_weapon") instance=ExtResource("6_nbx7n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.298199, 0)
+right_weapon = NodePath("")
 
 [node name="footall_sfx" type="Node" parent="actor"]
 script = ExtResource("7_fiikt")
 
-[node name="guy flee" parent="." instance=ExtResource("6_nbx7n")]
+[node name="guy flee" parent="." node_paths=PackedStringArray("right_weapon") instance=ExtResource("6_nbx7n")]
 transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, -0.588409, 0, 10.4148)
+right_weapon = NodePath("")
 
 [node name="ai_flee" type="Node" parent="guy flee" node_paths=PackedStringArray("fleeFrom")]
 script = ExtResource("8_j1shc")
@@ -214,8 +216,9 @@ fleeFrom = NodePath("../../actor")
 [node name="footall_sfx2" type="Node" parent="guy flee"]
 script = ExtResource("7_fiikt")
 
-[node name="guy follow" parent="." instance=ExtResource("6_nbx7n")]
+[node name="guy follow" parent="." node_paths=PackedStringArray("right_weapon") instance=ExtResource("6_nbx7n")]
 transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 7.5088, 0, 10.4148)
+right_weapon = NodePath("")
 
 [node name="ai_follow" type="Node" parent="guy follow" node_paths=PackedStringArray("followGuy")]
 script = ExtResource("9_fok2o")
@@ -224,8 +227,9 @@ followGuy = NodePath("../../actor")
 [node name="footall_sfx2" type="Node" parent="guy follow"]
 script = ExtResource("7_fiikt")
 
-[node name="guy hide" parent="." instance=ExtResource("6_nbx7n")]
+[node name="guy hide" parent="." node_paths=PackedStringArray("right_weapon") instance=ExtResource("6_nbx7n")]
 transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, -7.80253, 0, 10.4148)
+right_weapon = NodePath("")
 
 [node name="ai_hide" type="Node" parent="guy hide"]
 script = ExtResource("10_7akb4")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://wtyt8ya7p7fd"]
+[gd_scene load_steps=8 format=3 uid="uid://bcw0thptfp36h"]
 
 [ext_resource type="Script" path="res://Area3D - BERRY.gd" id="1_h0pwu"]
 [ext_resource type="AudioStream" uid="uid://ynxg3mdpav8b" path="res://art/audio/sfx/nab.ogg" id="2_ratxb"]
