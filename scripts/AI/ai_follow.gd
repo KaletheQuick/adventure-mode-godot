@@ -10,6 +10,7 @@ var goTo : Vector3
 
 var dot : MeshInstance3D # debug
 
+@export var follow = true
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	goTo = thrall.global_position
@@ -18,12 +19,13 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var go_dir = Vector3.ZERO#(followGuy.global_position - thrall.global_position).normalized() * 0.1
-	if thrall.global_position.distance_to(followGuy.global_position) > leashDist:
-		goTo = find_somewhere_to_go()
-		go_dir = goTo - thrall.global_position
-	thrall.handle_movement(go_dir)
-	dot.global_position = goTo
+	if follow:
+		var go_dir = Vector3.ZERO#(followGuy.global_position - thrall.global_position).normalized() * 0.1
+		if thrall.global_position.distance_to(followGuy.global_position) > leashDist:
+			goTo = find_somewhere_to_go()
+			go_dir = goTo - thrall.global_position
+		thrall.handle_movement(go_dir)
+		dot.global_position = goTo
 
 func find_somewhere_to_go() -> Vector3:
 	return thrall.global_position - ((thrall.global_position - followGuy.global_position) / 2)

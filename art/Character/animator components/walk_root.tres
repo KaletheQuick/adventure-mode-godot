@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=39 format=3 uid="uid://coym3jr0vat8x"]
+[gd_resource type="AnimationNodeStateMachine" load_steps=37 format=3 uid="uid://coym3jr0vat8x"]
 
 [ext_resource type="AnimationNodeBlendSpace2D" uid="uid://dukebmuejahjs" path="res://art/Character/animator components/walk_blendspace.tres" id="1_f2otq"]
 
@@ -103,19 +103,12 @@ animation = &"walk_jog_run/run_fwd"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yx5ig"]
 animation = &"walk/airborne"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hi4b0"]
-animation = &"walk/jump_standing"
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bj3bm"]
 animation = &"walk/land"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tddch"]
 advance_mode = 2
 advance_condition = &"land"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1qtnw"]
-switch_mode = 2
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_slw4a"]
 switch_mode = 2
@@ -167,7 +160,7 @@ advance_expression = "sprint == false"
 
 [resource]
 states/BlendTree/node = SubResource("AnimationNodeBlendTree_es7tm")
-states/BlendTree/position = Vector2(169, 204)
+states/BlendTree/position = Vector2(-173, 594)
 "states/Jump w vel/node" = SubResource("AnimationNodeBlendSpace1D_dcyjj")
 "states/Jump w vel/position" = Vector2(428.333, 63.5556)
 "states/Move Walk/node" = ExtResource("1_f2otq")
@@ -181,9 +174,7 @@ states/sprint/node = SubResource("AnimationNodeAnimation_j4rrc")
 states/sprint/position = Vector2(224.667, -32)
 states/walk_airborne/node = SubResource("AnimationNodeAnimation_yx5ig")
 states/walk_airborne/position = Vector2(648.222, 100)
-states/walk_jump_standing/node = SubResource("AnimationNodeAnimation_hi4b0")
-states/walk_jump_standing/position = Vector2(416.333, -2.33333)
 states/walk_land/node = SubResource("AnimationNodeAnimation_bj3bm")
 states/walk_land/position = Vector2(416.827, 144.333)
-transitions = ["walk_airborne", "walk_land", SubResource("AnimationNodeStateMachineTransition_tddch"), "walk_jump_standing", "walk_airborne", SubResource("AnimationNodeStateMachineTransition_1qtnw"), "walk_land", "Move Walk", SubResource("AnimationNodeStateMachineTransition_slw4a"), "Jump w vel", "walk_airborne", SubResource("AnimationNodeStateMachineTransition_86anj"), "Move Walk", "combat_sword_combat_block_shield", SubResource("AnimationNodeStateMachineTransition_gt3rp"), "combat_sword_combat_block_shield", "Move Walk", SubResource("AnimationNodeStateMachineTransition_74m8c"), "Move Walk", "attack_light", SubResource("AnimationNodeStateMachineTransition_473xn"), "attack_light", "Move Walk", SubResource("AnimationNodeStateMachineTransition_33gl8"), "Start", "Move Walk", SubResource("AnimationNodeStateMachineTransition_4hx0r"), "Move Walk", "walk_airborne", SubResource("AnimationNodeStateMachineTransition_ewjb3"), "Move Walk", "Jump w vel", SubResource("AnimationNodeStateMachineTransition_bibi4"), "Move Walk", "sprint", SubResource("AnimationNodeStateMachineTransition_j17tj"), "sprint", "Move Walk", SubResource("AnimationNodeStateMachineTransition_pkpmd")]
-graph_offset = Vector2(-208, -201)
+transitions = ["walk_airborne", "walk_land", SubResource("AnimationNodeStateMachineTransition_tddch"), "walk_land", "Move Walk", SubResource("AnimationNodeStateMachineTransition_slw4a"), "Jump w vel", "walk_airborne", SubResource("AnimationNodeStateMachineTransition_86anj"), "Move Walk", "combat_sword_combat_block_shield", SubResource("AnimationNodeStateMachineTransition_gt3rp"), "combat_sword_combat_block_shield", "Move Walk", SubResource("AnimationNodeStateMachineTransition_74m8c"), "Move Walk", "attack_light", SubResource("AnimationNodeStateMachineTransition_473xn"), "attack_light", "Move Walk", SubResource("AnimationNodeStateMachineTransition_33gl8"), "Start", "Move Walk", SubResource("AnimationNodeStateMachineTransition_4hx0r"), "Move Walk", "walk_airborne", SubResource("AnimationNodeStateMachineTransition_ewjb3"), "Move Walk", "Jump w vel", SubResource("AnimationNodeStateMachineTransition_bibi4"), "Move Walk", "sprint", SubResource("AnimationNodeStateMachineTransition_j17tj"), "sprint", "Move Walk", SubResource("AnimationNodeStateMachineTransition_pkpmd")]
+graph_offset = Vector2(-162, -80)

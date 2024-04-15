@@ -3,18 +3,18 @@ extends Node
 @export var actor : Node3D 
 @export var skele : Skeleton3D
 
-var things_worn
+var things_worn # NOTE Actual nodes created
 
-@export var garments : Array[Garment]
+@export var garments : Array[Garment] # NOTE Resource references
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#skele = actor.get_node("skeleton/char/Skeleton3D")
-	things_worn = []
+	things_worn = {}
 	#skele = recursive_search_for_skele(actor)
 	print("Skele: " + skele.name)
-	for garment in garments:
-		garment_equip(garment)
+	#for garment in garments:
+	#	garment_equip(garment)
 	pass # Replace with function body.
 
 
@@ -46,10 +46,15 @@ func garment_equip(gar : Garment):
 	mesh.skin = gar.skin
 	skele.add_child(mesh)
 	mesh.skeleton = skele.get_path()
-	things_worn.append(gar)
+	mesh.name = gar.resource_name
+	things_worn[gar] = mesh
+	garments.append(gar)
 
 func garment_unequip(gar : Garment):
-	things_worn.erase(gar)
+	if gar in things_worn.keys():
+		var mesh = things_worn[gar]
+		mesh.queue_free()
+	garments.erase(gar)
 
 func garment_tweak(gar : Garment, property_name : String, v : Variant):
 	if(gar in things_worn):

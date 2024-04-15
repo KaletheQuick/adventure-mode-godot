@@ -6,6 +6,7 @@ var collected = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	connect("body_entered", __body_enter)
+	$coin/AnimationPlayer.play("coin_spin")
 	pass # Replace with function body.
 
 
