@@ -91,7 +91,7 @@ blend_point_8/pos = Vector2(1, 0)
 advance_mode = 2
 
 [resource]
-"states/Move Walk/node" = SubResource("AnimationNodeBlendSpace2D_jsf0a")
-"states/Move Walk/position" = Vector2(489, 83)
-transitions = ["Start", "Move Walk", SubResource("AnimationNodeStateMachineTransition_r2bnh")]
+"states/MOVE climb/node" = SubResource("AnimationNodeBlendSpace2D_jsf0a")
+"states/MOVE climb/position" = Vector2(489, 83)
+transitions = ["Start", "MOVE climb", SubResource("AnimationNodeStateMachineTransition_r2bnh")]
 graph_offset = Vector2(88, -72)
