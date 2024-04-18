@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Adventure-mode-godot"
-run/main_scene="res://scenes/level_test.tscn"
+run/main_scene="res://scenes/AI_test.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
