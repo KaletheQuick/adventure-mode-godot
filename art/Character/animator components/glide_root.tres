@@ -71,11 +71,11 @@ advance_condition = &"land"
 
 [resource]
 states/End/position = Vector2(898.667, 100)
-"states/Move Walk/node" = SubResource("AnimationNodeBlendSpace2D_v46k6")
-"states/Move Walk/position" = Vector2(576.667, 28.3333)
+"states/MOVE glide/node" = SubResource("AnimationNodeBlendSpace2D_v46k6")
+"states/MOVE glide/position" = Vector2(576.667, 28.3333)
 states/walk_airborne/node = SubResource("AnimationNodeAnimation_tvor1")
 states/walk_airborne/position = Vector2(352.667, 99.9547)
 states/walk_jump_arc/node = SubResource("AnimationNodeAnimation_36vgo")
 states/walk_jump_arc/position = Vector2(795.333, 203)
-transitions = ["Start", "walk_airborne", SubResource("AnimationNodeStateMachineTransition_swm56"), "walk_airborne", "Move Walk", SubResource("AnimationNodeStateMachineTransition_n2bfw"), "Move Walk", "walk_jump_arc", SubResource("AnimationNodeStateMachineTransition_w6ysj")]
+transitions = ["Start", "walk_airborne", SubResource("AnimationNodeStateMachineTransition_swm56"), "walk_airborne", "MOVE glide", SubResource("AnimationNodeStateMachineTransition_n2bfw"), "MOVE glide", "walk_jump_arc", SubResource("AnimationNodeStateMachineTransition_w6ysj")]
 graph_offset = Vector2(-18, -114)

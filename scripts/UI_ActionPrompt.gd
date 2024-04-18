@@ -2,7 +2,7 @@ extends Control
 
 @export var output : RichTextLabel
 
-var action_button = "E or Y"
+var action_button = "E or some button on a controller, idk"
 
 var action_name = "Take"
 
