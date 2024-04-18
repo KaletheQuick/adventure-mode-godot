@@ -16,7 +16,7 @@ func transfer_situation_check(thrall : Actor) -> bool:
 	#query.collide_with_areas = true
 	last_col_result = space_state.intersect_ray(query)
 	#print(result)
-	if "collider" in last_col_result.keys() and thrall.desired_move.length() > 0.5:
+	if "collider" in last_col_result.keys() and thrall.desired_move.length() > 1.2:
 		return true
 
 	#printerr("ERROR - Not implimented")

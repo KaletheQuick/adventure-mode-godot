@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bcw0thptfp36h"]
 
-[ext_resource type="Script" path="res://Area3D - BERRY.gd" id="1_h0pwu"]
-[ext_resource type="AudioStream" uid="uid://ynxg3mdpav8b" path="res://art/audio/sfx/nab.ogg" id="2_ratxb"]
+[ext_resource type="Script" path="res://Area3D - BERRY.gd" id="1_nag85"]
+[ext_resource type="AudioStream" uid="uid://ynxg3mdpav8b" path="res://art/audio/sfx/nab.ogg" id="2_opfsd"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8aa6g"]
 radius = 1.0
@@ -26,8 +26,7 @@ section_length = 0.01
 section_rings = 2
 
 [node name="Area3D - BERRY" type="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02984, 0)
-script = ExtResource("1_h0pwu")
+script = ExtResource("1_nag85")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_8aa6g")
@@ -41,5 +40,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.133879, 0)
 mesh = SubResource("TubeTrailMesh_3pvvc")
 
 [node name="audio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_ratxb")
-volume_db = 0.5
+stream = ExtResource("2_opfsd")

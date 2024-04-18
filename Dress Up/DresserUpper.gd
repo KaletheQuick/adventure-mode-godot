@@ -13,8 +13,10 @@ func _ready():
 	things_worn = {}
 	#skele = recursive_search_for_skele(actor)
 	print("Skele: " + skele.name)
-	#for garment in garments:
-	#	garment_equip(garment)
+	var oldgar = garments
+	garments = []
+	for garment in oldgar:
+		garment_equip(garment)
 	pass # Replace with function body.
 
 
@@ -47,6 +49,7 @@ func garment_equip(gar : Garment):
 	skele.add_child(mesh)
 	mesh.skeleton = skele.get_path()
 	mesh.name = gar.resource_name
+	mesh.lod_bias = 2
 	things_worn[gar] = mesh
 	garments.append(gar)
 

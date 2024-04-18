@@ -19,7 +19,7 @@ var smoothing = 0.1
 
 # SECTION New shit
 var cam_velocity = Vector3.ZERO
-var leash_dist_current = 3
+var leash_dist_current = 3.0
 var follow_offset = Vector3(0, 2.3, 0)
 
 var cam_rot_velocity = Vector2.ZERO
@@ -68,6 +68,7 @@ func _look(delta):
 		return
 	# transform target to screen space
 	var target_screenPos = unproject_position(target_current.global_position)
+	#print(target_screenPos)
 	var midscreen = get_viewport().size * 0.8
 	# Get direction to target
 	var target_vector = (global_position-target_current.global_position).normalized()

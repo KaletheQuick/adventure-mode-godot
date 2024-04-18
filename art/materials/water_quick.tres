@@ -21,8 +21,7 @@ uniform vec3 uv2_offset;
 
 
 void vertex() {
-	vec2 newOffset = vec2(uv1_offset.x+ (TIME * 0.005), uv1_offset.y + (TIME * 0.01));
-	UV=UV*uv1_scale.xy+newOffset.xy;
+	UV=UV;
 }
 
 
@@ -31,8 +30,16 @@ void vertex() {
 
 
 void fragment() {
-	vec2 base_uv = UV;
-	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	vec2 newOffset = vec2(uv1_offset.x+ (TIME * 0.005), uv1_offset.y + (TIME * 0.01));
+	vec2 base_uv = UV*uv1_scale.xy+newOffset.xy;
+	
+	vec2 overbiggen_Offset = vec2(uv1_offset.x+ (TIME * 0.004), uv1_offset.y + (TIME * 0.003));
+	vec2 overbiggen_uv = UV*uv1_scale.xy+overbiggen_Offset.xy;
+	
+	vec4 tex1 = texture(texture_albedo,base_uv);
+	vec4 tex2 = texture(texture_albedo,overbiggen_uv);
+	
+	vec4 albedo_tex = (tex1 * ((TIME * 0.005))) + (tex2 * (1.0 - (TIME * 0.005)));
 	ALBEDO = albedo.rgb * albedo_tex.rgb;
 	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
 	METALLIC = metallic_tex * metallic;
@@ -40,7 +47,7 @@ void fragment() {
 	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
 	ROUGHNESS = roughness_tex * roughness;
 	SPECULAR = specular;
-	ALPHA *= albedo.a * albedo_tex.a;
+	//ALPHA *= albedo.a * albedo_tex.a;
 }
 "
 

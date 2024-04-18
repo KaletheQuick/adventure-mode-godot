@@ -1,4 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cc3m6m4bf5i8c"]
+[gd_scene load_steps=10 format=3 uid="uid://cc3m6m4bf5i8c"]
+
+[ext_resource type="Script" path="res://scripts/harvest_spawner.gd" id="1_dpnmq"]
+[ext_resource type="PackedScene" uid="uid://bcw0thptfp36h" path="res://prefabs/area_3d___berry.tscn" id="2_5526b"]
 
 [sub_resource type="Gradient" id="Gradient_svef6"]
 colors = PackedColorArray(0, 0.309804, 0, 1, 0, 0.847059, 0, 1)
@@ -8,6 +11,7 @@ noise_type = 2
 fractal_octaves = 3
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fw3ct"]
+seamless = true
 color_ramp = SubResource("Gradient_svef6")
 noise = SubResource("FastNoiseLite_6b80i")
 
@@ -18,8 +22,33 @@ albedo_texture = SubResource("NoiseTexture2D_fw3ct")
 material = SubResource("StandardMaterial3D_2233x")
 height = 1.28
 
-[node name="shrub" type="Node3D"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ssfq"]
+albedo_color = Color(0.360784, 0.235294, 0.0901961, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_wp0c3"]
+material = SubResource("StandardMaterial3D_6ssfq")
+text = "Y"
+pixel_size = 0.12
+depth = 0.165
+
+[node name="shrub" type="Node3D" node_paths=PackedStringArray("spawn_points")]
+script = ExtResource("1_dpnmq")
+harvestable = ExtResource("2_5526b")
+spawn_points = [NodePath("hpt"), NodePath("hpt2"), NodePath("hpt3")]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.987334, -0.158658, 0, 0.158658, 0.987334, 0, 0.289872, 2.44463e-08)
 mesh = SubResource("SphereMesh_yrcwg")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.749954, -0.175319, 0.291279, 0.127029, 0.984141, 0.0780481, -0.23951, -0.0270004, 0.953449, 0.150541, -0.494553, -2.08287e-10)
+mesh = SubResource("TextMesh_wp0c3")
+
+[node name="hpt" type="Node3D" parent="."]
+transform = Transform3D(0.943199, 0.312969, -0.111468, -0.332227, 0.888526, -0.31646, 0, 0.335517, 0.942034, -0.37515, 0.605164, -0.250488)
+
+[node name="hpt2" type="Node3D" parent="."]
+transform = Transform3D(0.980375, -0.197144, 0, 0.182244, 0.906277, -0.381377, 0.0751862, 0.373892, 0.92442, 0.362071, 0.106241, -0.326396)
+
+[node name="hpt3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.96076, 0.277382, 0, -0.277382, 0.96076, 0, 0.221377, 0.468432)

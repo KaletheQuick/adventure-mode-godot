@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b7rn70xxa62fw"]
+[gd_scene load_steps=20 format=3 uid="uid://b7rn70xxa62fw"]
 
 [ext_resource type="Script" path="res://scripts/playerSocket_adventure.gd" id="1_cm27n"]
 [ext_resource type="Material" uid="uid://c1lmf8kes7c51" path="res://art/materials/unified_earth_material.material" id="3_yyr3u"]
@@ -9,11 +9,13 @@
 [ext_resource type="Script" path="res://scripts/footall_sfx.gd" id="5_k2bmb"]
 [ext_resource type="Script" path="res://scripts/camera_control.gd" id="6_bedoa"]
 [ext_resource type="Script" path="res://scripts/AI/ai_flee.gd" id="6_bobkc"]
+[ext_resource type="Environment" uid="uid://c5vgp5xgbfy74" path="res://scenes/default_env.tres" id="6_hqvma"]
 [ext_resource type="Script" path="res://scripts/AI/ai_follow.gd" id="7_kvtot"]
 [ext_resource type="Script" path="res://scripts/combo_bar.gd" id="7_ok1ji"]
 [ext_resource type="Script" path="res://scripts/AI/ai_hide.gd" id="8_s2oab"]
 [ext_resource type="AudioStream" uid="uid://hxog1lltd7d4" path="res://art/audio/506911__nox_sound__ambiance_wind_forest_moderate_loop_stereo.wav" id="9_jfx7a"]
 [ext_resource type="PackedScene" uid="uid://d3xpjq6g2jknf" path="res://prefabs/collectable.tscn" id="12_2pvcf"]
+[ext_resource type="Script" path="res://scripts/UI_ActionPrompt.gd" id="14_ojyx2"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_gpeg3"]
 material = ExtResource("4_tmanx")
@@ -21,19 +23,6 @@ size = Vector3(40, 6, 40)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jx4kd"]
 size = Vector3(40, 6, 40)
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_crgvg"]
-
-[sub_resource type="Sky" id="Sky_5nnoq"]
-sky_material = SubResource("ProceduralSkyMaterial_crgvg")
-
-[sub_resource type="Environment" id="Environment_26iue"]
-background_mode = 2
-sky = SubResource("Sky_5nnoq")
-ambient_light_source = 3
-ambient_light_color = Color(0.588235, 0.721569, 1, 1)
-tonemap_white = 2.1
-volumetric_fog_emission_energy = 1.85
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_nes8p"]
 top_radius = 0.035
@@ -45,11 +34,12 @@ radial_segments = 4
 
 [node name="Player Sockets" type="Node" parent="."]
 
-[node name="p1_psock_adventure" type="Node" parent="Player Sockets" node_paths=PackedStringArray("thrall", "test_second_thrall", "mainCam")]
+[node name="p1_psock_adventure" type="Node" parent="Player Sockets" node_paths=PackedStringArray("thrall", "test_second_thrall", "mainCam", "action_prompt")]
 script = ExtResource("1_cm27n")
-thrall = NodePath("../../actor")
+thrall = NodePath("../../player_actor")
 test_second_thrall = NodePath("../../guy follow")
 mainCam = NodePath("../../Camera")
+action_prompt = NodePath("../../user_interface/Action Prompt")
 
 [node name="terrain" type="Node3D" parent="."]
 
@@ -197,16 +187,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
 shape = SubResource("BoxShape3D_jx4kd")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_26iue")
+environment = ExtResource("6_hqvma")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.964015, -0.229582, -0.13404, -0.115459, -0.0925997, 0.988987, -0.239465, 0.968874, 0.0627602, 0, 0, 0)
 shadow_enabled = true
 
-[node name="actor" parent="." instance=ExtResource("5_iccpj")]
+[node name="player_actor" parent="." instance=ExtResource("5_iccpj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.298199, 0)
 
-[node name="footall_sfx" type="Node" parent="actor"]
+[node name="footall_sfx" type="Node" parent="player_actor"]
 script = ExtResource("5_k2bmb")
 
 [node name="guy flee" parent="." instance=ExtResource("5_iccpj")]
@@ -214,17 +204,17 @@ transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819
 
 [node name="ai_flee" type="Node" parent="guy flee" node_paths=PackedStringArray("fleeFrom")]
 script = ExtResource("6_bobkc")
-fleeFrom = NodePath("../../actor")
+fleeFrom = NodePath("../../player_actor")
 
 [node name="footall_sfx2" type="Node" parent="guy flee"]
 script = ExtResource("5_k2bmb")
 
 [node name="guy follow" parent="." instance=ExtResource("5_iccpj")]
-transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 7.5088, 0, 10.4148)
+transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 4.7591, 0, 9.72053)
 
 [node name="ai_follow" type="Node" parent="guy follow" node_paths=PackedStringArray("followGuy")]
 script = ExtResource("7_kvtot")
-followGuy = NodePath("../../actor")
+followGuy = NodePath("../../player_actor")
 follow = false
 
 [node name="footall_sfx2" type="Node" parent="guy follow"]
@@ -242,7 +232,8 @@ script = ExtResource("5_k2bmb")
 [node name="Camera" type="Camera3D" parent="." node_paths=PackedStringArray("target_current")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 8)
 script = ExtResource("6_bedoa")
-target_current = NodePath("../actor")
+target_current = NodePath("../player_actor")
+distance = 10.0
 cam_sens = 1.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Camera"]
@@ -266,6 +257,38 @@ offset_top = 50.0
 offset_right = 54.0
 offset_bottom = 77.0
 script = ExtResource("7_ok1ji")
+
+[node name="Action Prompt" type="Control" parent="user_interface" node_paths=PackedStringArray("output")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(3, 3)
+script = ExtResource("14_ojyx2")
+output = NodePath("RichTextLabel")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="user_interface/Action Prompt"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -135.0
+offset_top = -81.0
+offset_right = 135.0
+offset_bottom = -41.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+bbcode_enabled = true
 
 [node name="audio level ambiance" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_jfx7a")
