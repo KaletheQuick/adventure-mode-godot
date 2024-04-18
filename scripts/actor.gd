@@ -9,7 +9,7 @@ const JUMP_VELOCITY = 6.5
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 
-@onready var combo_bar = get_node("/root/level_test/CanvasLayer/ProgressBar")
+#@onready var combo_bar = get_node("/root/level_test/CanvasLayer/ProgressBar")
 
 var desired_move = Vector3.ZERO
 
@@ -36,6 +36,9 @@ var j_bounce = false
 
 var sprint = false
 
+var combat_mode = false
+var combat_relax_timer = 0
+
 @export var force_switch = false
 
 # SECTION Variables for weapon and shiled hurt/hit boxes
@@ -43,13 +46,25 @@ var sprint = false
 var right_ouchtime = false
 @export var hit_effect : PackedScene
 
+var hurtboxes
+
 func _ready():
 #	animation_tree.tree_root = defaultANIMO
+	hurtboxes = find_hurtboxes_recursive(self)
 	pass
 
 func stop_movement():
 	desired_move = Vector3.ZERO
 #	velocity = Vector3.ZERO
+
+func find_hurtboxes_recursive(node : Node):
+	var returnable = []
+	for child in node.get_children():
+		if "hurtbox" in child.name:
+			returnable.append(child)
+		else:
+			returnable.append_array(find_hurtboxes_recursive(child))
+	return returnable
 
 func dethrall():
 	stop_movement()
@@ -58,13 +73,6 @@ func enthrall():
 	return
 	#TODO - Make check player/ai authority
 
-func _input(event):
-	if event.is_action_pressed("p1_attack_light"):
-		attack_light = true  # Set flag for light attack
-	elif event.is_action_pressed("heavy_attack"):
-		attack_heavy = true  # Set flag for heavy attack
-	elif event.is_action_pressed("jump_attack"):
-		attack_jump = true  # Set flag for jump attack
 
 func _process(delta):
 	if force_switch:
@@ -78,6 +86,8 @@ func _process(delta):
 		pass
 	#	$Dir_arrow.look_at(global_position + desired_move)
 	if attack_light or attack_heavy or attack_jump:
+		combat_mode = true
+		combat_relax_timer = 10.0
 		for i in range(movement_sets.size()):
 			if movement_sets[i] is mvpk_attack:
 				current_moveset = i
@@ -86,15 +96,20 @@ func _process(delta):
 				attack_heavy = false
 				attack_jump = false  # Reset the jump attack flag
 				break
+	if combat_mode:
+		combat_relax_timer -= delta
+		if combat_relax_timer <= 0:
+			combat_mode = false
 
 	movement_package_checks()
 
 func _physics_process(delta):
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		pass
 		#velocity.y = JUMP_VELOCITY
-		if combo_bar:
-			combo_bar.fill_combo_bar(10)
+##		if combo_bar:
+#			combo_bar.fill_combo_bar(10)
 
 	# Get the input direction and handle the movement/deceleration.
 #	return
@@ -109,11 +124,12 @@ func _physics_process(delta):
 		hurtbox_check()
 
 	
-	animation_tree.set("parameters/Move Walk/blend_position", Vector2(( global_basis.inverse() * -desired_move).x,-( global_basis.inverse() * -desired_move).z))
+	apply_animation_params()
+	#animation_tree.set("parameters/Move Walk/blend_position", Vector2(( global_basis.inverse() * -desired_move).x,-( global_basis.inverse() * -desired_move).z))
 	if(desired_move.y > 0.5 and jump_dbounce == false) :
 		jump_dbounce = true
 		print(velocity.length())
-		animation_tree.set("parameters/Jump w vel/blend_position", (desired_move * Vector3(1,0,1)).length() * 0.1) # TODO remove magic number. This is here to map a velocity range to animation blend 0-1
+		animation_tree.set("parameters/Jump w vel/blend_position", (desired_move * Vector3(1,0,1)).length() * 1.0) # TODO remove magic number. This is here to map a velocity range to animation blend 0-1
 		animation_tree.set("parameters/conditions/jump", true)
 	else:
 		animation_tree.set("parameters/conditions/jump", false)
@@ -123,6 +139,7 @@ func _physics_process(delta):
 
 
 	movement_sets[current_moveset].move_thrall(self, delta)
+	_TEMPORARY_fall_death()
 	return
 	#print(global_basis.inverse() * -desired_move)
 	# NOTE - Old vel
@@ -153,7 +170,6 @@ func _physics_process(delta):
 	animation_tree.get_root_motion_scale_accumulator()
 
 	move_and_slide()
-	_TEMPORARY_fall_death()
 	lastDesiredMoveY = desired_move.y
 
 func swap_ANIMO():
@@ -164,6 +180,22 @@ func swap_ANIMO():
 		animation_tree.tree_root = glideANIMO
 	gliding = !gliding
 
+
+func apply_animation_params():
+	# NOTE - This is a hack, i'll detail how it works.
+	# all animator paramiters are iterated through,
+	# their names are checked for certain keys.
+	# Each key implies (ugh) a certain value type
+	# Example, MOVE will be given the vector2 desired move
+	# Others to come. It's awful, I know. 
+
+	# SECTION Our current things, computing them once: 
+	var transformed_move_dir =  Vector2(( global_basis.inverse() * -desired_move).x,-( global_basis.inverse() * -desired_move).z)
+	var param_names = animation_tree.get_property_list() #._get_parameter_list()
+	for item in param_names: # not actually param names now, still trying to get a list'
+		if item.name.begins_with("parameters/"):
+			if item.name.contains("MOVE") and item.name.contains("blend_position"):
+				animation_tree.set(item.name, transformed_move_dir)
 
 func glideInputCheck():
 	# if not groounded 
@@ -203,19 +235,22 @@ func movement_package_checks():
 			animation_tree.tree_root = movement_sets[current_moveset].anim_tree
 			animation_tree.active = false
 			animation_tree.active = true
+			#print("Flicker switch")
 			return # quit early, good job everyone!
 
 	# Check to see if we need to bail out of our current state
-	if movement_sets[current_moveset].release_situation_check(self):
+	if current_moveset != 0 and movement_sets[current_moveset].release_situation_check(self):
 		current_moveset = 0
 		animation_tree.tree_root = movement_sets[current_moveset].anim_tree
-		#animation_tree.active = false
-		#animation_tree.active = true
+		animation_tree.active = false
+		animation_tree.active = true
+		#print("Flicker switch")
 
 var attackID = 0
 
 func anim_hurtbox_activate_right(duration : float):
-	right_weapon.add_exception(self)
+	for box in hurtboxes:
+		right_weapon.add_exception(box)
 	right_weapon.force_shapecast_update()
 	right_ouchtime = true
 	right_weapon.get_node("debug_hitbox").visible = true
@@ -234,3 +269,6 @@ func hurtbox_check():
 		nHit.emitting = true
 		print("OUCH!" + right_weapon.get_collider(x).name)
 		right_weapon.add_exception_rid(right_weapon.get_collider_rid(x))
+	
+func TEMP_jumpy_check() -> bool:
+	return !Input.is_action_pressed("p1_jump")

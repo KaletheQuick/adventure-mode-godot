@@ -1,14 +1,22 @@
 extends Node
 
 @export var actor : Node3D 
-var skele : Skeleton3D
+@export var skele : Skeleton3D
 
-var things_worn
+var things_worn # NOTE Actual nodes created
+
+@export var garments : Array[Garment] # NOTE Resource references
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#skele = actor.get_node("skeleton/char/Skeleton3D")
-	things_worn = []
+	things_worn = {}
+	#skele = recursive_search_for_skele(actor)
+	print("Skele: " + skele.name)
+	var oldgar = garments
+	garments = []
+	for garment in oldgar:
+		garment_equip(garment)
 	pass # Replace with function body.
 
 
@@ -22,6 +30,8 @@ func recursive_search_for_skele(node : Node) -> Skeleton3D:
 	for child in node.get_children():
 		if child is Skeleton3D:
 			print("Found Skele: " +child.name)
+			skele = child
+
 			return child
 		else:
 			print("Kid?: " +child.name)
@@ -32,10 +42,22 @@ func recursive_search_for_skele(node : Node) -> Skeleton3D:
 # SECTION Dress up functions
 
 func garment_equip(gar : Garment):
-	things_worn.append(gar)
+	var mesh = MeshInstance3D.new()
+	mesh.mesh = gar.mesh
+	mesh.set_surface_override_material(0, gar.mate)
+	mesh.skin = gar.skin
+	skele.add_child(mesh)
+	mesh.skeleton = skele.get_path()
+	mesh.name = gar.resource_name
+	mesh.lod_bias = 2
+	things_worn[gar] = mesh
+	garments.append(gar)
 
 func garment_unequip(gar : Garment):
-	things_worn.erase(gar)
+	if gar in things_worn.keys():
+		var mesh = things_worn[gar]
+		mesh.queue_free()
+	garments.erase(gar)
 
 func garment_tweak(gar : Garment, property_name : String, v : Variant):
 	if(gar in things_worn):

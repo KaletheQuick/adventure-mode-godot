@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dabon04sekkep"]
+[gd_scene load_steps=21 format=3 uid="uid://7akb7b2gcaj1"]
 
 [ext_resource type="Script" path="res://scripts/playerSocket_adventure.gd" id="1_6cp8o"]
 [ext_resource type="PackedScene" uid="uid://cc3m6m4bf5i8c" path="res://prefabs/shrub.tscn" id="2_rp12a"]

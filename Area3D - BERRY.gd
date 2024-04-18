@@ -2,10 +2,11 @@ extends Area3D
 @export var collect_test = false
 @export var death_effect : PackedScene
 signal picked_up
-
+var collected = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	connect("body_entered", my_pickup_logic)
+	pass
+	#connect("body_entered", my_pickup_logic)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -15,8 +16,10 @@ func _process(delta: float) -> void:
 		#my_pickup_logic()
 		
 
-func my_pickup_logic(data):
-	print("WANT SOME FUCK")
+func my_pickup_logic():
+	if collected != false:
+		return
+	collected = true
 	$audio.play()
 	emit_signal("picked_up")
 	monitoring = false # to make sure we only get one pickup

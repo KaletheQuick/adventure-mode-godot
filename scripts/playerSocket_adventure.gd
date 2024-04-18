@@ -24,6 +24,8 @@ var ds_timer = 0.0
 # variables for z targeting
 var look_lock = false
 
+# acreas and interactable things
+
 func _ready():
 	pass # Replace with function body.
 	
@@ -45,6 +47,7 @@ func _process(delta):
 		return
 	_collect_inputs(delta)
 	#print(delta)
+	find_interactable_objects()
 	return
 	if Input.is_action_just_pressed("p1_dodge"):		
 		primary_thrall = !primary_thrall
@@ -113,3 +116,28 @@ func _collect_inputs(delta):
 	else:
 		mainCam.target_curr = Vector3.ZERO
 
+
+@export var action_prompt : Control
+func find_interactable_objects():
+	pass 
+	# TODO - Sphere cast or ray cast for items. 
+	# TODO - Reevaluate object interaction for more generic use
+
+	# Phys ray
+	var space_state = thrall.get_world_3d().direct_space_state
+	var origin = thrall.global_position + Vector3.UP
+	var end = origin + (thrall.global_basis.z * 2)
+	var query = PhysicsRayQueryParameters3D.create(origin, end)
+	query.collide_with_areas = true
+	query.collide_with_bodies = false
+	
+	var col_result = space_state.intersect_ray(query)
+
+	#if is_instance_valid(col_result):
+	if "collider" in col_result.keys():
+		#print(col_result)
+		action_prompt.show_prompt("Berry")
+		if "Area3D - BERRY" in col_result["collider"].name and Input.is_action_just_pressed(player_prefix + "event_action"):
+			col_result["collider"].my_pickup_logic()
+	else:
+		action_prompt.hide_prompt()

@@ -1,0 +1,14 @@
+[gd_resource type="Environment" load_steps=3 format=3 uid="uid://c5vgp5xgbfy74"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_crgvg"]
+
+[sub_resource type="Sky" id="Sky_5nnoq"]
+sky_material = SubResource("ProceduralSkyMaterial_crgvg")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_5nnoq")
+ambient_light_source = 3
+ambient_light_color = Color(0.588235, 0.721569, 1, 1)
+tonemap_white = 2.1
+volumetric_fog_emission_energy = 1.85

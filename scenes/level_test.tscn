@@ -7,7 +7,7 @@
 [ext_resource type="Material" uid="uid://dy4whonqn8sbo" path="res://art/materials/grass.tres" id="3_ufa3e"]
 [ext_resource type="Material" uid="uid://w4aoyuyy5ldg" path="res://art/materials/dirt.tres" id="4_8or8u"]
 [ext_resource type="PackedScene" uid="uid://chwqjvpft7wxd" path="res://prefabs/actor.tscn" id="6_bskg6"]
-[ext_resource type="Script" path="res://scenes/Coin.gd" id="6_wtxkj"]
+[ext_resource type="Script" path="res://prefabs/Coin.gd" id="6_wtxkj"]
 [ext_resource type="Script" path="res://scripts/combo_bar.gd" id="7_q3xl4"]
 [ext_resource type="Script" path="res://scenes/Level Bar script.gd" id="8_wd7iq"]
 [ext_resource type="PackedScene" uid="uid://w8eqt78yexeu" path="res://scenes/menu_pause.tscn" id="11_sa1uk"]
