@@ -19,6 +19,7 @@ var block = false
 var attack_light = false
 var attack_jump = false
 var attack_heavy = false
+var dodge = false
 
 @onready var animation_tree : AnimationTree = $AnimationTree 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b7rn70xxa62fw"]
+[gd_scene load_steps=21 format=3 uid="uid://b7rn70xxa62fw"]
 
 [ext_resource type="Script" path="res://scripts/playerSocket_adventure.gd" id="1_cm27n"]
 [ext_resource type="Material" uid="uid://c1lmf8kes7c51" path="res://art/materials/unified_earth_material.material" id="3_yyr3u"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scripts/footall_sfx.gd" id="5_k2bmb"]
 [ext_resource type="Script" path="res://scripts/camera_control.gd" id="6_bedoa"]
 [ext_resource type="Script" path="res://scripts/AI/ai_flee.gd" id="6_bobkc"]
+[ext_resource type="PackedScene" uid="uid://b803c7alksaap" path="res://art/adventure_mode_demoLevel.glb" id="6_dv5ek"]
 [ext_resource type="Environment" uid="uid://c5vgp5xgbfy74" path="res://scenes/default_env.tres" id="6_hqvma"]
 [ext_resource type="Script" path="res://scripts/AI/ai_follow.gd" id="7_kvtot"]
 [ext_resource type="Script" path="res://scripts/combo_bar.gd" id="7_ok1ji"]
@@ -185,6 +186,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/water/water"]
 shape = SubResource("BoxShape3D_jx4kd")
+
+[node name="adventure_mode_demoLevel" parent="." instance=ExtResource("6_dv5ek")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("6_hqvma")

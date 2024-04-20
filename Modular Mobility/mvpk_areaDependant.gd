@@ -43,6 +43,7 @@ func move_thrall(thrall : Actor, delta : float):
 		#print(shape.get_collider(x).name)
 		if shape.get_collider(x).name == area_type:
 			bouyancy = shape.global_position.y - shape.get_collider(x).get_parent().global_position.y
+			# TODO - get top of water area
 			#print(bouyancy)
 			thrall.velocity.y = bouyancy + 0.05
 			thrall.velocity.y = clampf(thrall.velocity.y, 0.5, -0.5)

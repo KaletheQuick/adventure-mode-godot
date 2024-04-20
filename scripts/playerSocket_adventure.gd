@@ -92,8 +92,10 @@ func _collect_inputs(delta):
 		ds_timer += delta
 		if ds_timer > dodge_sprint_threshold:
 			thrall.sprint = true
+			thrall.dodge = true
 	else:
 		thrall.sprint = false
+		thrall.dodge = false
 		ds_timer = 0
 	
 	thrall.handle_movement(go_dir)

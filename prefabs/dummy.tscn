@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=3 uid="uid://mrncqbjkc3ci"]
+[gd_scene load_steps=99 format=3 uid="uid://mrncqbjkc3ci"]
 
 [ext_resource type="Script" path="res://scripts/actor.gd" id="1_11h4w"]
 [ext_resource type="Resource" uid="uid://ba3i5roa0cxxe" path="res://Modular Mobility/movesets/mvpk_walk.tres" id="2_nyj01"]
@@ -42,7 +42,6 @@
 [ext_resource type="Animation" uid="uid://yciiclgp2mul" path="res://art/Character/animations/move_walk/walk_right.res" id="43_80mou"]
 [ext_resource type="Animation" uid="uid://c132ndy8mnrih" path="res://art/Character/animations/move_walk/walk_right_sharp.res" id="44_k36fq"]
 [ext_resource type="Animation" uid="uid://c8igki0xek5vn" path="res://art/Character/animations/walk_jog_run/idle_wjr.res" id="45_q5cab"]
-[ext_resource type="AnimationNodeStateMachine" uid="uid://cl5ymw2k40a1r" path="res://art/Character/animator components/swim_root.tres" id="46_8n4m8"]
 [ext_resource type="Animation" uid="uid://e0i0c5x61g2s" path="res://art/Character/animations/walk_jog_run/jog_fwd.tres" id="46_nngce"]
 [ext_resource type="Animation" uid="uid://uamhdfsb8e5e" path="res://art/Character/animations/walk_jog_run/run_fwd.tres" id="47_bbguo"]
 [ext_resource type="Animation" uid="uid://n0l1yf826pps" path="res://art/Character/animations/walk_jog_run/walk_fwd.tres" id="48_ymiby"]
@@ -1462,12 +1461,33 @@ libraries = {
 "walk": SubResource("AnimationLibrary_1qjxe"),
 "walk_jog_run": SubResource("AnimationLibrary_rnvmx")
 }
-tree_root = ExtResource("46_8n4m8")
+tree_root = ExtResource("6_vsgn1")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../skeleton/AnimationPlayer")
-"parameters/MOVE swim/blend_position" = Vector2(0, 0)
-"parameters/MOVE swim/7/TimeScale/scale" = 1.0
-"parameters/MOVE swim/8/TimeScale/scale" = 1.0
+parameters/conditions/jump = false
+parameters/conditions/land = false
+parameters/BlendTree/Blend2/blend_amount = 0
+parameters/BlendTree/OneShot/active = false
+parameters/BlendTree/OneShot/internal_active = false
+parameters/BlendTree/OneShot/request = 0
+parameters/BlendTree/Sub2/sub_amount = 0
+parameters/BlendTree/Transition/current_state = ""
+parameters/BlendTree/Transition/transition_request = ""
+parameters/BlendTree/Transition/current_index = -1
+parameters/BlendTree/horace/active = false
+parameters/BlendTree/horace/internal_active = false
+parameters/BlendTree/horace/request = 0
+"parameters/Jump w vel/blend_position" = 0
+"parameters/Jump w vel/0/TimeScale/scale" = 1.0
+"parameters/Jump w vel/1/TimeScale/scale" = 1.0
+"parameters/MOVE dodge/blend_position" = Vector2(0.00198019, 0.958188)
+"parameters/MOVE strafe/blend_position" = Vector2(0, 0)
+"parameters/MOVE walk/blend_position" = Vector2(0, 0)
+"parameters/MOVE walk/0/Horace/scale" = 1.0
+"parameters/MOVE walk/5/TimeScale/scale" = 1.0
+"parameters/MOVE walk/6/TimeScale/scale" = 1.0
+"parameters/MOVE walk/7/TimeScale/scale" = 1.0
+"parameters/MOVE walk/8/TimeScale/scale" = 1.0
 
 [node name="Dir_arrow" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
@@ -1494,3 +1514,6 @@ collide_with_bodies = false
 script = ExtResource("51_wx35k")
 skele = NodePath("../skeleton/char/Skeleton3D")
 garments = Array[Resource("res://Dress Up/Resource Definitions/Garment.gd")]([ExtResource("52_rwyjh"), ExtResource("53_6jnvc"), ExtResource("54_a6deu"), ExtResource("55_aup8b"), ExtResource("56_7meti"), ExtResource("57_0brwv")])
+
+[node name="RootMotionView" type="RootMotionView" parent="."]
+animation_path = NodePath("../AnimationTree")

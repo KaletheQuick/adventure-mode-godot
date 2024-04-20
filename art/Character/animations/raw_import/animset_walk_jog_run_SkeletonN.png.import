@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://77ptgptnwdna"
 path.s3tc="res://.godot/imported/animset_walk_jog_run_SkeletonN.png-d812cc6e8430da30b15f860539d91702.s3tc.ctex"
+path.etc2="res://.godot/imported/animset_walk_jog_run_SkeletonN.png-d812cc6e8430da30b15f860539d91702.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={}
@@ -13,7 +14,7 @@ generator_parameters={}
 [deps]
 
 source_file="res://art/Character/animations/raw_import/animset_walk_jog_run_SkeletonN.png"
-dest_files=["res://.godot/imported/animset_walk_jog_run_SkeletonN.png-d812cc6e8430da30b15f860539d91702.s3tc.ctex"]
+dest_files=["res://.godot/imported/animset_walk_jog_run_SkeletonN.png-d812cc6e8430da30b15f860539d91702.s3tc.ctex", "res://.godot/imported/animset_walk_jog_run_SkeletonN.png-d812cc6e8430da30b15f860539d91702.etc2.ctex"]
 
 [params]
 

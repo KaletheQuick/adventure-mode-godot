@@ -93,4 +93,4 @@ states/combat_sword_combat_attack_r-l/position = Vector2(640, 184.5)
 states/combat_sword_combat_jump_attack/node = SubResource("AnimationNodeAnimation_jixm7")
 states/combat_sword_combat_jump_attack/position = Vector2(350, 192)
 transitions = ["Start", "MOVE swim", SubResource("AnimationNodeStateMachineTransition_x32q8"), "MOVE swim", "combat_sword_combat_jump_attack", SubResource("AnimationNodeStateMachineTransition_8gyy2"), "MOVE swim", "combat_sword_combat_attack_r-l", SubResource("AnimationNodeStateMachineTransition_mtvdx"), "combat_sword_combat_attack_r-l", "MOVE swim", SubResource("AnimationNodeStateMachineTransition_yn5hs"), "combat_sword_combat_jump_attack", "MOVE swim", SubResource("AnimationNodeStateMachineTransition_d5ftx")]
-graph_offset = Vector2(-47, -162)
+graph_offset = Vector2(-196, -62)

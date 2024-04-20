@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cl2g7xqkb6amj"
 path.s3tc="res://.godot/imported/skeleton_SkeletonA.png-aadaa539cf1140c2d235bae6c17c8350.s3tc.ctex"
+path.etc2="res://.godot/imported/skeleton_SkeletonA.png-aadaa539cf1140c2d235bae6c17c8350.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={}
@@ -13,7 +14,7 @@ generator_parameters={}
 [deps]
 
 source_file="res://art/Character/skeleton_SkeletonA.png"
-dest_files=["res://.godot/imported/skeleton_SkeletonA.png-aadaa539cf1140c2d235bae6c17c8350.s3tc.ctex"]
+dest_files=["res://.godot/imported/skeleton_SkeletonA.png-aadaa539cf1140c2d235bae6c17c8350.s3tc.ctex", "res://.godot/imported/skeleton_SkeletonA.png-aadaa539cf1140c2d235bae6c17c8350.etc2.ctex"]
 
 [params]
 
