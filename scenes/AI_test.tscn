@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/playerSocket_adventure.gd" id="1_cm27n"]
 [ext_resource type="Material" uid="uid://c1lmf8kes7c51" path="res://art/materials/unified_earth_material.material" id="3_yyr3u"]
-[ext_resource type="PackedScene" uid="uid://cc3m6m4bf5i8c" path="res://prefabs/shrub.tscn" id="4_joxge"]
+[ext_resource type="PackedScene" uid="uid://cc3m6m4bf5i8c" path="res://prefabs/environment/shrub.tscn" id="4_joxge"]
 [ext_resource type="Material" uid="uid://w4aoyuyy5ldg" path="res://art/materials/dirt.tres" id="4_sdu1q"]
 [ext_resource type="Material" uid="uid://c6llc8lhqck4e" path="res://art/materials/water_quick.tres" id="4_tmanx"]
 [ext_resource type="PackedScene" uid="uid://chwqjvpft7wxd" path="res://prefabs/actor.tscn" id="5_iccpj"]
@@ -234,6 +234,7 @@ script = ExtResource("5_k2bmb")
 
 [node name="Camera" type="Camera3D" parent="." node_paths=PackedStringArray("target_current")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 8)
+current = true
 script = ExtResource("6_bedoa")
 target_current = NodePath("../player_actor")
 distance = 10.0

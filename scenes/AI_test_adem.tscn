@@ -1,7 +1,7 @@
 [gd_scene load_steps=25 format=3 uid="uid://bwpm0t2tj57fv"]
 
 [ext_resource type="Script" path="res://scripts/playerSocket_adventure.gd" id="1_ma6sh"]
-[ext_resource type="PackedScene" uid="uid://cc3m6m4bf5i8c" path="res://prefabs/shrub.tscn" id="2_bt12q"]
+[ext_resource type="PackedScene" uid="uid://cc3m6m4bf5i8c" path="res://prefabs/environment/shrub.tscn" id="2_bt12q"]
 [ext_resource type="Material" uid="uid://c1lmf8kes7c51" path="res://art/materials/unified_earth_material.material" id="3_gt81x"]
 [ext_resource type="PackedScene" uid="uid://bcw0thptfp36h" path="res://prefabs/area_3d___berry.tscn" id="3_u1mtn"]
 [ext_resource type="Material" uid="uid://w4aoyuyy5ldg" path="res://art/materials/dirt.tres" id="4_2wciv"]
@@ -41,7 +41,7 @@ bottom_radius = 1.0
 height = 1.0
 radial_segments = 4
 
-[node name="level_test" type="Node3D"]
+[node name="level_test2" type="Node3D"]
 
 [node name="Player Sockets" type="Node" parent="."]
 

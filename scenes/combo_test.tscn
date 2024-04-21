@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=3 uid="uid://7akb7b2gcaj1"]
 
 [ext_resource type="Script" path="res://scripts/playerSocket_adventure.gd" id="1_6cp8o"]
-[ext_resource type="PackedScene" uid="uid://cc3m6m4bf5i8c" path="res://prefabs/shrub.tscn" id="2_rp12a"]
+[ext_resource type="PackedScene" uid="uid://cc3m6m4bf5i8c" path="res://prefabs/environment/shrub.tscn" id="2_rp12a"]
 [ext_resource type="Material" uid="uid://c1lmf8kes7c51" path="res://art/materials/unified_earth_material.material" id="3_pmyr3"]
 [ext_resource type="Material" uid="uid://w4aoyuyy5ldg" path="res://art/materials/dirt.tres" id="4_uioa4"]
 [ext_resource type="Material" uid="uid://c6llc8lhqck4e" path="res://art/materials/water_quick.tres" id="5_05ump"]
