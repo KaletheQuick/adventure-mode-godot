@@ -1,19 +1,127 @@
-[gd_scene load_steps=2 format=3 uid="uid://c8avvtccyv3kt"]
+[gd_scene load_steps=10 format=3 uid="uid://c8avvtccyv3kt"]
 
 [ext_resource type="Script" path="res://scripts/combo_bar.gd" id="1_sptx4"]
+[ext_resource type="Script" path="res://scripts/health_bar.gd" id="2_s24vr"]
+[ext_resource type="Script" path="res://scripts/stamina_bar.gd" id="3_is8i3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2k4e3"]
+bg_color = Color(0.294118, 0.596078, 0.627451, 0.509804)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x6byj"]
+bg_color = Color(0.294118, 0.596078, 0.627451, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_abv6u"]
+bg_color = Color(0.7437, 0, 0.108688, 0.423529)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uv2l3"]
+bg_color = Color(0.745098, 0, 0.109804, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_20rp5"]
+bg_color = Color(0.458824, 0.278431, 0.192157, 0.505882)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wpyhr"]
+bg_color = Color(0.654902, 0.278431, 0.192157, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
 
 [node name="ProgressBar" type="ProgressBar"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = -1
+anchor_right = 0.868
+anchor_bottom = 0.772
+offset_left = 5.0
+offset_right = -794.936
+offset_bottom = -420.256
+theme_override_font_sizes/font_size = 30
+theme_override_styles/background = SubResource("StyleBoxFlat_2k4e3")
+theme_override_styles/fill = SubResource("StyleBoxFlat_x6byj")
 script = ExtResource("1_sptx4")
 
 [node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 9.0
-offset_top = -34.0
-offset_right = 64.0
-offset_bottom = -11.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 2.0
+offset_right = -22.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 10
 text = "Combo"
+
+[node name="health_bar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_top = 100.0
+offset_right = 200.0
+offset_bottom = 180.0
+theme_override_font_sizes/font_size = 30
+theme_override_styles/background = SubResource("StyleBoxFlat_abv6u")
+theme_override_styles/fill = SubResource("StyleBoxFlat_uv2l3")
+script = ExtResource("2_s24vr")
+
+[node name="Label" type="Label" parent="health_bar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 3.0
+offset_right = -161.0
+offset_bottom = -62.0
+theme_override_font_sizes/font_size = 10
+text = "Health
+"
+
+[node name="stamina_bar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_top = 200.0
+offset_right = 200.0
+offset_bottom = 280.0
+theme_override_font_sizes/font_size = 30
+theme_override_styles/background = SubResource("StyleBoxFlat_20rp5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_wpyhr")
+script = ExtResource("3_is8i3")
+
+[node name="Label" type="Label" parent="stamina_bar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 3.0
+offset_right = 4.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 10
+text = "Stamina
+"

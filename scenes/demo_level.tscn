@@ -20,7 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://c8avvtccyv3kt" path="res://prefabs/UI_combo_bar.tscn" id="13_fj6q5"]
 [ext_resource type="Script" path="res://scripts/camera_control.gd" id="13_js5at"]
 [ext_resource type="PackedScene" uid="uid://do82jf6fmqg71" path="res://prefabs/UI_level_bar.tscn" id="13_sop8c"]
-[ext_resource type="PackedScene" uid="uid://bldcnjo1gthob" path="res://prefabs/elevator_platform.tscn" id="15_fpjg0"]
+[ext_resource type="PackedScene" path="res://prefabs/elevator_platform.tscn" id="15_fpjg0"]
 [ext_resource type="AudioStream" uid="uid://hxog1lltd7d4" path="res://art/audio/506911__nox_sound__ambiance_wind_forest_moderate_loop_stereo.wav" id="16_jhu8y"]
 [ext_resource type="PackedScene" uid="uid://d3xpjq6g2jknf" path="res://prefabs/collectable.tscn" id="17_ph3fx"]
 [ext_resource type="PackedScene" uid="uid://dyacbq330bbx0" path="res://prefabs/environment/shrub_commonfruit.tscn" id="18_x8y34"]
@@ -375,12 +375,11 @@ layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 803.0
-offset_top = 49.0
-offset_right = 1086.0
-offset_bottom = 76.0
-grow_horizontal = 1
-grow_vertical = 1
+offset_left = 0.0
+offset_top = 100.0
+offset_right = 200.0
+offset_bottom = 179.0
+theme_override_font_sizes/font_size = 30
 player_actor = NodePath("../../player_actor")
 
 [node name="audio level ambiance" type="AudioStreamPlayer" parent="."]
