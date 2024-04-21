@@ -22,7 +22,7 @@ func move_thrall(thrall : Actor, delta : float):
 	# Add the gravity.
 	if not thrall.is_on_floor():# && thrall.desired_move.y < 0.1:
 		thrall.velocity = old_vel
-		thrall.velocity.y -= gravity * delta
+	thrall.velocity.y -= gravity * delta
 	thrall.quaternion = thrall.quaternion * ((thrall.animation_tree.get_root_motion_rotation() / delta) * 10)
 	# Actually move thrall
 	thrall.move_and_slide()

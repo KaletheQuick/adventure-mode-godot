@@ -1,18 +1,14 @@
-[gd_resource type="Resource" script_class="Garment" load_steps=11 format=3 uid="uid://2g2xi3iipiu3"]
+[gd_resource type="Resource" script_class="Garment" load_steps=9 format=3 uid="uid://2g2xi3iipiu3"]
 
-[ext_resource type="Texture2D" uid="uid://cl2g7xqkb6amj" path="res://art/Character/skeleton_SkeletonA.png" id="1_2gcs3"]
-[ext_resource type="Texture2D" uid="uid://cy3xuqnfe0du6" path="res://art/Character/skeleton_SkeletonN.png" id="2_ivxnj"]
 [ext_resource type="Texture2D" uid="uid://bwdvnfl8x5lqm" path="res://art/Character/clothing/clothing_pk_01_mq_body.png" id="3_kp56l"]
 [ext_resource type="Script" path="res://Dress Up/Resource Definitions/Garment.gd" id="3_pc0d2"]
 [ext_resource type="Texture2D" uid="uid://d0ywyubwrucou" path="res://art/Character/clothing/clothing_pk_01_mq_face.png" id="4_m1kd3"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_223r7"]
-resource_name = "skeleton_mat"
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k7iq8"]
+resource_name = "mq_baseSkin"
 cull_mode = 2
-albedo_texture = ExtResource("1_2gcs3")
+albedo_texture = ExtResource("3_kp56l")
 roughness = 0.5
-normal_enabled = true
-normal_texture = ExtResource("2_ivxnj")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ab2p6"]
 resource_name = "mq_baseSkin"
@@ -253,6 +249,6 @@ resource_name = "human flesh"
 script = ExtResource("3_pc0d2")
 mesh = SubResource("ArrayMesh_pu11d")
 skin = SubResource("Skin_hq3g4")
-mate = SubResource("StandardMaterial3D_223r7")
+mate = SubResource("StandardMaterial3D_k7iq8")
 tags = Array[String]([])
 bones = Array[String]([])

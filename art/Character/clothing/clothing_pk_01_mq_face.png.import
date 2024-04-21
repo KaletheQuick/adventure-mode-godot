@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://d0ywyubwrucou"
 path.s3tc="res://.godot/imported/clothing_pk_01_mq_face.png-08d23eb0704d7c821e0b5533d8832bc6.s3tc.ctex"
+path.etc2="res://.godot/imported/clothing_pk_01_mq_face.png-08d23eb0704d7c821e0b5533d8832bc6.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={}
@@ -13,7 +14,7 @@ generator_parameters={}
 [deps]
 
 source_file="res://art/Character/clothing/clothing_pk_01_mq_face.png"
-dest_files=["res://.godot/imported/clothing_pk_01_mq_face.png-08d23eb0704d7c821e0b5533d8832bc6.s3tc.ctex"]
+dest_files=["res://.godot/imported/clothing_pk_01_mq_face.png-08d23eb0704d7c821e0b5533d8832bc6.s3tc.ctex", "res://.godot/imported/clothing_pk_01_mq_face.png-08d23eb0704d7c821e0b5533d8832bc6.etc2.ctex"]
 
 [params]
 

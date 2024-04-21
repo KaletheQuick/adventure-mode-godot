@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bwpm0t2tj57fv"]
+[gd_scene load_steps=25 format=3 uid="uid://bwpm0t2tj57fv"]
 
 [ext_resource type="Script" path="res://scripts/playerSocket_adventure.gd" id="1_ma6sh"]
 [ext_resource type="PackedScene" uid="uid://cc3m6m4bf5i8c" path="res://prefabs/shrub.tscn" id="2_bt12q"]
@@ -14,8 +14,8 @@
 [ext_resource type="Script" path="res://scripts/camera_control.gd" id="11_64ne7"]
 [ext_resource type="Script" path="res://scripts/combo_bar.gd" id="12_uu1ue"]
 [ext_resource type="AudioStream" uid="uid://hxog1lltd7d4" path="res://art/audio/506911__nox_sound__ambiance_wind_forest_moderate_loop_stereo.wav" id="13_2ln7v"]
-[ext_resource type="Script" path="res://scenes/Level Bar script.gd" id="14_an074"]
 [ext_resource type="PackedScene" uid="uid://d3xpjq6g2jknf" path="res://prefabs/collectable.tscn" id="14_mintk"]
+[ext_resource type="PackedScene" uid="uid://do82jf6fmqg71" path="res://prefabs/UI_level_bar.tscn" id="14_n3rb8"]
 [ext_resource type="PackedScene" uid="uid://w8eqt78yexeu" path="res://scenes/menu_pause.tscn" id="15_e1dtd"]
 [ext_resource type="PackedScene" uid="uid://b41b5tmc7cd34" path="res://scenes/stats.tscn" id="16_cwwcs"]
 
@@ -40,11 +40,6 @@ top_radius = 0.035
 bottom_radius = 1.0
 height = 1.0
 radial_segments = 4
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gaa8t"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ubmc"]
-bg_color = Color(0.741176, 0.717647, 0.0980392, 1)
 
 [node name="level_test" type="Node3D"]
 
@@ -315,34 +310,19 @@ offset_right = 54.0
 offset_bottom = 77.0
 script = ExtResource("12_uu1ue")
 
-[node name="LevelBar" type="ProgressBar" parent="user_interface"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -265.0
-offset_top = -60.0
-offset_right = 266.0
-offset_bottom = -37.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/background = SubResource("StyleBoxEmpty_gaa8t")
-theme_override_styles/fill = SubResource("StyleBoxFlat_8ubmc")
-script = ExtResource("14_an074")
-
-[node name="Level_Label" type="RichTextLabel" parent="user_interface/LevelBar"]
-layout_mode = 1
-offset_left = 6.0
-offset_top = -29.0
-offset_right = 237.0
-offset_bottom = -2.0
-
-[node name="Experience_Label" type="RichTextLabel" parent="user_interface/LevelBar"]
+[node name="LevelBar" parent="user_interface" instance=ExtResource("14_n3rb8")]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 531.0
+offset_bottom = 27.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="audio level ambiance" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_2ln7v")

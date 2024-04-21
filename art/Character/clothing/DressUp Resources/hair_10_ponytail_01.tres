@@ -6,8 +6,9 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wxnuu"]
 resource_name = "hair"
 cull_mode = 2
+shading_mode = 2
+specular_mode = 2
 albedo_texture = ExtResource("1_u3qty")
-roughness = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3h1v6"]
 resource_name = "hair"

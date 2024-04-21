@@ -1,0 +1,47 @@
+extends Node3D
+
+var follow_height_offset = 1.0
+@export var thrall : Actor
+@export var cam : Camera3D
+
+
+var velocity = Vector3.ZERO
+
+var look_rotation_vel = Vector2.ZERO
+var camLookAccell = 1
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	var desired_pos = thrall.global_position
+	desired_pos.y += follow_height_offset
+	velocity += (desired_pos - global_position) * 0.1 * delta
+	cam.global_position = global_position + (global_basis.z * 5)
+	global_position = desired_pos #velocity * delta * (desired_pos - global_position).length()
+	#if Input.is_action_just_pressed("p1_look_lock"):
+	#	look_at(thrall.global_position + (thrall.global_basis.z * 10))
+	#cam.look_at(thrall.global_position + (Vector3.UP * 1.8))
+	player_look(delta)
+
+
+func player_look(delta):
+	var disLook =  Input.get_vector("p1_look_left", "p1_look_right", "p1_look_dn", "p1_look_up")
+	look_rotation_vel = disLook * delta * camLookAccell
+	var default_angle = -20
+	if cam.target_curr == Vector3.ZERO: # NOTE - No target
+		rotate(global_basis.x, look_rotation_vel.y)
+		rotate_y(look_rotation_vel.x)
+		global_rotation_degrees.x = clamp(global_rotation_degrees.x, -60,20)
+	else:
+		var original_rot_x = global_rotation_degrees.x
+		var original_rot_y = global_rotation_degrees.y
+		look_at(cam.target_curr)
+		global_rotation_degrees.x = original_rot_x
+		#global_rotation_degrees.y = global_rotation_degrees.y #rotate_toward(original_rot_y, global_rotation_degrees.y, 50 * delta)
+		default_angle = -35
+	global_rotation_degrees.z = 0
+	global_rotation_degrees.x += (default_angle-global_rotation_degrees.x) * 0.9 * delta

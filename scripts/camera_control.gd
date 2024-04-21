@@ -38,14 +38,15 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	#return
 	if is_instance_valid(target_current) == false: # Guard clause style, baby!
 		return 
 
 	# Order 
 	# follow
-	_follow(delta)
+	#_follow(delta)
 	# move
-	player_look(delta)
+	#player_look(delta)
 	# look
 	_look(delta)
 	# zoom ? 
