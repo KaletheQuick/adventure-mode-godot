@@ -33,7 +33,7 @@ _subresources={
 "animations": {
 "combat_attack_heavy": {
 "save_to_file/enabled": true,
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "res://art/Character/animations/combat_sword/combat_heavyish_attack.tres",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -1832,7 +1832,7 @@ _subresources={
 },
 "combat_attack_jump": {
 "save_to_file/enabled": true,
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "res://art/Character/animations/combat_sword/combat_jumping_attack.tres",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,

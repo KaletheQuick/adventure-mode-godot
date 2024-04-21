@@ -1,16 +1,22 @@
-[gd_scene load_steps=46 format=3 uid="uid://dlfhcdaajixhi"]
+[gd_scene load_steps=52 format=3 uid="uid://dlfhcdaajixhi"]
 
 [ext_resource type="Script" path="res://scripts/playerSocket_adventure.gd" id="1_dcdan"]
 [ext_resource type="Script" path="res://scripts/cam_gantry_playerFollow.gd" id="2_ejucj"]
 [ext_resource type="PackedScene" uid="uid://8hu74ym7skte" path="res://prefabs/adventure_mode_demo_level.tscn" id="3_t21ku"]
 [ext_resource type="PackedScene" uid="uid://vwkcbj8sdfmp" path="res://prefabs/door_of_trials.tscn" id="4_04pkj"]
 [ext_resource type="Environment" uid="uid://c5vgp5xgbfy74" path="res://scenes/default_env.tres" id="7_jiim7"]
+[ext_resource type="Resource" uid="uid://2g2xi3iipiu3" path="res://art/Character/clothing/DressUp Resources/human_flesh.tres" id="7_swsed"]
 [ext_resource type="PackedScene" uid="uid://chwqjvpft7wxd" path="res://prefabs/actor.tscn" id="8_3hjxr"]
+[ext_resource type="Resource" uid="uid://bwsshqau3scbu" path="res://art/Character/clothing/DressUp Resources/short coat.tres" id="8_l56b6"]
+[ext_resource type="Resource" uid="uid://djhxw8u4ikomn" path="res://art/Character/clothing/DressUp Resources/travelers_skirt.tres" id="9_tu48b"]
 [ext_resource type="Script" path="res://scripts/footall_sfx.gd" id="9_upj33"]
+[ext_resource type="Resource" uid="uid://b7dq815w802rc" path="res://art/Character/clothing/DressUp Resources/hair_10_ponytail_01.tres" id="10_10h8l"]
 [ext_resource type="Script" path="res://scripts/AI/ai_flee.gd" id="10_wlwqq"]
+[ext_resource type="Resource" uid="uid://dyhf0xu1bqbpi" path="res://art/Character/clothing/DressUp Resources/feet_boot_01.tres" id="11_fd2hj"]
 [ext_resource type="Script" path="res://scripts/AI/ai_follow.gd" id="11_yw0rt"]
 [ext_resource type="PackedScene" uid="uid://ibxguf2n6yr5" path="res://prefabs/UI_action_prompt.tscn" id="12_4mlg7"]
 [ext_resource type="Script" path="res://scripts/AI/ai_hide.gd" id="12_jw8xh"]
+[ext_resource type="Resource" uid="uid://bewat2ejmwowa" path="res://art/Character/clothing/DressUp Resources/utility_belt.tres" id="12_opxni"]
 [ext_resource type="PackedScene" uid="uid://c8avvtccyv3kt" path="res://prefabs/UI_combo_bar.tscn" id="13_fj6q5"]
 [ext_resource type="Script" path="res://scripts/camera_control.gd" id="13_js5at"]
 [ext_resource type="PackedScene" uid="uid://do82jf6fmqg71" path="res://prefabs/UI_level_bar.tscn" id="13_sop8c"]
@@ -276,6 +282,7 @@ shadow_enabled = true
 
 [node name="player_actor" parent="." instance=ExtResource("8_3hjxr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.298199, 0)
+garments = Array[Resource("res://Dress Up/Resource Definitions/Garment.gd")]([ExtResource("7_swsed"), ExtResource("11_fd2hj"), ExtResource("10_10h8l"), ExtResource("8_l56b6"), ExtResource("9_tu48b"), ExtResource("12_opxni")])
 
 [node name="footall_sfx" type="Node" parent="player_actor"]
 script = ExtResource("9_upj33")

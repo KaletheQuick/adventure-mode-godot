@@ -1,4 +1,4 @@
-[gd_resource type="Animation" format=3 uid="uid://cqqiuk2iavfo7"]
+[gd_resource type="Animation" format=3 uid="uid://b83fjtde2uhts"]
 
 [resource]
 resource_name = "combat_attack_heavy"
@@ -170,3 +170,17 @@ tracks/23/path = NodePath("char/Skeleton3D:toe.L")
 tracks/23/interp = 1
 tracks/23/loop_wrap = true
 tracks/23/keys = PackedFloat32Array(0, 1, 5.74188e-08, -0.961248, 0.275684, 8.747e-07)
+tracks/24/type = "method"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("..")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.3],
+"method": &"anim_hurtbox_activate_right"
+}]
+}

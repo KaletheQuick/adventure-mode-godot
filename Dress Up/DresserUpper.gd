@@ -1,5 +1,7 @@
 extends Node
 
+class_name DresserUpper
+
 @export var actor : Node3D 
 @export var skele : Skeleton3D
 
@@ -13,10 +15,10 @@ func _ready():
 	things_worn = {}
 	#skele = recursive_search_for_skele(actor)
 	print("Skele: " + skele.name)
-	var oldgar = garments
-	garments = []
-	for garment in oldgar:
-		garment_equip(garment)
+	#var oldgar = garments
+	#garments = []
+	#for garment in oldgar:
+	#	garment_equip(garment)
 	pass # Replace with function body.
 
 

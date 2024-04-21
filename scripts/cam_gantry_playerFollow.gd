@@ -1,6 +1,7 @@
 extends Node3D
 
 var follow_height_offset = 1.0
+var cam_follow_dist = 5
 @export var thrall : Actor
 @export var cam : Camera3D
 
@@ -20,12 +21,27 @@ func _process(delta: float) -> void:
 	var desired_pos = thrall.global_position
 	desired_pos.y += follow_height_offset
 	velocity += (desired_pos - global_position) * 0.1 * delta
-	cam.global_position = global_position + (global_basis.z * 5)
+	cam.global_position = global_position + (global_basis.z * ray_cam_pos())
 	global_position = desired_pos #velocity * delta * (desired_pos - global_position).length()
 	#if Input.is_action_just_pressed("p1_look_lock"):
 	#	look_at(thrall.global_position + (thrall.global_basis.z * 10))
 	#cam.look_at(thrall.global_position + (Vector3.UP * 1.8))
 	player_look(delta)
+	
+
+func ray_cam_pos():
+	# Phys ray
+	var space_state = thrall.get_world_3d().direct_space_state
+	var origin = global_position
+	var end = origin + (global_basis.z * cam_follow_dist)
+	var query = PhysicsRayQueryParameters3D.create(origin, end)
+	print(str(origin) + " ~ " + str(end))
+	#query.collide_with_areas = true
+	var col_result = space_state.intersect_ray(query)
+	if "collider" in col_result.keys():
+		var dis = global_position.distance_to(col_result["position"])
+		return dis
+	return cam_follow_dist
 
 
 func player_look(delta):

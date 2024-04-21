@@ -42,7 +42,8 @@ var sprint = false
 var combat_mode = false
 var combat_relax_timer = 0
 
-@export var force_switch = false
+# SECTION Outfit
+@export var garments : Array[Garment] # NOTE Resource references
 
 # SECTION Variables for weapon and shiled hurt/hit boxes
 @export var right_weapon : ShapeCast3D
@@ -54,8 +55,8 @@ var hurtboxes
 func _ready():
 #	animation_tree.tree_root = defaultANIMO
 	hurtboxes = find_hurtboxes_recursive(self)
-	pass
-
+	dress_up()
+	
 func stop_movement():
 	desired_move = Vector3.ZERO
 #	velocity = Vector3.ZERO
@@ -78,9 +79,6 @@ func enthrall():
 
 
 func _process(delta):
-	if force_switch:
-		force_switch = false
-		swap_ANIMO()
 	moveset_debug = movement_sets[current_moveset].name + ": " + animation_tree.get("parameters/playback").get_current_node()
 	LDT = delta
 ##	if jump_dbounce and is_on_floor() and desired_move.y < 0.5: # if we have completed a jump arc, and are not desiring to jump
@@ -175,15 +173,6 @@ func _physics_process(delta):
 	move_and_slide()
 	lastDesiredMoveY = desired_move.y
 
-func swap_ANIMO():
-	
-	if gliding:
-		animation_tree.tree_root = defaultANIMO
-	else:
-		animation_tree.tree_root = glideANIMO
-	gliding = !gliding
-
-
 func apply_animation_params():
 	# NOTE - This is a hack, i'll detail how it works.
 	# all animator paramiters are iterated through,
@@ -200,19 +189,6 @@ func apply_animation_params():
 			if item.name.contains("MOVE") and item.name.contains("blend_position"):
 				animation_tree.set(item.name, transformed_move_dir)
 
-func glideInputCheck():
-	# if not groounded 
-	# if desired move was 
-	if is_on_floor() == false:
-		if Input.is_action_just_pressed("p1_jump"):
-			print("Glide")
-		#if desired_move.y > 0.5 and lastDesiredMoveY < 0.1 and Input.is_action_just_pressed("p1_jump"):
-			animation_tree.tree_root = glideANIMO
-			gliding = true
-
-func landed_check():
-	if is_on_floor() or Input.is_action_just_pressed("p1_crouch"):
-		animation_tree.tree_root = defaultANIMO
 
 
 func handle_movement(movement : Vector3):
@@ -282,3 +258,8 @@ func awful_practice_find_parent_actor(node : Node3D):
 	
 func TEMP_jumpy_check() -> bool:
 	return !Input.is_action_pressed("p1_jump")
+
+func dress_up():
+	var dup = $DresserUpper as DresserUpper
+	for garment in garments:
+		dup.garment_equip(garment)

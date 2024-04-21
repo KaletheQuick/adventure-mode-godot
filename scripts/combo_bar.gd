@@ -26,10 +26,6 @@ func _process(delta: float) -> void:
 		combo_value = 0
 		value = combo_value
 
-	# Debug test
-	if player_actor.attack_heavy == true:
-		print("YAYA!")
-		fill_combo_bar(1.0)
 
 func fill_combo_bar(amount: float):
 	combo_value += amount
