@@ -10,7 +10,7 @@ var current_attack_id = 0
 var ignoring_actors = []
 
 func _ready() -> void:
-	player_actor.connect("attack_hit", self.attack_hit)
+	player_actor.connect("atwwwwwwtack_hit", self.attack_hit)
 	print("connect attempt")
 
 func _process(delta: float) -> void:
@@ -26,6 +26,10 @@ func _process(delta: float) -> void:
 		combo_value = 0
 		value = combo_value
 
+	# Debug test
+	if player_actor.attack_heavy == true:
+		print("YAYA!")
+		fill_combo_bar(1.0)
 
 func fill_combo_bar(amount: float):
 	combo_value += amount
