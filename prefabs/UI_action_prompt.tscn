@@ -15,7 +15,7 @@ offset_right = 20.165
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("1_c100w")
-output = NodePath("")
+output = NodePath("RichTextLabel")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 1

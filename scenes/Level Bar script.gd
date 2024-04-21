@@ -27,6 +27,7 @@ var stats_label
 # Called when the node enters the scene tree for the first time.
 
 func _ready():
+	return # TODO - Refactor so you just need the thrall reference
 	progress_bar = $Leveling_Progress # Replace with function body.
 	playerSocket = $playerSocket_adventure
 	update_text()
