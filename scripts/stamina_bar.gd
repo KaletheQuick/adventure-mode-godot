@@ -19,7 +19,7 @@ var can_regen = true
 var regen_timer = 0.0
 var regen_tick = 1.0 # seconds
 
-var stamina_label : Label
+
 
 func _ready():
 
@@ -40,7 +40,7 @@ func _process(delta):
 
             value = current_stamina
 
-            update_stamina_label()
+
 
 func use_stamina(amount = stamina_drain):
     current_stamina -= amount #drain
@@ -49,7 +49,6 @@ func use_stamina(amount = stamina_drain):
 
     value = current_stamina #update stam
 
-    update_stamina_label()
     
 #    if not can_regen:     (If you'd like to delay regeneration after an attack / combo)
 #        stop_stamina_regen()
@@ -62,6 +61,3 @@ func use_stamina(amount = stamina_drain):
 #func start_stamina_regen():
     #can_regen = true
 
-func update_stamina_label():
-
-    stamina_label.text = str(current_stamina) + " / " + str(max_stamina)
