@@ -24,37 +24,34 @@ var player_position
 signal level_up_sig
 signal update
 var stats_label
+@export var player_thrall : Actor
 # Called when the node enters the scene tree for the first time.
 
 func _ready():
-	return # TODO - Refactor so you just need the thrall reference
+	# NOTE - player_thrall callbacks
+	player_thrall.connect("killed_something", self._killCallback)
+	player_thrall.connect("xp_get", self._xp_Callback)
+	player_thrall.connect("item_get", self._item_Callback)
+	
 	progress_bar = $Leveling_Progress # Replace with function body.
 	playerSocket = $playerSocket_adventure
 	update_text()
 	text_label = $Level_Label
 	exp_label = $Experience_Label
-	var terrain = $terrain
-	var stats_node = get_node("../../Stats")
-	stats_label = get_node("../../Stats_Label")
-	var area = get_node("../../terrain/Coin")
-	stats_node.connect("level_inc",_inc_process)
-	if area:
-		area.connect("_entered",_area_entered)
-	else: 
-		print("coin not found")
-func _area_entered():
-	exp_gain(10)
-	print("print entered")
 	
+func _killCallback(): # NOTE - gains exp for kill 
+	exp_gain(30)
+
+func _item_Callback(): # NOTE - gains exp for collectable or berry collected 
+	exp_gain(10)
+
+func _xp_Callback(): # NOTE - gains 5 exp for anything else 
+	exp_gain(5)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if level < 1:
 		level = 1
-	
-	if Input.is_action_pressed("p1_jump"):
-		gain = 1
-		exp_gain(gain)
 	if level <= 30: 
 		update_text()
 
@@ -63,9 +60,6 @@ func update_text():
 	if text_label:
 		text_label.bbcode_text = "Level %s Experience %s / %s" % [str(level), str(experience), str(experience_required)]
 	test_text = "Level %s Experience %s / %s" % [str(level), str(experience), str(experience_required)]
-
-func zone_discovered():
-	exp_gain(10)
 
 func req_exp(level):
 	if level < 1: 
@@ -86,6 +80,7 @@ func exp_gain(amount):
 	if value > 99:
 			value = 0
 	value = experience / experience_required * 100.0
+
 func _inc_process(value):
 	if value == "health":
 		health += 10
@@ -96,6 +91,7 @@ func _inc_process(value):
 	if value == "grip":
 		grip += 5
 	emit_signal ("update")
+
 func saved_level(level_save,exp):
 	level = level_save
 	exp_gain(exp)
@@ -150,10 +146,10 @@ func level_up():
 		experience_required = req_exp(level+1)
 		emit_signal("level_up_sig")
 
-func update_stat_text():
+func update_stat_text(): # for menu
 	pass
 
-func stat_lookup():
+func stat_lookup(): # for menu
 	if Input.is_action_pressed("stats"):
 		pass
 
