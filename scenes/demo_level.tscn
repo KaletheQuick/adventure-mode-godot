@@ -1,6 +1,7 @@
-[gd_scene load_steps=40 format=3 uid="uid://dlfhcdaajixhi"]
+[gd_scene load_steps=42 format=3 uid="uid://dlfhcdaajixhi"]
 
 [ext_resource type="Script" path="res://scripts/playerSocket_adventure.gd" id="1_dcdan"]
+[ext_resource type="Script" path="res://scripts/cam_gantry_playerFollow.gd" id="2_ejucj"]
 [ext_resource type="PackedScene" uid="uid://8hu74ym7skte" path="res://prefabs/adventure_mode_demo_level.tscn" id="3_t21ku"]
 [ext_resource type="PackedScene" uid="uid://vwkcbj8sdfmp" path="res://prefabs/door_of_trials.tscn" id="4_04pkj"]
 [ext_resource type="Environment" uid="uid://c5vgp5xgbfy74" path="res://scenes/default_env.tres" id="7_jiim7"]
@@ -8,11 +9,12 @@
 [ext_resource type="Script" path="res://scripts/footall_sfx.gd" id="9_upj33"]
 [ext_resource type="Script" path="res://scripts/AI/ai_flee.gd" id="10_wlwqq"]
 [ext_resource type="Script" path="res://scripts/AI/ai_follow.gd" id="11_yw0rt"]
+[ext_resource type="PackedScene" uid="uid://ibxguf2n6yr5" path="res://prefabs/UI_action_prompt.tscn" id="12_4mlg7"]
 [ext_resource type="Script" path="res://scripts/AI/ai_hide.gd" id="12_jw8xh"]
+[ext_resource type="PackedScene" uid="uid://c8avvtccyv3kt" path="res://prefabs/UI_combo_bar.tscn" id="13_fj6q5"]
 [ext_resource type="Script" path="res://scripts/camera_control.gd" id="13_js5at"]
-[ext_resource type="Script" path="res://scripts/combo_bar.gd" id="14_mvvot"]
+[ext_resource type="PackedScene" uid="uid://do82jf6fmqg71" path="res://prefabs/UI_level_bar.tscn" id="13_sop8c"]
 [ext_resource type="PackedScene" uid="uid://bldcnjo1gthob" path="res://prefabs/elevator_platform.tscn" id="15_fpjg0"]
-[ext_resource type="Script" path="res://scripts/UI_ActionPrompt.gd" id="15_gc2pm"]
 [ext_resource type="AudioStream" uid="uid://hxog1lltd7d4" path="res://art/audio/506911__nox_sound__ambiance_wind_forest_moderate_loop_stereo.wav" id="16_jhu8y"]
 [ext_resource type="PackedScene" uid="uid://d3xpjq6g2jknf" path="res://prefabs/collectable.tscn" id="17_ph3fx"]
 
@@ -213,12 +215,16 @@ radial_segments = 4
 
 [node name="Player Sockets" type="Node" parent="."]
 
-[node name="p1_psock_adventure" type="Node" parent="Player Sockets" node_paths=PackedStringArray("thrall", "test_second_thrall", "mainCam", "action_prompt")]
+[node name="p1_psock_adventure" type="Node" parent="Player Sockets" node_paths=PackedStringArray("thrall", "test_second_thrall", "mainCam")]
 script = ExtResource("1_dcdan")
 thrall = NodePath("../../player_actor")
 test_second_thrall = NodePath("../../guy follow")
 mainCam = NodePath("../../Camera")
-action_prompt = NodePath("../../user_interface/Action Prompt")
+
+[node name="cam_gantry_playerFollow" type="Node3D" parent="." node_paths=PackedStringArray("thrall", "cam")]
+script = ExtResource("2_ejucj")
+thrall = NodePath("../player_actor")
+cam = NodePath("../Camera")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("7_jiim7")
@@ -303,8 +309,6 @@ script = ExtResource("9_upj33")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 8)
 script = ExtResource("13_js5at")
 target_current = NodePath("../player_actor")
-distance = 10.0
-cam_sens = 1.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Camera"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.508387)
@@ -320,44 +324,35 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ProgressBar" type="ProgressBar" parent="user_interface"]
+[node name="Action Prompt" parent="user_interface" instance=ExtResource("12_4mlg7")]
+layout_mode = 1
+
+[node name="LevelBar" parent="user_interface" instance=ExtResource("13_sop8c")]
 layout_mode = 0
-offset_left = 50.0
-offset_top = 50.0
-offset_right = 54.0
-offset_bottom = 77.0
-script = ExtResource("14_mvvot")
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 25.0
+offset_top = 39.0
+offset_right = 556.0
+offset_bottom = 66.0
+grow_horizontal = 1
+grow_vertical = 1
 
-[node name="Action Prompt" type="Control" parent="user_interface" node_paths=PackedStringArray("output")]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -40.0
-offset_right = 20.165
-grow_horizontal = 2
-grow_vertical = 0
-script = ExtResource("15_gc2pm")
-output = NodePath("RichTextLabel")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="user_interface/Action Prompt"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -517.083
-offset_top = -81.0
-offset_right = 516.917
-offset_bottom = -41.0
-grow_horizontal = 2
-grow_vertical = 0
-mouse_filter = 2
-bbcode_enabled = true
+[node name="ProgressBar" parent="user_interface" node_paths=PackedStringArray("player_actor") instance=ExtResource("13_fj6q5")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 803.0
+offset_top = 49.0
+offset_right = 1086.0
+offset_bottom = 76.0
+grow_horizontal = 1
+grow_vertical = 1
+player_actor = NodePath("../../player_actor")
 
 [node name="audio level ambiance" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_jhu8y")
@@ -391,7 +386,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2349, 4.74474, -16.2345)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.3882, 4.92579, -21.5897)
 
 [node name="collectable9" parent="." instance=ExtResource("17_ph3fx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2144, 2.04766, -22.5621)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.4545, 2.04766, 8.47499)
 
 [node name="moving_platform" parent="." instance=ExtResource("15_fpjg0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.5244, -5, -32.5106)

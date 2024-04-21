@@ -101,6 +101,7 @@ func _collect_inputs(delta):
 	thrall.handle_movement(go_dir)
 	thrall.block = true if Input.get_action_strength("p1_block") > 0.5 else false
 	thrall.attack_light = true if Input.get_action_strength("p1_attack_light") > 0.5 else false
+	thrall.attack_heavy = true if Input.get_action_strength("p1_attack_heavy") > 0.5 and thrall.attack_light == false else false
 
 
 	dot.global_position = thrall.global_position + go_dir
@@ -110,11 +111,19 @@ func _collect_inputs(delta):
 		look_lock = !look_lock
 		if look_lock:
 			print("look lock")
+			# FIXME - thrall logic in socket
+			thrall.combat_mode = true
+			thrall.combat_relax_timer = 3.0
 		else:
 			print("look unlock")
 	if look_lock:
 		mainCam.target_curr = test_second_thrall.global_position + Vector3(0,2,0)
 		dot.global_position = test_second_thrall.global_position + Vector3(0,2,0)
+		# FIXME ~ HACK - turning should be handled by the animation and thrall control system!
+		var og_rot = thrall.global_rotation_degrees
+		thrall.look_at(thrall.global_position + (thrall.global_position - test_second_thrall.global_position))
+		thrall.global_rotation_degrees.x = 0
+		thrall.global_rotation_degrees.z = 0
 	else:
 		mainCam.target_curr = Vector3.ZERO
 

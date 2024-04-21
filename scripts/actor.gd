@@ -21,6 +21,8 @@ var attack_jump = false
 var attack_heavy = false
 var dodge = false
 
+signal attack_hit(actor_hit, attack_id)
+
 @onready var animation_tree : AnimationTree = $AnimationTree 
 
 # SECTION Faux ModeSwitcher
@@ -268,8 +270,15 @@ func hurtbox_check():
 		nHit.global_position = right_weapon.get_collision_point(x)
 		nHit.look_at(right_weapon.get_collision_point(x) + right_weapon.get_collision_normal(x))
 		nHit.emitting = true
-		print("OUCH!" + right_weapon.get_collider(x).name)
+		#print("OUCH!" + right_weapon.get_collider(x).name)
 		right_weapon.add_exception_rid(right_weapon.get_collider_rid(x))
+		attack_hit.emit(awful_practice_find_parent_actor(right_weapon.get_collider(x)), attackID)
+
+func awful_practice_find_parent_actor(node : Node3D):
+	if node is Actor:
+		return node
+	else:
+		return awful_practice_find_parent_actor(node.get_parent())
 	
 func TEMP_jumpy_check() -> bool:
 	return !Input.is_action_pressed("p1_jump")

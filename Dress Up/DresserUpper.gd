@@ -49,7 +49,7 @@ func garment_equip(gar : Garment):
 	skele.add_child(mesh)
 	mesh.skeleton = skele.get_path()
 	mesh.name = gar.resource_name
-	mesh.lod_bias = 2
+	mesh.lod_bias = 10
 	things_worn[gar] = mesh
 	garments.append(gar)
 
