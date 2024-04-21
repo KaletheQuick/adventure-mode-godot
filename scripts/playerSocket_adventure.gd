@@ -147,8 +147,10 @@ func find_interactable_objects():
 	#if is_instance_valid(col_result):
 	if "collider" in col_result.keys():
 		#print(col_result)
-		action_prompt.show_prompt("Berry")
-		if "Area3D - BERRY" in col_result["collider"].name and Input.is_action_just_pressed(player_prefix + "event_action"):
-			col_result["collider"].my_pickup_logic()
+		if col_result["collider"] is Harvestable:
+			var crop = col_result["collider"] as Harvestable
+			action_prompt.show_prompt(crop.harvest_name)
+			if Input.is_action_just_pressed(player_prefix + "event_action"):
+				col_result["collider"].my_pickup_logic()
 	else:
 		action_prompt.hide_prompt()

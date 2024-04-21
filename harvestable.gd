@@ -1,6 +1,8 @@
 extends Area3D
+class_name Harvestable
 @export var collect_test = false
 @export var death_effect : PackedScene
+@export var harvest_name = "Fruit"
 signal picked_up
 var collected = false
 # Called when the node enters the scene tree for the first time.

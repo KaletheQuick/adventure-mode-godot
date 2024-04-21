@@ -1,6 +1,6 @@
 [gd_scene load_steps=55 format=3 uid="uid://nfkiy46shhrx"]
 
-[ext_resource type="PackedScene" uid="uid://cc3m6m4bf5i8c" path="res://prefabs/shrub.tscn" id="1_8mt6y"]
+[ext_resource type="PackedScene" uid="uid://cc3m6m4bf5i8c" path="res://prefabs/environment/shrub.tscn" id="1_8mt6y"]
 [ext_resource type="Script" path="res://scenes/level_test.gd" id="1_70of5"]
 [ext_resource type="Script" path="res://scripts/playerSocket_adventure.gd" id="1_imwoy"]
 [ext_resource type="Script" path="res://scripts/camera_control.gd" id="1_pxbmp"]
