@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://dlfhcdaajixhi"]
+[gd_scene load_steps=54 format=3 uid="uid://dlfhcdaajixhi"]
 
 [ext_resource type="Script" path="res://scripts/playerSocket_adventure.gd" id="1_dcdan"]
 [ext_resource type="Script" path="res://scripts/cam_gantry_playerFollow.gd" id="2_ejucj"]
@@ -215,6 +215,12 @@ data = PackedVector3Array(-142.085, 15.8135, -18.0411, -140.57, 15.7846, -21.719
 [sub_resource type="BoxShape3D" id="BoxShape3D_habm8"]
 size = Vector3(13, 1, 13)
 
+[sub_resource type="BoxMesh" id="BoxMesh_jn0ch"]
+size = Vector3(3, 10, 1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_77k75"]
+data = PackedVector3Array(-1.5, 5, 0.5, 1.5, 5, 0.5, -1.5, -5, 0.5, 1.5, 5, 0.5, 1.5, -5, 0.5, -1.5, -5, 0.5, 1.5, 5, -0.5, -1.5, 5, -0.5, 1.5, -5, -0.5, -1.5, 5, -0.5, -1.5, -5, -0.5, 1.5, -5, -0.5, 1.5, 5, 0.5, 1.5, 5, -0.5, 1.5, -5, 0.5, 1.5, 5, -0.5, 1.5, -5, -0.5, 1.5, -5, 0.5, -1.5, 5, -0.5, -1.5, 5, 0.5, -1.5, -5, -0.5, -1.5, 5, 0.5, -1.5, -5, 0.5, -1.5, -5, -0.5, 1.5, 5, 0.5, -1.5, 5, 0.5, 1.5, 5, -0.5, -1.5, 5, 0.5, -1.5, 5, -0.5, 1.5, 5, -0.5, -1.5, -5, 0.5, 1.5, -5, 0.5, -1.5, -5, -0.5, 1.5, -5, 0.5, 1.5, -5, -0.5, -1.5, -5, -0.5)
+
 [sub_resource type="CylinderMesh" id="CylinderMesh_nes8p"]
 top_radius = 0.035
 bottom_radius = 1.0
@@ -279,6 +285,16 @@ shape = SubResource("BoxShape3D_habm8")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.964015, -0.229582, -0.13404, -0.115459, -0.0925997, 0.988987, -0.239465, 0.968874, 0.0627602, 0, 0, 0)
 shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -1)
+mesh = SubResource("BoxMesh_jn0ch")
+skeleton = NodePath("../player_actor")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_77k75")
 
 [node name="player_actor" parent="." instance=ExtResource("8_3hjxr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.298199, 0)

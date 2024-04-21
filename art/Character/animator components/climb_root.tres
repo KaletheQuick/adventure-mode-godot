@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=20 format=3 uid="uid://b05s2yvv1ups3"]
+[gd_resource type="AnimationNodeStateMachine" load_steps=23 format=3 uid="uid://b05s2yvv1ups3"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0dej7"]
 animation = &"animationLib_climb/climb_idle"
@@ -87,11 +87,24 @@ blend_point_7/pos = Vector2(0, -1)
 blend_point_8/node = SubResource("AnimationNodeAnimation_ieoax")
 blend_point_8/pos = Vector2(1, 0)
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bexe2"]
+animation = &"animationLib_climb/climb_ledgeVault"
+
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r2bnh"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kqq73"]
+advance_mode = 2
+advance_condition = &"ledge_vault_exit"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kd4yn"]
+switch_mode = 2
 advance_mode = 2
 
 [resource]
 "states/MOVE climb/node" = SubResource("AnimationNodeBlendSpace2D_jsf0a")
 "states/MOVE climb/position" = Vector2(489, 83)
-transitions = ["Start", "MOVE climb", SubResource("AnimationNodeStateMachineTransition_r2bnh")]
-graph_offset = Vector2(88, -72)
+states/vault_exit/node = SubResource("AnimationNodeAnimation_bexe2")
+states/vault_exit/position = Vector2(677, 83)
+transitions = ["Start", "MOVE climb", SubResource("AnimationNodeStateMachineTransition_r2bnh"), "MOVE climb", "vault_exit", SubResource("AnimationNodeStateMachineTransition_kqq73"), "vault_exit", "End", SubResource("AnimationNodeStateMachineTransition_kd4yn")]
+graph_offset = Vector2(10, -17)

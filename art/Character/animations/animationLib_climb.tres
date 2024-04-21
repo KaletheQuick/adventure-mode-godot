@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=12 format=3 uid="uid://dg1aitbg1i77i"]
+[gd_resource type="AnimationLibrary" load_steps=13 format=3 uid="uid://dg1aitbg1i77i"]
 
 [ext_resource type="Animation" uid="uid://bj6tovf64qqr8" path="res://art/Character/animations/climb/climb_dn.tres" id="1_8et3h"]
 [ext_resource type="Animation" uid="uid://cqno5nhodyi6y" path="res://art/Character/animations/climb/climb_idle.tres" id="2_p05fu"]
@@ -11,11 +11,13 @@
 [ext_resource type="Animation" uid="uid://yfe57xiftphe" path="res://art/Character/animations/climb/climb_up.tres" id="9_0fe61"]
 [ext_resource type="Animation" uid="uid://hrq2pb7e0no2" path="res://art/Character/animations/climb/climb_up_left.tres" id="10_10v38"]
 [ext_resource type="Animation" uid="uid://b2qsro0uugm3l" path="res://art/Character/animations/climb/climb_up_right.tres" id="11_ex2w8"]
+[ext_resource type="Animation" uid="uid://biv5xhbajtpla" path="res://art/Character/animations/climb/climb_ledgeVault.tres" id="12_gttdd"]
 
 [resource]
 _data = {
 "climb_dn": ExtResource("1_8et3h"),
 "climb_idle": ExtResource("2_p05fu"),
+"climb_ledgeVault": ExtResource("12_gttdd"),
 "climb_left": ExtResource("3_a05wj"),
 "climb_look_dn": ExtResource("4_3ycur"),
 "climb_look_left": ExtResource("5_1yxtx"),

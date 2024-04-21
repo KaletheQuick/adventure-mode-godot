@@ -27,6 +27,10 @@ func release_situation_check(thrall : Actor) -> bool:
 		print("first exti")
 		thrall.look_at(thrall.global_position - (thrall.global_basis.z * Vector3(1,0,1)))
 		return true
+	if thrall.animation_tree.get("parameters/conditions/ledge_vault_exit")  == true:
+		# await end of anim
+		#if thrall.animation_tree.fini
+		return false
 	# Phys ray
 	var space_state = thrall.get_world_3d().direct_space_state
 	var origin = thrall.global_position + Vector3.UP
@@ -66,3 +70,20 @@ func move_thrall(thrall : Actor, delta : float):
 	thrall.quaternion = thrall.quaternion * ((thrall.animation_tree.get_root_motion_rotation() / delta) * 10)
 
 	thrall.move_and_slide()
+	ledge_vault_check(thrall)
+
+
+func ledge_vault_check(thrall : Actor):
+	
+	# Phys ray
+	var space_state = thrall.get_world_3d().direct_space_state
+	var end = thrall.global_position + Vector3(0,0,-0.55)
+	var origin = end + Vector3(0,2.1,0)
+	var query = PhysicsRayQueryParameters3D.create(origin, end)
+	#query.collide_with_areas = true
+	print(str(origin) + " ~ " + str(end))
+	var col_result = space_state.intersect_ray(query)
+	print(col_result)
+	if "collider" in col_result.keys():
+		# If we do, do exit
+		thrall.animation_tree.set("parameters/conditions/ledge_vault_exit", true) 

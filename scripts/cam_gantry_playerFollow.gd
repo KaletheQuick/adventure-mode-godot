@@ -35,7 +35,7 @@ func ray_cam_pos():
 	var origin = global_position
 	var end = origin + (global_basis.z * cam_follow_dist)
 	var query = PhysicsRayQueryParameters3D.create(origin, end)
-	print(str(origin) + " ~ " + str(end))
+	#print(str(origin) + " ~ " + str(end))
 	#query.collide_with_areas = true
 	var col_result = space_state.intersect_ray(query)
 	if "collider" in col_result.keys():
