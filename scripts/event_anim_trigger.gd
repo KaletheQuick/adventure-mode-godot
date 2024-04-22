@@ -4,8 +4,11 @@ extends Node3D
 @export var animation : String
 @export var one_shot = true
 var shot = false 
+@export var locked = false
 
 func trigger_animation(nothing):
+	if locked:
+		return
 	# Dirty check for player 
 	print(name)
 	if nothing.name != "player_actor":

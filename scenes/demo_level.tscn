@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://dlfhcdaajixhi"]
+[gd_scene load_steps=55 format=3 uid="uid://dlfhcdaajixhi"]
 
 [ext_resource type="Script" path="res://scripts/playerSocket_adventure.gd" id="1_dcdan"]
 [ext_resource type="Script" path="res://scripts/cam_gantry_playerFollow.gd" id="2_ejucj"]
@@ -11,25 +11,23 @@
 [ext_resource type="Resource" uid="uid://djhxw8u4ikomn" path="res://art/Character/clothing/DressUp Resources/travelers_skirt.tres" id="9_tu48b"]
 [ext_resource type="Script" path="res://scripts/footall_sfx.gd" id="9_upj33"]
 [ext_resource type="Resource" uid="uid://b7dq815w802rc" path="res://art/Character/clothing/DressUp Resources/hair_10_ponytail_01.tres" id="10_10h8l"]
-[ext_resource type="Script" path="res://scripts/AI/ai_flee.gd" id="10_wlwqq"]
 [ext_resource type="Resource" uid="uid://dyhf0xu1bqbpi" path="res://art/Character/clothing/DressUp Resources/feet_boot_01.tres" id="11_fd2hj"]
-[ext_resource type="Script" path="res://scripts/AI/ai_follow.gd" id="11_yw0rt"]
 [ext_resource type="PackedScene" uid="uid://ibxguf2n6yr5" path="res://prefabs/UI_action_prompt.tscn" id="12_4mlg7"]
-[ext_resource type="Script" path="res://scripts/AI/ai_hide.gd" id="12_jw8xh"]
 [ext_resource type="Resource" uid="uid://bewat2ejmwowa" path="res://art/Character/clothing/DressUp Resources/utility_belt.tres" id="12_opxni"]
 [ext_resource type="PackedScene" uid="uid://c8avvtccyv3kt" path="res://prefabs/UI_combo_bar.tscn" id="13_fj6q5"]
 [ext_resource type="Script" path="res://scripts/camera_control.gd" id="13_js5at"]
 [ext_resource type="PackedScene" uid="uid://do82jf6fmqg71" path="res://prefabs/UI_level_bar.tscn" id="13_sop8c"]
-[ext_resource type="PackedScene" path="res://prefabs/elevator_platform.tscn" id="15_fpjg0"]
+[ext_resource type="Script" path="res://scripts/AI/ai_fight.gd" id="14_3yt7r"]
+[ext_resource type="PackedScene" uid="uid://bldcnjo1gthob" path="res://prefabs/elevator_platform.tscn" id="15_fpjg0"]
 [ext_resource type="AudioStream" uid="uid://hxog1lltd7d4" path="res://art/audio/506911__nox_sound__ambiance_wind_forest_moderate_loop_stereo.wav" id="16_jhu8y"]
 [ext_resource type="PackedScene" uid="uid://d3xpjq6g2jknf" path="res://prefabs/collectable.tscn" id="17_ph3fx"]
 [ext_resource type="PackedScene" uid="uid://dyacbq330bbx0" path="res://prefabs/environment/shrub_commonfruit.tscn" id="18_x8y34"]
 [ext_resource type="PackedScene" uid="uid://cvyjw256lsge2" path="res://prefabs/environment/grass.tscn" id="19_y2i5j"]
 [ext_resource type="PackedScene" uid="uid://2lgruxx4kd5a" path="res://prefabs/environment/boulder.tscn" id="21_1s8oa"]
-[ext_resource type="Texture2D" uid="uid://0mt1ycj6r3su" path="res://art/textures/title_menu.png" id="21_20iju"]
-[ext_resource type="PackedScene" uid="uid://causwj8fg5t24" path="res://prefabs/UI_items.tscn" id="22_dqwus"]
+[ext_resource type="Texture2D" path="res://art/textures/title_menu.png" id="21_20iju"]
+[ext_resource type="PackedScene" uid="uid://dettguqlldl03" path="res://prefabs/UI_items.tscn" id="22_dqwus"]
 [ext_resource type="PackedScene" uid="uid://cme484l06g14s" path="res://prefabs/environment/tree_foliage.tscn" id="22_rpa0u"]
-[ext_resource type="PackedScene" uid="uid://cg0ys2xra31xf" path="res://prefabs/environment/campfire.tscn" id="28_sx28n"]
+[ext_resource type="PackedScene" uid="uid://cabwsn82igehw" path="res://prefabs/environment/campfire.tscn" id="28_sx28n"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4vxjp"]
 resource_name = "ground"
@@ -240,7 +238,7 @@ metadata/_snap_enabled = true
 [node name="p1_psock_adventure" type="Node" parent="Player Sockets" node_paths=PackedStringArray("thrall", "test_second_thrall", "mainCam", "ganty_thing", "vignette", "title_card", "action_prompt")]
 script = ExtResource("1_dcdan")
 thrall = NodePath("../../player_actor")
-test_second_thrall = NodePath("../../guy follow")
+test_second_thrall = NodePath("../../skele_04")
 mainCam = NodePath("../../Camera")
 ganty_thing = NodePath("../../cam_gantry_playerFollow")
 vignette = NodePath("../../user_interface/vinyette")
@@ -258,7 +256,8 @@ freeze = true
 environment = ExtResource("7_jiim7")
 
 [node name="adventure_mode_demoLevel1" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -9.9662e-06, 0, 114)
+transform = Transform3D(-1, 0, 8.74228e-08, -8.74228e-08, -4.37114e-08, -1, 3.82137e-15, -1, 4.37114e-08, -9.9662e-06, 0, 293.204)
+visible = false
 
 [node name="terrain" type="MeshInstance3D" parent="adventure_mode_demoLevel1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -20)
@@ -277,6 +276,7 @@ shape = SubResource("ConcavePolygonShape3D_bgg16")
 
 [node name="Door of Trials" parent="adventure_mode_demoLevel" instance=ExtResource("4_04pkj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -21)
+locked = true
 
 [node name="Area3D" type="Area3D" parent="adventure_mode_demoLevel/Door of Trials"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 7.08257)
@@ -305,35 +305,52 @@ demo_sit_lounge = true
 [node name="footall_sfx" type="Node" parent="player_actor"]
 script = ExtResource("9_upj33")
 
-[node name="guy flee" parent="." instance=ExtResource("8_3hjxr")]
-transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 45.0668, 1.32128, 8.23882)
+[node name="skele_01" parent="." instance=ExtResource("8_3hjxr")]
+transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 9.13544, -4.38366, -62.3758)
 
-[node name="ai_flee" type="Node" parent="guy flee" node_paths=PackedStringArray("fleeFrom")]
-script = ExtResource("10_wlwqq")
-fleeFrom = NodePath("../../player_actor")
-
-[node name="footall_sfx2" type="Node" parent="guy flee"]
+[node name="footall_sfx2" type="Node" parent="skele_01"]
 script = ExtResource("9_upj33")
 
-[node name="guy follow" parent="." instance=ExtResource("8_3hjxr")]
-transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 50.4143, 1.32128, 7.54455)
+[node name="ai_attack" type="Node" parent="skele_01" node_paths=PackedStringArray("player")]
+script = ExtResource("14_3yt7r")
+player = NodePath("../../player_actor")
+dist_see = 20
+dist_attack = 15
 
-[node name="ai_follow" type="Node" parent="guy follow" node_paths=PackedStringArray("followGuy")]
-script = ExtResource("11_yw0rt")
-followGuy = NodePath("../../player_actor")
-follow = false
+[node name="skele_02" parent="." instance=ExtResource("8_3hjxr")]
+transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 14.4829, -4.38366, -56.0351)
 
-[node name="footall_sfx2" type="Node" parent="guy follow"]
+[node name="footall_sfx2" type="Node" parent="skele_02"]
 script = ExtResource("9_upj33")
 
-[node name="guy hide" parent="." instance=ExtResource("8_3hjxr")]
-transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 37.8527, 1.32128, 8.23882)
+[node name="ai_attack" type="Node" parent="skele_02" node_paths=PackedStringArray("player")]
+script = ExtResource("14_3yt7r")
+player = NodePath("../../player_actor")
+dist_see = 20
+dist_attack = 15
 
-[node name="ai_hide" type="Node" parent="guy hide"]
-script = ExtResource("12_jw8xh")
+[node name="skele_03" parent="." instance=ExtResource("8_3hjxr")]
+transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 1.92134, -4.38366, -55.3409)
 
-[node name="footall_sfx2" type="Node" parent="guy hide"]
+[node name="ai_attack" type="Node" parent="skele_03" node_paths=PackedStringArray("player")]
+script = ExtResource("14_3yt7r")
+player = NodePath("../../player_actor")
+dist_see = 20
+dist_attack = 15
+
+[node name="footall_sfx2" type="Node" parent="skele_03"]
 script = ExtResource("9_upj33")
+
+[node name="skele_04" parent="." node_paths=PackedStringArray("right_weapon") instance=ExtResource("8_3hjxr")]
+transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 29.4989, -0.0550718, 2.8655)
+right_weapon = NodePath("../skele_01/skeleton/char/Skeleton3D/BoneAttachment3D/sword/ShapeCast3D")
+
+[node name="footall_sfx2" type="Node" parent="skele_04"]
+script = ExtResource("9_upj33")
+
+[node name="ai_attack" type="Node" parent="skele_04" node_paths=PackedStringArray("player")]
+script = ExtResource("14_3yt7r")
+player = NodePath("../../player_actor")
 
 [node name="Camera" type="Camera3D" parent="." node_paths=PackedStringArray("target_current")]
 transform = Transform3D(0.945519, 0, 0.325568, 0, 1, 0, -0.325568, 0, 0.945519, 0.344, 0.66, 2.119)
@@ -360,18 +377,15 @@ grow_vertical = 2
 layout_mode = 1
 
 [node name="LevelBar" parent="user_interface" node_paths=PackedStringArray("player_thrall") instance=ExtResource("13_sop8c")]
-layout_mode = 0
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 25.0
-offset_top = 39.0
-offset_right = 556.0
-offset_bottom = 66.0
-grow_horizontal = 1
-grow_vertical = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -554.0
+offset_top = -66.0
+offset_right = -23.0
+offset_bottom = -39.0
+grow_horizontal = 0
 player_thrall = NodePath("../../player_actor")
 
 [node name="ProgressBar" parent="user_interface" node_paths=PackedStringArray("player_actor") instance=ExtResource("13_fj6q5")]
@@ -379,19 +393,18 @@ layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 100.0
-offset_right = 200.0
-offset_bottom = 179.0
-theme_override_font_sizes/font_size = 30
+offset_left = 11.0
+offset_top = 14.0
+offset_right = 211.0
+offset_bottom = 93.0
 player_actor = NodePath("../../player_actor")
 
-[node name="ui_items" parent="user_interface" node_paths=PackedStringArray("thrall") instance=ExtResource("22_dqwus")]
+[node name="ui_items" parent="user_interface" node_paths=PackedStringArray("thrall", "door_unlock") instance=ExtResource("22_dqwus")]
 layout_mode = 1
 thrall = NodePath("../../player_actor")
+door_unlock = NodePath("../../adventure_mode_demoLevel/Door of Trials")
 
 [node name="vinyette" type="TextureRect" parent="user_interface"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -401,7 +414,6 @@ grow_vertical = 2
 texture = SubResource("GradientTexture2D_ekrka")
 
 [node name="title_menu" type="TextureRect" parent="user_interface"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -621,6 +633,9 @@ transform = Transform3D(-0.395016, 0, -0.918674, 0, 1, 0, 0.918674, 0, -0.395016
 
 [node name="collectable" parent="." instance=ExtResource("17_ph3fx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -125.207, 15.6991, -28.892)
+
+[node name="collectable4" parent="." instance=ExtResource("17_ph3fx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87.199, -1.78293, -11.1535)
 
 [node name="collectable2" parent="." instance=ExtResource("17_ph3fx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -126.754, 15.9007, -33.8653)

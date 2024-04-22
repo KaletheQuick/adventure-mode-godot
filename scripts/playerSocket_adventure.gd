@@ -53,7 +53,7 @@ func _process(delta):
 			var tween = get_tree().create_tween()
 			tween.set_ease(Tween.EASE_IN)
 			tween.set_trans(Tween.TRANS_CIRC)
-			tween.tween_property(vignette, "modulate", Color(0,0,0,0.2), 3)
+			tween.tween_property(vignette, "modulate", Color(0,0,0,0.33), 3)
 			var tween2 = get_tree().create_tween()
 			tween2.set_ease(Tween.EASE_IN)
 			tween2.set_trans(Tween.TRANS_CIRC)

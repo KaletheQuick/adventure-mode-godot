@@ -53,6 +53,9 @@ var right_ouchtime = false
 var hurtboxes
 @export var max_health = 10.0
 var health_current = 10.0
+@export var max_stamina = 5.0 
+var stamina_current = 5.0
+var alive = true
 
 # SECTION ~ Demo specific things
 @export var demo_sit_lounge = false
@@ -89,6 +92,13 @@ func enthrall():
 
 
 func _process(delta):
+	if health_current <= 0 and alive == true:
+		alive = false
+		animation_tree.active = false
+		$skeleton/AnimationPlayer.play("death")
+	if alive == false:
+		return
+	stamina_regen(delta)
 	moveset_debug = movement_sets[current_moveset].name + ": " + animation_tree.get("parameters/playback").get_current_node()
 	LDT = delta
 ##	if jump_dbounce and is_on_floor() and desired_move.y < 0.5: # if we have completed a jump arc, and are not desiring to jump
@@ -114,7 +124,10 @@ func _process(delta):
 
 	movement_package_checks()
 
+
 func _physics_process(delta):
+	if alive == false:
+		return
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		pass
@@ -182,6 +195,9 @@ func _physics_process(delta):
 
 	move_and_slide()
 	lastDesiredMoveY = desired_move.y
+
+func stamina_regen(delta):
+	stamina_current = clamp(stamina_current + delta, 0, max_stamina)
 
 func apply_animation_params():
 	# NOTE - This is a hack, i'll detail how it works.

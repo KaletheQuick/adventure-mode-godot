@@ -6,6 +6,8 @@ extends Control
 @export var ico_coins : TextureRect 
 @export var txt_coins : Label
 
+@export var door_unlock : Node3D
+
 var cnt_fruit = 0
 var cnt_coins = 0
 
@@ -34,6 +36,8 @@ func _item_watch(itmeName : String):
 		_get_coins()
 	else:
 		_get_fruit()
+	if cnt_fruit > 0 and cnt_coins > 0:
+		door_unlock.locked = false
 
 func _get_fruit():
 	cnt_fruit += 1

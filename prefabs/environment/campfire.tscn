@@ -1,11 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://cg0ys2xra31xf"]
+[gd_scene load_steps=17 format=3 uid="uid://cabwsn82igehw"]
 
-[ext_resource type="ArrayMesh" uid="uid://bv7kb3wlk0hq3" path="res://art/campfire.obj" id="1_wd6q8"]
+[ext_resource type="ArrayMesh" path="res://art/campfire.obj" id="1_wd6q8"]
 [ext_resource type="Material" uid="uid://btyn0xde5r8mh" path="res://art/materials/bark.tres" id="2_61r5n"]
 [ext_resource type="Texture2D" uid="uid://c4p13tgjxjesy" path="res://art/textures/noise_turbulent_32.png" id="3_cthw3"]
 [ext_resource type="Texture2D" uid="uid://cic2vayv6qx4i" path="res://art/textures/particles/particle_smoke.png" id="4_k5agq"]
 [ext_resource type="ArrayMesh" uid="uid://dkkbofnga5jb3" path="res://art/boulder.obj" id="5_yaecd"]
-[ext_resource type="AudioStream" uid="uid://bow7ea31pd0u8" path="res://art/audio/sfx/campfire-02.ogg" id="6_f7w52"]
+[ext_resource type="AudioStream" path="res://art/audio/sfx/campfire-02.ogg" id="6_f7w52"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gqyqw"]
 albedo_color = Color(0.196078, 0.196078, 0.196078, 1)

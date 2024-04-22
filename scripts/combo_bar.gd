@@ -10,7 +10,7 @@ var current_attack_id = 0
 var ignoring_actors = []
 
 func _ready() -> void:
-	player_actor.connect("atwwwwwwtack_hit", self.attack_hit)
+	player_actor.connect("attack_hit", self.attack_hit)
 	print("connect attempt")
 
 func _process(delta: float) -> void:
@@ -33,7 +33,7 @@ func _process(delta: float) -> void:
 
 func fill_combo_bar(amount: float):
 	combo_value += amount
-	value = clamp(combo_value, 0, max_value)
+	value = clamp(combo_value, 0, 100) # max value was not working for some reason
 	#print("Combo bar filled to: ", value, "/", max_value)
 
 
