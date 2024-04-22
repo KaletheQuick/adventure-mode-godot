@@ -51,6 +51,16 @@ var right_ouchtime = false
 @export var hit_effect : PackedScene
 
 var hurtboxes
+@export var max_health = 10.0
+var health_current = 10.0
+
+# SECTION ~ Demo specific things
+@export var demo_sit_lounge = false
+
+# SECTION Signals for leveling bar
+signal killed_something
+signal xp_get
+signal item_get(item_name)
 
 func _ready():
 #	animation_tree.tree_root = defaultANIMO
@@ -248,7 +258,11 @@ func hurtbox_check():
 		nHit.emitting = true
 		#print("OUCH!" + right_weapon.get_collider(x).name)
 		right_weapon.add_exception_rid(right_weapon.get_collider_rid(x))
-		attack_hit.emit(awful_practice_find_parent_actor(right_weapon.get_collider(x)), attackID)
+		var hit_actor = awful_practice_find_parent_actor(right_weapon.get_collider(x))
+		hit_actor.take_damage(2, attackID)
+		attack_hit.emit(hit_actor, attackID)
+		if hit_actor.health_current <= 0:
+			killed_something.emit()
 
 func awful_practice_find_parent_actor(node : Node3D):
 	if node is Actor:
@@ -263,3 +277,9 @@ func dress_up():
 	var dup = $DresserUpper as DresserUpper
 	for garment in garments:
 		dup.garment_equip(garment)
+
+var damage_attack_id_buffer = []
+func take_damage(damage : float, id : int):
+	if id not in damage_attack_id_buffer:
+		damage_attack_id_buffer.append(id)
+		health_current -= damage

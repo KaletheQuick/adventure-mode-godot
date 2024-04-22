@@ -42,7 +42,7 @@ func _ready():
 func _killCallback(): # NOTE - gains exp for kill 
 	exp_gain(30)
 
-func _item_Callback(): # NOTE - gains exp for collectable or berry collected 
+func _item_Callback(item_name : String): # NOTE - gains exp for collectable or berry collected 
 	exp_gain(10)
 
 func _xp_Callback(): # NOTE - gains 5 exp for anything else 

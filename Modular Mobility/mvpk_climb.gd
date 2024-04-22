@@ -81,9 +81,9 @@ func ledge_vault_check(thrall : Actor):
 	var origin = end + Vector3(0,2.1,0)
 	var query = PhysicsRayQueryParameters3D.create(origin, end)
 	#query.collide_with_areas = true
-	print(str(origin) + " ~ " + str(end))
+	#print(str(origin) + " ~ " + str(end))
 	var col_result = space_state.intersect_ray(query)
-	print(col_result)
+	#print(col_result)
 	if "collider" in col_result.keys():
 		# If we do, do exit
 		thrall.animation_tree.set("parameters/conditions/ledge_vault_exit", true) 

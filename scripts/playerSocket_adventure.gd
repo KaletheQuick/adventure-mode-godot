@@ -13,6 +13,9 @@ extends Node
 var primary_thrall = true
 
 @export var mainCam : Camera3D 
+@export var ganty_thing : Node3D
+@export var vignette : Control
+@export var title_card : Control
 
 var dot : MeshInstance3D # debug
 
@@ -42,25 +45,28 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-
+	if thrall.demo_sit_lounge == true:		
+		if Input.is_action_just_pressed("p1_start"):
+			thrall.demo_sit_lounge = false
+			mainCam.freeze = false
+			ganty_thing.freeze = false
+			var tween = get_tree().create_tween()
+			tween.set_ease(Tween.EASE_IN)
+			tween.set_trans(Tween.TRANS_CIRC)
+			tween.tween_property(vignette, "modulate", Color(0,0,0,0.2), 3)
+			var tween2 = get_tree().create_tween()
+			tween2.set_ease(Tween.EASE_IN)
+			tween2.set_trans(Tween.TRANS_CIRC)
+			tween2.tween_property(title_card, "modulate", Color.TRANSPARENT, 1)
+		return
 	if thrall == null:
 		return
 	_collect_inputs(delta)
 	#print(delta)
 	find_interactable_objects()
-	return
-	if Input.is_action_just_pressed("p1_dodge"):		
-		primary_thrall = !primary_thrall
-		if primary_thrall: 
-			test_second_thrall.dethrall()
-			thrall.enthrall()
-			mainCam.target_current = thrall
-			#print("Character 1 Enthralled.")
-		else:
-			thrall.dethrall() 
-			test_second_thrall.enthrall()
-			mainCam.target_current = test_second_thrall
-			#print("Character 2 Enthralled")
+
+	# NOTE - Demo purposes only
+
 
 
 func _collect_inputs(delta):
@@ -152,5 +158,6 @@ func find_interactable_objects():
 			action_prompt.show_prompt(crop.harvest_name)
 			if Input.is_action_just_pressed(player_prefix + "event_action"):
 				col_result["collider"].my_pickup_logic()
+				thrall.item_get.emit("fruit")
 	else:
 		action_prompt.hide_prompt()

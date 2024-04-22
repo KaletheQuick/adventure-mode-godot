@@ -208,7 +208,7 @@ advance_mode = 2
 advance_expression = "attack_light == false"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_km157"]
-xfade_time = 1.0
+xfade_time = 0.1
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1sptu"]
@@ -276,4 +276,4 @@ states/walk_airborne/position = Vector2(653.722, 92)
 states/walk_land/node = SubResource("AnimationNodeAnimation_bj3bm")
 states/walk_land/position = Vector2(503.827, 145.333)
 transitions = ["walk_airborne", "walk_land", SubResource("AnimationNodeStateMachineTransition_tddch"), "Jump w vel", "walk_airborne", SubResource("AnimationNodeStateMachineTransition_86anj"), "a_light_01", "a_light_02", SubResource("AnimationNodeStateMachineTransition_d58rr"), "a_light_02", "a_light_01", SubResource("AnimationNodeStateMachineTransition_4x4kn"), "MOVE strafe", "a_light_01", SubResource("AnimationNodeStateMachineTransition_ctdfq"), "a_light_01", "MOVE strafe", SubResource("AnimationNodeStateMachineTransition_af7en"), "a_light_02", "MOVE strafe", SubResource("AnimationNodeStateMachineTransition_3h5vs"), "Start", "draw_back", SubResource("AnimationNodeStateMachineTransition_km157"), "draw_back", "MOVE strafe", SubResource("AnimationNodeStateMachineTransition_1sptu"), "MOVE strafe", "MOVE dodge", SubResource("AnimationNodeStateMachineTransition_gphup"), "MOVE dodge", "MOVE strafe", SubResource("AnimationNodeStateMachineTransition_n5jq6"), "MOVE strafe", "a_hvy_01", SubResource("AnimationNodeStateMachineTransition_hfuju"), "a_hvy_JUMP", "MOVE strafe", SubResource("AnimationNodeStateMachineTransition_x2rxd"), "a_hvy_01", "MOVE strafe", SubResource("AnimationNodeStateMachineTransition_qpw4y"), "a_light_02", "a_hvy_JUMP", SubResource("AnimationNodeStateMachineTransition_eydmh")]
-graph_offset = Vector2(-313, 111)
+graph_offset = Vector2(-447, 59)

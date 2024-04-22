@@ -28,6 +28,8 @@ var camLookSpeed = 2
 var camLookAccell = 5
 var camLookVel = Vector3.ZERO
 
+@export var freeze = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -41,6 +43,8 @@ func _process(delta):
 	#return
 	if is_instance_valid(target_current) == false: # Guard clause style, baby!
 		return 
+	if freeze:
+		return
 
 	# Order 
 	# follow

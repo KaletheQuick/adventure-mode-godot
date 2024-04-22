@@ -94,7 +94,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("SphereShape3D_i7ih2")
 
 [node name="coin" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.91428, 0.405084, -1.77068e-08, 0, -4.37114e-08, -1, -0.405084, 0.91428, -3.99644e-08, 0, 0.5, 0)
+transform = Transform3D(-4.37114e-08, -1, 0, -4.37114e-08, 1.91069e-15, 1, -1, 4.37114e-08, -4.37114e-08, 0, 0.545526, 0)
 material_override = ExtResource("2_w2062")
 mesh = SubResource("TorusMesh_qvpay")
 
@@ -105,6 +105,7 @@ libraries = {
 }
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="coin"]
+transform = Transform3D(1, -2.98023e-08, -3.72529e-09, -2.98023e-08, 1, -7.45058e-09, -1.49012e-08, -7.45058e-09, 1, 0, 0, 0)
 material_override = ExtResource("2_w2062")
 mesh = SubResource("CylinderMesh_k22an")
 
