@@ -1,6 +1,7 @@
-[gd_scene load_steps=55 format=3 uid="uid://dlfhcdaajixhi"]
+[gd_scene load_steps=56 format=3 uid="uid://dlfhcdaajixhi"]
 
 [ext_resource type="Script" path="res://scripts/playerSocket_adventure.gd" id="1_dcdan"]
+[ext_resource type="PackedScene" uid="uid://b34jdvaqt8gbn" path="res://art/Props/z_target.tscn" id="2_0jwv4"]
 [ext_resource type="Script" path="res://scripts/cam_gantry_playerFollow.gd" id="2_ejucj"]
 [ext_resource type="PackedScene" uid="uid://8hu74ym7skte" path="res://prefabs/adventure_mode_demo_level.tscn" id="3_t21ku"]
 [ext_resource type="PackedScene" uid="uid://vwkcbj8sdfmp" path="res://prefabs/door_of_trials.tscn" id="4_04pkj"]
@@ -235,14 +236,15 @@ metadata/_snap_enabled = true
 
 [node name="Player Sockets" type="Node" parent="."]
 
-[node name="p1_psock_adventure" type="Node" parent="Player Sockets" node_paths=PackedStringArray("thrall", "test_second_thrall", "mainCam", "ganty_thing", "vignette", "title_card", "action_prompt")]
+[node name="p1_psock_adventure" type="Node" parent="Player Sockets" node_paths=PackedStringArray("thrall", "enemies", "mainCam", "ganty_thing", "vignette", "title_card", "action_prompt")]
 script = ExtResource("1_dcdan")
 thrall = NodePath("../../player_actor")
-test_second_thrall = NodePath("../../skele_04")
+enemies = [NodePath("../../skele_01"), NodePath("../../skele_02"), NodePath("../../skele_03"), NodePath("../../skele_04")]
 mainCam = NodePath("../../Camera")
 ganty_thing = NodePath("../../cam_gantry_playerFollow")
 vignette = NodePath("../../user_interface/vinyette")
 title_card = NodePath("../../user_interface/title_menu")
+target_locker = ExtResource("2_0jwv4")
 action_prompt = NodePath("../../user_interface/Action Prompt")
 
 [node name="cam_gantry_playerFollow" type="Node3D" parent="." node_paths=PackedStringArray("thrall", "cam")]

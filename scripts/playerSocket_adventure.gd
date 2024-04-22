@@ -9,7 +9,10 @@ extends Node
 
 @export var thrall : CharacterBody3D # the thing to be controlled 
 @export var player_prefix = "p1_" # used for local multiplayer
-@export var test_second_thrall : CharacterBody3D
+
+@export var enemies : Array[Actor]
+var locked_target : Actor
+
 var primary_thrall = true
 
 @export var mainCam : Camera3D 
@@ -17,7 +20,7 @@ var primary_thrall = true
 @export var vignette : Control
 @export var title_card : Control
 
-var dot : MeshInstance3D # debug
+var dot : Node3D # debug
 
 # Input checks for dodge vs sprint
 # Soulslike = Dodge and sprint are same button. Tap or hold for difference
@@ -27,18 +30,14 @@ var ds_timer = 0.0
 # variables for z targeting
 var look_lock = false
 
+@export var target_locker : PackedScene
+
 # acreas and interactable things
 
 func _ready():
 	pass # Replace with function body.
 	
-	#debug
-	var sphere = SphereMesh.new()
-	sphere.radial_segments = 7
-	sphere.radius = 0.125
-	sphere.height = 0.25
-	dot = MeshInstance3D.new()
-	dot.mesh = sphere
+	dot = target_locker.instantiate()
 	get_tree().root.add_child.call_deferred(dot)
 	dot.name = "~dot~"
 
@@ -120,17 +119,43 @@ func _collect_inputs(delta):
 			# FIXME - thrall logic in socket
 			thrall.combat_mode = true
 			thrall.combat_relax_timer = 3.0
+			# Find target closest to center forward of screen.
+			var winner = null
+			var win_dot = 10.0
+			for enemy in enemies:
+				# easy out checks 
+				if enemy.alive == false:
+					continue
+				if thrall.global_position.distance_to(enemy.global_position) > 20:
+					continue
+				# cull front half of camera? wait, vector math? here?
+				var my_dot = mainCam.global_basis.z.dot((enemy.global_position - mainCam.global_position).normalized())
+				if my_dot < win_dot:
+					winner = enemy
+					win_dot = my_dot
+			if winner != null:
+				locked_target = winner
+			else:
+				locked_target = null
+				look_lock = false
+				ganty_thing.look_at(thrall.global_position + (thrall.global_basis.z * 50))
+
 		else:
 			print("look unlock")
 	if look_lock:
-		mainCam.target_curr = test_second_thrall.global_position + Vector3(0,2,0)
-		dot.global_position = test_second_thrall.global_position + Vector3(0,2,0)
+		mainCam.target_curr = locked_target.global_position + Vector3(0,2,0)
+		dot.global_position = locked_target.global_position + Vector3(0,2,0)
+		dot.visible = true
 		# FIXME ~ HACK - turning should be handled by the animation and thrall control system!
 		var og_rot = thrall.global_rotation_degrees
-		thrall.look_at(thrall.global_position + (thrall.global_position - test_second_thrall.global_position))
+		thrall.look_at(thrall.global_position + (thrall.global_position - locked_target.global_position))
 		thrall.global_rotation_degrees.x = 0
 		thrall.global_rotation_degrees.z = 0
+		dot.look_at(mainCam.global_position)
+		dot.get_node("TargetReticle").rotate_z(delta) #(dot.global_basis.z.normalized(), delta)
+		dot.scale = Vector3.ONE + (Vector3.ONE * ((1 + (sin(Time.get_unix_time_from_system() * 12)*0.5))) * 0.5 )
 	else:
+		dot.visible = false
 		mainCam.target_curr = Vector3.ZERO
 
 

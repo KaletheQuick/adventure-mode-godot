@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://brxde3at3fjjc"
+path="res://.godot/imported/target_reticle.obj-840bad73a3aa742c545530a50a292b90.mesh"
+
+[deps]
+
+files=["res://.godot/imported/target_reticle.obj-840bad73a3aa742c545530a50a292b90.mesh"]
+
+source_file="res://art/target_reticle.obj"
+dest_files=["res://.godot/imported/target_reticle.obj-840bad73a3aa742c545530a50a292b90.mesh", "res://.godot/imported/target_reticle.obj-840bad73a3aa742c545530a50a292b90.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
