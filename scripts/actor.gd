@@ -69,6 +69,7 @@ func _ready():
 #	animation_tree.tree_root = defaultANIMO
 	hurtboxes = find_hurtboxes_recursive(self)
 	dress_up()
+	compile_new_anim_tree()
 	
 func stop_movement():
 	desired_move = Vector3.ZERO
@@ -214,6 +215,8 @@ func apply_animation_params():
 		if item.name.begins_with("parameters/"):
 			if item.name.contains("MOVE") and item.name.contains("blend_position"):
 				animation_tree.set(item.name, transformed_move_dir)
+			elif item.name.contains("BLOCK"): # and item.name.contains("blend_position"):
+				animation_tree.set(item.name, 1 if block else 0)
 
 
 
@@ -237,6 +240,10 @@ func movement_package_checks():
 			continue
 		if movement_sets[x].transfer_situation_check(self):
 			current_moveset = x
+			
+			var state_machine = animation_tree["parameters/playback"]
+			state_machine.travel(movement_sets[current_moveset].name)
+			return
 			animation_tree.tree_root = movement_sets[current_moveset].anim_tree
 			animation_tree.active = false
 			animation_tree.active = true
@@ -246,6 +253,9 @@ func movement_package_checks():
 	# Check to see if we need to bail out of our current state
 	if current_moveset != 0 and movement_sets[current_moveset].release_situation_check(self):
 		current_moveset = 0
+		var state_machine = animation_tree["parameters/playback"]
+		state_machine.travel(movement_sets[current_moveset].name)
+		return
 		animation_tree.tree_root = movement_sets[current_moveset].anim_tree
 		animation_tree.active = false
 		animation_tree.active = true
@@ -299,3 +309,24 @@ func take_damage(damage : float, id : int):
 	if id not in damage_attack_id_buffer:
 		damage_attack_id_buffer.append(id)
 		health_current -= damage
+
+
+func compile_new_anim_tree():
+	var master_tree = AnimationNodeStateMachine.new()
+	var counter = 0
+	for mvpk in movement_sets:
+		master_tree.add_node(mvpk.name, mvpk.anim_tree, Vector2(0, counter))
+
+	var masterstate_transition = AnimationNodeStateMachineTransition.new()
+	masterstate_transition.advance_mode = AnimationNodeStateMachineTransition.ADVANCE_MODE_ENABLED
+	masterstate_transition.xfade_time = 0.1
+	for mvpk in movement_sets:
+		for othermove in movement_sets:
+			if mvpk == othermove:
+				continue
+			master_tree.add_transition(mvpk.name, othermove.name, masterstate_transition.duplicate())
+
+	animation_tree.tree_root = master_tree # neat. What? No transitions or anything
+	var state_machine = animation_tree["parameters/playback"]
+	#state_machine.travel()
+	state_machine.start(movement_sets[0].name)

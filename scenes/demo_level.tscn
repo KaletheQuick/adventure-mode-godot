@@ -25,7 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://dyacbq330bbx0" path="res://prefabs/environment/shrub_commonfruit.tscn" id="18_x8y34"]
 [ext_resource type="PackedScene" uid="uid://cvyjw256lsge2" path="res://prefabs/environment/grass.tscn" id="19_y2i5j"]
 [ext_resource type="PackedScene" uid="uid://2lgruxx4kd5a" path="res://prefabs/environment/boulder.tscn" id="21_1s8oa"]
-[ext_resource type="Texture2D" path="res://art/textures/title_menu.png" id="21_20iju"]
+[ext_resource type="Texture2D" uid="uid://0mt1ycj6r3su" path="res://art/textures/title_menu.png" id="21_20iju"]
 [ext_resource type="PackedScene" uid="uid://dettguqlldl03" path="res://prefabs/UI_items.tscn" id="22_dqwus"]
 [ext_resource type="PackedScene" uid="uid://cme484l06g14s" path="res://prefabs/environment/tree_foliage.tscn" id="22_rpa0u"]
 [ext_resource type="PackedScene" uid="uid://cabwsn82igehw" path="res://prefabs/environment/campfire.tscn" id="28_sx28n"]
@@ -343,9 +343,8 @@ dist_attack = 15
 [node name="footall_sfx2" type="Node" parent="skele_03"]
 script = ExtResource("9_upj33")
 
-[node name="skele_04" parent="." node_paths=PackedStringArray("right_weapon") instance=ExtResource("8_3hjxr")]
+[node name="skele_04" parent="." instance=ExtResource("8_3hjxr")]
 transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 29.4989, -0.0550718, 2.8655)
-right_weapon = NodePath("../skele_01/skeleton/char/Skeleton3D/BoneAttachment3D/sword/ShapeCast3D")
 
 [node name="footall_sfx2" type="Node" parent="skele_04"]
 script = ExtResource("9_upj33")

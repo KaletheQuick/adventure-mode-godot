@@ -82,7 +82,7 @@ func _look(delta):
 	something = something.normalized()
 	# Calculate rotation
 	var x_rot = (something).signed_angle_to(target_vector -Vector3(0,target_vector.y, 0), Vector3.UP)
-	cam_rot_velocity.x = x_rot * 10
+	cam_rot_velocity.x = x_rot * 50
 	cam_rot_velocity.y = clampf((midscreen.y - target_screenPos.y) * 0.06 , -5, 5) # TODO - Remove magic numbers
 	# Apply 
 	rotation_degrees.y += cam_rot_velocity.x * (cam_rot_velocity.x**2) * delta

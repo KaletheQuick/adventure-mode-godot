@@ -53,7 +53,7 @@ func player_look(delta):
 	var default_angle = -20
 	if cam.target_curr == Vector3.ZERO: # NOTE - No target
 		rotate(global_basis.x, look_rotation_vel.y)
-		rotate_y(look_rotation_vel.x)
+		rotate_y(-look_rotation_vel.x)
 		global_rotation_degrees.x = clamp(global_rotation_degrees.x, -60,20)
 	else:
 		var original_rot_x = global_rotation_degrees.x

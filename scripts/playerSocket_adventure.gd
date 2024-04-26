@@ -45,7 +45,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if thrall.demo_sit_lounge == true:		
-		if Input.is_action_just_pressed("p1_start"):
+		if Input.is_action_just_pressed("p1_start") or Input.is_key_pressed(KEY_ESCAPE) or Input.is_key_pressed(KEY_ENTER) or Input.is_key_pressed(KEY_SPACE) or Input.is_key_pressed(KEY_CTRL) or Input.is_key_pressed(KEY_ALT):
 			thrall.demo_sit_lounge = false
 			mainCam.freeze = false
 			ganty_thing.freeze = false
@@ -181,7 +181,7 @@ func find_interactable_objects():
 		if col_result["collider"] is Harvestable:
 			var crop = col_result["collider"] as Harvestable
 			action_prompt.show_prompt(crop.harvest_name)
-			if Input.is_action_just_pressed(player_prefix + "event_action"):
+			if Input.is_action_just_pressed(player_prefix + "event_action") and col_result["collider"].collected == false:
 				col_result["collider"].my_pickup_logic()
 				thrall.item_get.emit("fruit")
 	else:
