@@ -35,6 +35,7 @@ var look_lock = false
 # acreas and interactable things
 
 func _ready():
+	dobox(Vector3i(2,3,5))
 	pass # Replace with function body.
 	
 	dot = target_locker.instantiate()
@@ -186,3 +187,12 @@ func find_interactable_objects():
 				thrall.item_get.emit("fruit")
 	else:
 		action_prompt.hide_prompt()
+
+
+
+
+func dobox(box : Vector3i):
+	for x in range(box.x):
+		for y in range(box.y):
+			for z in range(box.z):
+				print("pos:(", x, ",", y, ",", z, ")")
