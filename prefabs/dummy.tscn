@@ -1454,17 +1454,6 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../skeleton")
 root_motion_track = NodePath("char/Skeleton3D:Root")
-libraries = {
-"": SubResource("AnimationLibrary_wj084"),
-"aLib_combat_sword": ExtResource("12_lt42b"),
-"aLib_swim": ExtResource("11_x7kj2"),
-"animationLib_climb": ExtResource("12_fos0v"),
-"dodge": ExtResource("18_qjk6f"),
-"from_old": SubResource("AnimationLibrary_v64fa"),
-"glider": SubResource("AnimationLibrary_qc1fp"),
-"walk": SubResource("AnimationLibrary_1qjxe"),
-"walk_jog_run": SubResource("AnimationLibrary_rnvmx")
-}
 tree_root = ExtResource("6_vsgn1")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../skeleton/AnimationPlayer")
@@ -1497,17 +1486,6 @@ parameters/BlendTree/horace/request = 0
 [node name="AnimationTree2" type="AnimationTree" parent="."]
 root_node = NodePath("../skeleton")
 root_motion_track = NodePath("char/Skeleton3D:Root")
-libraries = {
-"": SubResource("AnimationLibrary_wj084"),
-"aLib_combat_sword": ExtResource("12_lt42b"),
-"aLib_swim": ExtResource("11_x7kj2"),
-"animationLib_climb": ExtResource("12_fos0v"),
-"dodge": ExtResource("18_qjk6f"),
-"from_old": SubResource("AnimationLibrary_v64fa"),
-"glider": SubResource("AnimationLibrary_qc1fp"),
-"walk": SubResource("AnimationLibrary_1qjxe"),
-"walk_jog_run": SubResource("AnimationLibrary_rnvmx")
-}
 tree_root = ExtResource("6_vsgn1")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../skeleton/AnimationPlayer")
