@@ -45,10 +45,9 @@ radial_segments = 4
 
 [node name="Player Sockets" type="Node" parent="."]
 
-[node name="p1_psock_adventure" type="Node" parent="Player Sockets" node_paths=PackedStringArray("thrall", "test_second_thrall", "mainCam")]
+[node name="p1_psock_adventure" type="Node" parent="Player Sockets" node_paths=PackedStringArray("thrall", "mainCam")]
 script = ExtResource("1_ma6sh")
 thrall = NodePath("../../actor")
-test_second_thrall = NodePath("../../guy follow")
 mainCam = NodePath("../../Camera")
 
 [node name="terrain" type="Node3D" parent="."]
@@ -138,12 +137,10 @@ size = Vector3(100, 12, 100)
 material = ExtResource("3_gt81x")
 
 [node name="CSGTorus3D" type="CSGTorus3D" parent="terrain/CSGBox3D"]
-transform = Transform3D(1, 0, 0, 0, 0.988159, 0.153434, 0, -0.153434, 0.988159, -28.4095, 2.25911, -29.0041)
+transform = Transform3D(1, 0, 0, 0, -0.997631, -0.0687986, 0, 0.0687986, -0.997631, -28.4095, 2.25911, -29.0041)
 operation = 2
-inner_radius = 10.0
+inner_radius = 8.18
 outer_radius = 20.0
-sides = 16
-ring_sides = 8
 material = ExtResource("4_2wciv")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="terrain/CSGBox3D"]

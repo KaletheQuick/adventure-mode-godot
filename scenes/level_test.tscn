@@ -514,10 +514,9 @@ script = ExtResource("1_70of5")
 
 [node name="Player Sockets" type="Node" parent="."]
 
-[node name="p1_psock_adventure" type="Node" parent="Player Sockets" node_paths=PackedStringArray("thrall", "test_second_thrall", "mainCam")]
+[node name="p1_psock_adventure" type="Node" parent="Player Sockets" node_paths=PackedStringArray("thrall", "mainCam")]
 script = ExtResource("1_imwoy")
 thrall = NodePath("../../actor")
-test_second_thrall = NodePath("../../actor2")
 mainCam = NodePath("../../Camera")
 
 [node name="terrain" type="Node3D" parent="."]
