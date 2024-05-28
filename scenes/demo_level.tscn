@@ -651,7 +651,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -126.754, 15.9007, -33.8653)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -126.616, 15.8264, -41.0111)
 
 [node name="Door of Trials" parent="." instance=ExtResource("4_04pkj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.2773, 0.254406, -3.93556)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 21.435, 0.254404, 40.5392)
 
 [node name="Area3D" type="Area3D" parent="Door of Trials"]
 

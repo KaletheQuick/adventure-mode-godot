@@ -9,10 +9,10 @@ animation = &"walk_jog_run/jog_fwd"
 graph_offset = Vector2(-25, 181)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_qyuku")
 nodes/Animation/position = Vector2(0, 213.333)
-nodes/Horace/node = SubResource("AnimationNodeTimeScale_lccqx")
-nodes/Horace/position = Vector2(363, 246.033)
+"nodes/SET_F[1-75]/node" = SubResource("AnimationNodeTimeScale_lccqx")
+"nodes/SET_F[1-75]/position" = Vector2(363, 246.033)
 nodes/output/position = Vector2(613.333, 373.333)
-node_connections = [&"Horace", 0, &"Animation", &"output", 0, &"Horace"]
+node_connections = [&"SET_F[1-75]", 0, &"Animation", &"output", 0, &"SET_F[1-75]"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i6s4s"]
 animation = &"walk_jog_run/idle_wjr"
@@ -32,12 +32,12 @@ animation = &"walk/turn_right 2"
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_stou0"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ibcnr"]
-graph_offset = Vector2(-393.333, -242.667)
+graph_offset = Vector2(-318, -70)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_vl7et")
 nodes/Animation/position = Vector2(-285.56, 83.0867)
-nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_stou0")
-nodes/TimeScale/position = Vector2(0, 106.667)
-node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
+"nodes/SET_F[5]/node" = SubResource("AnimationNodeTimeScale_stou0")
+"nodes/SET_F[5]/position" = Vector2(0, 106.667)
+node_connections = [&"SET_F[5]", 0, &"Animation", &"output", 0, &"SET_F[5]"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lpm44"]
 animation = &"walk/turn_left 2"
@@ -45,12 +45,13 @@ animation = &"walk/turn_left 2"
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_eol5t"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_nirgt"]
+graph_offset = Vector2(327, 268)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_lpm44")
 nodes/Animation/position = Vector2(312.987, 417.047)
-nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_eol5t")
-nodes/TimeScale/position = Vector2(746.667, 506.667)
+"nodes/SET_F[5]/node" = SubResource("AnimationNodeTimeScale_eol5t")
+"nodes/SET_F[5]/position" = Vector2(746.667, 506.667)
 nodes/output/position = Vector2(1066.67, 533.333)
-node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
+node_connections = [&"SET_F[5]", 0, &"Animation", &"output", 0, &"SET_F[5]"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uqj7a"]
 animation = &"walk/turn_right 2"
@@ -58,12 +59,13 @@ animation = &"walk/turn_right 2"
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_j7y0d"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_k0cbc"]
+graph_offset = Vector2(108, 224)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_uqj7a")
 nodes/Animation/position = Vector2(319.44, 381.553)
-nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_j7y0d")
-nodes/TimeScale/position = Vector2(563.053, 517.073)
+"nodes/SET_F[10]/node" = SubResource("AnimationNodeTimeScale_j7y0d")
+"nodes/SET_F[10]/position" = Vector2(563.053, 517.073)
 nodes/output/position = Vector2(826.667, 506.667)
-node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
+node_connections = [&"SET_F[10]", 0, &"Animation", &"output", 0, &"SET_F[10]"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8xb8h"]
 animation = &"walk/turn_left 2"
@@ -71,12 +73,13 @@ animation = &"walk/turn_left 2"
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_sh8oh"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_pfw83"]
+graph_offset = Vector2(98, 169)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_8xb8h")
 nodes/Animation/position = Vector2(338.8, 294.433)
-nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_sh8oh")
-nodes/TimeScale/position = Vector2(613.333, 373.333)
+"nodes/SET_F[10]/node" = SubResource("AnimationNodeTimeScale_sh8oh")
+"nodes/SET_F[10]/position" = Vector2(613.333, 373.333)
 nodes/output/position = Vector2(986.667, 373.333)
-node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
+node_connections = [&"SET_F[10]", 0, &"Animation", &"output", 0, &"SET_F[10]"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_84qrw"]
 animation = &"walk_jog_run/walk_fwd"

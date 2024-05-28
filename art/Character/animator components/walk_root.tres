@@ -176,7 +176,7 @@ animation = &"walk/airborne"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tddch"]
 advance_mode = 2
-advance_condition = &"land"
+advance_expression = "is_on_floor()"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_slw4a"]
 switch_mode = 2
@@ -191,7 +191,7 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bibi4"]
 advance_mode = 2
-advance_condition = &"jump"
+advance_expression = "desired_move.y > 0.5"
 
 [sub_resource type="Curve" id="Curve_nf7wq"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
@@ -230,7 +230,7 @@ advance_expression = "is_on_floor() == false"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_km826"]
 advance_mode = 2
-advance_condition = &"jump"
+advance_expression = "desired_move.y > 0.5"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pgr03"]
 xfade_time = 0.25
@@ -290,4 +290,4 @@ states/walk_land/position = Vector2(456.827, 249.333)
 states/walk_taking_off/node = SubResource("AnimationNodeAnimation_xf3j1")
 states/walk_taking_off/position = Vector2(468, 100)
 transitions = ["walk_airborne", "walk_land", SubResource("AnimationNodeStateMachineTransition_tddch"), "walk_land", "MOVE walk", SubResource("AnimationNodeStateMachineTransition_slw4a"), "Jump w vel", "walk_airborne", SubResource("AnimationNodeStateMachineTransition_86anj"), "Start", "MOVE walk", SubResource("AnimationNodeStateMachineTransition_4hx0r"), "MOVE walk", "Jump w vel", SubResource("AnimationNodeStateMachineTransition_bibi4"), "a_light_01", "a_light_02", SubResource("AnimationNodeStateMachineTransition_d58rr"), "a_light_02", "a_light_01", SubResource("AnimationNodeStateMachineTransition_4x4kn"), "MOVE walk", "walk_taking_off", SubResource("AnimationNodeStateMachineTransition_ip24d"), "walk_taking_off", "MOVE walk", SubResource("AnimationNodeStateMachineTransition_bg5t4"), "walk_taking_off", "walk_airborne", SubResource("AnimationNodeStateMachineTransition_2png7"), "MOVE sprint", "Jump w vel", SubResource("AnimationNodeStateMachineTransition_km826"), "MOVE walk", "MOVE sprint", SubResource("AnimationNodeStateMachineTransition_pgr03"), "MOVE sprint", "MOVE walk", SubResource("AnimationNodeStateMachineTransition_d5g8a"), "MOVE walk", "sit_lounge_tscn", SubResource("AnimationNodeStateMachineTransition_xqs0k"), "sit_lounge_tscn", "sit_lounge_toStand", SubResource("AnimationNodeStateMachineTransition_uitot"), "sit_lounge_toStand", "MOVE walk", SubResource("AnimationNodeStateMachineTransition_f21mm"), "MOVE walk", "death", SubResource("AnimationNodeStateMachineTransition_4kbh8")]
-graph_offset = Vector2(-233, -224)
+graph_offset = Vector2(-90, -92)

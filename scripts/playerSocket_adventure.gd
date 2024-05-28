@@ -148,10 +148,11 @@ func _collect_inputs(delta):
 		dot.global_position = locked_target.global_position + Vector3(0,2,0)
 		dot.visible = true
 		# FIXME ~ HACK - turning should be handled by the animation and thrall control system!
-		var og_rot = thrall.global_rotation_degrees
-		thrall.look_at(thrall.global_position + (thrall.global_position - locked_target.global_position))
-		thrall.global_rotation_degrees.x = 0
-		thrall.global_rotation_degrees.z = 0
+		if thrall.combat_mode == true:
+			var og_rot = thrall.global_rotation_degrees
+			thrall.look_at(thrall.global_position + (thrall.global_position - locked_target.global_position))
+			thrall.global_rotation_degrees.x = 0
+			thrall.global_rotation_degrees.z = 0
 		dot.look_at(mainCam.global_position)
 		dot.get_node("TargetReticle").rotate_z(delta) #(dot.global_basis.z.normalized(), delta)
 		dot.scale = Vector3.ONE + (Vector3.ONE * ((1 + (sin(Time.get_unix_time_from_system() * 12)*0.5))) * 0.5 )

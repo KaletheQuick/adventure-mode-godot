@@ -217,6 +217,9 @@ func apply_animation_params():
 				animation_tree.set(item.name, transformed_move_dir)
 			elif item.name.contains("BLOCK"): # and item.name.contains("blend_position"):
 				animation_tree.set(item.name, 1 if block else 0)
+			elif item.name.contains("JUMP"): # and item.name.contains("blend_position"):
+				animation_tree.set(item.name, 1 if desired_move.y > 0.5 else 0)
+				
 
 
 
@@ -330,3 +333,17 @@ func compile_new_anim_tree():
 	var state_machine = animation_tree["parameters/playback"]
 	#state_machine.travel()
 	state_machine.start(movement_sets[0].name)
+
+	# Initialize default values
+	# NOTE - This is a hack.
+	# This iterates through paramiter names, then extracts default values from them, and applies them
+	# This is a hack, because little things like speeds or blends are saved on the animated thing,
+	# Not in the animation tree 
+	var param_names = animation_tree.get_property_list() #._get_parameter_list()
+	for item in param_names: # not actually param names now, still trying to get a list'
+		if item.name.begins_with("parameters/"):
+			if item.name.contains("SET_F["):
+				var workstring = item.name.substr(item.name.find('[')+1)
+				workstring = workstring.replace("-", ".") # NOTE - Another hack, param names cant have dots
+				workstring = workstring.substr(0, workstring.find(']'))
+				animation_tree.set(item.name, workstring.to_float())
