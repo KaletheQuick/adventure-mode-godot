@@ -17,7 +17,6 @@ ssao_radius = 3.23
 ssao_intensity = 3.56
 ssao_power = 1.21838
 ssao_detail = 1.62
-fog_enabled = true
 fog_light_energy = 0.0
 fog_density = 0.0215
 fog_aerial_perspective = 1.0

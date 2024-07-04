@@ -11,15 +11,15 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 #@onready var combo_bar = get_node("/root/level_test/CanvasLayer/ProgressBar")
 
-var desired_move = Vector3.ZERO
+@export var desired_move = Vector3.ZERO
 
 var jump_dbounce = false # Have we recently jumped?
 var LDT = 0.01 # Last delta time, calling get_process_delta_time() in the physics loop was causing issues
-var block = false
-var attack_light = false
-var attack_jump = false
-var attack_heavy = false
-var dodge = false
+@export var block = false
+@export var attack_light = false
+@export var attack_jump = false
+@export var attack_heavy = false
+@export var dodge = false
 
 signal attack_hit(actor_hit, attack_id)
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=58 format=3 uid="uid://dlfhcdaajixhi"]
+[gd_scene load_steps=59 format=3 uid="uid://dlfhcdaajixhi"]
 
 [ext_resource type="Script" path="res://scripts/playerSocket_adventure.gd" id="1_dcdan"]
 [ext_resource type="PackedScene" uid="uid://b34jdvaqt8gbn" path="res://art/Props/z_target.tscn" id="2_0jwv4"]
 [ext_resource type="Script" path="res://scripts/cam_gantry_playerFollow.gd" id="2_ejucj"]
+[ext_resource type="Script" path="res://scripts/Multplayer_Manager.gd" id="3_1owo4"]
 [ext_resource type="PackedScene" uid="uid://8hu74ym7skte" path="res://prefabs/adventure_mode_demo_level.tscn" id="3_t21ku"]
 [ext_resource type="PackedScene" uid="uid://vwkcbj8sdfmp" path="res://prefabs/door_of_trials.tscn" id="4_04pkj"]
 [ext_resource type="Environment" uid="uid://c5vgp5xgbfy74" path="res://scenes/default_env.tres" id="7_jiim7"]
@@ -252,6 +253,10 @@ title_card = NodePath("../../user_interface/title_menu")
 target_locker = ExtResource("2_0jwv4")
 action_prompt = NodePath("../../user_interface/Action Prompt")
 
+[node name="Multplayer Manager" type="Node" parent="." node_paths=PackedStringArray("server_menu")]
+script = ExtResource("3_1owo4")
+server_menu = NodePath("../user_interface/MultiplayerControl_debug")
+
 [node name="cam_gantry_playerFollow" type="Node3D" parent="." node_paths=PackedStringArray("thrall", "cam")]
 transform = Transform3D(0.887815, 0, 0.4602, 0, 1, 0, -0.4602, 0, 0.887815, -1.957, 0.66, -2.32)
 script = ExtResource("2_ejucj")
@@ -429,6 +434,36 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("21_20iju")
 expand_mode = 2
+
+[node name="MultiplayerControl_debug" type="Panel" parent="user_interface"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 409.0
+offset_top = 275.0
+offset_right = -409.0
+offset_bottom = -275.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="user_interface/MultiplayerControl_debug"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="butt_Host" type="Button" parent="user_interface/MultiplayerControl_debug/VBoxContainer"]
+layout_mode = 2
+text = "Host"
+
+[node name="butt_Connect" type="Button" parent="user_interface/MultiplayerControl_debug/VBoxContainer"]
+layout_mode = 2
+text = "Connect
+"
 
 [node name="audio level ambiance" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_jhu8y")
@@ -662,6 +697,12 @@ shape = SubResource("CylinderShape3D_mvlxy")
 [node name="button_floor" parent="." instance=ExtResource("30_e3gsy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.01168, -1.19209e-07, -3.82142)
 
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://prefabs/actor.tscn")
+spawn_path = NodePath("../Multplayer Manager")
+
 [connection signal="body_entered" from="adventure_mode_demoLevel/Door of Trials/Area3D" to="adventure_mode_demoLevel/Door of Trials" method="trigger_animation"]
 [connection signal="body_entered" from="adventure_mode_demoLevel/Door of Trials2/Area3D" to="adventure_mode_demoLevel/Door of Trials2" method="trigger_animation"]
+[connection signal="pressed" from="user_interface/MultiplayerControl_debug/VBoxContainer/butt_Host" to="Multplayer Manager" method="_on_butt_host_pressed"]
+[connection signal="pressed" from="user_interface/MultiplayerControl_debug/VBoxContainer/butt_Connect" to="Multplayer Manager" method="_on_butt_connect_pressed"]
 [connection signal="body_exited" from="Door of Trials/Area3D" to="Door of Trials" method="trigger_animation"]
