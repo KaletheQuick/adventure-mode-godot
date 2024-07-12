@@ -19,6 +19,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if thrall == null:
+		return
 	var desired_pos = thrall.global_position
 	desired_pos.y += follow_height_offset
 	velocity += (desired_pos - global_position) * 0.1 * delta

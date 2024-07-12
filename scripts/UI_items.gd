@@ -13,7 +13,7 @@ var cnt_coins = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	thrall.item_get.connect(_item_watch)
+	#thrall.item_get.connect(_item_watch)
 	# TODO sign up to signals
 	pass # Replace with function body.
 

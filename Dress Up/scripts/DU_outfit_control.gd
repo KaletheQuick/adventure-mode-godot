@@ -29,7 +29,7 @@ func make_garmet_buttons():
 		var new_butt = Button.new()
 		new_butt.text = garment.resource_name
 		created_buttons.append(new_butt)
-		if garment in dress_up_controller.garments:
+		if is_instance_valid(dress_up_controller) && garment in dress_up_controller.garments:
 			new_butt.connect("pressed", self._garment_unequip.bind(garment))
 			worn_area.add_child(new_butt)
 		else: 

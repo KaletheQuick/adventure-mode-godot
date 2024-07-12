@@ -65,6 +65,19 @@ signal killed_something
 signal xp_get
 signal item_get(item_name)
 
+func _enter_tree() -> void:
+	if name != "1" && multiplayer.get_unique_id() > 1:
+		set_multiplayer_authority(str(name).to_int())
+
+		get_parent().get_parent().find_child("Player Sockets").find_child("p1_psock_adventure").thrall = self
+		var cam_gant = get_parent().get_parent().find_child("cam_gantry_playerFollow")
+		cam_gant.thrall = self
+		cam_gant.cam.target_current = self
+		cam_gant.freeze = false
+		cam_gant.cam.freeze = false
+		var netman = get_parent()
+		netman.outfit_control.dress_up_controller = self.find_child("DresserUpper")
+
 func _ready():
 #	animation_tree.tree_root = defaultANIMO
 	hurtboxes = find_hurtboxes_recursive(self)

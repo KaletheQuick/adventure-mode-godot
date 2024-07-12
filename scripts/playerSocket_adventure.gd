@@ -45,6 +45,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if thrall == null:
+		return
 	if thrall.demo_sit_lounge == true:		
 		if Input.is_action_just_pressed("p1_start") or Input.is_key_pressed(KEY_ESCAPE) or Input.is_key_pressed(KEY_ENTER) or Input.is_key_pressed(KEY_SPACE) or Input.is_key_pressed(KEY_CTRL) or Input.is_key_pressed(KEY_ALT):
 			thrall.demo_sit_lounge = false
@@ -58,8 +60,6 @@ func _process(delta):
 			tween2.set_ease(Tween.EASE_IN)
 			tween2.set_trans(Tween.TRANS_CIRC)
 			tween2.tween_property(title_card, "modulate", Color.TRANSPARENT, 1)
-		return
-	if thrall == null:
 		return
 	_collect_inputs(delta)
 	#print(delta)
