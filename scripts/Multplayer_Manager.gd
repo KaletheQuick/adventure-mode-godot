@@ -28,6 +28,7 @@ func _on_butt_host_pressed() -> void:
 	multiplayer.peer_connected.connect(add_player)
 
 	add_player(multiplayer.get_unique_id())
+	server_menu.visible = false
 
 func _on_butt_connect_pressed() -> void:
 	var server_ip = ip_input.text
@@ -35,6 +36,7 @@ func _on_butt_connect_pressed() -> void:
 	server_menu.hide()
 	enet_peer.create_client(server_ip, PORT)
 	multiplayer.multiplayer_peer = enet_peer
+	server_menu.visible = false
 
 
 func add_player(peer_id):

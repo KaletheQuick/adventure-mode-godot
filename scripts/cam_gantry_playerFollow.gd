@@ -1,7 +1,7 @@
 extends Node3D
 
 var follow_height_offset = 1.0
-var cam_follow_dist = 5
+var cam_follow_dist = 5.0
 @export var thrall : Actor
 @export var cam : Camera3D
 

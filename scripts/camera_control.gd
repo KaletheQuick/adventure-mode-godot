@@ -21,6 +21,7 @@ var smoothing = 0.1
 var cam_velocity = Vector3.ZERO
 var leash_dist_current = 3.0
 var follow_offset = Vector3(0, 2.3, 0)
+@export var look_offset_screen_percent = 0.9
 
 var cam_rot_velocity = Vector2.ZERO
 
@@ -45,7 +46,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	#return
-	print(str(get_viewport().size) + ", " + str(get_window().size))
+	#print(str(get_viewport().size) + ", " + str(get_window().size))
 	
 	var midscreen = get_viewport().size * 0.8
 	dot1.global_position = midscreen
@@ -88,7 +89,7 @@ func _look(delta):
 	# transform target to screen space
 	var target_screenPos = unproject_position(target_current.global_position)
 	#print(target_screenPos)
-	var midscreen = get_viewport().size * 0.8
+	var midscreen = get_viewport().size * look_offset_screen_percent
 	# Get direction to target
 	var target_vector = (global_position-target_current.global_position).normalized()
 	var something = global_basis.z

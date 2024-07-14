@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://w6l5rubt30f3"]
+[gd_scene load_steps=69 format=3 uid="uid://bvdky0inf3c11"]
 
 [ext_resource type="Script" path="res://scripts/playerSocket_adventure.gd" id="1_03al4"]
 [ext_resource type="PackedScene" uid="uid://b34jdvaqt8gbn" path="res://art/Props/z_target.tscn" id="2_xa5ur"]
@@ -7,16 +7,20 @@
 [ext_resource type="Environment" uid="uid://c5vgp5xgbfy74" path="res://scenes/default_env.tres" id="5_qqnwc"]
 [ext_resource type="PackedScene" uid="uid://8hu74ym7skte" path="res://prefabs/adventure_mode_demo_level.tscn" id="6_xtlsg"]
 [ext_resource type="PackedScene" uid="uid://vwkcbj8sdfmp" path="res://prefabs/door_of_trials.tscn" id="7_qmjli"]
+[ext_resource type="Script" path="res://scripts/UI/Game_HUD_Master.gd" id="11_whj5c"]
 [ext_resource type="Script" path="res://Dress Up/scripts/DU_outfit_control.gd" id="12_kqqss"]
+[ext_resource type="Texture2D" uid="uid://dbt40o1sy8732" path="res://icon.svg" id="12_lnoy6"]
 [ext_resource type="Texture2D" uid="uid://vog6jseecl06" path="res://art/textures/icon_commonFruit.png" id="13_acglf"]
 [ext_resource type="Texture2D" uid="uid://clacrlmn71n6m" path="res://art/textures/dpad_itemMenu.png" id="13_yb178"]
 [ext_resource type="Texture2D" uid="uid://b8ouugb0hh374" path="res://art/textures/icon_coin.png" id="14_4d4gf"]
+[ext_resource type="Texture2D" uid="uid://cjx57huytv66n" path="res://art/textures/icon_shield_nonagon.png" id="15_5lk5y"]
+[ext_resource type="Texture2D" uid="uid://cmvl3hi1dbt0s" path="res://art/textures/icon_shield_upBlast.png" id="15_ihrlk"]
 [ext_resource type="Texture2D" uid="uid://cic2vayv6qx4i" path="res://art/textures/particles/particle_smoke.png" id="15_jeyv0"]
+[ext_resource type="Texture2D" uid="uid://dh82a1sw0mpyv" path="res://art/textures/icon_sword_goddette.png" id="16_cj551"]
 [ext_resource type="Texture2D" uid="uid://d1yr1h0oesfd4" path="res://art/textures/icon_axe_questions.png" id="16_d7447"]
 [ext_resource type="Script" path="res://scripts/camera_control.gd" id="17_1y1j1"]
 [ext_resource type="PackedScene" uid="uid://ibxguf2n6yr5" path="res://prefabs/UI_action_prompt.tscn" id="18_5ww34"]
 [ext_resource type="PackedScene" uid="uid://dettguqlldl03" path="res://prefabs/UI_items.tscn" id="21_jilyl"]
-[ext_resource type="Texture2D" uid="uid://0mt1ycj6r3su" path="res://art/textures/title_menu.png" id="22_nmb5u"]
 [ext_resource type="AudioStream" uid="uid://hxog1lltd7d4" path="res://art/audio/506911__nox_sound__ambiance_wind_forest_moderate_loop_stereo.wav" id="23_w8mif"]
 [ext_resource type="PackedScene" uid="uid://bldcnjo1gthob" path="res://prefabs/elevator_platform.tscn" id="24_s5s5f"]
 [ext_resource type="PackedScene" uid="uid://dyacbq330bbx0" path="res://prefabs/environment/shrub_commonfruit.tscn" id="25_ou45n"]
@@ -231,6 +235,15 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 metadata/_snap_enabled = true
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mxbng"]
+bg_color = Color(0.3, 0.234, 0.234, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gkepa"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8m6ce"]
+bg_color = Color(0.0500001, 1, 0, 1)
+
 [sub_resource type="Gradient" id="Gradient_cyabv"]
 offsets = PackedFloat32Array(0, 0.844156, 1)
 colors = PackedColorArray(0.222784, 0.252874, 0.280382, 0.356863, 0, 0, 0, 1, 0.533333, 0.533333, 0.533333, 0)
@@ -240,6 +253,28 @@ gradient = SubResource("Gradient_cyabv")
 fill = 2
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 1)
+
+[sub_resource type="Gradient" id="Gradient_xb1qg"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hn0oc"]
+gradient = SubResource("Gradient_xb1qg")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_81d6m"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.532468, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.103896, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5ujdn"]
+gradient = SubResource("Gradient_81d6m")
+fill = 1
+fill_from = Vector2(1, 0.6)
+fill_to = Vector2(0.1, 0.1)
+metadata/_snap_enabled = true
 
 [sub_resource type="Gradient" id="Gradient_4dflp"]
 colors = PackedColorArray(0.977937, 0.977937, 0.977937, 1, 1, 1, 1, 0.00392157)
@@ -260,15 +295,14 @@ radius = 4.98898
 
 [node name="Player Sockets" type="Node" parent="."]
 
-[node name="p1_psock_adventure" type="Node" parent="Player Sockets" node_paths=PackedStringArray("enemies", "mainCam", "ganty_thing", "vignette", "title_card", "action_prompt")]
+[node name="p1_psock_adventure" type="Node" parent="Player Sockets" node_paths=PackedStringArray("enemies", "mainCam", "ganty_thing", "vignette", "action_prompt")]
 script = ExtResource("1_03al4")
 enemies = [null, null, null, null]
 mainCam = NodePath("../../Camera")
 ganty_thing = NodePath("../../cam_gantry_playerFollow")
 vignette = NodePath("../../user_interface/vinyette")
-title_card = NodePath("../../user_interface/title_menu")
 target_locker = ExtResource("2_xa5ur")
-action_prompt = NodePath("../../user_interface/Action Prompt")
+action_prompt = NodePath("../../user_interface/HUD/Action Prompt")
 
 [node name="Multplayer Manager" type="Node" parent="." node_paths=PackedStringArray("server_menu", "cam_gant", "cam_actu", "ip_input", "outfit_control")]
 script = ExtResource("3_608j4")
@@ -305,7 +339,6 @@ shape = SubResource("ConcavePolygonShape3D_bgg16")
 
 [node name="Door of Trials" parent="adventure_mode_demoLevel" instance=ExtResource("7_qmjli")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -21)
-locked = true
 
 [node name="Area3D" type="Area3D" parent="adventure_mode_demoLevel/Door of Trials"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 7.08257)
@@ -352,11 +385,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Action Prompt" parent="user_interface" instance=ExtResource("18_5ww34")]
-layout_mode = 1
-
 [node name="ui_items" parent="user_interface" node_paths=PackedStringArray("door_unlock") instance=ExtResource("21_jilyl")]
 layout_mode = 1
+scale = Vector2(1.007, 1)
 door_unlock = NodePath("../../adventure_mode_demoLevel/Door of Trials")
 
 [node name="vinyette" type="TextureRect" parent="user_interface"]
@@ -367,16 +398,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_ekrka")
-
-[node name="title_menu" type="TextureRect" parent="user_interface"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("22_nmb5u")
-expand_mode = 2
 
 [node name="MultiplayerControl_debug" type="Panel" parent="user_interface"]
 layout_mode = 1
@@ -411,6 +432,7 @@ layout_mode = 2
 placeholder_text = "ip addres of host"
 
 [node name="Outfit_control" type="Control" parent="user_interface" node_paths=PackedStringArray("available_area", "worn_area")]
+visible = false
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 3
 anchors_preset = 0
@@ -460,18 +482,91 @@ text = "Worn"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="dpad_itemMenu" type="Control" parent="user_interface"]
+[node name="HUD" type="Control" parent="user_interface"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("11_whj5c")
+
+[node name="status_readout" type="Control" parent="user_interface/HUD"]
+editor_description = "Displays health, stamina, but never EVER FP OR MANNA. I swear to god I'll add it in the licence that there will NEVER be a god damn manna bar. And status effect icons"
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="bar_health" type="ProgressBar" parent="user_interface/HUD/status_readout"]
+layout_mode = 0
+offset_left = 190.0
+offset_top = 79.0
+offset_right = 490.0
+offset_bottom = 99.0
+theme_override_styles/background = SubResource("StyleBoxFlat_mxbng")
+theme_override_styles/fill = SubResource("StyleBoxFlat_gkepa")
+value = 50.0
+show_percentage = false
+
+[node name="bar_health2" type="ProgressBar" parent="user_interface/HUD/status_readout"]
+layout_mode = 0
+offset_left = 190.0
+offset_top = 104.0
+offset_right = 450.0
+offset_bottom = 124.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_8m6ce")
+value = 100.0
+show_percentage = false
+
+[node name="TextureRect" type="TextureRect" parent="user_interface/HUD/status_readout"]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 45.0
+offset_right = 187.0
+offset_bottom = 173.0
+texture = ExtResource("12_lnoy6")
+
+[node name="effect_icons" type="HBoxContainer" parent="user_interface/HUD/status_readout"]
+layout_mode = 0
+offset_left = 196.0
+offset_top = 156.0
+offset_right = 236.0
+offset_bottom = 196.0
+
+[node name="effect_Questioned" type="TextureRect" parent="user_interface/HUD/status_readout/effect_icons"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("16_d7447")
+expand_mode = 1
+
+[node name="effect_Fruitification" type="TextureRect" parent="user_interface/HUD/status_readout/effect_icons"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("13_acglf")
+expand_mode = 2
+
+[node name="effect_BlastedUp" type="TextureRect" parent="user_interface/HUD/status_readout/effect_icons"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("15_ihrlk")
+expand_mode = 2
+
+[node name="dpad_itemMenu" type="Control" parent="user_interface/HUD"]
+editor_description = "Displayes currently readied items."
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -221.0
-offset_right = 221.0
+offset_left = 1.0
+offset_top = -219.0
+offset_right = 222.0
+offset_bottom = 2.0
 grow_vertical = 0
-scale = Vector2(3, 3)
+scale = Vector2(1.5, 1.5)
 pivot_offset = Vector2(0, 221)
 
-[node name="background" type="Control" parent="user_interface/dpad_itemMenu"]
+[node name="background" type="Control" parent="user_interface/HUD/dpad_itemMenu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -479,7 +574,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Control" type="Control" parent="user_interface/dpad_itemMenu/background"]
+[node name="Control" type="Control" parent="user_interface/HUD/dpad_itemMenu/background"]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -496,7 +591,7 @@ grow_vertical = 2
 rotation = 0.785398
 pivot_offset = Vector2(20, 20)
 
-[node name="TextureRect" type="TextureRect" parent="user_interface/dpad_itemMenu/background/Control"]
+[node name="TextureRect" type="TextureRect" parent="user_interface/HUD/dpad_itemMenu/background/Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -512,7 +607,7 @@ grow_vertical = 2
 pivot_offset = Vector2(32, 32)
 texture = SubResource("GradientTexture2D_rhyjy")
 
-[node name="TextureRect2" type="TextureRect" parent="user_interface/dpad_itemMenu/background/Control"]
+[node name="TextureRect2" type="TextureRect" parent="user_interface/HUD/dpad_itemMenu/background/Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -528,7 +623,7 @@ grow_vertical = 2
 pivot_offset = Vector2(32, 32)
 texture = SubResource("GradientTexture2D_rhyjy")
 
-[node name="TextureRect3" type="TextureRect" parent="user_interface/dpad_itemMenu/background/Control"]
+[node name="TextureRect3" type="TextureRect" parent="user_interface/HUD/dpad_itemMenu/background/Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -544,7 +639,7 @@ grow_vertical = 2
 pivot_offset = Vector2(32, 32)
 texture = SubResource("GradientTexture2D_rhyjy")
 
-[node name="TextureRect4" type="TextureRect" parent="user_interface/dpad_itemMenu/background/Control"]
+[node name="TextureRect4" type="TextureRect" parent="user_interface/HUD/dpad_itemMenu/background/Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -560,14 +655,14 @@ grow_vertical = 2
 pivot_offset = Vector2(32, 32)
 texture = SubResource("GradientTexture2D_rhyjy")
 
-[node name="TextureRect" type="TextureRect" parent="user_interface/dpad_itemMenu/background"]
+[node name="TextureRect" type="TextureRect" parent="user_interface/HUD/dpad_itemMenu/background"]
 layout_mode = 0
 offset_right = 220.0
 offset_bottom = 220.0
 texture = ExtResource("13_yb178")
 expand_mode = 1
 
-[node name="placeholder item 1" type="TextureRect" parent="user_interface/dpad_itemMenu"]
+[node name="placeholder item 1" type="TextureRect" parent="user_interface/HUD/dpad_itemMenu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -582,8 +677,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("13_acglf")
 
-[node name="placeholder item 2" type="TextureRect" parent="user_interface/dpad_itemMenu"]
-modulate = Color(0.4, 0, 0.00666656, 1)
+[node name="placeholder item 2" type="TextureRect" parent="user_interface/HUD/dpad_itemMenu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -596,9 +690,10 @@ offset_right = -25.5
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("14_4d4gf")
+texture = ExtResource("15_5lk5y")
+expand_mode = 1
 
-[node name="placeholder item 3" type="TextureRect" parent="user_interface/dpad_itemMenu"]
+[node name="placeholder item 3" type="TextureRect" parent="user_interface/HUD/dpad_itemMenu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -611,9 +706,9 @@ offset_right = 68.5
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("16_d7447")
+texture = ExtResource("16_cj551")
 
-[node name="placeholder item 4" type="TextureRect" parent="user_interface/dpad_itemMenu"]
+[node name="placeholder item 4" type="TextureRect" parent="user_interface/HUD/dpad_itemMenu"]
 modulate = Color(1, 0.35, 0, 1)
 layout_mode = 1
 anchors_preset = 8
@@ -630,6 +725,125 @@ grow_vertical = 2
 texture = ExtResource("15_jeyv0")
 expand_mode = 1
 
+[node name="currency_readout" type="Control" parent="user_interface/HUD"]
+editor_description = "Holds a readout of currency, and displays inventory item changes above itself."
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -63.0
+offset_top = -62.0
+offset_right = -23.0
+offset_bottom = -22.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(1.5, 1.5)
+
+[node name="background" type="TextureRect" parent="user_interface/HUD/currency_readout"]
+layout_mode = 0
+offset_left = -129.0
+offset_top = -19.0
+offset_bottom = 9.0
+texture = SubResource("GradientTexture2D_hn0oc")
+expand_mode = 1
+
+[node name="currency_icon" type="TextureRect" parent="user_interface/HUD/currency_readout"]
+layout_mode = 0
+offset_left = -39.0
+offset_top = -24.0
+offset_right = 1.0
+offset_bottom = 16.0
+texture = ExtResource("14_4d4gf")
+
+[node name="Label" type="Label" parent="user_interface/HUD/currency_readout"]
+layout_mode = 0
+offset_left = -81.0
+offset_top = -16.0
+offset_right = -41.0
+offset_bottom = 7.0
+text = "412"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Action Prompt" parent="user_interface/HUD" instance=ExtResource("18_5ww34")]
+layout_mode = 1
+
+[node name="menu_start" type="Control" parent="user_interface/HUD"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="user_interface/HUD/menu_start"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_5ujdn")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="user_interface/HUD/menu_start"]
+layout_mode = 0
+offset_left = 86.0
+offset_top = 105.0
+offset_right = 343.0
+offset_bottom = 155.0
+bbcode_enabled = true
+text = "[font_size=30]Adventure Mode[/font_size]"
+autowrap_mode = 0
+
+[node name="buttons" type="VBoxContainer" parent="user_interface/HUD/menu_start"]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 161.0
+offset_right = 237.0
+offset_bottom = 402.0
+
+[node name="Button" type="Button" parent="user_interface/HUD/menu_start/buttons"]
+layout_mode = 2
+text = "Start Game"
+
+[node name="butt_other" type="Button" parent="user_interface/HUD/menu_start/buttons"]
+layout_mode = 2
+text = "OTHER BUTTON"
+
+[node name="butt_other2" type="Button" parent="user_interface/HUD/menu_start/buttons"]
+layout_mode = 2
+text = "OTHER BUTTON"
+
+[node name="butt_other3" type="Button" parent="user_interface/HUD/menu_start/buttons"]
+layout_mode = 2
+text = "OTHER BUTTON"
+
+[node name="butt_other4" type="Button" parent="user_interface/HUD/menu_start/buttons"]
+layout_mode = 2
+text = "OTHER BUTTON"
+
+[node name="butt_other5" type="Button" parent="user_interface/HUD/menu_start/buttons"]
+layout_mode = 2
+text = "OTHER BUTTON"
+
+[node name="Button Quit" type="Button" parent="user_interface/HUD/menu_start/buttons"]
+layout_mode = 2
+text = "Quit
+"
+
+[node name="menu_map" type="Control" parent="user_interface/HUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
 [node name="audio level ambiance" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("23_w8mif")
 volume_db = -20.662
@@ -642,6 +856,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.5244, -5, -32.5106)
 other_position = Vector3(52.524, 30, -32.511)
 
 [node name="_dot_1" type="TextureRect" parent="."]
+visible = false
 modulate = Color(0.150667, 1, 0.02, 1)
 anchors_preset = -1
 anchor_left = 0.017
@@ -664,6 +879,7 @@ offset_bottom = 42.0
 text = "TEST INFORMATION"
 
 [node name="_dot_2" type="TextureRect" parent="."]
+visible = false
 modulate = Color(1, 0, 0, 1)
 offset_right = 40.0
 offset_bottom = 40.0
@@ -671,6 +887,7 @@ pivot_offset = Vector2(20, 20)
 texture = SubResource("GradientTexture2D_ohh6g")
 
 [node name="Label" type="Label" parent="_dot_2"]
+layout_mode = 0
 offset_left = 38.0
 offset_top = 19.0
 offset_right = 78.0
@@ -904,4 +1121,5 @@ spawn_path = NodePath("../Multplayer Manager")
 [connection signal="body_entered" from="adventure_mode_demoLevel/Door of Trials2/Area3D" to="adventure_mode_demoLevel/Door of Trials2" method="trigger_animation"]
 [connection signal="pressed" from="user_interface/MultiplayerControl_debug/VBoxContainer/butt_Host" to="Multplayer Manager" method="_on_butt_host_pressed"]
 [connection signal="pressed" from="user_interface/MultiplayerControl_debug/VBoxContainer/butt_Connect" to="Multplayer Manager" method="_on_butt_connect_pressed"]
+[connection signal="pressed" from="user_interface/HUD/menu_start/buttons/Button Quit" to="user_interface/HUD" method="_quit"]
 [connection signal="body_exited" from="Door of Trials/Area3D" to="Door of Trials" method="trigger_animation"]
