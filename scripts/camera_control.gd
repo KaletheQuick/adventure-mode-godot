@@ -30,6 +30,10 @@ var camLookVel = Vector3.ZERO
 
 @export var freeze = false
 
+@export var dot1 : TextureRect
+@export var dot2 : TextureRect
+
+@export var offsetty = 800
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -41,6 +45,16 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	#return
+	print(str(get_viewport().size) + ", " + str(get_window().size))
+	
+	var midscreen = get_viewport().size * 0.8
+	dot1.global_position = midscreen
+	dot1.get_child(0).text = str(midscreen)
+	if is_instance_valid(target_current):
+		var target_screenPos = unproject_position(target_current.global_position)
+		dot2.global_position = target_screenPos
+		dot2.get_child(0).text = str(target_screenPos)
+
 	if is_instance_valid(target_current) == false: # Guard clause style, baby!
 		return 
 	if freeze:
