@@ -16,6 +16,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var jump_dbounce = false # Have we recently jumped?
 var LDT = 0.01 # Last delta time, calling get_process_delta_time() in the physics loop was causing issues
 @export var block = false
+var parry = false
 @export var attack_light = false
 @export var attack_jump = false
 @export var attack_heavy = false
@@ -79,6 +80,7 @@ func _enter_tree() -> void:
 		netman.outfit_control.dress_up_controller = self.find_child("DresserUpper")
 
 func _ready():
+	health_current = max_health
 #	animation_tree.tree_root = defaultANIMO
 	hurtboxes = find_hurtboxes_recursive(self)
 	dress_up()
@@ -120,9 +122,9 @@ func _process(delta):
 	if desired_move != Vector3.ZERO and desired_move.length_squared() > 0.01:
 		pass
 	#	$Dir_arrow.look_at(global_position + desired_move)
-	if attack_light or attack_heavy or attack_jump:
+	if attack_light or attack_heavy or attack_jump or parry or block:
 		combat_mode = true
-		combat_relax_timer = 10.0
+		combat_relax_timer = 30.0
 		for i in range(movement_sets.size()):
 			if movement_sets[i] is mvpk_attack:
 				current_moveset = i
@@ -360,3 +362,14 @@ func compile_new_anim_tree():
 				workstring = workstring.replace("-", ".") # NOTE - Another hack, param names cant have dots
 				workstring = workstring.substr(0, workstring.find(']'))
 				animation_tree.set(item.name, workstring.to_float())
+
+
+
+
+func dodge_hack(cost : int) -> bool:
+	if dodge == true:
+		print("DODGE! GO NOW!")
+		# Rotate in direction of desired movement once
+		look_at(global_position - desired_move)
+		return true
+	return false				

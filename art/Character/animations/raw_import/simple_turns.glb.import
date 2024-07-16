@@ -1832,7 +1832,7 @@ _subresources={
 },
 "left_45s": {
 "save_to_file/enabled": true,
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "res://art/Character/animations/turns/turn_left_45s.tres",
 "settings/loop_mode": 1,
 "slice_1/end_frame": 0,
@@ -3631,7 +3631,7 @@ _subresources={
 },
 "right_45s": {
 "save_to_file/enabled": true,
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "res://art/Character/animations/turns/turn_right_45s.tres",
 "settings/loop_mode": 1,
 "slice_1/end_frame": 0,

@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=59 format=3 uid="uid://coym3jr0vat8x"]
+[gd_resource type="AnimationNodeStateMachine" load_steps=62 format=3 uid="uid://coym3jr0vat8x"]
 
 [ext_resource type="AnimationNodeBlendSpace2D" uid="uid://dukebmuejahjs" path="res://art/Character/animator components/walk_blendspace.tres" id="1_f2otq"]
 
@@ -159,6 +159,9 @@ animation = &"combat_sword/combat_block_shield"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_p78x1"]
 animation = &"death"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xxu61"]
+animation = &"aLib_combat_sword/combat_dodgeroll"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x8s7q"]
 animation = &"sit_lounge_toStand"
 
@@ -261,6 +264,15 @@ xfade_time = 0.1
 advance_mode = 2
 advance_expression = "health_current <= 0"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5mpbv"]
+advance_mode = 2
+advance_expression = "dodge_hack(1) == true"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l6c78"]
+xfade_time = 0.75
+switch_mode = 2
+advance_mode = 2
+
 [resource]
 states/BlendTree/node = SubResource("AnimationNodeBlendTree_es7tm")
 states/BlendTree/position = Vector2(-173, 594)
@@ -270,7 +282,7 @@ states/BlendTree/position = Vector2(-173, 594)
 "states/MOVE sprint/position" = Vector2(281, -159)
 "states/MOVE walk/node" = ExtResource("1_f2otq")
 "states/MOVE walk/position" = Vector2(224.667, 100)
-states/Start/position = Vector2(36.3333, 106.333)
+states/Start/position = Vector2(-11.1667, 98.4165)
 states/a_light_01/node = SubResource("AnimationNodeAnimation_scgyj")
 states/a_light_01/position = Vector2(390.667, 344.333)
 states/a_light_02/node = SubResource("AnimationNodeAnimation_nyw04")
@@ -278,16 +290,18 @@ states/a_light_02/position = Vector2(160, 339)
 states/combat_sword_combat_block_shield/node = SubResource("AnimationNodeAnimation_ewgqc")
 states/combat_sword_combat_block_shield/position = Vector2(619.667, 339)
 states/death/node = SubResource("AnimationNodeAnimation_p78x1")
-states/death/position = Vector2(113, 194)
+states/death/position = Vector2(189, 242.5)
+states/dodgeroll/node = SubResource("AnimationNodeAnimation_xxu61")
+states/dodgeroll/position = Vector2(24.5, -216)
 states/sit_lounge_toStand/node = SubResource("AnimationNodeAnimation_x8s7q")
-states/sit_lounge_toStand/position = Vector2(19, -106)
+states/sit_lounge_toStand/position = Vector2(-116.5, -81)
 states/sit_lounge_tscn/node = SubResource("AnimationNodeAnimation_t3rpe")
-states/sit_lounge_tscn/position = Vector2(-71, 11)
+states/sit_lounge_tscn/position = Vector2(-122.5, 14)
 states/walk_airborne/node = SubResource("AnimationNodeAnimation_yx5ig")
 states/walk_airborne/position = Vector2(706.722, 100)
 states/walk_land/node = SubResource("AnimationNodeAnimation_bj3bm")
 states/walk_land/position = Vector2(456.827, 249.333)
 states/walk_taking_off/node = SubResource("AnimationNodeAnimation_xf3j1")
 states/walk_taking_off/position = Vector2(468, 100)
-transitions = ["walk_airborne", "walk_land", SubResource("AnimationNodeStateMachineTransition_tddch"), "walk_land", "MOVE walk", SubResource("AnimationNodeStateMachineTransition_slw4a"), "Jump w vel", "walk_airborne", SubResource("AnimationNodeStateMachineTransition_86anj"), "Start", "MOVE walk", SubResource("AnimationNodeStateMachineTransition_4hx0r"), "MOVE walk", "Jump w vel", SubResource("AnimationNodeStateMachineTransition_bibi4"), "a_light_01", "a_light_02", SubResource("AnimationNodeStateMachineTransition_d58rr"), "a_light_02", "a_light_01", SubResource("AnimationNodeStateMachineTransition_4x4kn"), "MOVE walk", "walk_taking_off", SubResource("AnimationNodeStateMachineTransition_ip24d"), "walk_taking_off", "MOVE walk", SubResource("AnimationNodeStateMachineTransition_bg5t4"), "walk_taking_off", "walk_airborne", SubResource("AnimationNodeStateMachineTransition_2png7"), "MOVE sprint", "Jump w vel", SubResource("AnimationNodeStateMachineTransition_km826"), "MOVE walk", "MOVE sprint", SubResource("AnimationNodeStateMachineTransition_pgr03"), "MOVE sprint", "MOVE walk", SubResource("AnimationNodeStateMachineTransition_d5g8a"), "MOVE walk", "sit_lounge_tscn", SubResource("AnimationNodeStateMachineTransition_xqs0k"), "sit_lounge_tscn", "sit_lounge_toStand", SubResource("AnimationNodeStateMachineTransition_uitot"), "sit_lounge_toStand", "MOVE walk", SubResource("AnimationNodeStateMachineTransition_f21mm"), "MOVE walk", "death", SubResource("AnimationNodeStateMachineTransition_4kbh8")]
-graph_offset = Vector2(-90, -92)
+transitions = ["walk_airborne", "walk_land", SubResource("AnimationNodeStateMachineTransition_tddch"), "walk_land", "MOVE walk", SubResource("AnimationNodeStateMachineTransition_slw4a"), "Jump w vel", "walk_airborne", SubResource("AnimationNodeStateMachineTransition_86anj"), "Start", "MOVE walk", SubResource("AnimationNodeStateMachineTransition_4hx0r"), "MOVE walk", "Jump w vel", SubResource("AnimationNodeStateMachineTransition_bibi4"), "a_light_01", "a_light_02", SubResource("AnimationNodeStateMachineTransition_d58rr"), "a_light_02", "a_light_01", SubResource("AnimationNodeStateMachineTransition_4x4kn"), "MOVE walk", "walk_taking_off", SubResource("AnimationNodeStateMachineTransition_ip24d"), "walk_taking_off", "MOVE walk", SubResource("AnimationNodeStateMachineTransition_bg5t4"), "walk_taking_off", "walk_airborne", SubResource("AnimationNodeStateMachineTransition_2png7"), "MOVE sprint", "Jump w vel", SubResource("AnimationNodeStateMachineTransition_km826"), "MOVE walk", "MOVE sprint", SubResource("AnimationNodeStateMachineTransition_pgr03"), "MOVE sprint", "MOVE walk", SubResource("AnimationNodeStateMachineTransition_d5g8a"), "MOVE walk", "sit_lounge_tscn", SubResource("AnimationNodeStateMachineTransition_xqs0k"), "sit_lounge_tscn", "sit_lounge_toStand", SubResource("AnimationNodeStateMachineTransition_uitot"), "sit_lounge_toStand", "MOVE walk", SubResource("AnimationNodeStateMachineTransition_f21mm"), "MOVE walk", "death", SubResource("AnimationNodeStateMachineTransition_4kbh8"), "MOVE walk", "dodgeroll", SubResource("AnimationNodeStateMachineTransition_5mpbv"), "dodgeroll", "MOVE walk", SubResource("AnimationNodeStateMachineTransition_l6c78")]
+graph_offset = Vector2(-359, -259)

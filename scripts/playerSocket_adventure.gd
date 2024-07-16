@@ -93,12 +93,15 @@ func _collect_inputs(delta):
 	# SECTION - Dodge and sprinting
 	if Input.is_action_just_released(player_prefix + "dodge"):
 		if ds_timer <= dodge_sprint_threshold:
-			print("dodge!")
+			pass
+			#print("dodge!")
 	if Input.is_action_pressed(player_prefix + "dodge"):
 		ds_timer += delta
 		if ds_timer > dodge_sprint_threshold:
 			thrall.sprint = true
-			thrall.dodge = true
+			#thrall.dodge = true
+	elif Input.is_action_just_released(player_prefix + "dodge") && ds_timer < dodge_sprint_threshold:
+		thrall.dodge = true
 	else:
 		thrall.sprint = false
 		thrall.dodge = false
@@ -108,8 +111,8 @@ func _collect_inputs(delta):
 	thrall.block = true if Input.get_action_strength("p1_block") > 0.5 else false
 	thrall.attack_light = true if Input.get_action_strength("p1_attack_light") > 0.5 else false
 	thrall.attack_heavy = true if Input.get_action_strength("p1_attack_heavy") > 0.5 and thrall.attack_light == false else false
-
-
+	thrall.parry = true if Input.get_action_strength("p1_parry") > 0.5 else false 
+	
 	dot.global_position = thrall.global_position + go_dir
 
 	# SECTION - Camera and lock on stuff
@@ -197,3 +200,4 @@ func dobox(box : Vector3i):
 		for y in range(box.y):
 			for z in range(box.z):
 				print("pos:(", x, ",", y, ",", z, ")")
+

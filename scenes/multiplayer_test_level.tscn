@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://bvdky0inf3c11"]
+[gd_scene load_steps=70 format=3 uid="uid://w6l5rubt30f3"]
 
 [ext_resource type="Script" path="res://scripts/playerSocket_adventure.gd" id="1_03al4"]
 [ext_resource type="PackedScene" uid="uid://b34jdvaqt8gbn" path="res://art/Props/z_target.tscn" id="2_xa5ur"]
@@ -29,6 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://cme484l06g14s" path="res://prefabs/environment/tree_foliage.tscn" id="28_3jqsb"]
 [ext_resource type="PackedScene" uid="uid://cabwsn82igehw" path="res://prefabs/environment/campfire.tscn" id="29_n8i7l"]
 [ext_resource type="PackedScene" uid="uid://d3xpjq6g2jknf" path="res://prefabs/collectable.tscn" id="30_iem5u"]
+[ext_resource type="PackedScene" uid="uid://chwqjvpft7wxd" path="res://prefabs/actor.tscn" id="31_c8ga0"]
 [ext_resource type="PackedScene" uid="uid://c3w2vh510huih" path="res://prefabs/puzzle elements/button_floor.tscn" id="31_ti63h"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4vxjp"]
@@ -297,7 +298,7 @@ radius = 4.98898
 
 [node name="p1_psock_adventure" type="Node" parent="Player Sockets" node_paths=PackedStringArray("enemies", "mainCam", "ganty_thing", "vignette", "action_prompt")]
 script = ExtResource("1_03al4")
-enemies = [null, null, null, null]
+enemies = [NodePath("../../target_dummy")]
 mainCam = NodePath("../../Camera")
 ganty_thing = NodePath("../../cam_gantry_playerFollow")
 vignette = NodePath("../../user_interface/vinyette")
@@ -363,6 +364,7 @@ shadow_enabled = true
 [node name="Camera" type="Camera3D" parent="." node_paths=PackedStringArray("dot1", "dot2")]
 transform = Transform3D(0.945519, 0, 0.325568, 0, 1, 0, -0.325568, 0, 0.945519, 0.344, 0.66, 2.119)
 script = ExtResource("17_1y1j1")
+distance = 2.5
 freeze = true
 dot1 = NodePath("../_dot_1")
 dot2 = NodePath("../_dot_2")
@@ -1111,11 +1113,15 @@ transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 
 shape = SubResource("CylinderShape3D_mvlxy")
 
 [node name="button_floor" parent="." instance=ExtResource("31_ti63h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.01168, -1.19209e-07, -3.82142)
+transform = Transform3D(0.129211, -0.991617, 0, 0.991617, 0.129211, 0, 0, 0, 1, 0.98832, -1.19209e-07, -0.82142)
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://prefabs/actor.tscn")
 spawn_path = NodePath("../Multplayer Manager")
+
+[node name="target_dummy" parent="." instance=ExtResource("31_c8ga0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.5096, 4.76837e-07, 5.80526)
+max_health = 1e+09
 
 [connection signal="body_entered" from="adventure_mode_demoLevel/Door of Trials/Area3D" to="adventure_mode_demoLevel/Door of Trials" method="trigger_animation"]
 [connection signal="body_entered" from="adventure_mode_demoLevel/Door of Trials2/Area3D" to="adventure_mode_demoLevel/Door of Trials2" method="trigger_animation"]
