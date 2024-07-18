@@ -1,4 +1,6 @@
-[gd_resource type="Animation" format=3 uid="uid://dyudnwc3xkpc8"]
+[gd_resource type="Animation" load_steps=2 format=3 uid="uid://dyudnwc3xkpc8"]
+
+[ext_resource type="AudioStream" uid="uid://cf5kcj1iibu0a" path="res://art/audio/sfx/swing_03.ogg" id="1_1d3tf"]
 
 [resource]
 resource_name = "combat_attack_light_02"
@@ -178,3 +180,18 @@ tracks/23/keys = {
 "method": &"anim_hurtbox_activate_right"
 }]
 }
+tracks/24/type = "audio"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("../AudioStreamPlayer3D")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("1_1d3tf")
+}],
+"times": PackedFloat32Array(0.3)
+}
+tracks/24/use_blend = true

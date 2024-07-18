@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/trail_weapon.gd" id="2_67ji6"]
 
 [sub_resource type="Gradient" id="Gradient_71qwt"]
-offsets = PackedFloat32Array(0.563981, 1)
+offsets = PackedFloat32Array(0.485782, 1)
 colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_w6xv5"]

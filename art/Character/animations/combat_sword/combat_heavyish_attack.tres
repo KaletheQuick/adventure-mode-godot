@@ -1,4 +1,6 @@
-[gd_resource type="Animation" format=3 uid="uid://b83fjtde2uhts"]
+[gd_resource type="Animation" load_steps=2 format=3 uid="uid://b83fjtde2uhts"]
+
+[ext_resource type="AudioStream" uid="uid://cvjwuss1xv0n1" path="res://art/audio/sfx/swing_02.ogg" id="1_6fbb4"]
 
 [resource]
 resource_name = "combat_attack_heavy"
@@ -184,3 +186,18 @@ tracks/24/keys = {
 "method": &"anim_hurtbox_activate_right"
 }]
 }
+tracks/25/type = "audio"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("../AudioStreamPlayer3D")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("1_6fbb4")
+}],
+"times": PackedFloat32Array(0.5)
+}
+tracks/25/use_blend = true

@@ -47,7 +47,7 @@ func add_player(peer_id):
 	new_player.set_multiplayer_authority(peer_id)
 	if peer_id == multiplayer.get_unique_id():
 		print("We is us!")
-		get_parent().find_child("Player Sockets").find_child("p1_psock_adventure").thrall = new_player
+		get_parent().find_child("Player Sockets").find_child("p1_psock_adventure").enthrall_new_thrall(new_player)
 		cam_gant.thrall = new_player
 		cam_gant.cam.target_current = new_player
 		cam_gant.freeze = false

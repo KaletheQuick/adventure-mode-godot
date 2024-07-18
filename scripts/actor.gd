@@ -11,7 +11,11 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 #@onready var combo_bar = get_node("/root/level_test/CanvasLayer/ProgressBar")
 
-@export var desired_move = Vector3.ZERO
+var desired_move = Vector3.ZERO
+var desired_turn = 0.0 # left or right -+ 
+# NOTE - Desired move used to handle everything. But locking on and strafing 
+# 		 involved having the directing you were looking, IE turned towards
+#		 and the direction of movement, be separate. 
 
 var jump_dbounce = false # Have we recently jumped?
 var LDT = 0.01 # Last delta time, calling get_process_delta_time() in the physics loop was causing issues
@@ -54,8 +58,12 @@ var right_ouchtime = false
 var hurtboxes
 @export var max_health = 10.0
 var health_current = 10.0
-@export var max_stamina = 5.0 
+@export var max_stamina = 20.0 
 var stamina_current = 5.0
+@export var max_poise = 15.0
+var poise_current = 0.0
+var poise_regen_timer = 0.0
+var poise_regen_delay = 3.0
 var alive = true
 
 # SECTION ~ Demo specific things
@@ -70,7 +78,7 @@ func _enter_tree() -> void:
 	if name != "1" && multiplayer.get_unique_id() > 1:
 		set_multiplayer_authority(str(name).to_int())
 
-		get_parent().get_parent().find_child("Player Sockets").find_child("p1_psock_adventure").thrall = self
+		get_parent().get_parent().find_child("Player Sockets").find_child("p1_psock_adventure").enthrall_new_thrall(self)
 		var cam_gant = get_parent().get_parent().find_child("cam_gantry_playerFollow")
 		cam_gant.thrall = self
 		cam_gant.cam.target_current = self
@@ -79,8 +87,15 @@ func _enter_tree() -> void:
 		var netman = get_parent()
 		netman.outfit_control.dress_up_controller = self.find_child("DresserUpper")
 
+	if "skele" in name:
+		add_to_group("enemies")
+	else:
+		add_to_group("players")
+
 func _ready():
 	health_current = max_health
+	stamina_current = max_stamina
+	poise_current = max_poise
 #	animation_tree.tree_root = defaultANIMO
 	hurtboxes = find_hurtboxes_recursive(self)
 	dress_up()
@@ -135,7 +150,7 @@ func _process(delta):
 				break
 	if combat_mode:
 		combat_relax_timer -= delta
-		if combat_relax_timer <= 0:
+		if combat_relax_timer <= 0 or Input.is_action_just_pressed("p1_item_left_next"):
 			combat_mode = false
 
 	movement_package_checks()
@@ -168,7 +183,7 @@ func _physics_process(delta):
 	#animation_tree.set("parameters/Move Walk/blend_position", Vector2(( global_basis.inverse() * -desired_move).x,-( global_basis.inverse() * -desired_move).z))
 	if(desired_move.y > 0.5 and jump_dbounce == false) :
 		jump_dbounce = true
-		print(velocity.length())
+		#print(velocity.length())
 		animation_tree.set("parameters/Jump w vel/blend_position", (desired_move * Vector3(1,0,1)).length() * 1.0) # TODO remove magic number. This is here to map a velocity range to animation blend 0-1
 		animation_tree.set("parameters/conditions/jump", true)
 	else:
@@ -213,7 +228,13 @@ func _physics_process(delta):
 	lastDesiredMoveY = desired_move.y
 
 func stamina_regen(delta):
-	stamina_current = clamp(stamina_current + delta, 0, max_stamina)
+	stamina_current = clamp(stamina_current + delta, -100, max_stamina)
+	# And also poise
+	poise_regen_timer -= delta
+	if poise_regen_timer <= 0:
+		poise_current = clamp(poise_current + (delta * 10), 0, max_poise)
+
+
 
 func apply_animation_params():
 	# NOTE - This is a hack, i'll detail how it works.
@@ -230,6 +251,8 @@ func apply_animation_params():
 		if item.name.begins_with("parameters/"):
 			if item.name.contains("MOVE") and item.name.contains("blend_position"):
 				animation_tree.set(item.name, transformed_move_dir)
+			elif item.name.contains("TURN") and (item.name.contains("blend_position") or item.name.contains("add_amount")):				
+				animation_tree.set(item.name, desired_turn)
 			elif item.name.contains("BLOCK"): # and item.name.contains("blend_position"):
 				animation_tree.set(item.name, 1 if block else 0)
 			elif item.name.contains("JUMP"): # and item.name.contains("blend_position"):
@@ -253,13 +276,14 @@ func _on_coin_body_entered(body):
 
 func movement_package_checks():
 	# Check to see if we need to move to a new state
+	var state_machine = animation_tree["parameters/playback"]
+	#print(state_machine.get_current_node ())
 	for x in range(1, movement_sets.size()):
 		if x == current_moveset:
 			continue
 		if movement_sets[x].transfer_situation_check(self):
 			current_moveset = x
 			
-			var state_machine = animation_tree["parameters/playback"]
 			state_machine.travel(movement_sets[current_moveset].name)
 			return
 			animation_tree.tree_root = movement_sets[current_moveset].anim_tree
@@ -271,7 +295,6 @@ func movement_package_checks():
 	# Check to see if we need to bail out of our current state
 	if current_moveset != 0 and movement_sets[current_moveset].release_situation_check(self):
 		current_moveset = 0
-		var state_machine = animation_tree["parameters/playback"]
 		state_machine.travel(movement_sets[current_moveset].name)
 		return
 		animation_tree.tree_root = movement_sets[current_moveset].anim_tree
@@ -282,16 +305,19 @@ func movement_package_checks():
 var attackID = 0
 
 func anim_hurtbox_activate_right(duration : float):
+	stamina_current -= 2
 	for box in hurtboxes:
 		right_weapon.add_exception(box)
 	right_weapon.force_shapecast_update()
 	right_ouchtime = true
 	right_weapon.get_node("debug_hitbox").visible = true
 	attackID = randi()
+	right_weapon.get_parent().get_node("trail_weapon").restart()
 	await get_tree().create_timer(duration).timeout
 	right_ouchtime = false
 	right_weapon.get_node("debug_hitbox").visible = false
 	right_weapon.clear_exceptions()
+	right_weapon.get_parent().get_node("trail_weapon").stop()
 
 func hurtbox_check():
 	for x in range(right_weapon.get_collision_count()):
@@ -315,7 +341,7 @@ func awful_practice_find_parent_actor(node : Node3D):
 		return awful_practice_find_parent_actor(node.get_parent())
 	
 func TEMP_jumpy_check() -> bool:
-	return !Input.is_action_pressed("p1_jump")
+	return (!jump_dbounce and is_on_floor()) or !Input.is_action_pressed("p1_jump")
 
 func dress_up():
 	var dup = $DresserUpper as DresserUpper
@@ -326,7 +352,15 @@ var damage_attack_id_buffer = []
 func take_damage(damage : float, id : int):
 	if id not in damage_attack_id_buffer:
 		damage_attack_id_buffer.append(id)
-		health_current -= damage
+		if block && stamina_current > 0:
+			stamina_current -= damage
+		else:
+			health_current -= damage
+		poise_current -= 5
+		if poise_current <= 0:
+			poise_regen_timer = 0.5
+		else:
+			poise_regen_timer = poise_regen_delay
 
 
 func compile_new_anim_tree():
@@ -343,6 +377,7 @@ func compile_new_anim_tree():
 			if mvpk == othermove:
 				continue
 			master_tree.add_transition(mvpk.name, othermove.name, masterstate_transition.duplicate())
+			print("Wired " +mvpk.name+ " to " + othermove.name)
 
 	animation_tree.tree_root = master_tree # neat. What? No transitions or anything
 	var state_machine = animation_tree["parameters/playback"]
@@ -367,8 +402,9 @@ func compile_new_anim_tree():
 
 
 func dodge_hack(cost : int) -> bool:
-	if dodge == true:
+	if dodge == true && stamina_current > 0:
 		print("DODGE! GO NOW!")
+		stamina_current -= 5
 		# Rotate in direction of desired movement once
 		look_at(global_position - desired_move)
 		return true

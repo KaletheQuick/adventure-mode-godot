@@ -8,6 +8,11 @@ extends Control
 @onready var action_prompt = $Action_prompt
 @onready var menu_start = $menu_start
 
+var player_socket
+var thrall
+
+# TODO - on thrall change signal? Idk
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -25,3 +30,7 @@ func _process(delta):
 
 func _quit():
 	get_tree().quit()
+
+func inspect_new_thrall(new_thrall : Actor):
+	thrall = new_thrall
+	status_readout.inspect_new_thrall(new_thrall)

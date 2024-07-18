@@ -32,6 +32,8 @@ var look_lock = false
 
 @export var target_locker : PackedScene
 
+@export var headsUpDisplay : Control
+
 # acreas and interactable things
 
 func _ready():
@@ -117,6 +119,11 @@ func _collect_inputs(delta):
 
 	# SECTION - Camera and lock on stuff
 	if Input.is_action_just_pressed(player_prefix + "look_lock"):
+		var potential_enemies = get_tree().get_nodes_in_group("enemies")
+		enemies.clear()
+		for enemy in potential_enemies:
+			if enemy is Actor:
+				enemies.append(enemy)
 		look_lock = !look_lock
 		if look_lock:
 			print("look lock")
@@ -146,6 +153,8 @@ func _collect_inputs(delta):
 
 		else:
 			print("look unlock")
+
+	
 	if look_lock:
 		mainCam.target_curr = locked_target.global_position + Vector3(0,2,0)
 		dot.global_position = locked_target.global_position + Vector3(0,2,0)
@@ -153,15 +162,23 @@ func _collect_inputs(delta):
 		# FIXME ~ HACK - turning should be handled by the animation and thrall control system!
 		if thrall.combat_mode == true:
 			var og_rot = thrall.global_rotation_degrees
-			thrall.look_at(thrall.global_position + (thrall.global_position - locked_target.global_position))
-			thrall.global_rotation_degrees.x = 0
-			thrall.global_rotation_degrees.z = 0
+			#thrall.look_at(thrall.global_position + (thrall.global_position - locked_target.global_position))
+			#thrall.global_rotation_degrees.x = 0
+			#thrall.global_rotation_degrees.z = 0
 		dot.look_at(mainCam.global_position)
 		dot.get_node("TargetReticle").rotate_z(delta) #(dot.global_basis.z.normalized(), delta)
 		dot.scale = Vector3.ONE + (Vector3.ONE * ((1 + (sin(Time.get_unix_time_from_system() * 12)*0.5))) * 0.5 )
+
+		#TODO - put this look vector somewhere else? idk
+		var transformed_move_dir =  Vector2(( thrall.global_basis.inverse() * (thrall.global_position - locked_target.global_position).normalized()).x,-( thrall.global_basis.inverse() * -go_dir).z)
+		thrall.desired_turn = transformed_move_dir.x
+		#print(transformed_move_dir.x)
 	else:
 		dot.visible = false
 		mainCam.target_curr = Vector3.ZERO
+		#TODO - put this look vector somewhere else? idk
+		var transformed_move_dir =  Vector2(( thrall.global_basis.inverse() * -go_dir).x,-( thrall.global_basis.inverse() * -go_dir).z)
+		thrall.desired_turn = transformed_move_dir.x
 
 
 @export var action_prompt : Control
@@ -201,3 +218,7 @@ func dobox(box : Vector3i):
 			for z in range(box.z):
 				print("pos:(", x, ",", y, ",", z, ")")
 
+
+func enthrall_new_thrall(new_thrall : Actor):
+	thrall = new_thrall
+	headsUpDisplay.inspect_new_thrall(thrall)

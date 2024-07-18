@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://w6l5rubt30f3"]
+[gd_scene load_steps=74 format=3 uid="uid://w6l5rubt30f3"]
 
 [ext_resource type="Script" path="res://scripts/playerSocket_adventure.gd" id="1_03al4"]
 [ext_resource type="PackedScene" uid="uid://b34jdvaqt8gbn" path="res://art/Props/z_target.tscn" id="2_xa5ur"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://8hu74ym7skte" path="res://prefabs/adventure_mode_demo_level.tscn" id="6_xtlsg"]
 [ext_resource type="PackedScene" uid="uid://vwkcbj8sdfmp" path="res://prefabs/door_of_trials.tscn" id="7_qmjli"]
 [ext_resource type="Script" path="res://scripts/UI/Game_HUD_Master.gd" id="11_whj5c"]
+[ext_resource type="Script" path="res://scripts/UI/HUD_status.gd" id="12_gt37g"]
 [ext_resource type="Script" path="res://Dress Up/scripts/DU_outfit_control.gd" id="12_kqqss"]
 [ext_resource type="Texture2D" uid="uid://dbt40o1sy8732" path="res://icon.svg" id="12_lnoy6"]
 [ext_resource type="Texture2D" uid="uid://vog6jseecl06" path="res://art/textures/icon_commonFruit.png" id="13_acglf"]
@@ -25,11 +26,13 @@
 [ext_resource type="PackedScene" uid="uid://bldcnjo1gthob" path="res://prefabs/elevator_platform.tscn" id="24_s5s5f"]
 [ext_resource type="PackedScene" uid="uid://dyacbq330bbx0" path="res://prefabs/environment/shrub_commonfruit.tscn" id="25_ou45n"]
 [ext_resource type="PackedScene" uid="uid://cvyjw256lsge2" path="res://prefabs/environment/grass.tscn" id="26_4ciue"]
+[ext_resource type="PackedScene" uid="uid://chwqjvpft7wxd" path="res://prefabs/actor.tscn" id="26_5srmb"]
 [ext_resource type="PackedScene" uid="uid://2lgruxx4kd5a" path="res://prefabs/environment/boulder.tscn" id="27_2y8m1"]
+[ext_resource type="Script" path="res://scripts/footall_sfx.gd" id="27_6v26p"]
 [ext_resource type="PackedScene" uid="uid://cme484l06g14s" path="res://prefabs/environment/tree_foliage.tscn" id="28_3jqsb"]
+[ext_resource type="Script" path="res://scripts/AI/ai_fight.gd" id="28_5kths"]
 [ext_resource type="PackedScene" uid="uid://cabwsn82igehw" path="res://prefabs/environment/campfire.tscn" id="29_n8i7l"]
 [ext_resource type="PackedScene" uid="uid://d3xpjq6g2jknf" path="res://prefabs/collectable.tscn" id="30_iem5u"]
-[ext_resource type="PackedScene" uid="uid://chwqjvpft7wxd" path="res://prefabs/actor.tscn" id="31_c8ga0"]
 [ext_resource type="PackedScene" uid="uid://c3w2vh510huih" path="res://prefabs/puzzle elements/button_floor.tscn" id="31_ti63h"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4vxjp"]
@@ -236,14 +239,37 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 metadata/_snap_enabled = true
 
+[sub_resource type="Gradient" id="Gradient_xb1qg"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hn0oc"]
+gradient = SubResource("Gradient_xb1qg")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+metadata/_snap_enabled = true
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mxbng"]
 bg_color = Color(0.3, 0.234, 0.234, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.628885, 0.529557, 0, 1)
+border_blend = true
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gkepa"]
 bg_color = Color(1, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8m6ce"]
 bg_color = Color(0.0500001, 1, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rfbhy"]
+bg_color = Color(0.34, 0.34, 0.34, 1)
 
 [sub_resource type="Gradient" id="Gradient_cyabv"]
 offsets = PackedFloat32Array(0, 0.844156, 1)
@@ -254,16 +280,6 @@ gradient = SubResource("Gradient_cyabv")
 fill = 2
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 1)
-
-[sub_resource type="Gradient" id="Gradient_xb1qg"]
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_hn0oc"]
-gradient = SubResource("Gradient_xb1qg")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(1, 0.5)
-metadata/_snap_enabled = true
 
 [sub_resource type="Gradient" id="Gradient_81d6m"]
 interpolation_mode = 2
@@ -296,13 +312,14 @@ radius = 4.98898
 
 [node name="Player Sockets" type="Node" parent="."]
 
-[node name="p1_psock_adventure" type="Node" parent="Player Sockets" node_paths=PackedStringArray("enemies", "mainCam", "ganty_thing", "vignette", "action_prompt")]
+[node name="p1_psock_adventure" type="Node" parent="Player Sockets" node_paths=PackedStringArray("enemies", "mainCam", "ganty_thing", "vignette", "headsUpDisplay", "action_prompt")]
 script = ExtResource("1_03al4")
-enemies = [NodePath("../../target_dummy")]
+enemies = [null]
 mainCam = NodePath("../../Camera")
 ganty_thing = NodePath("../../cam_gantry_playerFollow")
 vignette = NodePath("../../user_interface/vinyette")
 target_locker = ExtResource("2_xa5ur")
+headsUpDisplay = NodePath("../../user_interface/HUD")
 action_prompt = NodePath("../../user_interface/HUD/Action Prompt")
 
 [node name="Multplayer Manager" type="Node" parent="." node_paths=PackedStringArray("server_menu", "cam_gant", "cam_actu", "ip_input", "outfit_control")]
@@ -499,6 +516,16 @@ editor_description = "Displays health, stamina, but never EVER FP OR MANNA. I sw
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("12_gt37g")
+
+[node name="background" type="TextureRect" parent="user_interface/HUD/status_readout"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 35.0
+offset_right = 551.0
+offset_bottom = 205.0
+texture = SubResource("GradientTexture2D_hn0oc")
+expand_mode = 1
 
 [node name="bar_health" type="ProgressBar" parent="user_interface/HUD/status_readout"]
 layout_mode = 0
@@ -511,13 +538,25 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_gkepa")
 value = 50.0
 show_percentage = false
 
-[node name="bar_health2" type="ProgressBar" parent="user_interface/HUD/status_readout"]
+[node name="bar_stamina" type="ProgressBar" parent="user_interface/HUD/status_readout"]
 layout_mode = 0
 offset_left = 190.0
 offset_top = 104.0
 offset_right = 450.0
 offset_bottom = 124.0
+theme_override_styles/background = SubResource("StyleBoxFlat_mxbng")
 theme_override_styles/fill = SubResource("StyleBoxFlat_8m6ce")
+value = 100.0
+show_percentage = false
+
+[node name="bar_poise" type="ProgressBar" parent="user_interface/HUD/status_readout"]
+layout_mode = 0
+offset_left = 190.0
+offset_top = 129.0
+offset_right = 474.0
+offset_bottom = 149.0
+theme_override_styles/background = SubResource("StyleBoxFlat_mxbng")
+theme_override_styles/fill = SubResource("StyleBoxFlat_rfbhy")
 value = 100.0
 show_percentage = false
 
@@ -899,6 +938,15 @@ text = "TEST INFORMATION"
 [node name="shrub" parent="." instance=ExtResource("25_ou45n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.9991, 0.0666323, -0.484264)
 
+[node name="skele_01" parent="." instance=ExtResource("26_5srmb")]
+transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 18.3122, 0.563334, 14.8856)
+
+[node name="footall_sfx2" type="Node" parent="skele_01"]
+script = ExtResource("27_6v26p")
+
+[node name="ai_attack" type="Node" parent="skele_01"]
+script = ExtResource("28_5kths")
+
 [node name="grass" parent="." instance=ExtResource("26_4ciue")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -1)
 
@@ -1118,10 +1166,6 @@ transform = Transform3D(0.129211, -0.991617, 0, 0.991617, 0.129211, 0, 0, 0, 1, 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://prefabs/actor.tscn")
 spawn_path = NodePath("../Multplayer Manager")
-
-[node name="target_dummy" parent="." instance=ExtResource("31_c8ga0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.5096, 4.76837e-07, 5.80526)
-max_health = 1e+09
 
 [connection signal="body_entered" from="adventure_mode_demoLevel/Door of Trials/Area3D" to="adventure_mode_demoLevel/Door of Trials" method="trigger_animation"]
 [connection signal="body_entered" from="adventure_mode_demoLevel/Door of Trials2/Area3D" to="adventure_mode_demoLevel/Door of Trials2" method="trigger_animation"]

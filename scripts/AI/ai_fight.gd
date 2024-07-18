@@ -22,13 +22,21 @@ var dist
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	start_pos = thrall.global_position
-	goTo = thrall.global_position
+	goTo = find_somewhere_to_go()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if thrall.alive == false:
 		return
+	if get_tree().get_nodes_in_group("players").size() == 0:
+		return
+	if is_instance_valid(player) == false:
+		for play in get_tree().get_nodes_in_group("players"):
+			if play is Actor and play.alive == true:
+				player = play
+				break
+		return # find player, just come back next frame with a valid player instance	
 	dist = thrall.global_position.distance_to(player.global_position)
 	if dist <= dist_attack:
 		in_attack_range(delta)
@@ -72,7 +80,7 @@ func in_attack_range(delta):
 
 
 func attacking():
-	print("ATTACK")
+	#print("ATTACK")
 	# Move towards player, if in some range hold attack
 	thrall.attack_light = dist < 2.0
 	goTo = player.global_position
@@ -85,10 +93,10 @@ func attacking():
 			timer = 6.0
 
 func retreating():
-	print("RETREAT")
+	#print("RETREAT")
 	thrall.attack_light = false
 	# move away from player + some random side to side offset
-	goTo = thrall.global_position + ((thrall.global_position - player.global_position).normalized() * 4)
+	goTo = thrall.global_position + ((thrall.global_position - player.global_position).normalized() * 2)
 	if timer <= 0:
 		if randf() < 0.5:
 			state = ATT_STATE.DODGING
@@ -98,9 +106,10 @@ func retreating():
 			timer = 2.0
 
 func dodging():
-	print("DODGE!")
+	#print("DODGE!")
 	thrall.attack_light = false
 	# move near player strafe around them
+	thrall.dodge = true
 	goTo = thrall.global_position + thrall.global_basis.x
 	if timer <= 0:
 		if randf() < 0.5:

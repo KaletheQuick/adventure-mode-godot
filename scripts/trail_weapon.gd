@@ -10,30 +10,27 @@ var test_pos = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	test_pos.push_front(global_transform)
-	test_pos.push_front(global_transform)
-	test_pos.push_front(global_transform)
-	test_pos.push_front(global_transform)
-	test_pos.push_front(global_transform)
-	test_pos.push_front(global_transform)
 	pass # Replace with function body.
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	#var ntrans = follow.global_transform.looking_at(Vector3.ZERO) #.scaled(Vector3.ONE * follow.global_position.length()) WAS VERY FUN!
-	#ntrans.basis = ntrans.basis.scaled(Vector3.ONE * follow.global_position.length())
-	test_pos.push_front(global_transform)#.rotated(global_basis.x, deg_to_rad(90))) #.affine_inverse())# * get_parent().global_transform.affine_inverse())# * global_transform.affine_inverse())
-	#test_pos[0].basis = test_pos[0].basis.rotated(test_pos[0].basis.y, deg_to_rad(90))
+	test_pos.push_front(global_transform)
 	if test_pos.size() > max_cache_size:
 		test_pos.pop_back()
-	approach2()
+	trail()
 
-func approach2():
+func trail():
 	var chunky = test_pos.size() / bone_chain_length
 	for x in range(6):
-
 		var mTrans = test_pos[x*chunky]
-		mTrans = global_transform.affine_inverse() * mTrans #* transform
-		#mTrans = mTrans.rotated(global_transform.affine_inverse().basis.x, deg_to_rad(-90))
+		mTrans = global_transform.affine_inverse() * mTrans
 		skele.set_bone_global_pose_override(x,mTrans, 1)
+
+func stop():
+	visible = false 
+
+func restart():
+	test_pos.clear()
+	for x in range(bone_chain_length):
+		test_pos.push_front(global_transform)
+	visible = true
