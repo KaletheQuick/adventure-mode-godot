@@ -74,6 +74,13 @@ signal killed_something
 signal xp_get
 signal item_get(item_name)
 
+# SECTION Animation hacking system
+# animation set NAME
+var aset_BLOCK = []
+var aset_MOVE = []
+var aset_TURN = []
+var aset_JUMP = []
+
 func _enter_tree() -> void:
 	if name != "1" && multiplayer.get_unique_id() > 1:
 		set_multiplayer_authority(str(name).to_int())
@@ -246,17 +253,27 @@ func apply_animation_params():
 
 	# SECTION Our current things, computing them once: 
 	var transformed_move_dir =  Vector2(( global_basis.inverse() * -desired_move).x,-( global_basis.inverse() * -desired_move).z)
-	var param_names = animation_tree.get_property_list() #._get_parameter_list()
-	for item in param_names: # not actually param names now, still trying to get a list'
-		if item.name.begins_with("parameters/"):
-			if item.name.contains("MOVE") and item.name.contains("blend_position"):
-				animation_tree.set(item.name, transformed_move_dir)
-			elif item.name.contains("TURN") and (item.name.contains("blend_position") or item.name.contains("add_amount")):				
-				animation_tree.set(item.name, desired_turn)
-			elif item.name.contains("BLOCK"): # and item.name.contains("blend_position"):
-				animation_tree.set(item.name, 1 if block else 0)
-			elif item.name.contains("JUMP"): # and item.name.contains("blend_position"):
-				animation_tree.set(item.name, 1 if desired_move.y > 0.5 else 0)
+	for ani in aset_BLOCK:
+		animation_tree.set(ani, 1 if block else 0)
+	for ani in aset_MOVE:
+		animation_tree.set(ani, transformed_move_dir)
+	for ani in aset_TURN:			
+		animation_tree.set(ani, desired_turn)
+	for ani in aset_JUMP:
+		animation_tree.set(ani, 1 if desired_move.y > 0.5 else 0)
+		
+# NOTE - Keeping this here to remember the huge shame
+#	var param_names = animation_tree.get_property_list() #._get_parameter_list()
+#	for item in param_names: # not actually param names now, still trying to get a list'
+#		if item.name.begins_with("parameters/"):
+#			if item.name.contains("MOVE") and item.name.contains("blend_position"):
+#				animation_tree.set(item.name, transformed_move_dir)
+#			elif item.name.contains("TURN") and (item.name.contains("blend_position") or item.name.contains("add_amount")):				
+#				animation_tree.set(item.name, desired_turn)
+#			elif item.name.contains("BLOCK"): # and item.name.contains("blend_position"):
+#				animation_tree.set(item.name, 1 if block else 0)
+#			elif item.name.contains("JUMP"): # and item.name.contains("blend_position"):
+#				animation_tree.set(item.name, 1 if desired_move.y > 0.5 else 0)
 				
 
 
@@ -361,6 +378,8 @@ func take_damage(damage : float, id : int):
 			poise_regen_timer = 0.5
 		else:
 			poise_regen_timer = poise_regen_delay
+	#if health_current <= 0:
+	#	alive = false
 
 
 func compile_new_anim_tree():
@@ -377,7 +396,6 @@ func compile_new_anim_tree():
 			if mvpk == othermove:
 				continue
 			master_tree.add_transition(mvpk.name, othermove.name, masterstate_transition.duplicate())
-			print("Wired " +mvpk.name+ " to " + othermove.name)
 
 	animation_tree.tree_root = master_tree # neat. What? No transitions or anything
 	var state_machine = animation_tree["parameters/playback"]
@@ -397,7 +415,14 @@ func compile_new_anim_tree():
 				workstring = workstring.replace("-", ".") # NOTE - Another hack, param names cant have dots
 				workstring = workstring.substr(0, workstring.find(']'))
 				animation_tree.set(item.name, workstring.to_float())
-
+			elif item.name.contains("MOVE") and item.name.contains("blend_position"):
+				aset_MOVE.append(item.name)
+			elif item.name.contains("TURN") and (item.name.contains("blend_position") or item.name.contains("add_amount")):				
+				aset_TURN.append(item.name)
+			elif item.name.contains("BLOCK"): # and item.name.contains("blend_position"):
+				aset_BLOCK.append(item.name)
+			elif item.name.contains("JUMP"): # and item.name.contains("blend_position"):
+				aset_JUMP.append(item.name)
 
 
 

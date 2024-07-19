@@ -23,14 +23,17 @@ func _process(delta: float) -> void:
 		return
 	var desired_pos = thrall.global_position
 	desired_pos.y += follow_height_offset
-	velocity += (desired_pos - global_position) * 0.1 * delta
+	velocity += (desired_pos - global_position) * 0.01 * delta
 	cam.global_position = global_position + (global_basis.z * ray_cam_pos())
 	if freeze:
 		return
-	global_position = desired_pos #velocity * delta * (desired_pos - global_position).length()
+	#global_position = lerp(global_position, desired_pos, 0.01)
+	global_position += velocity * delta #* (desired_pos - global_position).length()
+	#global_position = desired_pos #velocity * delta * (desired_pos - global_position).length()
 	#if Input.is_action_just_pressed("p1_look_lock"):
 	#	look_at(thrall.global_position + (thrall.global_basis.z * 10))
 	#cam.look_at(thrall.global_position + (Vector3.UP * 1.8))
+	$Dot.global_position = desired_pos
 	player_look(delta)
 	
 
@@ -66,3 +69,4 @@ func player_look(delta):
 		default_angle = -35
 	global_rotation_degrees.z = 0
 	global_rotation_degrees.x += (default_angle-global_rotation_degrees.x) * 0.9 * delta
+	

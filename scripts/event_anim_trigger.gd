@@ -11,8 +11,8 @@ func trigger_animation(nothing):
 		return
 	# Dirty check for player 
 	print(name)
-	#if nothing.name != "player_actor":
-	#	return
+	if !nothing.is_in_group("players"):
+		return
 	if one_shot == false:
 		animator.play(animation)
 	elif shot == false:

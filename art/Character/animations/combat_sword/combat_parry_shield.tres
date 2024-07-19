@@ -1,6 +1,4 @@
-[gd_resource type="Animation" load_steps=2 format=3 uid="uid://kjm4d74u7suf"]
-
-[ext_resource type="AudioStream" uid="uid://cvjwuss1xv0n1" path="res://art/audio/sfx/swing_02.ogg" id="1_fyoad"]
+[gd_resource type="Animation" format=3 uid="uid://cikcfy6nqf00l"]
 
 [resource]
 resource_name = "combat_parry_shield"
@@ -166,18 +164,3 @@ tracks/22/path = NodePath("char/Skeleton3D:toe.R")
 tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = PackedFloat32Array(0, 1, 5.76884e-08, 0.961248, -0.275684, 8.747e-07)
-tracks/23/type = "audio"
-tracks/23/imported = false
-tracks/23/enabled = true
-tracks/23/path = NodePath("../AudioStreamPlayer3D")
-tracks/23/interp = 1
-tracks/23/loop_wrap = true
-tracks/23/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("1_fyoad")
-}],
-"times": PackedFloat32Array(0.2)
-}
-tracks/23/use_blend = true

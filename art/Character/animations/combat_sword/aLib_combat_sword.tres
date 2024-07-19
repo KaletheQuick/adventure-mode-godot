@@ -17,9 +17,9 @@
 [ext_resource type="Animation" uid="uid://b83fjtde2uhts" path="res://art/Character/animations/combat_sword/combat_heavyish_attack.tres" id="16_b28td"]
 [ext_resource type="Animation" uid="uid://cbke3bp5l7u4d" path="res://art/Character/animations/combat_sword/combat_strafe_bwd.tres" id="16_ufga7"]
 [ext_resource type="Animation" uid="uid://byh8ta138gw6r" path="res://art/Character/animations/combat_sword/combat_jumping_attack.tres" id="17_uf7nn"]
-[ext_resource type="Animation" uid="uid://dwofph5lntbtr" path="res://art/Character/animations/combat_sword/combat_idle_crouch.tres" id="18_2tb7a"]
-[ext_resource type="Animation" uid="uid://kjm4d74u7suf" path="res://art/Character/animations/combat_sword/combat_parry_shield.tres" id="19_7jhn8"]
-[ext_resource type="Animation" uid="uid://c0llfihuumii4" path="res://art/Character/animations/combat_sword/combat_dodgeroll.tres" id="20_vbtp8"]
+[ext_resource type="Animation" uid="uid://dgfaa2xp23iyx" path="res://art/Character/animations/combat_sword/combat_idle_crouch.tres" id="18_2tb7a"]
+[ext_resource type="Animation" uid="uid://cikcfy6nqf00l" path="res://art/Character/animations/combat_sword/combat_parry_shield.tres" id="19_7jhn8"]
+[ext_resource type="Animation" uid="uid://bd0lpdixche02" path="res://art/Character/animations/combat_sword/combat_dodgeroll.tres" id="20_vbtp8"]
 
 [resource]
 _data = {

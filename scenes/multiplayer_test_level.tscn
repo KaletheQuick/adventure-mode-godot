@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://w6l5rubt30f3"]
+[gd_scene load_steps=77 format=3 uid="uid://bvdky0inf3c11"]
 
 [ext_resource type="Script" path="res://scripts/playerSocket_adventure.gd" id="1_03al4"]
 [ext_resource type="PackedScene" uid="uid://b34jdvaqt8gbn" path="res://art/Props/z_target.tscn" id="2_xa5ur"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://d1yr1h0oesfd4" path="res://art/textures/icon_axe_questions.png" id="16_d7447"]
 [ext_resource type="Script" path="res://scripts/camera_control.gd" id="17_1y1j1"]
 [ext_resource type="PackedScene" uid="uid://ibxguf2n6yr5" path="res://prefabs/UI_action_prompt.tscn" id="18_5ww34"]
+[ext_resource type="Script" path="res://scripts/UI/HUD_currency.gd" id="21_fnwlj"]
 [ext_resource type="PackedScene" uid="uid://dettguqlldl03" path="res://prefabs/UI_items.tscn" id="21_jilyl"]
 [ext_resource type="AudioStream" uid="uid://hxog1lltd7d4" path="res://art/audio/506911__nox_sound__ambiance_wind_forest_moderate_loop_stereo.wav" id="23_w8mif"]
 [ext_resource type="PackedScene" uid="uid://bldcnjo1gthob" path="res://prefabs/elevator_platform.tscn" id="24_s5s5f"]
@@ -34,6 +35,16 @@
 [ext_resource type="PackedScene" uid="uid://cabwsn82igehw" path="res://prefabs/environment/campfire.tscn" id="29_n8i7l"]
 [ext_resource type="PackedScene" uid="uid://d3xpjq6g2jknf" path="res://prefabs/collectable.tscn" id="30_iem5u"]
 [ext_resource type="PackedScene" uid="uid://c3w2vh510huih" path="res://prefabs/puzzle elements/button_floor.tscn" id="31_ti63h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g1ur3"]
+shading_mode = 0
+albedo_color = Color(0, 1, 0.483333, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_m86oc"]
+material = SubResource("StandardMaterial3D_g1ur3")
+radius = 0.25
+radial_segments = 4
+rings = 1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4vxjp"]
 resource_name = "ground"
@@ -335,6 +346,10 @@ transform = Transform3D(0.887815, 0, 0.4602, 0, 1, 0, -0.4602, 0, 0.887815, -1.9
 script = ExtResource("4_1onkx")
 cam = NodePath("../Camera")
 freeze = true
+
+[node name="Dot" type="MeshInstance3D" parent="cam_gantry_playerFollow"]
+mesh = SubResource("SphereMesh_m86oc")
+skeleton = NodePath("../..")
 
 [node name="adventure_mode_demoLevel1" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, 8.74228e-08, -8.74228e-08, -4.37114e-08, -1, 3.82137e-15, -1, 4.37114e-08, -9.9662e-06, 0, 293.204)
@@ -781,6 +796,7 @@ offset_bottom = -22.0
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(1.5, 1.5)
+script = ExtResource("21_fnwlj")
 
 [node name="background" type="TextureRect" parent="user_interface/HUD/currency_readout"]
 layout_mode = 0
