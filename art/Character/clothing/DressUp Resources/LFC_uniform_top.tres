@@ -1,6 +1,5 @@
-[gd_resource type="Resource" script_class="Garment" load_steps=7 format=3 uid="uid://cjst8o8w5wput"]
+[gd_resource type="Resource" script_class="Garment" load_steps=6 format=3 uid="uid://cjst8o8w5wput"]
 
-[ext_resource type="Material" uid="uid://cafrak15dcwnl" path="res://art/Character/clothing/skirt_of_skorp.tres" id="1_dxffc"]
 [ext_resource type="Texture2D" uid="uid://dflodexirv003" path="res://art/Character/clothing/clothing_pk_01_LFC_uniform_r01.png" id="2_33m0f"]
 [ext_resource type="Script" path="res://Dress Up/Resource Definitions/Garment.gd" id="2_cve6j"]
 
@@ -222,6 +221,6 @@ resource_name = "LFC Top"
 script = ExtResource("2_cve6j")
 mesh = SubResource("ArrayMesh_s878l")
 skin = SubResource("Skin_uqwaf")
-mate = ExtResource("1_dxffc")
+materials = Array[Material]([])
 tags = Array[String]([])
 bones = Array[String]([])

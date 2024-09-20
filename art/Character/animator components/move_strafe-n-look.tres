@@ -1,0 +1,33 @@
+[gd_resource type="AnimationNodeBlendTree" load_steps=7 format=3 uid="uid://bvy120642v6uj"]
+
+[ext_resource type="AnimationNodeBlendSpace2D" uid="uid://ciqye8mtt71tr" path="res://art/Character/animations/combat_sword/z_blend_tree_strafe.tres" id="1_81klb"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lvj56"]
+animation = &"walk/turn_right 2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kb435"]
+animation = &"walk/turn_left 2"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_kw0pj"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_x806i"]
+
+[sub_resource type="AnimationNodeAdd3" id="AnimationNodeAdd3_qmuto"]
+
+[resource]
+resource_name = "move_strafe-n-look"
+graph_offset = Vector2(-292.536, -12.8514)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_kb435")
+nodes/Animation/position = Vector2(-300, 40)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_lvj56")
+"nodes/Animation 2/position" = Vector2(-300, 380)
+"nodes/MOVE strafe/node" = ExtResource("1_81klb")
+"nodes/MOVE strafe/position" = Vector2(-280, 180)
+"nodes/SET_F[5-01]/node" = SubResource("AnimationNodeTimeScale_kw0pj")
+"nodes/SET_F[5-01]/position" = Vector2(-80, 380)
+"nodes/SET_F[5]/node" = SubResource("AnimationNodeTimeScale_x806i")
+"nodes/SET_F[5]/position" = Vector2(-40, 60)
+"nodes/TURN stuff/node" = SubResource("AnimationNodeAdd3_qmuto")
+"nodes/TURN stuff/position" = Vector2(120, 120)
+nodes/output/position = Vector2(410, 130)
+node_connections = [&"SET_F[5-01]", 0, &"Animation 2", &"SET_F[5]", 0, &"Animation", &"TURN stuff", 0, &"SET_F[5]", &"TURN stuff", 1, &"MOVE strafe", &"TURN stuff", 2, &"SET_F[5-01]", &"output", 0, &"TURN stuff"]

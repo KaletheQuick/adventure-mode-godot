@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b7rn70xxa62fw"]
+[gd_scene load_steps=20 format=3 uid="uid://b7rn70xxa62fw"]
 
 [ext_resource type="Script" path="res://scripts/playerSocket_adventure.gd" id="1_cm27n"]
 [ext_resource type="Material" uid="uid://c1lmf8kes7c51" path="res://art/materials/unified_earth_material.material" id="3_yyr3u"]
@@ -6,7 +6,6 @@
 [ext_resource type="Material" uid="uid://w4aoyuyy5ldg" path="res://art/materials/dirt.tres" id="4_sdu1q"]
 [ext_resource type="Material" uid="uid://c6llc8lhqck4e" path="res://art/materials/water_quick.tres" id="4_tmanx"]
 [ext_resource type="PackedScene" uid="uid://chwqjvpft7wxd" path="res://prefabs/actor.tscn" id="5_iccpj"]
-[ext_resource type="Script" path="res://scripts/footall_sfx.gd" id="5_k2bmb"]
 [ext_resource type="Script" path="res://scripts/camera_control.gd" id="6_bedoa"]
 [ext_resource type="Script" path="res://scripts/AI/ai_flee.gd" id="6_bobkc"]
 [ext_resource type="PackedScene" uid="uid://b803c7alksaap" path="res://art/adventure_mode_demoLevel.glb" id="6_dv5ek"]
@@ -198,18 +197,12 @@ shadow_enabled = true
 [node name="player_actor" parent="." instance=ExtResource("5_iccpj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.298199, 0)
 
-[node name="footall_sfx" type="Node" parent="player_actor"]
-script = ExtResource("5_k2bmb")
-
 [node name="guy flee" parent="." instance=ExtResource("5_iccpj")]
 transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, -0.588409, 0, 10.4148)
 
 [node name="ai_flee" type="Node" parent="guy flee" node_paths=PackedStringArray("fleeFrom")]
 script = ExtResource("6_bobkc")
 fleeFrom = NodePath("../../player_actor")
-
-[node name="footall_sfx2" type="Node" parent="guy flee"]
-script = ExtResource("5_k2bmb")
 
 [node name="guy follow" parent="." instance=ExtResource("5_iccpj")]
 transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 4.7591, 0, 9.72053)
@@ -219,17 +212,11 @@ script = ExtResource("7_kvtot")
 followGuy = NodePath("../../player_actor")
 follow = false
 
-[node name="footall_sfx2" type="Node" parent="guy follow"]
-script = ExtResource("5_k2bmb")
-
 [node name="guy hide" parent="." instance=ExtResource("5_iccpj")]
 transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, -7.80253, 0, 10.4148)
 
 [node name="ai_hide" type="Node" parent="guy hide"]
 script = ExtResource("8_s2oab")
-
-[node name="footall_sfx2" type="Node" parent="guy hide"]
-script = ExtResource("5_k2bmb")
 
 [node name="Camera" type="Camera3D" parent="." node_paths=PackedStringArray("target_current")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 8)

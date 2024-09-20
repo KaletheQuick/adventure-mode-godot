@@ -1,10 +1,11 @@
-[gd_scene load_steps=21 format=3 uid="uid://cvrtei5mg3l66"]
+[gd_scene load_steps=22 format=3 uid="uid://cvrtei5mg3l66"]
 
 [ext_resource type="Script" path="res://Dress Up/DresserUpper.gd" id="2_6dr5i"]
 [ext_resource type="Animation" uid="uid://c05okihnbe7uo" path="res://art/Character/animations/t-pose.tres" id="2_pjwy7"]
 [ext_resource type="Script" path="res://Dress Up/DU_cam_control.gd" id="3_qlpsu"]
 [ext_resource type="Resource" uid="uid://2g2xi3iipiu3" path="res://art/Character/clothing/DressUp Resources/human_flesh.tres" id="9_8bhuf"]
 [ext_resource type="Animation" uid="uid://c8lxaxgedgj2b" path="res://art/Character/animations/combat_sword/combat_idle.res" id="9_j1cmb"]
+[ext_resource type="Script" path="res://Dress Up/Resource Definitions/Garment.gd" id="9_ji51b"]
 [ext_resource type="Animation" uid="uid://bcjdoe3fpv7k6" path="res://art/Character/animations/combat_sword/combat_strafe_left.res" id="10_a6ce8"]
 [ext_resource type="Environment" uid="uid://c5vgp5xgbfy74" path="res://scenes/default_env.tres" id="10_hg8n6"]
 [ext_resource type="Script" path="res://Dress Up/scripts/DU_outfit_control.gd" id="15_syior"]
@@ -499,7 +500,7 @@ playback_default_blend_time = 0.35
 script = ExtResource("2_6dr5i")
 actor = NodePath("../skeleton")
 skele = NodePath("../skeleton/char/Skeleton3D")
-garments = Array[Resource("res://Dress Up/Resource Definitions/Garment.gd")]([ExtResource("9_8bhuf")])
+garments = Array[ExtResource("9_ji51b")]([ExtResource("9_8bhuf")])
 
 [node name="dias" type="Node3D" parent="."]
 

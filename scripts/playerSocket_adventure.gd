@@ -46,9 +46,16 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+@export var deb_action = ""
+@export var deb_act = false
 func _process(delta):
 	if thrall == null:
 		return
+	if deb_act:
+		deb_act = false
+		if deb_action != "":
+			thrall.action_q.append(deb_action)
+			#deb_action = ""
 	if thrall.demo_sit_lounge == true:		
 		if Input.is_action_just_pressed("p1_start") or Input.is_key_pressed(KEY_ESCAPE) or Input.is_key_pressed(KEY_ENTER) or Input.is_key_pressed(KEY_SPACE) or Input.is_key_pressed(KEY_CTRL) or Input.is_key_pressed(KEY_ALT):
 			thrall.demo_sit_lounge = false
@@ -103,17 +110,26 @@ func _collect_inputs(delta):
 			thrall.sprint = true
 			#thrall.dodge = true
 	elif Input.is_action_just_released(player_prefix + "dodge") && ds_timer < dodge_sprint_threshold:
-		thrall.dodge = true
+		thrall.enque_action("dodge")
+#		thrall.dodge = true
 	else:
 		thrall.sprint = false
 		thrall.dodge = false
 		ds_timer = 0
+
+	
+	if Input.is_action_just_released(player_prefix + "use_item"):
+		thrall.enque_action("spell")
 	
 	thrall.handle_movement(go_dir)
-	thrall.block = true if Input.get_action_strength("p1_block") > 0.5 else false
-	thrall.attack_light = true if Input.get_action_strength("p1_attack_light") > 0.5 else false
-	thrall.attack_heavy = true if Input.get_action_strength("p1_attack_heavy") > 0.5 and thrall.attack_light == false else false
-	thrall.parry = true if Input.get_action_strength("p1_parry") > 0.5 else false 
+	if Input.get_action_strength("p1_block") > 0.5:
+		thrall.enque_action("block")	
+	if Input.get_action_strength("p1_attack_light") > 0.5:
+		thrall.enque_action("attack_light")
+	if Input.get_action_strength("p1_attack_heavy") > 0.5:
+		thrall.enque_action("attack_heavy")
+	if Input.get_action_strength("p1_parry") > 0.5:
+		thrall.enque_action("attack_art")
 	
 	dot.global_position = thrall.global_position + go_dir
 
@@ -170,6 +186,7 @@ func _collect_inputs(delta):
 			#TODO - put this look vector somewhere else? idk
 			var transformed_move_dir =  Vector2(( thrall.global_basis.inverse() * (thrall.global_position - locked_target.global_position).normalized()).x,-( thrall.global_basis.inverse() * -go_dir).z)
 			thrall.desired_turn = transformed_move_dir.x
+			thrall.lock_targ_pos = locked_target.global_position
 			#print(transformed_move_dir.x)
 	else:
 		dot.visible = false
@@ -177,7 +194,8 @@ func _collect_inputs(delta):
 		#TODO - put this look vector somewhere else? idk
 		var transformed_move_dir =  Vector2(( thrall.global_basis.inverse() * -go_dir).x,-( thrall.global_basis.inverse() * -go_dir).z)
 		thrall.desired_turn = transformed_move_dir.x
-
+		thrall.lock_targ_pos = Vector3.ZERO
+	input_hand_switching()
 
 @export var action_prompt : Control
 func find_interactable_objects():
@@ -195,14 +213,39 @@ func find_interactable_objects():
 	
 	var col_result = space_state.intersect_ray(query)
 
+	#Phys Sphere
+	var sphere = SphereShape3D.new()
+	sphere.radius = 2
+	var q_shape = PhysicsShapeQueryParameters3D.new()
+	q_shape.shape = sphere
+	q_shape.transform.origin = thrall.global_position + Vector3(0,1,0)
+	q_shape.collide_with_areas = true
+	q_shape.collide_with_bodies = false
+	col_result = space_state.intersect_shape(q_shape)
+
 	#if is_instance_valid(col_result):
-	if "collider" in col_result.keys():
+	#print(col_result.size())
+	for result in col_result:
+		if "collider" in result.keys():
+			if result["collider"] is Harvestable:
+				var crop = result["collider"] as Harvestable
+				if crop.collected == true:
+					continue
+				action_prompt.show_prompt(crop.harvest_name)
+				if Input.is_action_just_pressed(player_prefix + "event_action") and crop.collected == false:
+					crop.my_pickup_logic()
+					thrall.item_get.emit("fruit")
+				return
+			else:
+				action_prompt.hide_prompt()
+	return
+	if "collider" in col_result[0].keys():
 		#print(col_result)
-		if col_result["collider"] is Harvestable:
-			var crop = col_result["collider"] as Harvestable
+		if col_result[0]["collider"] is Harvestable:
+			var crop = col_result[0]["collider"] as Harvestable
 			action_prompt.show_prompt(crop.harvest_name)
-			if Input.is_action_just_pressed(player_prefix + "event_action") and col_result["collider"].collected == false:
-				col_result["collider"].my_pickup_logic()
+			if Input.is_action_just_pressed(player_prefix + "event_action") and col_result[0]["collider"].collected == false:
+				col_result[0]["collider"].my_pickup_logic()
 				thrall.item_get.emit("fruit")
 	else:
 		action_prompt.hide_prompt()
@@ -220,3 +263,16 @@ func dobox(box : Vector3i):
 func enthrall_new_thrall(new_thrall : Actor):
 	thrall = new_thrall
 	headsUpDisplay.inspect_new_thrall(thrall)
+
+
+func input_hand_switching():
+	if Input.is_action_pressed(player_prefix + "event_action"):
+		if Input.is_action_just_pressed(player_prefix + "attack_light"):
+			print("Toggle right hand")
+			if thrall.hand_state == Actor.HandState.ONE_HAND:
+				thrall.hand_state = Actor.HandState.TWO_HAND
+			else:
+				thrall.hand_state = Actor.HandState.ONE_HAND
+		elif Input.is_action_just_pressed(player_prefix + "block"):
+			thrall.hand_state = Actor.HandState.UNARMED # hack for a test
+			print("Toggle left hand")

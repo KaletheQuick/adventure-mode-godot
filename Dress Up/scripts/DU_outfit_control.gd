@@ -29,12 +29,20 @@ func make_garmet_buttons():
 		var new_butt = Button.new()
 		new_butt.text = garment.resource_name
 		created_buttons.append(new_butt)
-		if is_instance_valid(dress_up_controller) && garment in dress_up_controller.garments:
-			new_butt.connect("pressed", self._garment_unequip.bind(garment))
-			worn_area.add_child(new_butt)
-		else: 
-			new_butt.connect("pressed", self._garment_equip.bind(garment))
-			available_area.add_child(new_butt)
+		if garment is Accessory:
+			if is_instance_valid(dress_up_controller) && garment in dress_up_controller.accessories:
+				new_butt.connect("pressed", self._garment_unequip.bind(garment))
+				worn_area.add_child(new_butt)
+			else: 
+				new_butt.connect("pressed", self._garment_equip.bind(garment))
+				available_area.add_child(new_butt)
+		else:
+			if is_instance_valid(dress_up_controller) && garment in dress_up_controller.garments:
+				new_butt.connect("pressed", self._garment_unequip.bind(garment))
+				worn_area.add_child(new_butt)
+			else: 
+				new_butt.connect("pressed", self._garment_equip.bind(garment))
+				available_area.add_child(new_butt)
 
 		#
 
@@ -66,12 +74,18 @@ func clear_buttons():
 		butt.queue_free()
 	created_buttons.clear()
 
-func _garment_equip(gar : Garment):
-	dress_up_controller.garment_equip(gar)
+func _garment_equip(gar):
+	if gar is Accessory:
+		dress_up_controller.accessory_equip(gar)
+	else:
+		dress_up_controller.garment_equip(gar)
 	make_garmet_buttons()
 	pass 
 
-func _garment_unequip(gar : Garment):
-	dress_up_controller.garment_unequip(gar)
+func _garment_unequip(gar):
+	if gar is Accessory:
+		dress_up_controller.accessory_unequip(gar)
+	else:
+		dress_up_controller.garment_unequip(gar)
 	make_garmet_buttons()
 	pass 

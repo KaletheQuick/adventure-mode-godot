@@ -8,6 +8,7 @@ class_name DresserUpper
 var things_worn # NOTE Actual nodes created
 
 @export var garments : Array[Garment] # NOTE Resource references
+@export var accessories : Array[Accessory]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -44,13 +45,9 @@ func recursive_search_for_skele(node : Node) -> Skeleton3D:
 # SECTION Dress up functions
 
 func garment_equip(gar : Garment):
-	var mesh = MeshInstance3D.new()
-	mesh.mesh = gar.mesh
-	mesh.set_surface_override_material(0, gar.mate)
-	mesh.skin = gar.skin
+	var mesh = gar.spawn_garmet()
 	skele.add_child(mesh)
 	mesh.skeleton = skele.get_path()
-	mesh.name = gar.resource_name
 	mesh.lod_bias = 10
 	things_worn[gar] = mesh
 	garments.append(gar)
@@ -67,17 +64,27 @@ func garment_tweak(gar : Garment, property_name : String, v : Variant):
 	# else not found, NO FEEDBACK	
 
 func accessory_equip(acc : Accessory):
-	things_worn.append(acc)
+	#var new_acc = acc.spawn_item()
+	var bone_follow =  acc.spawn_item()
+	skele.add_child(bone_follow)
+	bone_follow.bone_name = acc.bones[0]
+	things_worn[acc] = bone_follow #NOTE Maybe not good, child object being the thing and all.
+	accessories.append(acc)
 
-func accessory_unequep(acc : Accessory):
-	things_worn.erase(acc)
+func accessory_unequip(acc : Accessory):
+	if acc in things_worn.keys():
+		var accessory = things_worn[acc]
+		accessory.queue_free()
+	accessories.erase(acc)
 
 func accessory_item(acc : Accessory):
 	# Find item that exists physically, and return it
-	print("Item not found")
+	
 	if acc in things_worn:
-		return acc.accessory
+		print("Item found")
+		return things_worn[acc]
 	else:
+		print("Item not found")
 		return null
 
 func outfit_save():
@@ -119,7 +126,7 @@ func is_item_equipped(thing):
 
 func unequip_item(item_removed):
 	if item_removed is Accessory:
-		accessory_unequep(item_removed)
+		accessory_unequip(item_removed)
 	else:
 		garment_unequip(item_removed)
 

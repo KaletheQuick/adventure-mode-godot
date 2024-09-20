@@ -82,7 +82,7 @@ func _follow(delta):
 	# Apply 
 	global_position += cam_velocity * delta
 
-func _look(delta):
+func _look_old(delta):
 	if target_curr != Vector3.ZERO:
 		_look_target_lock(delta)
 		return
@@ -104,7 +104,19 @@ func _look(delta):
 	rotation_degrees.x += cam_rot_velocity.y * (cam_rot_velocity.y**2) * delta
 	rotation_degrees.x = clampf(rotation_degrees.x, -60, 80)
 
+func _look(delta):
+	if target_curr != Vector3.ZERO:
+		_look_target_lock(delta)
+		return
+	target_curr = target_current.global_position
+	look_at(target_curr)
+	rotate(basis.x, deg_to_rad(31.5))
+
 func _look_target_lock(delta):
+	look_at(target_curr)
+	rotate(basis.x, deg_to_rad(-28.5))
+
+func _look_target_lock_old(delta):
 	# transform target to screen space
 	var target_screenPos = unproject_position(target_curr)
 	var midscreen = get_viewport().size * 0.2

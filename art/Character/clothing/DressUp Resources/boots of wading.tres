@@ -214,6 +214,6 @@ resource_name = "boots of wading"
 script = ExtResource("1_o1j52")
 mesh = SubResource("ArrayMesh_e524d")
 skin = SubResource("Skin_mg6qa")
-mate = ExtResource("1_5javx")
+materials = Array[Material]([ExtResource("1_5javx")])
 tags = Array[String]([])
 bones = Array[String]([])

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://7akb7b2gcaj1"]
+[gd_scene load_steps=20 format=3 uid="uid://7akb7b2gcaj1"]
 
 [ext_resource type="Script" path="res://scripts/playerSocket_adventure.gd" id="1_6cp8o"]
 [ext_resource type="PackedScene" uid="uid://cc3m6m4bf5i8c" path="res://prefabs/environment/shrub.tscn" id="2_rp12a"]
@@ -6,7 +6,6 @@
 [ext_resource type="Material" uid="uid://w4aoyuyy5ldg" path="res://art/materials/dirt.tres" id="4_uioa4"]
 [ext_resource type="Material" uid="uid://c6llc8lhqck4e" path="res://art/materials/water_quick.tres" id="5_05ump"]
 [ext_resource type="PackedScene" uid="uid://chwqjvpft7wxd" path="res://prefabs/actor.tscn" id="6_nbx7n"]
-[ext_resource type="Script" path="res://scripts/footall_sfx.gd" id="7_fiikt"]
 [ext_resource type="Script" path="res://scripts/AI/ai_flee.gd" id="8_j1shc"]
 [ext_resource type="Script" path="res://scripts/AI/ai_follow.gd" id="9_fok2o"]
 [ext_resource type="Script" path="res://scripts/AI/ai_hide.gd" id="10_7akb4"]
@@ -41,10 +40,9 @@ radial_segments = 4
 
 [node name="Player Sockets" type="Node" parent="."]
 
-[node name="p1_psock_adventure" type="Node" parent="Player Sockets" node_paths=PackedStringArray("thrall", "test_second_thrall", "mainCam")]
+[node name="p1_psock_adventure" type="Node" parent="Player Sockets" node_paths=PackedStringArray("thrall", "mainCam")]
 script = ExtResource("1_6cp8o")
 thrall = NodePath("../../actor")
-test_second_thrall = NodePath("../../guy follow")
 mainCam = NodePath("../../Camera")
 
 [node name="terrain" type="Node3D" parent="."]
@@ -201,18 +199,12 @@ transform = Transform3D(-0.21874, -0.964573, 0.147483, 0.456157, 0.0325297, 0.88
 [node name="actor" parent="." instance=ExtResource("6_nbx7n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.298199, 0)
 
-[node name="footall_sfx" type="Node" parent="actor"]
-script = ExtResource("7_fiikt")
-
 [node name="guy flee" parent="." instance=ExtResource("6_nbx7n")]
 transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, -0.588409, 0, 10.4148)
 
 [node name="ai_flee" type="Node" parent="guy flee" node_paths=PackedStringArray("fleeFrom")]
 script = ExtResource("8_j1shc")
 fleeFrom = NodePath("../../actor")
-
-[node name="footall_sfx2" type="Node" parent="guy flee"]
-script = ExtResource("7_fiikt")
 
 [node name="guy follow" parent="." instance=ExtResource("6_nbx7n")]
 transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 7.5088, 0, 10.4148)
@@ -221,17 +213,11 @@ transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819
 script = ExtResource("9_fok2o")
 followGuy = NodePath("../../actor")
 
-[node name="footall_sfx2" type="Node" parent="guy follow"]
-script = ExtResource("7_fiikt")
-
 [node name="guy hide" parent="." instance=ExtResource("6_nbx7n")]
 transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, -7.80253, 0, 10.4148)
 
 [node name="ai_hide" type="Node" parent="guy hide"]
 script = ExtResource("10_7akb4")
-
-[node name="footall_sfx2" type="Node" parent="guy hide"]
-script = ExtResource("7_fiikt")
 
 [node name="Camera" type="Camera3D" parent="." node_paths=PackedStringArray("target_current")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 8)

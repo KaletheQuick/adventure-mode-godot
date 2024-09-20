@@ -17,6 +17,7 @@ func spawn_item() -> BoneAttachment3D:
 	var new_accessory = accessory.instantiate()
 	attachment.add_child(new_accessory)
 	new_accessory.transform = offset
+	attachment.name = "DressUpAccessory:" + resource_name
 	return attachment
 
 func serialize() -> String:

@@ -214,6 +214,6 @@ resource_name = "gautnlets of razanik"
 script = ExtResource("1_pk8gc")
 mesh = SubResource("ArrayMesh_idoqn")
 skin = SubResource("Skin_ruwq7")
-mate = ExtResource("1_u55gp")
+materials = Array[Material]([ExtResource("1_u55gp")])
 tags = Array[String]([])
 bones = Array[String]([])

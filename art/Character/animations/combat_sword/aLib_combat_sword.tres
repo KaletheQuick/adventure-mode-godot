@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=21 format=3 uid="uid://cfw145vp451ic"]
+[gd_resource type="AnimationLibrary" load_steps=26 format=3 uid="uid://cfw145vp451ic"]
 
 [ext_resource type="Animation" uid="uid://dydbdx8dlduw7" path="res://art/Character/animations/combat_sword/combat_attack_r-l.res" id="1_750fu"]
 [ext_resource type="Animation" uid="uid://x81gg07eneel" path="res://art/Character/animations/combat_sword/combat_block_sword.res" id="3_vnw25"]
@@ -20,9 +20,16 @@
 [ext_resource type="Animation" uid="uid://dgfaa2xp23iyx" path="res://art/Character/animations/combat_sword/combat_idle_crouch.tres" id="18_2tb7a"]
 [ext_resource type="Animation" uid="uid://cikcfy6nqf00l" path="res://art/Character/animations/combat_sword/combat_parry_shield.tres" id="19_7jhn8"]
 [ext_resource type="Animation" uid="uid://bd0lpdixche02" path="res://art/Character/animations/combat_sword/combat_dodgeroll.tres" id="20_vbtp8"]
+[ext_resource type="Animation" uid="uid://cunys3e6yh3ib" path="res://art/Character/animations/combat_sword/combat_spell_L_01.tres" id="21_j4upo"]
+[ext_resource type="Animation" uid="uid://d2uxust0rjy7t" path="res://art/Character/animations/combat_sword/combat_attack_hvy_thrust_charge_0.tres" id="22_obg4u"]
+[ext_resource type="Animation" uid="uid://cun67qs6dsxby" path="res://art/Character/animations/combat_sword/combat_attack_hvy_thrust_charge_1.tres" id="23_6sdsy"]
+[ext_resource type="Animation" uid="uid://slg61ptlhcqg" path="res://art/Character/animations/combat_sword/combat_idle_greatsword_1h.tres" id="24_d68y2"]
+[ext_resource type="Animation" uid="uid://dsl8mu3cpkqei" path="res://art/Character/animations/combat_sword/combat_idle_greatsword_2h.tres" id="25_6762h"]
 
 [resource]
 _data = {
+"combat_attack_hvy_thrust_charge_0": ExtResource("22_obg4u"),
+"combat_attack_hvy_thrust_charge_1": ExtResource("23_6sdsy"),
 "combat_attack_light_01": ExtResource("7_uxj2a"),
 "combat_attack_light_02": ExtResource("8_8upsl"),
 "combat_attack_r-l": ExtResource("1_750fu"),
@@ -33,8 +40,11 @@ _data = {
 "combat_heavyish_attack": ExtResource("16_b28td"),
 "combat_idle": ExtResource("9_tpor7"),
 "combat_idle_crouch": ExtResource("18_2tb7a"),
+"combat_idle_greatsword_1h": ExtResource("24_d68y2"),
+"combat_idle_greatsword_2h": ExtResource("25_6762h"),
 "combat_jumping_attack": ExtResource("17_uf7nn"),
 "combat_parry_shield": ExtResource("19_7jhn8"),
+"combat_spell_L_01": ExtResource("21_j4upo"),
 "combat_strafe_b_l": ExtResource("14_tg5ba"),
 "combat_strafe_b_r": ExtResource("10_50rst"),
 "combat_strafe_bwd": ExtResource("16_ufga7"),

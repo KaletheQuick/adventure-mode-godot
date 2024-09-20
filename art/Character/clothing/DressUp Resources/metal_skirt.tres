@@ -216,6 +216,6 @@ resource_name = "metal skirt"
 script = ExtResource("1_fuvaj")
 mesh = SubResource("ArrayMesh_5tcx5")
 skin = SubResource("Skin_rjcac")
-mate = ExtResource("1_bq3nr")
+materials = Array[Material]([ExtResource("1_bq3nr")])
 tags = Array[String]([])
 bones = Array[String]([])

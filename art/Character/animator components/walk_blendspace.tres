@@ -52,15 +52,15 @@ filters = ["char/Skeleton3D:Root"]
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_eol5t"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_nirgt"]
-graph_offset = Vector2(139.925, 546.402)
+graph_offset = Vector2(89.845, 334.682)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_lpm44")
 nodes/Animation/position = Vector2(180, 660)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_6275b")
 "nodes/Animation 2/position" = Vector2(240, 380)
 "nodes/SET_F[2]/node" = SubResource("AnimationNodeAdd2_rc8nq")
-"nodes/SET_F[2]/position" = Vector2(550, 420)
+"nodes/SET_F[2]/position" = Vector2(560, 420)
 "nodes/SET_F[5]/node" = SubResource("AnimationNodeTimeScale_eol5t")
-"nodes/SET_F[5]/position" = Vector2(390, 590)
+"nodes/SET_F[5]/position" = Vector2(390, 580)
 nodes/output/position = Vector2(1066.67, 533.333)
 node_connections = [&"SET_F[2]", 0, &"Animation 2", &"SET_F[2]", 1, &"SET_F[5]", &"SET_F[5]", 0, &"Animation", &"output", 0, &"SET_F[2]"]
 

@@ -13,6 +13,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var desired_move = Vector3.ZERO
 var desired_turn = 0.0 # left or right -+ 
+var lock_targ_pos : Vector3 = Vector3.ZERO
 # NOTE - Desired move used to handle everything. But locking on and strafing 
 # 		 involved having the directing you were looking, IE turned towards
 #		 and the direction of movement, be separate. 
@@ -25,6 +26,7 @@ var parry = false
 @export var attack_jump = false
 @export var attack_heavy = false
 @export var dodge = false
+
 
 signal attack_hit(actor_hit, attack_id)
 
@@ -47,13 +49,19 @@ var sprint = false
 var combat_mode = false
 var combat_relax_timer = 0
 
+# Enums for state handedness 
+enum HandState {UNARMED, ONE_HAND, TWO_HAND}
+var hand_state : HandState = HandState.UNARMED
+
 # SECTION Outfit
 @export var garments : Array[Garment] # NOTE Resource references
 
 # SECTION Variables for weapon and shiled hurt/hit boxes
 @export var right_weapon : ShapeCast3D
-var right_ouchtime = false
+var invulnerable = false
 @export var hit_effect : PackedScene
+@export var to_equip_wep : Accessory
+var r_wep : Armament
 
 var hurtboxes
 @export var max_health = 10.0
@@ -107,7 +115,13 @@ func _ready():
 	hurtboxes = find_hurtboxes_recursive(self)
 	dress_up()
 	compile_new_anim_tree()
-	
+
+	# NOTE TEST equip weapon as accessory... maybe? idk what is even going on here now
+	var dup = $DresserUpper as DresserUpper
+	dup.accessory_equip(to_equip_wep)
+	r_wep = dup.accessory_item(to_equip_wep).get_child(0) as Armament
+	r_wep.equip_armament(self)
+
 func stop_movement():
 	desired_move = Vector3.ZERO
 #	velocity = Vector3.ZERO
@@ -130,6 +144,7 @@ func enthrall():
 
 
 func _process(delta):
+	action_q_process()
 	if health_current <= 0 and alive == true:
 		alive = false
 		animation_tree.active = false
@@ -146,6 +161,7 @@ func _process(delta):
 	#	$Dir_arrow.look_at(global_position + desired_move)
 	if attack_light or attack_heavy or attack_jump or parry or block:
 		combat_mode = true
+		
 		combat_relax_timer = 30.0
 		for i in range(movement_sets.size()):
 			if movement_sets[i] is mvpk_attack:
@@ -182,8 +198,8 @@ func _physics_process(delta):
 #			animation_tree.tree_root = defaultANIMO
 #	else: # walking
 #		glideInputCheck()
-	if right_ouchtime:
-		hurtbox_check()
+	#if right_ouchtime:
+	#	hurtbox_check()
 
 	
 	apply_animation_params()
@@ -254,7 +270,7 @@ func apply_animation_params():
 	# SECTION Our current things, computing them once: 
 	var transformed_move_dir =  Vector2(( global_basis.inverse() * -desired_move).x,-( global_basis.inverse() * -desired_move).z)
 	for ani in aset_BLOCK:
-		animation_tree.set(ani, 1 if block else 0)
+		animation_tree.set(ani, 1 if "block" in action_q.keys() else 0)
 	for ani in aset_MOVE:
 		animation_tree.set(ani, transformed_move_dir)
 	for ani in aset_TURN:			
@@ -321,20 +337,6 @@ func movement_package_checks():
 
 var attackID = 0
 
-func anim_hurtbox_activate_right(duration : float):
-	stamina_current -= 2
-	for box in hurtboxes:
-		right_weapon.add_exception(box)
-	right_weapon.force_shapecast_update()
-	right_ouchtime = true
-	right_weapon.get_node("debug_hitbox").visible = true
-	attackID = randi()
-	right_weapon.get_parent().get_node("trail_weapon").restart()
-	await get_tree().create_timer(duration).timeout
-	right_ouchtime = false
-	right_weapon.get_node("debug_hitbox").visible = false
-	right_weapon.clear_exceptions()
-	right_weapon.get_parent().get_node("trail_weapon").stop()
 
 func hurtbox_check():
 	for x in range(right_weapon.get_collision_count()):
@@ -350,6 +352,7 @@ func hurtbox_check():
 		attack_hit.emit(hit_actor, attackID)
 		if hit_actor.health_current <= 0:
 			killed_something.emit()
+
 
 func awful_practice_find_parent_actor(node : Node3D):
 	if node is Actor:
@@ -367,6 +370,8 @@ func dress_up():
 
 var damage_attack_id_buffer = []
 func take_damage(damage : float, id : int):
+	if invulnerable:
+		return
 	if id not in damage_attack_id_buffer:
 		damage_attack_id_buffer.append(id)
 		if block && stamina_current > 0:
@@ -434,3 +439,75 @@ func dodge_hack(cost : int) -> bool:
 		look_at(global_position - desired_move)
 		return true
 	return false				
+
+func on_anim_tree_exit() -> bool:
+	print("Exit time " + str(Engine.get_frames_drawn()))
+	return true
+
+# SECTION Action Queue and buffer system
+# NOTE - Action queue system. Things are put on and have a short 
+# buffer time after which they are knocked off. I am not sure if this
+# is a good approach, but I'm trying it out
+
+const ACTION_Q_BUFFER_TIME = 5.0 #milliseconds
+var action_q = {}
+
+func enque_action(action : String):
+	action_q[action] = Time.get_ticks_msec() + (ACTION_Q_BUFFER_TIME)
+	if "attack" in action:
+		combat_mode = true
+		combat_relax_timer = 5.0
+
+# Remove items that have outlived their usefulness
+func action_q_process():
+	var curTick = Time.get_ticks_msec()
+	for key in action_q.keys():
+		if action_q[key] <= curTick:
+			action_q.erase(key)
+
+
+func action_q_check(action : String, consume=false) -> bool: 
+	# NOTE - Warning, string comparisons. Not great. 
+	if action_q.size() == 0:
+		return false
+	if action in action_q.keys():
+		if consume == true:
+			action_q.erase(action)
+		#print(action)
+		if action == "dodge":
+			look_at(global_position - desired_move)
+		return true
+	return false
+
+
+# SECTION - Animation assistance functions 
+# To be called by animation keyframes 
+
+# NOTE - This is somewhat undesireable. 
+#        Movement code was supposed to be in the movement package
+#		 Additionally, lock_targ_pos was added in as a HACK
+func anim_tracking():
+	if lock_targ_pos != Vector3.ZERO:
+		look_at(global_position + (global_position - lock_targ_pos))
+	else:
+		look_at(global_position - desired_move)
+	#look_at(global_position + (global_position - lock_targ_pos))
+	
+
+@export var spell_effect : PackedScene
+func anim_spell_state(state : int):
+	var new_spell = spell_effect.instantiate()
+	get_parent().add_child(new_spell)
+	new_spell.global_position = global_position + Vector3(0,1,0) + basis.z
+
+
+func anim_hurtbox_activate_right(duration : float):
+	stamina_current -= 2
+	r_wep.activate_strike(duration)
+	# TODO - left weapon
+
+func invulnerability_time(time : float):
+	var timer = get_tree().create_timer(time)
+	invulnerable = true
+	await timer.timeout
+	invulnerable = false

@@ -107,4 +107,4 @@ advance_mode = 2
 states/vault_exit/node = SubResource("AnimationNodeAnimation_bexe2")
 states/vault_exit/position = Vector2(677, 83)
 transitions = ["Start", "MOVE climb", SubResource("AnimationNodeStateMachineTransition_r2bnh"), "MOVE climb", "vault_exit", SubResource("AnimationNodeStateMachineTransition_kqq73"), "vault_exit", "End", SubResource("AnimationNodeStateMachineTransition_kd4yn")]
-graph_offset = Vector2(10, -17)
+graph_offset = Vector2(132, -39)

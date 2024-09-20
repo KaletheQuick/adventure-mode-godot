@@ -10,7 +10,7 @@ var cam_follow_dist = 2.5
 var velocity = Vector3.ZERO
 
 var look_rotation_vel = Vector2.ZERO
-var camLookAccell = 1
+var camLookAccell = 3.14
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -23,17 +23,16 @@ func _process(delta: float) -> void:
 		return
 	var desired_pos = thrall.global_position
 	desired_pos.y += follow_height_offset
-	velocity += (desired_pos - global_position) * 0.01 * delta
+	velocity = (desired_pos - global_position) * (desired_pos - global_position).length_squared()
 	cam.global_position = global_position + (global_basis.z * ray_cam_pos())
 	if freeze:
 		return
 	#global_position = lerp(global_position, desired_pos, 0.01)
-	global_position += velocity * delta #* (desired_pos - global_position).length()
+	global_position += velocity * delta * 2#* (desired_pos - global_position).length()
 	#global_position = desired_pos #velocity * delta * (desired_pos - global_position).length()
 	#if Input.is_action_just_pressed("p1_look_lock"):
 	#	look_at(thrall.global_position + (thrall.global_basis.z * 10))
 	#cam.look_at(thrall.global_position + (Vector3.UP * 1.8))
-	$Dot.global_position = desired_pos
 	player_look(delta)
 	
 
@@ -48,7 +47,7 @@ func ray_cam_pos():
 	var col_result = space_state.intersect_ray(query)
 	if "collider" in col_result.keys():
 		var dis = global_position.distance_to(col_result["position"])
-		return dis
+		#return dis
 	return cam_follow_dist
 
 

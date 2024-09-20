@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://dlfhcdaajixhi"]
+[gd_scene load_steps=58 format=3 uid="uid://dlfhcdaajixhi"]
 
 [ext_resource type="Script" path="res://scripts/playerSocket_adventure.gd" id="1_dcdan"]
 [ext_resource type="PackedScene" uid="uid://b34jdvaqt8gbn" path="res://art/Props/z_target.tscn" id="2_0jwv4"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://chwqjvpft7wxd" path="res://prefabs/actor.tscn" id="8_3hjxr"]
 [ext_resource type="Resource" uid="uid://bwsshqau3scbu" path="res://art/Character/clothing/DressUp Resources/short coat.tres" id="8_l56b6"]
 [ext_resource type="Resource" uid="uid://djhxw8u4ikomn" path="res://art/Character/clothing/DressUp Resources/travelers_skirt.tres" id="9_tu48b"]
-[ext_resource type="Script" path="res://scripts/footall_sfx.gd" id="9_upj33"]
 [ext_resource type="Resource" uid="uid://b7dq815w802rc" path="res://art/Character/clothing/DressUp Resources/hair_10_ponytail_01.tres" id="10_10h8l"]
 [ext_resource type="Resource" uid="uid://dyhf0xu1bqbpi" path="res://art/Character/clothing/DressUp Resources/feet_boot_01.tres" id="11_fd2hj"]
 [ext_resource type="PackedScene" uid="uid://ibxguf2n6yr5" path="res://prefabs/UI_action_prompt.tscn" id="12_4mlg7"]
@@ -315,14 +314,8 @@ transform = Transform3D(0.967709, 0, 0.252069, 0, 1, 0, -0.252069, 0, 0.967709, 
 garments = Array[Resource("res://Dress Up/Resource Definitions/Garment.gd")]([ExtResource("7_swsed"), ExtResource("11_fd2hj"), ExtResource("10_10h8l"), ExtResource("8_l56b6"), ExtResource("9_tu48b"), ExtResource("12_opxni")])
 demo_sit_lounge = true
 
-[node name="footall_sfx" type="Node" parent="player_actor"]
-script = ExtResource("9_upj33")
-
 [node name="skele_01" parent="." instance=ExtResource("8_3hjxr")]
 transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 9.13544, -4.38366, -62.3758)
-
-[node name="footall_sfx2" type="Node" parent="skele_01"]
-script = ExtResource("9_upj33")
 
 [node name="ai_attack" type="Node" parent="skele_01" node_paths=PackedStringArray("player")]
 script = ExtResource("14_3yt7r")
@@ -332,9 +325,6 @@ dist_attack = 15
 
 [node name="skele_02" parent="." instance=ExtResource("8_3hjxr")]
 transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 14.4829, -4.38366, -56.0351)
-
-[node name="footall_sfx2" type="Node" parent="skele_02"]
-script = ExtResource("9_upj33")
 
 [node name="ai_attack" type="Node" parent="skele_02" node_paths=PackedStringArray("player")]
 script = ExtResource("14_3yt7r")
@@ -351,14 +341,8 @@ player = NodePath("../../player_actor")
 dist_see = 20
 dist_attack = 15
 
-[node name="footall_sfx2" type="Node" parent="skele_03"]
-script = ExtResource("9_upj33")
-
 [node name="skele_04" parent="." instance=ExtResource("8_3hjxr")]
 transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 29.4989, -0.0550718, 2.8655)
-
-[node name="footall_sfx2" type="Node" parent="skele_04"]
-script = ExtResource("9_upj33")
 
 [node name="ai_attack" type="Node" parent="skele_04" node_paths=PackedStringArray("player")]
 script = ExtResource("14_3yt7r")

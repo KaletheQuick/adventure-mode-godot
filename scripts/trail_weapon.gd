@@ -1,7 +1,6 @@
 extends Node3D
 
 @onready var skele : Skeleton3D = $trail/Skeleton3D
-@export var follow : Node3D
 
 var max_cache_size = 6 * 2
 var bone_chain_length = 6
