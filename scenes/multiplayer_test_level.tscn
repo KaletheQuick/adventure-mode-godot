@@ -972,11 +972,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.9991, 0.0666323, -0.484264
 [node name="skele_01" parent="." instance=ExtResource("26_5srmb")]
 transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 18.3122, 0.563334, 14.8856)
 to_equip_wep = ExtResource("28_6apcs")
+max_health = 1000.0
+max_poise = 1.0
 
 [node name="footall_sfx3" type="Node" parent="skele_01"]
 script = ExtResource("27_6v26p")
 
 [node name="ai_attack" type="Node" parent="skele_01"]
+process_mode = 4
 script = ExtResource("28_5kths")
 
 [node name="grass" parent="." instance=ExtResource("26_4ciue")]

@@ -172,7 +172,7 @@ func _process(delta):
 				attack_jump = false  # Reset the jump attack flag
 				break
 	if combat_mode:
-		combat_relax_timer -= delta
+		##combat_relax_timer -= delta
 		if combat_relax_timer <= 0 or Input.is_action_just_pressed("p1_item_left_next"):
 			combat_mode = false
 

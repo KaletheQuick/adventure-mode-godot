@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=26 format=3 uid="uid://cfw145vp451ic"]
+[gd_resource type="AnimationLibrary" load_steps=28 format=3 uid="uid://cfw145vp451ic"]
 
 [ext_resource type="Animation" uid="uid://dydbdx8dlduw7" path="res://art/Character/animations/combat_sword/combat_attack_r-l.res" id="1_750fu"]
 [ext_resource type="Animation" uid="uid://x81gg07eneel" path="res://art/Character/animations/combat_sword/combat_block_sword.res" id="3_vnw25"]
@@ -25,6 +25,8 @@
 [ext_resource type="Animation" uid="uid://cun67qs6dsxby" path="res://art/Character/animations/combat_sword/combat_attack_hvy_thrust_charge_1.tres" id="23_6sdsy"]
 [ext_resource type="Animation" uid="uid://slg61ptlhcqg" path="res://art/Character/animations/combat_sword/combat_idle_greatsword_1h.tres" id="24_d68y2"]
 [ext_resource type="Animation" uid="uid://dsl8mu3cpkqei" path="res://art/Character/animations/combat_sword/combat_idle_greatsword_2h.tres" id="25_6762h"]
+[ext_resource type="Animation" uid="uid://bm4lqqxuyeuvn" path="res://art/Character/animations/combat_sword/combat_poisebreak.tres" id="26_muk3i"]
+[ext_resource type="Animation" uid="uid://ceubf2flpsdbi" path="res://art/Character/animations/combat_sword/combat_poisebreak_idle.tres" id="27_1vc5s"]
 
 [resource]
 _data = {
@@ -44,6 +46,8 @@ _data = {
 "combat_idle_greatsword_2h": ExtResource("25_6762h"),
 "combat_jumping_attack": ExtResource("17_uf7nn"),
 "combat_parry_shield": ExtResource("19_7jhn8"),
+"combat_poisebreak": ExtResource("26_muk3i"),
+"combat_poisebreak_idle": ExtResource("27_1vc5s"),
 "combat_spell_L_01": ExtResource("21_j4upo"),
 "combat_strafe_b_l": ExtResource("14_tg5ba"),
 "combat_strafe_b_r": ExtResource("10_50rst"),

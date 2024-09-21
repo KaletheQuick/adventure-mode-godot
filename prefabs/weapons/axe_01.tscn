@@ -120,11 +120,8 @@ surface_material_override/0 = SubResource("StandardMaterial3D_a4yg3")
 surface_material_override/1 = SubResource("StandardMaterial3D_y1fl8")
 surface_material_override/2 = SubResource("StandardMaterial3D_j7bsc")
 
-[node name="weapon_axe" parent="." instance=ExtResource("3_1y4f6")]
-transform = Transform3D(-0.038909, -0.22248, 0.389216, -0.410814, 0.174111, 0.0584558, -0.179494, -0.350268, -0.218161, -0.0723167, 0.155175, -0.140752)
-
 [node name="hitbox" type="ShapeCast3D" parent="."]
-transform = Transform3D(0.864924, 0.4944, -0.0864648, 0.129902, -0.386915, -0.91292, -0.484802, 0.778374, -0.398875, -0.025982, 0.226888, -0.0380104)
+transform = Transform3D(-3.55644e-07, 1.34806e-06, 1, -1.07288e-07, 1, 1.53976e-07, -1, 5.0962e-07, 4.89253e-07, -0.110456, -0.0539716, 0.000417695)
 shape = SubResource("SphereShape3D_lss0h")
 target_position = Vector3(0, -0.588, 0)
 collision_mask = 2
@@ -138,5 +135,8 @@ mesh = SubResource("SphereMesh_mh045")
 skeleton = NodePath("../..")
 
 [node name="trail_weapon" parent="." instance=ExtResource("3_271wk")]
-transform = Transform3D(-0.864924, 0.0864648, -0.4944, -0.129902, 0.91292, 0.386915, 0.484802, 0.398875, -0.778374, -0.374124, 0.397364, -0.613442)
+transform = Transform3D(3.55644e-07, -1, -1.34806e-06, 1.07288e-07, -1.53976e-07, -1, 1, -4.89253e-07, -5.0962e-07, -0.0064599, -0.739954, 0.00041811)
 visible = false
+
+[node name="weapon_axe" parent="." instance=ExtResource("3_1y4f6")]
+transform = Transform3D(0.45, -3.93402e-08, -3.93403e-08, -3.93403e-08, -0.45, 3.43924e-15, -3.93403e-08, -2.11758e-22, -0.45, -1.12866e-08, -0.129104, 0)

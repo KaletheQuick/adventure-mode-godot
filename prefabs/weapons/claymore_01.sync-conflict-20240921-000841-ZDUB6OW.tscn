@@ -42,5 +42,5 @@ skeleton = NodePath("../..")
 transform = Transform3D(4.37114e-08, -1, -4.37114e-08, 8.74228e-08, 4.37114e-08, -1, 1, 4.37114e-08, 8.74228e-08, -9.58635e-08, -1.53094, -6.6533e-08)
 visible = false
 
-[node name="claymore_gfx" parent="." instance=ExtResource("4_jmdxs")]
-transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 0, 0)
+[node name="claymore2" parent="." instance=ExtResource("4_jmdxs")]
+transform = Transform3D(-0.721, -1.08868e-07, 0, 1.08868e-07, -0.721, 0, 0, 0, 0.721, 0, 0, 0)
