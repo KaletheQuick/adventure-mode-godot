@@ -2,7 +2,6 @@
 
 [resource]
 resource_name = "combat_strafe_bwd"
-loop_mode = 1
 tracks/0/type = "position_3d"
 tracks/0/imported = true
 tracks/0/enabled = true

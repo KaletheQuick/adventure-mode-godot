@@ -3,10 +3,10 @@
 [ext_resource type="AnimationNodeBlendSpace2D" uid="uid://ciqye8mtt71tr" path="res://art/Character/animations/combat_sword/z_blend_tree_strafe.tres" id="1_81klb"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lvj56"]
-animation = &"walk/turn_right 2"
+animation = &"walk_jog_run/turn_right_45s"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kb435"]
-animation = &"walk/turn_left 2"
+animation = &"walk_jog_run/turn_left_45s"
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_kw0pj"]
 
@@ -16,11 +16,11 @@ animation = &"walk/turn_left 2"
 
 [resource]
 resource_name = "move_strafe-n-look"
-graph_offset = Vector2(-349.036, -53.8514)
+graph_offset = Vector2(-278.536, -97.3514)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_kb435")
-nodes/Animation/position = Vector2(-300, 20)
+nodes/Animation/position = Vector2(-390, -10)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_lvj56")
-"nodes/Animation 2/position" = Vector2(-320, 410)
+"nodes/Animation 2/position" = Vector2(-410, 400)
 "nodes/MOVE strafe/node" = ExtResource("1_81klb")
 "nodes/MOVE strafe/position" = Vector2(-280, 170)
 "nodes/SET_F[5-01]/node" = SubResource("AnimationNodeTimeScale_kw0pj")

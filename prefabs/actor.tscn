@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=4 uid="uid://chwqjvpft7wxd"]
+[gd_scene load_steps=63 format=4 uid="uid://chwqjvpft7wxd"]
 
 [ext_resource type="Script" path="res://scripts/actor.gd" id="1_u4ehk"]
 [ext_resource type="Resource" uid="uid://ba3i5roa0cxxe" path="res://Modular Mobility/movesets/mvpk_walk.tres" id="2_4jbd7"]
@@ -7,59 +7,27 @@
 [ext_resource type="AnimationNodeStateMachine" uid="uid://cf7bwupncf1cj" path="res://art/Character/animator components/glide_root.tres" id="3_epqgw"]
 [ext_resource type="Texture2D" uid="uid://cy3xuqnfe0du6" path="res://art/Character/skeleton_SkeletonN.png" id="3_ouj2n"]
 [ext_resource type="Resource" uid="uid://bofc8snsk08ol" path="res://Modular Mobility/movesets/mvpk_glide.tres" id="3_yihif"]
-[ext_resource type="AnimationLibrary" uid="uid://b1ujq7er4628f" path="res://art/Character/animations/animationLib_dodge.res" id="4_5ducm"]
-[ext_resource type="Animation" uid="uid://dd8epmtg0edal" path="res://art/Character/animations/walk_combat_fwd.res" id="4_ow5tr"]
 [ext_resource type="Resource" uid="uid://casoj2le5m3x1" path="res://Modular Mobility/movesets/mvpk_climb.tres" id="4_ud0ya"]
 [ext_resource type="Resource" uid="uid://diybpprbfvy0g" path="res://Modular Mobility/movesets/w_claymore_moveset.tres" id="4_vid1d"]
 [ext_resource type="Resource" uid="uid://dijgug6xnkk83" path="res://Modular Mobility/movesets/mvpk_swim.tres" id="5_1114p"]
-[ext_resource type="Animation" uid="uid://ss27msnfwmoc" path="res://art/Character/animations/move_walk/walk_fwd.res" id="6_ap3cv"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://bhi4toft5jpac" path="res://art/Character/animator components/strafe_root.tres" id="6_d5gyi"]
-[ext_resource type="Animation" uid="uid://d2y6y3vk3t56c" path="res://art/Character/animations/idle_fists.res" id="6_r3a7a"]
 [ext_resource type="PackedScene" uid="uid://cqxi7q25mnc50" path="res://prefabs/particles/bone_dust.tscn" id="7_1vieu"]
 [ext_resource type="Resource" uid="uid://duxy5hujhcahp" path="res://art/Character/clothing/DressUp Resources/skeleton.tres" id="7_5gopm"]
-[ext_resource type="Animation" uid="uid://bt0neo4ajdimu" path="res://art/Character/animations/move_walk/walk_left.res" id="7_cbj7f"]
-[ext_resource type="Animation" uid="uid://8cy7ps3ou7r2" path="res://art/Character/animations/punch.res" id="7_rc0tl"]
-[ext_resource type="Animation" uid="uid://da5p7f6vjel0u" path="res://art/Character/animations/punch_hvy.res" id="8_40gjd"]
-[ext_resource type="Animation" uid="uid://bts1scx4dkcv5" path="res://art/Character/animations/move_walk/walk_left_sharp.res" id="8_lehsv"]
-[ext_resource type="Animation" uid="uid://rmh402mjftus" path="res://art/Character/animations/bayonet_hvy.res" id="9_1cosr"]
-[ext_resource type="Animation" uid="uid://yciiclgp2mul" path="res://art/Character/animations/move_walk/walk_right.res" id="9_78ojm"]
-[ext_resource type="Animation" uid="uid://c132ndy8mnrih" path="res://art/Character/animations/move_walk/walk_right_sharp.res" id="10_68wfe"]
-[ext_resource type="AnimationLibrary" uid="uid://dg1aitbg1i77i" path="res://art/Character/animations/animationLib_climb.tres" id="10_f5itg"]
 [ext_resource type="Script" path="res://Dress Up/Resource Definitions/Garment.gd" id="10_kf0jt"]
-[ext_resource type="Animation" uid="uid://bk2gpbln7ywrf" path="res://art/Character/animations/walk_rifle.res" id="10_weder"]
-[ext_resource type="Animation" uid="uid://b63vfbuy5bk35" path="res://art/Character/animations/move_walk/turn_left.res" id="11_dyllo"]
 [ext_resource type="AnimationLibrary" uid="uid://iuuxa6ncl6g0" path="res://art/Character/animations/swim/aLib_swim.tres" id="11_f0n1c"]
 [ext_resource type="PackedScene" uid="uid://cwn7cgkq7jdmx" path="res://prefabs/particles/magic.tscn" id="11_l20t5"]
-[ext_resource type="Animation" uid="uid://bos8k72arhccv" path="res://art/Character/animations/run_01.res" id="11_r0jyg"]
-[ext_resource type="Animation" uid="uid://cdxrbk0hvuxn4" path="res://art/Character/animations/glide_idle.res" id="12_d7fop"]
 [ext_resource type="AnimationLibrary" uid="uid://cfw145vp451ic" path="res://art/Character/animations/combat_sword/aLib_combat_sword.tres" id="12_kfhu3"]
-[ext_resource type="Animation" uid="uid://nktpgqsbtad1" path="res://art/Character/animations/move_walk/turn_right.res" id="12_q07ts"]
 [ext_resource type="Resource" uid="uid://b2ase43deh88d" path="res://art/Character/clothing/DressUp Resources/weapons/claymore_01.tres" id="13_p1lhn"]
-[ext_resource type="Animation" uid="uid://c5nqsw25orf4f" path="res://art/Character/animations/glide_forward.res" id="13_yvv4c"]
-[ext_resource type="Animation" uid="uid://bxy2ufse6owud" path="res://art/Character/animations/glide_left.res" id="14_3gv25"]
 [ext_resource type="PackedScene" uid="uid://tuo0xagwneix" path="res://art/Props/shield_nonagon.glb" id="14_7ab7u"]
-[ext_resource type="Animation" uid="uid://dbushwno6bc01" path="res://art/Character/animations/idles/sit_lounge.tscn.res" id="14_q0nqw"]
 [ext_resource type="Animation" uid="uid://ccetyxge74ro7" path="res://art/Character/animations/idles/sit_lounge_toStand.tres" id="15_7tqai"]
-[ext_resource type="Animation" uid="uid://efiuovs6mecm" path="res://art/Character/animations/glide_right.res" id="15_arh1w"]
 [ext_resource type="PackedScene" uid="uid://dr48673j2jxm5" path="res://art/Props/shield_upblast.glb" id="15_tvxex"]
 [ext_resource type="Animation" path="res://art/Character/animations/death.tres" id="16_7p0qy"]
-[ext_resource type="Animation" uid="uid://d1vslobaiydmw" path="res://art/Character/animations/glide_slow_back.res" id="16_v2xsn"]
-[ext_resource type="Animation" uid="uid://cugwjmehv2b7k" path="res://art/Character/animations/glide_slow_left.res" id="17_il77w"]
-[ext_resource type="Animation" uid="uid://3oeov12mrdqu" path="res://art/Character/animations/glide_slow_right.res" id="18_ulwyh"]
-[ext_resource type="Animation" uid="uid://bdh2hlqm3s5gq" path="res://art/Character/animations/turn_left.res" id="19_kuj80"]
-[ext_resource type="Animation" uid="uid://c8u40xvlsm4ib" path="res://art/Character/animations/turn_right.res" id="20_fnace"]
-[ext_resource type="Animation" uid="uid://bmf0rlqn15qa4" path="res://art/Character/animations/jump_standing.res" id="21_3irul"]
 [ext_resource type="AnimationLibrary" uid="uid://bu8hawt708pm4" path="res://art/Character/animations/actions/aLib_actions.tres" id="21_qj7qg"]
-[ext_resource type="Animation" uid="uid://b4o7v47hhoxe8" path="res://art/Character/animations/airborne.res" id="22_riho3"]
-[ext_resource type="Animation" uid="uid://b11ik8c4pwulo" path="res://art/Character/animations/land.res" id="23_m1tqm"]
-[ext_resource type="Animation" uid="uid://rvy0vbywcfeg" path="res://art/Character/animations/jump_arc.res" id="24_7u6lp"]
-[ext_resource type="Animation" uid="uid://c8igki0xek5vn" path="res://art/Character/animations/walk_jog_run/idle_wjr.res" id="35_v4hx7"]
-[ext_resource type="Animation" uid="uid://n0l1yf826pps" path="res://art/Character/animations/walk_jog_run/walk_fwd.tres" id="47_tr62d"]
-[ext_resource type="Animation" uid="uid://uamhdfsb8e5e" path="res://art/Character/animations/walk_jog_run/run_fwd.tres" id="48_t64bw"]
-[ext_resource type="Animation" uid="uid://e0i0c5x61g2s" path="res://art/Character/animations/walk_jog_run/jog_fwd.tres" id="49_e0ogt"]
+[ext_resource type="Animation" uid="uid://sannddwxaokq" path="res://art/Character/animations/idles/sit_lounge.tscn.tres" id="21_wb04b"]
+[ext_resource type="AnimationLibrary" uid="uid://c0vsckh87and1" path="res://art/Character/animations/climb/aLib_climb.tres" id="25_gl75i"]
+[ext_resource type="AnimationLibrary" uid="uid://bpwef0cra4iw2" path="res://art/Character/animations/glider/aLib_glider.tres" id="26_484dv"]
+[ext_resource type="AnimationLibrary" uid="uid://xojch5gcvv1r" path="res://art/Character/animations/walk_jog_run/aLib_wjr.tres" id="27_gdtpd"]
 [ext_resource type="Script" path="res://Dress Up/DresserUpper.gd" id="51_ly8uj"]
-[ext_resource type="Animation" uid="uid://dkeclnrv8h0ym" path="res://art/Character/animations/walk_jog_run/lean_left.tres" id="54_663dq"]
-[ext_resource type="Animation" uid="uid://lv2e62ub3sfs" path="res://art/Character/animations/walk_jog_run/lean_right.tres" id="55_88g2e"]
 [ext_resource type="Script" path="res://scripts/footall_sfx.gd" id="59_becxn"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://coym3jr0vat8x" path="res://art/Character/animator components/walk_root.tres" id="60_n8fbs"]
 
@@ -473,58 +441,8 @@ _data = {
 "EMPTY": SubResource("Animation_d1d6e"),
 "T_pose": SubResource("Animation_s57ac"),
 "death": ExtResource("16_7p0qy"),
-"sit_lounge.tscn": ExtResource("14_q0nqw"),
-"sit_lounge_toStand": ExtResource("15_7tqai"),
-"walk_combat_fwd": ExtResource("4_ow5tr")
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_v64fa"]
-_data = {
-"bayonet_hvy": ExtResource("9_1cosr"),
-"idle_fists": ExtResource("6_r3a7a"),
-"punch": ExtResource("7_rc0tl"),
-"punch_hvy": ExtResource("8_40gjd"),
-"run_01": ExtResource("11_r0jyg"),
-"walk_combat_fwd": ExtResource("4_ow5tr"),
-"walk_rifle": ExtResource("10_weder")
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_qc1fp"]
-_data = {
-"glide_forward": ExtResource("13_yvv4c"),
-"glide_idle": ExtResource("12_d7fop"),
-"glide_left": ExtResource("14_3gv25"),
-"glide_right": ExtResource("15_arh1w"),
-"glide_slow_back": ExtResource("16_v2xsn"),
-"glide_slow_left": ExtResource("17_il77w"),
-"glide_slow_right": ExtResource("18_ulwyh")
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_1qjxe"]
-_data = {
-"airborne": ExtResource("22_riho3"),
-"jump_arc": ExtResource("24_7u6lp"),
-"jump_standing": ExtResource("21_3irul"),
-"land": ExtResource("23_m1tqm"),
-"turn_left": ExtResource("11_dyllo"),
-"turn_left 2": ExtResource("19_kuj80"),
-"turn_right": ExtResource("12_q07ts"),
-"turn_right 2": ExtResource("20_fnace"),
-"walk_fwd": ExtResource("6_ap3cv"),
-"walk_left": ExtResource("7_cbj7f"),
-"walk_left_sharp": ExtResource("8_lehsv"),
-"walk_right": ExtResource("9_78ojm"),
-"walk_right_sharp": ExtResource("10_68wfe")
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_rnvmx"]
-_data = {
-"idle_wjr": ExtResource("35_v4hx7"),
-"jog_fwd": ExtResource("49_e0ogt"),
-"lean_left": ExtResource("54_663dq"),
-"lean_right": ExtResource("55_88g2e"),
-"run_fwd": ExtResource("48_t64bw"),
-"walk_fwd": ExtResource("47_tr62d")
+"sit_lounge.tscn": ExtResource("21_wb04b"),
+"sit_lounge_toStand": ExtResource("15_7tqai")
 }
 
 [sub_resource type="PrismMesh" id="PrismMesh_6ugnc"]
@@ -608,14 +526,14 @@ bones/2/parent = 1
 bones/2/rest = Transform3D(1, 1.77636e-15, 2.38419e-07, -2.60286e-08, 0.994023, 0.109172, -2.36994e-07, -0.109172, 0.994023, 0, 0.160115, 1.86265e-08)
 bones/2/enabled = true
 bones/2/position = Vector3(0, 0.160115, 1.86265e-08)
-bones/2/rotation = Quaternion(-0.053404, 0.00361557, 0.0101959, 0.998514)
+bones/2/rotation = Quaternion(-0.0515087, 0.00900313, 0.0253894, 0.998309)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "chest"
 bones/3/parent = 2
 bones/3/rest = Transform3D(1, 4.95471e-08, 5.20506e-09, -4.95471e-08, 0.978168, 0.207816, 5.20525e-09, -0.207816, 0.978168, -1.62537e-14, 0.143091, 7.26432e-08)
 bones/3/enabled = true
 bones/3/position = Vector3(-1.62537e-14, 0.143091, 7.26432e-08)
-bones/3/rotation = Quaternion(-0.106301, -0.00285179, -0.0155482, 0.994208)
+bones/3/rotation = Quaternion(-0.10896, -0.00709113, -0.0386615, 0.993269)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "neck"
 bones/4/parent = 3
@@ -629,7 +547,7 @@ bones/5/parent = 4
 bones/5/rest = Transform3D(1, 6.70927e-08, -2.28784e-07, 3.55271e-15, 0.959589, 0.281407, 2.38419e-07, -0.281407, 0.959588, -2.03028e-14, 0.115455, -6.14673e-08)
 bones/5/enabled = true
 bones/5/position = Vector3(-2.03028e-14, 0.115455, -6.14673e-08)
-bones/5/rotation = Quaternion(-0.133423, 0.0012966, 0.00479283, 0.991047)
+bones/5/rotation = Quaternion(-0.132668, 0.00321697, 0.0119093, 0.991084)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/name = "jaw"
 bones/6/parent = 5
@@ -643,28 +561,28 @@ bones/7/parent = 3
 bones/7/rest = Transform3D(-0.0356014, -0.999366, 0.000621706, 0.137616, -0.00428629, 0.990476, -0.989846, 0.035348, 0.137681, -0.01647, 0.236002, 0.0215921)
 bones/7/enabled = true
 bones/7/position = Vector3(-0.01647, 0.236002, 0.0215921)
-bones/7/rotation = Quaternion(-0.431514, 0.517122, 0.54573, 0.498558)
+bones/7/rotation = Quaternion(-0.432052, 0.516769, 0.546184, 0.497961)
 bones/7/scale = Vector3(1, 1, 1)
 bones/8/name = "upper_arm.R"
 bones/8/parent = 7
 bones/8/rest = Transform3D(-0.212194, 0.0382157, -0.97648, 0.0267856, 0.999087, 0.0332798, 0.97686, -0.0190938, -0.213024, 0.00576703, 0.17012, -0.0185571)
 bones/8/enabled = true
 bones/8/position = Vector3(0.00576703, 0.17012, -0.0185571)
-bones/8/rotation = Quaternion(0.0922969, -0.389597, 0.0373248, 0.915589)
+bones/8/rotation = Quaternion(0.0841899, -0.389357, 0.0409229, 0.916318)
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/name = "forearm.R"
 bones/9/parent = 8
 bones/9/rest = Transform3D(-0.31495, -0.0192267, 0.948914, 0.0654146, 0.996978, 0.0419121, -0.946851, 0.075273, -0.31274, 2.8871e-07, 0.299468, -1.53494e-07)
 bones/9/enabled = true
 bones/9/position = Vector3(2.8871e-07, 0.299468, -1.53494e-07)
-bones/9/rotation = Quaternion(0.160506, 0.728866, 0.407236, 0.526451)
+bones/9/rotation = Quaternion(0.162416, 0.726794, 0.412085, 0.524955)
 bones/9/scale = Vector3(1, 1, 1)
 bones/10/name = "hand.R"
 bones/10/parent = 9
 bones/10/rest = Transform3D(0.572799, -0.027549, 0.819233, -0.0777299, 0.993106, 0.0877439, -0.816002, -0.113939, 0.566709, 5.58794e-09, 0.2405, -1.85217e-07)
 bones/10/enabled = true
 bones/10/position = Vector3(5.58794e-09, 0.2405, -1.85217e-07)
-bones/10/rotation = Quaternion(0.0939663, 0.644562, 0.0783954, 0.754695)
+bones/10/rotation = Quaternion(0.0765408, 0.582346, 0.0336697, 0.808629)
 bones/10/scale = Vector3(1, 1, 1)
 bones/11/name = "palm.01.R"
 bones/11/parent = 10
@@ -811,28 +729,28 @@ bones/31/parent = 3
 bones/31/rest = Transform3D(-0.0356019, 0.999366, -0.000621766, -0.137616, -0.00428629, 0.990477, 0.989846, 0.0353483, 0.137681, 0.01647, 0.236002, 0.0215921)
 bones/31/enabled = true
 bones/31/position = Vector3(0.01647, 0.236002, 0.0215921)
-bones/31/rotation = Quaternion(-0.436754, -0.506636, -0.544451, 0.506102)
+bones/31/rotation = Quaternion(-0.436118, -0.506874, -0.544096, 0.506793)
 bones/31/scale = Vector3(1, 1, 1)
 bones/32/name = "upper_arm.L"
 bones/32/parent = 31
 bones/32/rest = Transform3D(-0.212194, -0.0382157, 0.97648, -0.0267856, 0.999087, 0.0332798, -0.97686, -0.0190938, -0.213024, -0.00576703, 0.17012, -0.0185572)
 bones/32/enabled = true
 bones/32/position = Vector3(-0.00576703, 0.17012, -0.0185572)
-bones/32/rotation = Quaternion(0.121432, 0.385047, -0.0458472, 0.913724)
+bones/32/rotation = Quaternion(0.130356, 0.38667, -0.0417506, 0.912004)
 bones/32/scale = Vector3(1, 1, 1)
 bones/33/name = "forearm.L"
 bones/33/parent = 32
 bones/33/rest = Transform3D(-0.31495, 0.0192267, -0.948914, -0.0654146, 0.996978, 0.041912, 0.946851, 0.075273, -0.31274, -2.86847e-07, 0.299468, -1.25263e-07)
 bones/33/enabled = true
 bones/33/position = Vector3(-2.86847e-07, 0.299468, -1.25263e-07)
-bones/33/rotation = Quaternion(0.153386, -0.736321, -0.389173, 0.531836)
+bones/33/rotation = Quaternion(0.151153, -0.738574, -0.383508, 0.533463)
 bones/33/scale = Vector3(1, 1, 1)
 bones/34/name = "hand.L"
 bones/34/parent = 33
 bones/34/rest = Transform3D(0.572799, 0.027549, -0.819233, 0.0777299, 0.993106, 0.0877439, 0.816002, -0.113939, 0.566709, -3.72529e-09, 0.2405, -1.84984e-07)
 bones/34/enabled = true
 bones/34/position = Vector3(-3.72529e-09, 0.2405, -1.84984e-07)
-bones/34/rotation = Quaternion(0.0854411, -0.64159, -0.0737358, 0.7587)
+bones/34/rotation = Quaternion(0.0599477, -0.572644, -0.021507, 0.817326)
 bones/34/scale = Vector3(1, 1, 1)
 bones/35/name = "palm.01.L"
 bones/35/parent = 34
@@ -979,21 +897,21 @@ bones/55/parent = 1
 bones/55/rest = Transform3D(0.998437, -0.0558906, 9.57402e-07, -0.0535282, -0.95624, -0.287648, 0.0160777, 0.287197, -0.957739, -0.114206, 0.060157, 0.0441761)
 bones/55/enabled = true
 bones/55/position = Vector3(-0.114206, 0.060157, 0.0441761)
-bones/55/rotation = Quaternion(0.803298, -0.0277301, 0.164238, 0.571812)
+bones/55/rotation = Quaternion(0.874226, 0.0404505, 0.20994, 0.435911)
 bones/55/scale = Vector3(1, 1, 1)
 bones/56/name = "shin.R"
 bones/56/parent = 55
 bones/56/rest = Transform3D(0.999952, 0.00021006, -0.00982634, -0.00279827, 0.96448, -0.264141, 0.00942182, 0.264156, 0.964434, 1.78989e-08, 0.483488, -3.59407e-10)
 bones/56/enabled = true
 bones/56/position = Vector3(1.78989e-08, 0.483488, -3.59407e-10)
-bones/56/rotation = Quaternion(0.770551, -0.00312253, -0.00438782, 0.637356)
+bones/56/rotation = Quaternion(0.517414, -0.00419234, -0.00294635, 0.85572)
 bones/56/scale = Vector3(1, 1, 1)
 bones/57/name = "foot.R"
 bones/57/parent = 56
 bones/57/rest = Transform3D(0.998545, 0.023915, 0.0483316, -0.0536968, 0.358665, 0.931921, 0.00495208, -0.93316, 0.359427, 1.25729e-08, 0.408261, -1.37952e-08)
 bones/57/enabled = true
 bones/57/position = Vector3(1.25729e-08, 0.408261, -1.37952e-08)
-bones/57/rotation = Quaternion(-0.19385, -0.0319539, -0.0266583, 0.980148)
+bones/57/rotation = Quaternion(-0.181049, -0.0834855, 0.00407962, 0.979916)
 bones/57/scale = Vector3(1, 1, 1)
 bones/58/name = "toe.R"
 bones/58/parent = 57
@@ -1007,21 +925,21 @@ bones/59/parent = 1
 bones/59/rest = Transform3D(0.998437, 0.0558906, -9.57402e-07, 0.0535282, -0.95624, -0.287648, -0.0160777, 0.287197, -0.957739, 0.114206, 0.060157, 0.0441761)
 bones/59/enabled = true
 bones/59/position = Vector3(0.114206, 0.060157, 0.0441761)
-bones/59/rotation = Quaternion(0.896689, -0.0405367, -0.198439, 0.39361)
+bones/59/rotation = Quaternion(0.847587, 0.00191752, -0.179919, 0.499221)
 bones/59/scale = Vector3(1, 1, 1)
 bones/60/name = "shin.L"
 bones/60/parent = 59
 bones/60/rest = Transform3D(0.999952, -0.00021006, 0.00982634, 0.00279827, 0.96448, -0.264141, -0.00942182, 0.264156, 0.964434, -1.78989e-08, 0.483488, -3.59407e-10)
 bones/60/enabled = true
 bones/60/position = Vector3(-1.78989e-08, 0.483488, -3.59407e-10)
-bones/60/rotation = Quaternion(0.602492, 0.00391008, 0.00343083, 0.798108)
+bones/60/rotation = Quaternion(0.817366, 0.00282234, 0.00465436, 0.576093)
 bones/60/scale = Vector3(1, 1, 1)
 bones/61/name = "foot.L"
 bones/61/parent = 60
 bones/61/rest = Transform3D(0.998545, -0.023915, -0.0483316, 0.0536968, 0.358665, 0.931921, -0.00495208, -0.93316, 0.359427, -1.25729e-08, 0.408261, -1.37952e-08)
 bones/61/enabled = true
 bones/61/position = Vector3(-1.25729e-08, 0.408261, -1.37952e-08)
-bones/61/rotation = Quaternion(-0.290433, 0.0859886, 0.108693, 0.946805)
+bones/61/rotation = Quaternion(-0.341327, 0.134377, 0.0758149, 0.927195)
 bones/61/scale = Vector3(1, 1, 1)
 bones/62/name = "toe.L"
 bones/62/parent = 61
@@ -1037,7 +955,7 @@ mesh = SubResource("ArrayMesh_78iag")
 skin = SubResource("Skin_h5elq")
 
 [node name="BoneAttachment3D2" type="BoneAttachment3D" parent="skeleton/char/Skeleton3D"]
-transform = Transform3D(0.751543, 0.339426, 0.565662, 0.221407, -0.93752, 0.268395, 0.621419, -0.0764686, -0.779738, 0.573539, 1.89932, 0.443214)
+transform = Transform3D(0.768674, 0.427598, 0.47571, 0.195955, -0.865377, 0.461221, 0.608886, -0.261311, -0.748983, 0.574987, 1.88364, 0.450115)
 bone_name = "prop.L"
 bone_idx = 54
 
@@ -1064,7 +982,7 @@ transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("CylinderShape3D_l4p8o")
 
 [node name="BoneAttachment3D3" type="BoneAttachment3D" parent="skeleton/char/Skeleton3D"]
-transform = Transform3D(0.99995, 0.00995104, -0.000758966, -0.00996385, 0.999764, -0.0193266, 0.000566468, 0.0193332, 0.999813, -0.00296881, 1.47689, 0.00916975)
+transform = Transform3D(0.999694, 0.0246774, -0.00186113, -0.0247064, 0.99954, -0.0175848, 0.00142633, 0.0176255, 0.999844, -0.0073864, 1.4766, 0.00970266)
 bone_name = "chest"
 bone_idx = 3
 
@@ -1079,7 +997,7 @@ visible = false
 [node name="hurt_boxes" type="Node3D" parent="skeleton/char/Skeleton3D"]
 
 [node name="head" type="BoneAttachment3D" parent="skeleton/char/Skeleton3D/hurt_boxes"]
-transform = Transform3D(1, -5.94282e-05, -0.000664412, -3.41423e-05, 0.990158, -0.139957, 0.000666191, 0.139957, 0.990157, 0.000910048, 1.86909, 0.0605217)
+transform = Transform3D(0.999999, -0.000195333, -0.00164836, -3.68893e-05, 0.99019, -0.139726, 0.00165948, 0.139726, 0.990189, 0.00223365, 1.86878, 0.0603846)
 bone_name = "head"
 bone_idx = 5
 use_external_skeleton = true
@@ -1099,7 +1017,7 @@ visible = false
 mesh = SubResource("SphereMesh_c3ly3")
 
 [node name="chest" type="BoneAttachment3D" parent="skeleton/char/Skeleton3D/hurt_boxes"]
-transform = Transform3D(0.99995, 0.00995104, -0.000758967, -0.00996385, 0.999763, -0.0193266, 0.000566468, 0.0193332, 0.999813, -0.00296881, 1.47689, 0.00916975)
+transform = Transform3D(0.999694, 0.0246774, -0.00186113, -0.0247064, 0.99954, -0.0175848, 0.00142633, 0.0176255, 0.999844, -0.0073864, 1.4766, 0.00970266)
 bone_name = "chest"
 bone_idx = 3
 use_external_skeleton = true
@@ -1118,7 +1036,7 @@ visible = false
 mesh = SubResource("CapsuleMesh_xudnl")
 
 [node name="neck" type="BoneAttachment3D" parent="skeleton/char/Skeleton3D/hurt_boxes"]
-transform = Transform3D(0.99995, 0.00892083, -0.00447396, -0.00996376, 0.917845, -0.396815, 0.000566487, 0.39684, 0.917888, -0.000119906, 1.76312, 0.0147047)
+transform = Transform3D(0.999694, 0.0221307, -0.0110755, -0.0247063, 0.918298, -0.395118, 0.00142634, 0.395271, 0.918563, -0.000321451, 1.76276, 0.0147486)
 bone_name = "neck"
 bone_idx = 4
 use_external_skeleton = true
@@ -1137,7 +1055,7 @@ visible = false
 mesh = SubResource("CapsuleMesh_jxdlc")
 
 [node name="hips" type="BoneAttachment3D" parent="skeleton/char/Skeleton3D/hurt_boxes"]
-transform = Transform3D(1, -4.65661e-10, 0, -4.65661e-10, 0.943012, -0.332759, 9.31323e-10, 0.332759, 0.943012, -1.74623e-10, 1.18669, -0.0770624)
+transform = Transform3D(1, -4.65661e-10, -9.31323e-10, -4.65661e-10, 0.943012, -0.33276, 9.31323e-10, 0.33276, 0.943012, 4.07454e-10, 1.18669, -0.0770625)
 bone_name = "hips"
 bone_idx = 1
 use_external_skeleton = true
@@ -1157,7 +1075,7 @@ visible = false
 mesh = SubResource("CapsuleMesh_63oab")
 
 [node name="thigh_L" type="BoneAttachment3D" parent="skeleton/char/Skeleton3D/hurt_boxes"]
-transform = Transform3D(0.917958, 0.0835174, -0.387787, -0.108065, -0.887959, -0.447047, -0.381675, 0.452277, -0.806083, 0.114206, 1.22872, -0.015386)
+transform = Transform3D(0.935251, 0.182889, -0.303079, -0.0642092, -0.754341, -0.653336, -0.348113, 0.630493, -0.693755, 0.114206, 1.22872, -0.0153861)
 bone_name = "thigh.L"
 bone_idx = 59
 use_external_skeleton = true
@@ -1177,7 +1095,7 @@ visible = false
 mesh = SubResource("CapsuleMesh_ucdxq")
 
 [node name="shin_L" type="BoneAttachment3D" parent="skeleton/char/Skeleton3D/hurt_boxes"]
-transform = Transform3D(0.919576, -0.350767, -0.177038, -0.116164, -0.673145, 0.73033, -0.375348, -0.651029, -0.659754, 0.154586, 0.799399, 0.203284)
+transform = Transform3D(0.9357, -0.347626, -0.0601828, -0.0745775, -0.36163, 0.929334, -0.344824, -0.865089, -0.364303, 0.202631, 0.864004, 0.28945)
 bone_name = "shin.L"
 bone_idx = 60
 use_external_skeleton = true
@@ -1197,7 +1115,7 @@ visible = false
 mesh = SubResource("CapsuleMesh_ucdxq")
 
 [node name="foot_L" type="BoneAttachment3D" parent="skeleton/char/Skeleton3D/hurt_boxes"]
-transform = Transform3D(0.869578, -0.424448, -0.252345, -0.381656, -0.901973, 0.20195, -0.313326, -0.079302, -0.946329, 0.011381, 0.52458, -0.0625052)
+transform = Transform3D(0.892278, -0.443148, -0.0863634, -0.368371, -0.825174, 0.428241, -0.261039, -0.350297, -0.899528, 0.0607085, 0.716364, -0.0637324)
 bone_name = "foot.L"
 bone_idx = 61
 use_external_skeleton = true
@@ -1217,7 +1135,7 @@ visible = false
 mesh = SubResource("CapsuleMesh_t8oat")
 
 [node name="uparm_L" type="BoneAttachment3D" parent="skeleton/char/Skeleton3D/hurt_boxes"]
-transform = Transform3D(-0.0462762, 0.936011, -0.348916, -0.797343, 0.1758, 0.577355, 0.60175, 0.304923, 0.738186, 0.186024, 1.6969, 0.0461569)
+transform = Transform3D(-0.0418892, 0.933942, -0.35496, -0.797163, 0.18293, 0.575385, 0.60231, 0.307063, 0.736841, 0.184835, 1.69419, 0.0464558)
 bone_name = "upper_arm.L"
 bone_idx = 32
 use_external_skeleton = true
@@ -1237,7 +1155,7 @@ visible = false
 mesh = SubResource("CapsuleMesh_t0h7h")
 
 [node name="forearm_L" type="BoneAttachment3D" parent="skeleton/char/Skeleton3D/hurt_boxes"]
-transform = Transform3D(-0.812587, 0.342842, 0.47134, 0.579544, 0.389405, 0.715886, 0.0618939, 0.854882, -0.515118, 0.46633, 1.74954, 0.137471)
+transform = Transform3D(-0.813096, 0.350425, 0.464841, 0.578022, 0.391316, 0.716074, 0.0690304, 0.850926, -0.520731, 0.464521, 1.74897, 0.138411)
 bone_name = "forearm.L"
 bone_idx = 33
 use_external_skeleton = true
@@ -1257,7 +1175,7 @@ visible = false
 mesh = SubResource("CapsuleMesh_0sycv")
 
 [node name="hand_L" type="BoneAttachment3D" parent="skeleton/char/Skeleton3D/hurt_boxes"]
-transform = Transform3D(0.242218, 0.437985, 0.865737, 0.697785, 0.541338, -0.469096, -0.674113, 0.717721, -0.174498, 0.548783, 1.84319, 0.343071)
+transform = Transform3D(0.118467, 0.431823, 0.894145, 0.826224, 0.456586, -0.329974, -0.550744, 0.777855, -0.302692, 0.548798, 1.84308, 0.343059)
 bone_name = "hand.L"
 bone_idx = 34
 use_external_skeleton = true
@@ -1277,7 +1195,7 @@ visible = false
 mesh = SubResource("CapsuleMesh_pwts8")
 
 [node name="thigh_R" type="BoneAttachment3D" parent="skeleton/char/Skeleton3D/hurt_boxes"]
-transform = Transform3D(0.944514, -0.232378, 0.232151, 0.0367546, -0.627555, -0.777704, 0.326409, 0.743085, -0.584194, -0.114206, 1.22872, -0.015386)
+transform = Transform3D(0.908578, -0.112305, 0.402335, 0.128884, -0.840817, -0.525753, 0.397335, 0.529542, -0.749473, -0.114206, 1.22872, -0.0153861)
 bone_name = "thigh.R"
 bone_idx = 55
 use_external_skeleton = true
@@ -1297,7 +1215,7 @@ visible = false
 mesh = SubResource("CapsuleMesh_ucdxq")
 
 [node name="shin_R" type="BoneAttachment3D" parent="skeleton/char/Skeleton3D/hurt_boxes"]
-transform = Transform3D(0.946231, 0.272349, 0.174563, 0.0454458, -0.646188, 0.761824, 0.320283, -0.712928, -0.62382, -0.226558, 0.925301, 0.343886)
+transform = Transform3D(0.911244, 0.304756, 0.277053, 0.134596, -0.856088, 0.498996, 0.389254, -0.417417, -0.821124, -0.168504, 0.822194, 0.240641)
 bone_name = "shin.R"
 bone_idx = 56
 use_external_skeleton = true
@@ -1317,7 +1235,7 @@ visible = false
 mesh = SubResource("CapsuleMesh_ucdxq")
 
 [node name="foot_R" type="BoneAttachment3D" parent="skeleton/char/Skeleton3D/hurt_boxes"]
-transform = Transform3D(0.944834, 0.246627, 0.215554, 0.126645, -0.881965, 0.453981, 0.302075, -0.401637, -0.864545, -0.115368, 0.661488, 0.0528257)
+transform = Transform3D(0.955082, 0.206534, 0.212514, 0.180898, -0.97434, 0.133928, 0.234722, -0.0894685, -0.967937, -0.044084, 0.472686, 0.0702261)
 bone_name = "foot.R"
 bone_idx = 57
 use_external_skeleton = true
@@ -1337,7 +1255,7 @@ visible = false
 mesh = SubResource("CapsuleMesh_t8oat")
 
 [node name="uparm_R" type="BoneAttachment3D" parent="skeleton/char/Skeleton3D/hurt_boxes"]
-transform = Transform3D(-0.046529, -0.944871, 0.324121, 0.796557, 0.160698, 0.582814, -0.60277, 0.285299, 0.745167, -0.187309, 1.70152, 0.0503812)
+transform = Transform3D(-0.0487129, -0.946374, 0.31938, 0.796709, 0.156035, 0.583873, -0.602396, 0.282895, 0.746384, -0.18841, 1.70367, 0.0503818)
 bone_name = "upper_arm.R"
 bone_idx = 8
 use_external_skeleton = true
@@ -1357,7 +1275,7 @@ visible = false
 mesh = SubResource("CapsuleMesh_t0h7h")
 
 [node name="forearm_R" type="BoneAttachment3D" parent="skeleton/char/Skeleton3D/hurt_boxes"]
-transform = Transform3D(-0.814244, -0.326539, -0.479978, -0.578554, 0.388421, 0.71722, -0.047767, 0.861685, -0.50519, -0.470267, 1.74965, 0.135819)
+transform = Transform3D(-0.814538, -0.319685, -0.484075, -0.578598, 0.387508, 0.717678, -0.0418479, 0.864661, -0.500609, -0.471818, 1.7504, 0.1351)
 bone_name = "forearm.R"
 bone_idx = 9
 use_external_skeleton = true
@@ -1377,7 +1295,7 @@ visible = false
 mesh = SubResource("CapsuleMesh_0sycv")
 
 [node name="hand_R" type="BoneAttachment3D" parent="skeleton/char/Skeleton3D/hurt_boxes"]
-transform = Transform3D(0.254039, -0.435627, -0.863535, -0.68491, 0.549372, -0.478631, 0.682907, 0.713035, -0.158803, -0.5488, 1.84306, 0.343054)
+transform = Transform3D(0.147275, -0.422379, -0.894375, -0.801417, 0.478997, -0.35818, 0.57969, 0.769518, -0.267957, -0.548703, 1.84359, 0.343051)
 bone_name = "hand.R"
 bone_idx = 10
 use_external_skeleton = true
@@ -1403,12 +1321,9 @@ libraries = {
 "aLib_actions": ExtResource("21_qj7qg"),
 "aLib_combat_sword": ExtResource("12_kfhu3"),
 "aLib_swim": ExtResource("11_f0n1c"),
-"animationLib_climb": ExtResource("10_f5itg"),
-"dodge": ExtResource("4_5ducm"),
-"from_old": SubResource("AnimationLibrary_v64fa"),
-"glider": SubResource("AnimationLibrary_qc1fp"),
-"walk": SubResource("AnimationLibrary_1qjxe"),
-"walk_jog_run": SubResource("AnimationLibrary_rnvmx")
+"animationLib_climb": ExtResource("25_gl75i"),
+"glider": ExtResource("26_484dv"),
+"walk_jog_run": ExtResource("27_gdtpd")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
@@ -1428,7 +1343,6 @@ parameters/BlendTree/Transition/current_index = -1
 parameters/BlendTree/horace/active = false
 parameters/BlendTree/horace/internal_active = false
 parameters/BlendTree/horace/request = 0
-"parameters/BlendTree 2/Blend2/blend_amount" = 0
 "parameters/Jump w vel/blend_position" = 0
 "parameters/Jump w vel/0/TimeScale/scale" = 1.0
 "parameters/Jump w vel/1/TimeScale/scale" = 1.0
@@ -1441,7 +1355,7 @@ parameters/BlendTree/horace/request = 0
 "parameters/MOVE sprint/4/SET_F[1]/add_amount" = 0
 "parameters/MOVE sprint/5/SET_F[0-5]/add_amount" = 0
 "parameters/MOVE sprint/5/SET_F[1]/add_amount" = 0
-"parameters/MOVE walk/blend_position" = Vector2(0.0171211, 0.67675)
+"parameters/MOVE walk/blend_position" = Vector2(0.0107335, 0.0754018)
 "parameters/MOVE walk/0/SET_F[2]/scale" = 1.0
 "parameters/MOVE walk/5/SET_F[5]/scale" = 1.0
 "parameters/MOVE walk/6/SET_F[2]/add_amount" = 0

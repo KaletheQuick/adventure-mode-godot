@@ -15,19 +15,19 @@ nodes/output/position = Vector2(610, 360)
 node_connections = [&"SET_F[2]", 0, &"Animation", &"output", 0, &"SET_F[2]"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i6s4s"]
-animation = &"walk_jog_run/idle_wjr"
+animation = &"walk_jog_run/idle"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kfjrj"]
-animation = &"walk_jog_run/idle_wjr"
+animation = &"walk_jog_run/idle"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_b7e4s"]
-animation = &"walk_jog_run/idle_wjr"
+animation = &"walk_jog_run/idle"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gul4e"]
-animation = &"walk_jog_run/idle_wjr"
+animation = &"walk_jog_run/idle"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vl7et"]
-animation = &"walk/turn_right 2"
+animation = &"walk_jog_run/turn_right_45s"
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_stou0"]
 
@@ -43,7 +43,7 @@ node_connections = [&"SET_F[5]", 0, &"Animation", &"output", 0, &"SET_F[5]"]
 animation = &"walk_jog_run/jog_fwd"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lpm44"]
-animation = &"walk/turn_left 2"
+animation = &"walk_jog_run/turn_left_45s"
 
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_rc8nq"]
 filter_enabled = true
@@ -52,9 +52,9 @@ filters = ["char/Skeleton3D:Root"]
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_eol5t"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_nirgt"]
-graph_offset = Vector2(89.845, 334.682)
+graph_offset = Vector2(20.845, 306.667)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_lpm44")
-nodes/Animation/position = Vector2(180, 660)
+nodes/Animation/position = Vector2(80, 660)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_6275b")
 "nodes/Animation 2/position" = Vector2(240, 380)
 "nodes/SET_F[2]/node" = SubResource("AnimationNodeAdd2_rc8nq")
@@ -65,7 +65,7 @@ nodes/output/position = Vector2(1066.67, 533.333)
 node_connections = [&"SET_F[2]", 0, &"Animation 2", &"SET_F[2]", 1, &"SET_F[5]", &"SET_F[5]", 0, &"Animation", &"output", 0, &"SET_F[2]"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uqj7a"]
-animation = &"walk/turn_right 2"
+animation = &"walk_jog_run/turn_right_45s"
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_j7y0d"]
 
@@ -85,7 +85,7 @@ filters = ["char/Skeleton3D:Root"]
 animation = &"walk_jog_run/walk_fwd"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8xb8h"]
-animation = &"walk/turn_left 2"
+animation = &"walk_jog_run/turn_left_45s"
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_sh8oh"]
 

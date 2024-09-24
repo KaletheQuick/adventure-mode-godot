@@ -36,7 +36,7 @@ _subresources={
 "airborne": {
 "save_to_file/enabled": true,
 "save_to_file/keep_custom_tracks": "",
-"save_to_file/path": "res://art/Character/animations/airborne.res",
+"save_to_file/path": "res://art/Character/animations/airborne.tres",
 "settings/loop_mode": 1,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
@@ -1835,7 +1835,7 @@ _subresources={
 "glide_forward": {
 "save_to_file/enabled": true,
 "save_to_file/keep_custom_tracks": "",
-"save_to_file/path": "res://art/Character/animations/glide_forward.res",
+"save_to_file/path": "res://art/Character/animations/glide_forward.tres",
 "settings/loop_mode": 1,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
@@ -3634,7 +3634,7 @@ _subresources={
 "glide_idle": {
 "save_to_file/enabled": true,
 "save_to_file/keep_custom_tracks": "",
-"save_to_file/path": "res://art/Character/animations/glide_idle.res",
+"save_to_file/path": "res://art/Character/animations/glide_idle.tres",
 "settings/loop_mode": 1,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
@@ -5433,7 +5433,7 @@ _subresources={
 "glide_left": {
 "save_to_file/enabled": true,
 "save_to_file/keep_custom_tracks": "",
-"save_to_file/path": "res://art/Character/animations/glide_left.res",
+"save_to_file/path": "res://art/Character/animations/glide_left.tres",
 "settings/loop_mode": 1,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
@@ -7232,7 +7232,7 @@ _subresources={
 "glide_right": {
 "save_to_file/enabled": true,
 "save_to_file/keep_custom_tracks": "",
-"save_to_file/path": "res://art/Character/animations/glide_right.res",
+"save_to_file/path": "res://art/Character/animations/glide_right.tres",
 "settings/loop_mode": 1,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
@@ -9031,7 +9031,7 @@ _subresources={
 "glide_slow_back": {
 "save_to_file/enabled": true,
 "save_to_file/keep_custom_tracks": "",
-"save_to_file/path": "res://art/Character/animations/glide_slow_back.res",
+"save_to_file/path": "res://art/Character/animations/glide_slow_back.tres",
 "settings/loop_mode": 1,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
@@ -10830,7 +10830,7 @@ _subresources={
 "glide_slow_left": {
 "save_to_file/enabled": true,
 "save_to_file/keep_custom_tracks": "",
-"save_to_file/path": "res://art/Character/animations/glide_slow_left.res",
+"save_to_file/path": "res://art/Character/animations/glide_slow_left.tres",
 "settings/loop_mode": 1,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
@@ -12629,7 +12629,7 @@ _subresources={
 "glide_slow_right": {
 "save_to_file/enabled": true,
 "save_to_file/keep_custom_tracks": "",
-"save_to_file/path": "res://art/Character/animations/glide_slow_right.res",
+"save_to_file/path": "res://art/Character/animations/glide_slow_right.tres",
 "settings/loop_mode": 1,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
@@ -14428,7 +14428,7 @@ _subresources={
 "jump_arc": {
 "save_to_file/enabled": true,
 "save_to_file/keep_custom_tracks": "",
-"save_to_file/path": "res://art/Character/animations/jump_arc.res",
+"save_to_file/path": "res://art/Character/animations/jump_arc.tres",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
@@ -16227,7 +16227,7 @@ _subresources={
 "jump_standing": {
 "save_to_file/enabled": true,
 "save_to_file/keep_custom_tracks": "",
-"save_to_file/path": "res://art/Character/animations/jump_standing.res",
+"save_to_file/path": "res://art/Character/animations/jump_standing.tres",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
@@ -18026,7 +18026,7 @@ _subresources={
 "land": {
 "save_to_file/enabled": true,
 "save_to_file/keep_custom_tracks": "",
-"save_to_file/path": "res://art/Character/animations/land.res",
+"save_to_file/path": "res://art/Character/animations/land.tres",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,

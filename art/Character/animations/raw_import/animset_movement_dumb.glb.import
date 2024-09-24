@@ -17,6 +17,7 @@ nodes/root_type=""
 nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
 meshes/ensure_tangents=true
 meshes/generate_lods=true
 meshes/create_shadow_meshes=true
@@ -28,13 +29,14 @@ animation/import=true
 animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "animations": {
 "T_pose": {
 "save_to_file/enabled": true,
 "save_to_file/keep_custom_tracks": "",
-"save_to_file/path": "res://art/Character/animations/move_walk/idle.res",
+"save_to_file/path": "res://art/Character/animations/move_walk/idle.tres",
 "settings/loop_mode": 1,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
@@ -1833,7 +1835,7 @@ _subresources={
 "turn_left": {
 "save_to_file/enabled": true,
 "save_to_file/keep_custom_tracks": "",
-"save_to_file/path": "res://art/Character/animations/move_walk/turn_left.res",
+"save_to_file/path": "res://art/Character/animations/move_walk/turn_left.tres",
 "settings/loop_mode": 1,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
@@ -3632,7 +3634,7 @@ _subresources={
 "turn_right": {
 "save_to_file/enabled": true,
 "save_to_file/keep_custom_tracks": "",
-"save_to_file/path": "res://art/Character/animations/move_walk/turn_right.res",
+"save_to_file/path": "res://art/Character/animations/move_walk/turn_right.tres",
 "settings/loop_mode": 1,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
@@ -5431,7 +5433,7 @@ _subresources={
 "walk_fwd": {
 "save_to_file/enabled": true,
 "save_to_file/keep_custom_tracks": "",
-"save_to_file/path": "res://art/Character/animations/move_walk/walk_fwd.res",
+"save_to_file/path": "res://art/Character/animations/move_walk/walk_fwd.tres",
 "settings/loop_mode": 1,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
@@ -7230,7 +7232,7 @@ _subresources={
 "walk_left": {
 "save_to_file/enabled": true,
 "save_to_file/keep_custom_tracks": "",
-"save_to_file/path": "res://art/Character/animations/move_walk/walk_left.res",
+"save_to_file/path": "res://art/Character/animations/move_walk/walk_left.tres",
 "settings/loop_mode": 1,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
@@ -9029,7 +9031,7 @@ _subresources={
 "walk_right": {
 "save_to_file/enabled": true,
 "save_to_file/keep_custom_tracks": "",
-"save_to_file/path": "res://art/Character/animations/move_walk/walk_right.res",
+"save_to_file/path": "res://art/Character/animations/move_walk/walk_right.tres",
 "settings/loop_mode": 1,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
