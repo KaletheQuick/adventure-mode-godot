@@ -37,12 +37,12 @@ advance_expression = "sprint == false"
 states/walk_jog_run_jog_fwd/node = SubResource("AnimationNodeAnimation_0a7ju")
 states/walk_jog_run_jog_fwd/position = Vector2(405, 60.5)
 states/walk_jog_run_run_fwd/node = SubResource("AnimationNodeAnimation_fmi3v")
-states/walk_jog_run_run_fwd/position = Vector2(386, 220)
+states/walk_jog_run_run_fwd/position = Vector2(386, 219)
 transitions = ["Start", "walk_jog_run_jog_fwd", SubResource("AnimationNodeStateMachineTransition_l2vn5"), "walk_jog_run_jog_fwd", "walk_jog_run_run_fwd", SubResource("AnimationNodeStateMachineTransition_uygdu"), "walk_jog_run_run_fwd", "walk_jog_run_jog_fwd", SubResource("AnimationNodeStateMachineTransition_wf7fu")]
-graph_offset = Vector2(83, -36)
+graph_offset = Vector2(3, -113)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_jhl7d"]
-graph_offset = Vector2(-367.866, -28.6898)
+graph_offset = Vector2(-416.866, -55.1898)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_d6nw5")
 nodes/Animation/position = Vector2(-400, 240)
 nodes/BLOCK/node = SubResource("AnimationNodeBlend2_2qmsw")

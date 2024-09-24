@@ -67,4 +67,4 @@ states/2h/position = Vector2(615.875, 280)
 states/unarmed/node = SubResource("AnimationNodeAnimation_vefrs")
 states/unarmed/position = Vector2(467.5, 101.5)
 transitions = ["1h", "2h", SubResource("AnimationNodeStateMachineTransition_iw2yf"), "2h", "1h", SubResource("AnimationNodeStateMachineTransition_hjmlm"), "Start", "1h", SubResource("AnimationNodeStateMachineTransition_k4x24"), "Start", "2h", SubResource("AnimationNodeStateMachineTransition_2tcnc"), "Start", "unarmed", SubResource("AnimationNodeStateMachineTransition_j4y57"), "unarmed", "1h", SubResource("AnimationNodeStateMachineTransition_ucqpo"), "unarmed", "2h", SubResource("AnimationNodeStateMachineTransition_jel8e"), "2h", "unarmed", SubResource("AnimationNodeStateMachineTransition_6sbcu"), "1h", "unarmed", SubResource("AnimationNodeStateMachineTransition_dutrb")]
-graph_offset = Vector2(111, -82)
+graph_offset = Vector2(59, -212)

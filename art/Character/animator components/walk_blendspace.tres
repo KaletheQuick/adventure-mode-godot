@@ -6,12 +6,12 @@ animation = &"walk_jog_run/jog_fwd"
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_lccqx"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_da2v0"]
-graph_offset = Vector2(-181.5, 186.5)
+graph_offset = Vector2(-95, 67)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_qyuku")
-nodes/Animation/position = Vector2(0, 213.333)
+nodes/Animation/position = Vector2(0, 220)
 "nodes/SET_F[2]/node" = SubResource("AnimationNodeTimeScale_lccqx")
-"nodes/SET_F[2]/position" = Vector2(363, 246.033)
-nodes/output/position = Vector2(613.333, 373.333)
+"nodes/SET_F[2]/position" = Vector2(370, 250)
+nodes/output/position = Vector2(610, 360)
 node_connections = [&"SET_F[2]", 0, &"Animation", &"output", 0, &"SET_F[2]"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i6s4s"]

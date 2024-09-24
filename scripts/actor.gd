@@ -473,9 +473,6 @@ func action_q_check(action : String, consume=false) -> bool:
 	if action in action_q.keys():
 		if consume == true:
 			action_q.erase(action)
-		#print(action)
-		if action == "dodge":
-			look_at(global_position - desired_move)
 		return true
 	return false
 
@@ -486,10 +483,14 @@ func action_q_check(action : String, consume=false) -> bool:
 # NOTE - This is somewhat undesireable. 
 #        Movement code was supposed to be in the movement package
 #		 Additionally, lock_targ_pos was added in as a HACK
-func anim_tracking():
+func anim_track_look():
 	if lock_targ_pos != Vector3.ZERO:
 		look_at(global_position + (global_position - lock_targ_pos))
 	else:
+		look_at(global_position - desired_move)
+	#look_at(global_position + (global_position - lock_targ_pos))
+
+func anim_track_move():
 		look_at(global_position - desired_move)
 	#look_at(global_position + (global_position - lock_targ_pos))
 	
