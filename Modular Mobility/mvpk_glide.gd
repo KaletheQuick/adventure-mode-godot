@@ -9,6 +9,7 @@ func transfer_situation_check(thrall : Actor) -> bool:
 
 	if thrall.is_on_floor() == false:
 		if Input.is_action_just_pressed("p1_jump"):
+			thrall.combat_mode = false
 			return true
 	return false
 

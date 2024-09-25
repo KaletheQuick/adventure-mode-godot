@@ -14,7 +14,7 @@ nodes/Animation/position = Vector2(-190, 150)
 node_connections = [&"output", 0, &"Animation"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sfcww"]
-animation = &"T_pose"
+animation = &"aLib_combat_sword/combat_heavyish_attack"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xjw1r"]
 animation = &"T_pose"
@@ -38,7 +38,7 @@ animation = &"aLib_combat_sword/combat_attack_hvy_thrust_charge_0"
 animation = &"T_pose"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vcbe5"]
-animation = &"dodge/dodge_back"
+animation = &"aLib_combat_sword/backstep"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gd771"]
 animation = &"aLib_combat_sword/combat_attack_hvy_thrust_charge_0"
@@ -73,12 +73,12 @@ animation = &"aLib_combat_sword/combat_attack_light_02"
 animation = &"T_pose"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_chhmq"]
-animation = &"walk/jump_arc"
+animation = &"walk_jog_run/jump_standing"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_doopt"]
-graph_offset = Vector2(-109, -68.5)
+graph_offset = Vector2(-328, -39.5)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_chhmq")
-nodes/Animation/position = Vector2(29.5, 115)
+nodes/Animation/position = Vector2(0, 120)
 node_connections = [&"output", 0, &"Animation"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rpayx"]
@@ -149,7 +149,7 @@ node_connections = [&"BLOCK", 0, &"SET_F[1]", &"BLOCK", 1, &"Animation", &"SET_F
 animation = &"walk_jog_run/airborne"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qgdka"]
-animation = &"walk/land"
+animation = &"walk_jog_run/land"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0on8m"]
 xfade_time = 0.3
@@ -292,6 +292,8 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7dakr"]
 switch_mode = 2
 advance_mode = 2
+advance_expression = "is_on_floor() == true
+"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8fb84"]
 switch_mode = 2
@@ -314,6 +316,7 @@ switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_57g6n"]
+xfade_time = 0.5
 advance_mode = 2
 advance_expression = "desired_move.length_squared() < 0.25 && action_q_check(\"dodge\")"
 
@@ -338,6 +341,7 @@ advance_mode = 2
 advance_expression = "action_q_check(\"attack_power\")"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1rr7x"]
+xfade_time = 0.1
 advance_mode = 2
 advance_expression = "action_q_check(\"attack_light\")"
 
@@ -351,6 +355,7 @@ switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8xyly"]
+xfade_time = 0.5
 priority = 2
 switch_mode = 2
 advance_mode = 2
@@ -388,6 +393,7 @@ advance_expression = "is_on_floor() == true
 "
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pp6kn"]
+switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="Curve" id="Curve_y1ybo"]
@@ -494,7 +500,7 @@ states/back_A_L/position = Vector2(568.173, -169.062)
 states/back_A_P/node = SubResource("AnimationNodeAnimation_u1pe0")
 states/back_A_P/position = Vector2(568.143, -88.5)
 states/backstep/node = SubResource("AnimationNodeAnimation_vcbe5")
-states/backstep/position = Vector2(426, -170.281)
+states/backstep/position = Vector2(26, -169.062)
 states/crouch_A_L/node = SubResource("AnimationNodeAnimation_gd771")
 states/crouch_A_L/position = Vector2(551.384, 727)
 states/crouch_A_P/node = SubResource("AnimationNodeAnimation_ds2s8")
@@ -540,7 +546,7 @@ states/walk_airborne/position = Vector2(192.5, -464.25)
 states/walk_land/node = SubResource("AnimationNodeAnimation_qgdka")
 states/walk_land/position = Vector2(362.07, -464.5)
 transitions = ["standing", "crouching", SubResource("AnimationNodeStateMachineTransition_0on8m"), "airborne", "air_A_L", SubResource("AnimationNodeStateMachineTransition_y20av"), "airborne", "air_A_H", SubResource("AnimationNodeStateMachineTransition_3acqo"), "airborne", "air_A_P", SubResource("AnimationNodeStateMachineTransition_c2nfx"), "standing", "offhand_A_L", SubResource("AnimationNodeStateMachineTransition_vdfbe"), "standing", "norm_A_L", SubResource("AnimationNodeStateMachineTransition_m5f2g"), "standing", "norm_A_H", SubResource("AnimationNodeStateMachineTransition_tkxwo"), "standing", "norm_A_P", SubResource("AnimationNodeStateMachineTransition_twegj"), "standing", "sprint_A_L", SubResource("AnimationNodeStateMachineTransition_37iui"), "standing", "sprint_A_H", SubResource("AnimationNodeStateMachineTransition_6cq6x"), "standing", "sprint_A_P", SubResource("AnimationNodeStateMachineTransition_hha6t"), "crouching", "crouch_A_L", SubResource("AnimationNodeStateMachineTransition_31ohk"), "crouching", "crouch_A_P", SubResource("AnimationNodeStateMachineTransition_rwkfb"), "crouching", "sprint_A_L", SubResource("AnimationNodeStateMachineTransition_lmkc5"), "crouching", "sprint_A_H", SubResource("AnimationNodeStateMachineTransition_wjw4k"), "crouching", "sprint_A_P", SubResource("AnimationNodeStateMachineTransition_sqt8b"), "standing", "WepArt", SubResource("AnimationNodeStateMachineTransition_hxyew"), "Start", "standing", SubResource("AnimationNodeStateMachineTransition_mvuby"), "Start", "airborne", SubResource("AnimationNodeStateMachineTransition_niclv"), "Start", "crouching", SubResource("AnimationNodeStateMachineTransition_1byen"), "crouching", "standing", SubResource("AnimationNodeStateMachineTransition_meysa"), "offhand_A_L", "standing", SubResource("AnimationNodeStateMachineTransition_4vpok"), "norm_A_L", "standing", SubResource("AnimationNodeStateMachineTransition_fq0gl"), "norm_A_H", "standing", SubResource("AnimationNodeStateMachineTransition_3efym"), "norm_A_P", "standing", SubResource("AnimationNodeStateMachineTransition_61xe6"), "sprint_A_P", "standing", SubResource("AnimationNodeStateMachineTransition_2s0d8"), "sprint_A_H", "standing", SubResource("AnimationNodeStateMachineTransition_6cxn7"), "sprint_A_L", "standing", SubResource("AnimationNodeStateMachineTransition_i4usc"), "crouch_A_L", "standing", SubResource("AnimationNodeStateMachineTransition_6k2y4"), "crouch_A_P", "standing", SubResource("AnimationNodeStateMachineTransition_kadue"), "WepArt", "standing", SubResource("AnimationNodeStateMachineTransition_xfh0m"), "air_A_L", "standing", SubResource("AnimationNodeStateMachineTransition_6mykl"), "air_A_H", "standing", SubResource("AnimationNodeStateMachineTransition_7dakr"), "air_A_P", "standing", SubResource("AnimationNodeStateMachineTransition_8fb84"), "dodge_A_L", "standing", SubResource("AnimationNodeStateMachineTransition_2mr6w"), "dodge_A_P", "standing", SubResource("AnimationNodeStateMachineTransition_uv0un"), "back_A_L", "standing", SubResource("AnimationNodeStateMachineTransition_pnmrd"), "back_A_P", "standing", SubResource("AnimationNodeStateMachineTransition_n2rc7"), "standing", "backstep", SubResource("AnimationNodeStateMachineTransition_57g6n"), "standing", "dodge", SubResource("AnimationNodeStateMachineTransition_v5kr3"), "dodge", "dodge_A_L", SubResource("AnimationNodeStateMachineTransition_kjabd"), "dodge", "dodge_A_P", SubResource("AnimationNodeStateMachineTransition_qpy6c"), "backstep", "back_A_L", SubResource("AnimationNodeStateMachineTransition_1rr7x"), "backstep", "back_A_P", SubResource("AnimationNodeStateMachineTransition_b3rwd"), "dodge", "standing", SubResource("AnimationNodeStateMachineTransition_b7cpc"), "backstep", "standing", SubResource("AnimationNodeStateMachineTransition_8xyly"), "standing", "jmp", SubResource("AnimationNodeStateMachineTransition_cokce"), "jmp", "airborne", SubResource("AnimationNodeStateMachineTransition_fnaal"), "walk_airborne", "standing", SubResource("AnimationNodeStateMachineTransition_6tydq"), "standing", "walk_airborne", SubResource("AnimationNodeStateMachineTransition_s7hbm"), "walk_airborne", "airborne", SubResource("AnimationNodeStateMachineTransition_7bn3p"), "crouching", "norm_A_H", SubResource("AnimationNodeStateMachineTransition_yx40u"), "airborne", "walk_land", SubResource("AnimationNodeStateMachineTransition_ufax3"), "walk_land", "standing", SubResource("AnimationNodeStateMachineTransition_pp6kn"), "norm_A_L", "norm_A_L_2", SubResource("AnimationNodeStateMachineTransition_7clbw"), "norm_A_L_2", "norm_A_L", SubResource("AnimationNodeStateMachineTransition_2y3xv"), "norm_A_L_2", "standing", SubResource("AnimationNodeStateMachineTransition_hxwq1"), "standing", "poisebreak", SubResource("AnimationNodeStateMachineTransition_1sv8d"), "poisebreak", "pb_idle", SubResource("AnimationNodeStateMachineTransition_pfdlv"), "pb_idle", "pb_stand", SubResource("AnimationNodeStateMachineTransition_5flc5"), "pb_stand", "standing", SubResource("AnimationNodeStateMachineTransition_adr5q"), "dodge", "dodge_2", SubResource("AnimationNodeStateMachineTransition_4wevg"), "dodge_2", "dodge", SubResource("AnimationNodeStateMachineTransition_rt65g"), "dodge_2", "dodge_A_L", SubResource("AnimationNodeStateMachineTransition_6jcvu"), "dodge_2", "dodge_A_P", SubResource("AnimationNodeStateMachineTransition_jh62r"), "dodge_2", "standing", SubResource("AnimationNodeStateMachineTransition_mpm0r")]
-graph_offset = Vector2(-170, -46)
+graph_offset = Vector2(-48, -439)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ky3yf"]
 animation = &"aLib_combat_sword/combat_idle_greatsword_1h"
@@ -615,7 +621,7 @@ filters = ["char/Skeleton3D:chest", "char/Skeleton3D:f_index.01.L", "char/Skelet
 
 [resource]
 resource_name = "claymore moveset"
-graph_offset = Vector2(-96, 99)
+graph_offset = Vector2(-159, 152)
 "nodes/Attack Tree/node" = SubResource("AnimationNodeStateMachine_1wdgk")
 "nodes/Attack Tree/position" = Vector2(180, 240)
 nodes/HandednessIdle/node = SubResource("AnimationNodeStateMachine_2l3ct")
