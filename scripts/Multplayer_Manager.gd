@@ -3,12 +3,14 @@ extends Node
 const PLAYER_SCENE = preload("res://prefabs/actor.tscn")
 const PORT = 8080
 var enet_peer = ENetMultiplayerPeer.new()
+var nop= WebSocketMultiplayerPeer.new()
 
 @export var server_menu : Control
 @export var cam_gant : Node3D 
 @export var cam_actu : Camera3D
 @export var ip_input : LineEdit
 @export var outfit_control : Control
+@export var player_secondary_because_of_browser_problems : Actor
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -22,6 +24,10 @@ func _process(delta: float) -> void:
 
 
 func _on_butt_host_pressed() -> void:
+	if OS.get_name() == "Web":
+		print("Web build detected, quick, change everything about networking so it all breaks, quickly everyone!")
+	_start_local_only()
+	return
 	server_menu.hide()
 	enet_peer.create_server(PORT)
 	multiplayer.multiplayer_peer = enet_peer
@@ -38,6 +44,22 @@ func _on_butt_connect_pressed() -> void:
 	multiplayer.multiplayer_peer = enet_peer
 	server_menu.visible = false
 
+func _start_local_only():	
+	server_menu.hide()
+	var new_player = player_secondary_because_of_browser_problems
+	#new_player.name = "Thrall Local Player"
+	#add_child(new_player)
+	print("New player: Local only")
+	print("We is us!")
+	get_parent().find_child("Player Sockets").find_child("p1_psock_adventure").enthrall_new_thrall(player_secondary_because_of_browser_problems)
+	cam_gant.thrall = player_secondary_because_of_browser_problems
+	cam_gant.cam.target_current = player_secondary_because_of_browser_problems
+	cam_gant.freeze = false
+	cam_gant.cam.freeze = false
+	player_secondary_because_of_browser_problems.visible = true
+	player_secondary_because_of_browser_problems.process_mode = Node.PROCESS_MODE_INHERIT
+	print("Iz noed? " + str(player_secondary_because_of_browser_problems.find_child("DresserUpper")))
+	outfit_control.dress_up_controller = player_secondary_because_of_browser_problems.find_child("DresserUpper")
 
 func add_player(peer_id):
 	var new_player = PLAYER_SCENE.instantiate()

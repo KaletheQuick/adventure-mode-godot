@@ -17,18 +17,23 @@ var state = ATT_STATE.IDLE
 
 var start_pos
 
-
+@export var action = false
 var dist
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	start_pos = thrall.global_position
 	goTo = find_somewhere_to_go()
+	thrall.hand_state = Actor.HandState.TWO_HAND
+	thrall.enque_action("attack_light")
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if thrall.alive == false:
+	if is_instance_valid(thrall) and thrall.alive == false:
 		return
+	timer -= delta
+
 	if get_tree().get_nodes_in_group("players").size() == 0:
 		return
 	if is_instance_valid(player) == false:
@@ -42,8 +47,14 @@ func _process(delta):
 		in_attack_range(delta)
 	elif dist <= dist_see:
 		in_spot_range(delta)
-	else:
-		thrall.attack_light = false
+	elif timer <= 0:
+		goTo = start_pos
+		goTo.y = thrall.global_position.y
+		var go_d = (goTo - thrall.global_position).normalized()
+		var transformed_move_dir =  Vector2(( thrall.global_basis.inverse() * -go_d).x,-( thrall.global_basis.inverse() * -go_d).z)
+		thrall.desired_turn = transformed_move_dir.x
+
+		
 	var go_dir = goTo - thrall.global_position
 	thrall.handle_movement(go_dir)
 
@@ -55,16 +66,20 @@ func find_somewhere_to_go() -> Vector3:
 func in_spot_range(delta):
 	thrall.combat_mode = true
 	thrall.combat_relax_timer = 4.0
-	thrall.look_at(thrall.global_position + (thrall.global_position - player.global_position))
-	timer -= delta
+	var go_d = (player.global_position - thrall.global_position).normalized()
+	var transformed_move_dir =  Vector2(( thrall.global_basis.inverse() * -go_d).x,-( thrall.global_basis.inverse() * -go_d).z)
+	thrall.desired_turn = transformed_move_dir.x
 	state = ATT_STATE.IDLE
 	thrall.attack_light = false
 	
 func in_attack_range(delta):
 	thrall.combat_mode = true
 	thrall.combat_relax_timer = 4.0
-	thrall.look_at(thrall.global_position + (thrall.global_position - player.global_position))
-	timer -= delta
+
+	var go_d = (player.global_position - thrall.global_position).normalized()
+	var transformed_move_dir =  Vector2(( thrall.global_basis.inverse() * -go_d).x,-( thrall.global_basis.inverse() * -go_d).z)
+	thrall.desired_turn = transformed_move_dir.x
+
 	match state:
 		ATT_STATE.RETREATING:
 			retreating()
@@ -82,7 +97,12 @@ func in_attack_range(delta):
 func attacking():
 	#print("ATTACK")
 	# Move towards player, if in some range hold attack
-	thrall.attack_light = dist < 2.0
+	if dist < 2.0 && timer > 1:
+		var randAct = randf()
+		if randAct < 0.3:
+			thrall.enque_action("attack_light")
+		elif randAct < 0.4:
+			thrall.enque_action("attack_heavy")
 	goTo = player.global_position
 	if timer <= 0:
 		if randf() < 0.5:
@@ -90,12 +110,13 @@ func attacking():
 			timer = 4.0
 		else:
 			state = ATT_STATE.RETREATING
-			timer = 6.0
+			timer = 3.0
 
 func retreating():
 	#print("RETREAT")
 	thrall.attack_light = false
 	# move away from player + some random side to side offset
+	thrall.enque_action("block")
 	goTo = thrall.global_position + ((thrall.global_position - player.global_position).normalized() * 2)
 	if timer <= 0:
 		if randf() < 0.5:
@@ -103,7 +124,7 @@ func retreating():
 			timer = 4.0
 		else:
 			state = ATT_STATE.ATTACKING
-			timer = 2.0
+			timer = 4.0
 
 func dodging():
 	#print("DODGE!")
@@ -111,11 +132,17 @@ func dodging():
 	# move near player strafe around them
 	thrall.dodge = true
 	goTo = thrall.global_position + thrall.global_basis.x
+	var randAct = randf()
+	if randAct < 0.05:
+		thrall.enque_action("dodge")
+	if randAct < 0.1:
+		goTo = thrall.global_position
+		thrall.enque_action("dodge")
 	if timer <= 0:
 		if randf() < 0.5:
 			state = ATT_STATE.ATTACKING
-			timer = 2.0
+			timer = 4.0
 		else:
 			state = ATT_STATE.RETREATING
-			timer = 6.0
+			timer = 3.0
 

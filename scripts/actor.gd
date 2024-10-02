@@ -89,7 +89,9 @@ var aset_MOVE = []
 var aset_TURN = []
 var aset_JUMP = []
 
+
 func _enter_tree() -> void:
+	return
 	if name != "1" && multiplayer.get_unique_id() > 1:
 		set_multiplayer_authority(str(name).to_int())
 
@@ -178,29 +180,14 @@ func _process(delta):
 
 	movement_package_checks()
 
+	# NOTE - thing idk
+	## if block:
+
+
 
 func _physics_process(delta):
 	if alive == false:
 		return
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		pass
-		#velocity.y = JUMP_VELOCITY
-##		if combo_bar:
-#			combo_bar.fill_combo_bar(10)
-
-	# Get the input direction and handle the movement/deceleration.
-#	return
-#	if gliding:
-#		if is_on_floor() or Input.is_action_just_pressed("p1_crouch"):
-#			print("Switch to walking")
-#			gliding = false
-#			animation_tree.tree_root = defaultANIMO
-#	else: # walking
-#		glideInputCheck()
-	#if right_ouchtime:
-	#	hurtbox_check()
-
 	
 	apply_animation_params()
 	#animation_tree.set("parameters/Move Walk/blend_position", Vector2(( global_basis.inverse() * -desired_move).x,-( global_basis.inverse() * -desired_move).z))
@@ -219,36 +206,6 @@ func _physics_process(delta):
 	movement_sets[current_moveset].move_thrall(self, delta)
 	_TEMPORARY_fall_death()
 	return
-	#print(global_basis.inverse() * -desired_move)
-	# NOTE - Old vel
-	#if not is_on_floor():
-	var old_fallVel = velocity.y
-	# Get the motion delta.
-	velocity = ((animation_tree.get_root_motion_rotation_accumulator().inverse() * get_quaternion()) * animation_tree.get_root_motion_position() / LDT) * 2
-
-	# Add the gravity.
-	if not is_on_floor():# && desired_move.y < 0.1:
-		velocity.y = old_fallVel # + velocity.y
-		velocity.y -= gravity * delta
-		# NOTE Special case
-		if gliding:
-			velocity.y = clampf(velocity.y, termnalVel, 999999999)
-	#print(animation_tree.get_root_motion_position().length())
-
-	# global_basis * (animation_tree.get_root_motion_position_accumulator())
-	quaternion = quaternion * ((animation_tree.get_root_motion_rotation() / delta) * 10)
-	animation_tree.get_root_motion_scale()
-	
-
-	
-
-	# Get the actual blended value of the animation.
-	animation_tree.get_root_motion_position_accumulator()
-	animation_tree.get_root_motion_rotation_accumulator()
-	animation_tree.get_root_motion_scale_accumulator()
-
-	move_and_slide()
-	lastDesiredMoveY = desired_move.y
 
 func stamina_regen(delta):
 	stamina_current = clamp(stamina_current + delta, -100, max_stamina)
@@ -277,6 +234,7 @@ func apply_animation_params():
 		animation_tree.set(ani, desired_turn)
 	for ani in aset_JUMP:
 		animation_tree.set(ani, 1 if desired_move.y > 0.5 else 0)
+
 		
 # NOTE - Keeping this here to remember the huge shame
 #	var param_names = animation_tree.get_property_list() #._get_parameter_list()
@@ -338,20 +296,6 @@ func movement_package_checks():
 var attackID = 0
 
 
-func hurtbox_check():
-	for x in range(right_weapon.get_collision_count()):
-		var nHit = hit_effect.instantiate()
-		get_tree().root.add_child(nHit)
-		nHit.global_position = right_weapon.get_collision_point(x)
-		nHit.look_at(right_weapon.get_collision_point(x) + right_weapon.get_collision_normal(x))
-		nHit.emitting = true
-		#print("OUCH!" + right_weapon.get_collider(x).name)
-		right_weapon.add_exception_rid(right_weapon.get_collider_rid(x))
-		var hit_actor = awful_practice_find_parent_actor(right_weapon.get_collider(x))
-		hit_actor.take_damage(2, attackID)
-		attack_hit.emit(hit_actor, attackID)
-		if hit_actor.health_current <= 0:
-			killed_something.emit()
 
 
 func awful_practice_find_parent_actor(node : Node3D):
@@ -369,13 +313,16 @@ func dress_up():
 		dup.garment_equip(garment)
 
 var damage_attack_id_buffer = []
-func take_damage(damage : float, id : int):
+func take_damage(damage : float, id : int) -> Armament.AttackState:
 	if invulnerable:
-		return
+		return Armament.AttackState.MISS # Dodged
+	var returnable = Armament.AttackState.HIT
 	if id not in damage_attack_id_buffer:
 		damage_attack_id_buffer.append(id)
 		if block && stamina_current > 0:
 			stamina_current -= damage
+			enque_action("blocked_attack")
+			returnable = Armament.AttackState.BLOCKED
 		else:
 			health_current -= damage
 		poise_current -= 5
@@ -383,8 +330,16 @@ func take_damage(damage : float, id : int):
 			poise_regen_timer = 0.5
 		else:
 			poise_regen_timer = poise_regen_delay
+	else:
+		returnable = Armament.AttackState.MISS
 	#if health_current <= 0:
 	#	alive = false
+	return returnable
+
+func block_attack(id : int):
+	if id not in damage_attack_id_buffer:
+		damage_attack_id_buffer.append(id)
+	
 
 
 func compile_new_anim_tree():
@@ -429,16 +384,7 @@ func compile_new_anim_tree():
 			elif item.name.contains("JUMP"): # and item.name.contains("blend_position"):
 				aset_JUMP.append(item.name)
 
-
-
-func dodge_hack(cost : int) -> bool:
-	if dodge == true && stamina_current > 0:
-		print("DODGE! GO NOW!")
-		stamina_current -= 5
-		# Rotate in direction of desired movement once
-		look_at(global_position - desired_move)
-		return true
-	return false				
+			
 
 func on_anim_tree_exit() -> bool:
 	print("Exit time " + str(Engine.get_frames_drawn()))
@@ -449,7 +395,7 @@ func on_anim_tree_exit() -> bool:
 # buffer time after which they are knocked off. I am not sure if this
 # is a good approach, but I'm trying it out
 
-const ACTION_Q_BUFFER_TIME = 5.0 #milliseconds
+const ACTION_Q_BUFFER_TIME = 50.0 #milliseconds
 var action_q = {}
 
 func enque_action(action : String):

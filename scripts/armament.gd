@@ -11,6 +11,9 @@ var ouchtime = false
 var wielder : Actor # Thrall that wields this weapon
 var attackID : int # random number to help prevent multi hits
 @export var hit_effect : PackedScene
+@export var block_effect : PackedScene
+
+enum AttackState {HIT, MISS, BLOCKED}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -47,18 +50,32 @@ func activate_strike(duration : float) -> void:
 
 func hurtbox_check() -> void:	
 	for x in range(hitbox.get_collision_count()):
-		var nHit = hit_effect.instantiate()
-		get_tree().root.add_child(nHit)
-		nHit.global_position = hitbox.get_collision_point(x)
-		nHit.look_at(hitbox.get_collision_point(x) + hitbox.get_collision_normal(x))
-		nHit.emitting = true
+		
 		#print("OUCH!" + hitbox.get_collider(x).name)
 		hitbox.add_exception_rid(hitbox.get_collider_rid(x))
 		var hit_actor = awful_practice_find_parent_actor(hitbox.get_collider(x))
-		hit_actor.take_damage(2, attackID)
-		wielder.attack_hit.emit(hit_actor, attackID)
-		if hit_actor.health_current <= 0:
-			wielder.killed_something.emit()
+		var att_result = hit_actor.take_damage(2, attackID)
+		match att_result:
+			AttackState.HIT:
+				wielder.attack_hit.emit(hit_actor, attackID) 
+				spawn_hit_effect(hit_effect, hitbox.get_collision_point(x), hitbox.get_collision_point(x) + hitbox.get_collision_normal(x))
+				if hit_actor.health_current <= 0:
+					wielder.killed_something.emit()
+			AttackState.MISS:
+				pass 
+			AttackState.BLOCKED:
+				print("Attack blocked!") 	
+				spawn_hit_effect(block_effect, hitbox.get_collision_point(x), hitbox.get_collision_point(x) + hitbox.get_collision_normal(x))			
+			_:
+				pass
+
+func spawn_hit_effect(effect : PackedScene, pos : Vector3, lookAt : Vector3):
+	var nHit = effect.instantiate()
+	get_tree().root.add_child(nHit)
+	nHit.global_position = pos
+	nHit.look_at(lookAt)
+	nHit.emitting = true
+		
 
 func awful_practice_find_parent_actor(node : Node3D):
 	if node is Actor:
