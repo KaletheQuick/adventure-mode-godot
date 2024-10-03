@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=4 uid="uid://bvdky0inf3c11"]
+[gd_scene load_steps=81 format=4 uid="uid://bvdky0inf3c11"]
 
 [ext_resource type="Script" path="res://scripts/playerSocket_adventure.gd" id="1_03al4"]
 [ext_resource type="PackedScene" uid="uid://b34jdvaqt8gbn" path="res://art/Props/z_target.tscn" id="2_xa5ur"]
@@ -328,15 +328,12 @@ size = Vector3(1.66, 3.37, 1.35)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_akcvl"]
 data = PackedVector3Array(-0.83, 1.685, 0.675, 0.83, 1.685, 0.675, -0.83, -1.685, 0.675, 0.83, 1.685, 0.675, 0.83, -1.685, 0.675, -0.83, -1.685, 0.675, 0.83, 1.685, -0.675, -0.83, 1.685, -0.675, 0.83, -1.685, -0.675, -0.83, 1.685, -0.675, -0.83, -1.685, -0.675, 0.83, -1.685, -0.675, 0.83, 1.685, 0.675, 0.83, 1.685, -0.675, 0.83, -1.685, 0.675, 0.83, 1.685, -0.675, 0.83, -1.685, -0.675, 0.83, -1.685, 0.675, -0.83, 1.685, -0.675, -0.83, 1.685, 0.675, -0.83, -1.685, -0.675, -0.83, 1.685, 0.675, -0.83, -1.685, 0.675, -0.83, -1.685, -0.675, 0.83, 1.685, 0.675, -0.83, 1.685, 0.675, 0.83, 1.685, -0.675, -0.83, 1.685, 0.675, -0.83, 1.685, -0.675, 0.83, 1.685, -0.675, -0.83, -1.685, 0.675, 0.83, -1.685, 0.675, -0.83, -1.685, -0.675, 0.83, -1.685, 0.675, 0.83, -1.685, -0.675, -0.83, -1.685, -0.675)
 
-[sub_resource type="BoxMesh" id="BoxMesh_hncl4"]
-
 [node name="multiplayer_test_level" type="Node3D"]
 
 [node name="Player Sockets" type="Node" parent="."]
 
-[node name="p1_psock_adventure" type="Node" parent="Player Sockets" node_paths=PackedStringArray("thrall", "enemies", "mainCam", "ganty_thing", "vignette", "headsUpDisplay", "action_prompt")]
+[node name="p1_psock_adventure" type="Node" parent="Player Sockets" node_paths=PackedStringArray("enemies", "mainCam", "ganty_thing", "vignette", "headsUpDisplay", "action_prompt")]
 script = ExtResource("1_03al4")
-thrall = NodePath("../../faux_local_boi")
 enemies = [null]
 mainCam = NodePath("../../Camera")
 ganty_thing = NodePath("../../cam_gantry_playerFollow")
@@ -345,26 +342,25 @@ target_locker = ExtResource("2_xa5ur")
 headsUpDisplay = NodePath("../../user_interface/HUD")
 action_prompt = NodePath("../../user_interface/HUD/Action Prompt")
 
-[node name="Multplayer Manager" type="Node" parent="." node_paths=PackedStringArray("server_menu", "cam_gant", "cam_actu", "ip_input", "outfit_control", "player_secondary_because_of_browser_problems")]
+[node name="Multplayer Manager" type="Node" parent="." node_paths=PackedStringArray("server_menu", "cam_gant", "cam_actu", "ip_input", "outfit_control")]
 script = ExtResource("3_608j4")
 server_menu = NodePath("../user_interface/MultiplayerControl_debug")
 cam_gant = NodePath("../cam_gantry_playerFollow")
 cam_actu = NodePath("../Camera")
 ip_input = NodePath("../user_interface/MultiplayerControl_debug/VBoxContainer/LineEdit")
 outfit_control = NodePath("../user_interface/Outfit_control")
-player_secondary_because_of_browser_problems = NodePath("../faux_local_boi")
 
-[node name="cam_gantry_playerFollow" type="Node3D" parent="." node_paths=PackedStringArray("thrall", "cam")]
+[node name="cam_gantry_playerFollow" type="Node3D" parent="." node_paths=PackedStringArray("cam")]
 transform = Transform3D(0.887815, 0, 0.4602, 0, 1, 0, -0.4602, 0, 0.887815, -1.957, 0.66, -2.32)
 script = ExtResource("4_1onkx")
-thrall = NodePath("../faux_local_boi")
 cam = NodePath("../Camera")
+freeze = true
 
-[node name="Camera" type="Camera3D" parent="." node_paths=PackedStringArray("target_current", "dot1", "dot2")]
-transform = Transform3D(0.945519, 0, 0.325568, 0, 1, 0, -0.325568, 0, 0.945519, 0.344, 2.44915, 2.119)
+[node name="Camera" type="Camera3D" parent="." node_paths=PackedStringArray("dot1", "dot2")]
+transform = Transform3D(0.945519, 0, 0.325568, 0, 1, 0, -0.325568, 0, 0.945519, 0.344, 2.44915, 4.04483)
 script = ExtResource("17_1y1j1")
-target_current = NodePath("../faux_local_boi")
 distance = 2.5
+freeze = true
 dot1 = NodePath("../_dot_1")
 dot2 = NodePath("../_dot_2")
 
@@ -983,6 +979,11 @@ script = ExtResource("27_6v26p")
 [node name="ai_attack" type="Node" parent="skele_01"]
 script = ExtResource("28_5kths")
 
+[node name="skele_04" parent="." instance=ExtResource("26_5srmb")]
+transform = Transform3D(0.36125, 0, -0.932469, 0, 1, 0, 0.932469, 0, 0.36125, -23.2931, 0.207531, -0.439989)
+to_equip_wep = ExtResource("28_6apcs")
+demo_sit_lounge = true
+
 [node name="skele_02" parent="." instance=ExtResource("26_5srmb")]
 transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 52.2022, 0.207531, -3.26289)
 to_equip_wep = ExtResource("28_6apcs")
@@ -1230,12 +1231,6 @@ mesh = SubResource("BoxMesh_06f0o")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_akcvl")
-
-[node name="faux_local_boi" parent="." instance=ExtResource("26_5srmb")]
-transform = Transform3D(0.999896, 0.00712085, -0.0125515, -0.0072158, 0.999946, -0.00753587, 0.0124971, 0.00762566, 0.999893, -0.0494099, -2.38419e-07, -2.4974)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="faux_local_boi"]
-mesh = SubResource("BoxMesh_hncl4")
 
 [connection signal="body_entered" from="adventure_mode_demoLevel/Door of Trials/Area3D" to="adventure_mode_demoLevel/Door of Trials" method="trigger_animation"]
 [connection signal="body_entered" from="adventure_mode_demoLevel/Door of Trials2/Area3D" to="adventure_mode_demoLevel/Door of Trials2" method="trigger_animation"]

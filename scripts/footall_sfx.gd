@@ -13,12 +13,12 @@ var left_aud : AudioStreamPlayer3D
 var right_aud : AudioStreamPlayer3D
 
 var sounds = [
-	preload("res://art/audio/footstep sounds/step_gravel_01.ogg"),
-	preload("res://art/audio/footstep sounds/step_gravel_02.ogg"),
-	preload("res://art/audio/footstep sounds/step_gravel_03.ogg"),
-	preload("res://art/audio/footstep sounds/step_gravel_04.ogg"),
-	preload("res://art/audio/footstep sounds/step_gravel_05.ogg"),
-	preload("res://art/audio/footstep sounds/step_gravel_06.ogg")
+	preload("res://art/audio/footstep_sounds/step_gravel_01.ogg"),
+	preload("res://art/audio/footstep_sounds/step_gravel_02.ogg"),
+	preload("res://art/audio/footstep_sounds/step_gravel_03.ogg"),
+	preload("res://art/audio/footstep_sounds/step_gravel_04.ogg"),
+	preload("res://art/audio/footstep_sounds/step_gravel_05.ogg"),
+	preload("res://art/audio/footstep_sounds/step_gravel_06.ogg")
 ]
 
 var randSoundQue = []

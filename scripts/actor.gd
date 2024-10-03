@@ -91,7 +91,6 @@ var aset_JUMP = []
 
 
 func _enter_tree() -> void:
-	return
 	if name != "1" && multiplayer.get_unique_id() > 1:
 		set_multiplayer_authority(str(name).to_int())
 
@@ -161,18 +160,7 @@ func _process(delta):
 	if desired_move != Vector3.ZERO and desired_move.length_squared() > 0.01:
 		pass
 	#	$Dir_arrow.look_at(global_position + desired_move)
-	if attack_light or attack_heavy or attack_jump or parry or block:
-		combat_mode = true
-		
-		combat_relax_timer = 30.0
-		for i in range(movement_sets.size()):
-			if movement_sets[i] is mvpk_attack:
-				current_moveset = i
-				movement_sets[current_moveset].move_thrall(self, delta)
-				attack_light = false
-				attack_heavy = false
-				attack_jump = false  # Reset the jump attack flag
-				break
+	
 	if combat_mode:
 		##combat_relax_timer -= delta
 		if combat_relax_timer <= 0 or Input.is_action_just_pressed("p1_item_left_next"):

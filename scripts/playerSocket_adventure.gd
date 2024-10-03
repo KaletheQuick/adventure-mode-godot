@@ -49,7 +49,6 @@ func _ready():
 @export var deb_action = ""
 @export var deb_act = false
 func _process(delta):
-	return
 	if thrall == null:
 		return
 	if deb_act:
