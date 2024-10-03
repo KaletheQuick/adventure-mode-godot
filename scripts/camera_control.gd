@@ -44,7 +44,7 @@ func _ready():
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
 	#return
 	#print(str(get_viewport().size) + ", " + str(get_window().size))
 	

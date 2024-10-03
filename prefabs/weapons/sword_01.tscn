@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=4 uid="uid://3y4vbosjj5gx"]
+[gd_scene load_steps=17 format=4 uid="uid://3y4vbosjj5gx"]
 
 [ext_resource type="Script" path="res://scripts/armament.gd" id="1_bu51i"]
 [ext_resource type="PackedScene" uid="uid://d1kynsixmfk71" path="res://prefabs/particles/trail_weapon.tscn" id="1_eutt0"]
 [ext_resource type="PackedScene" uid="uid://cqxi7q25mnc50" path="res://prefabs/particles/bone_dust.tscn" id="2_s35fm"]
 [ext_resource type="Material" uid="uid://cfbryicsvmobm" path="res://art/materials/debug_hitbox_transparent.tres" id="3_1ot13"]
 [ext_resource type="PackedScene" uid="uid://e4las240qute" path="res://prefabs/particles/metal_clang.tscn" id="3_3vayj"]
+[ext_resource type="PackedScene" uid="uid://dmv4s6i42ioqg" path="res://art/Props/sword_debug.glb" id="6_37ai3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kdyns"]
 
@@ -98,13 +99,13 @@ albedo_color = Color(0, 0.172549, 0.243137, 1)
 albedo_color = Color(0.647059, 0.290196, 0, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1wjdx"]
-radius = 0.137177
-height = 1.0
+radius = 0.085
+height = 0.744
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_gx1d1"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_3fsg1"]
 material = ExtResource("3_1ot13")
-radius = 0.137
-height = 1.0
+radius = 0.085
+height = 0.744
 
 [node name="sword" type="Node3D"]
 script = ExtResource("1_bu51i")
@@ -113,6 +114,7 @@ block_effect = ExtResource("3_3vayj")
 
 [node name="godette_sword" type="Node3D" parent="."]
 transform = Transform3D(0.0242101, -0.138432, -0.242179, 0.255618, 0.108336, -0.0363726, 0.111685, -0.217945, 0.135745, -0.0211176, 0.121103, -0.0576759)
+visible = false
 
 [node name="Cube" type="MeshInstance3D" parent="godette_sword"]
 mesh = SubResource("ArrayMesh_hpryl")
@@ -122,19 +124,22 @@ surface_material_override/1 = SubResource("StandardMaterial3D_y1fl8")
 surface_material_override/2 = SubResource("StandardMaterial3D_j7bsc")
 
 [node name="hitbox" type="ShapeCast3D" parent="."]
-transform = Transform3D(0.864924, 0.4944, -0.0864648, 0.129902, -0.386915, -0.91292, -0.484802, 0.778374, -0.398875, -0.034974, 0.131948, -0.0794917)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_1wjdx")
-target_position = Vector3(0, -0.588, 0)
+target_position = Vector3(0, -0.535, 0)
 collision_mask = 2
 collide_with_areas = true
 collide_with_bodies = false
 
 [node name="hitbox_vis" type="MeshInstance3D" parent="hitbox"]
-transform = Transform3D(1, 0, -2.98023e-08, 1.49012e-08, 1, 0, -1.78814e-07, 0, 1, -5.96046e-08, -0.588251, -2.38419e-07)
+transform = Transform3D(1, 0, -2.98023e-08, 1.49012e-08, 1, 0, -1.78814e-07, 0, 1, 0, -0.535, 0)
 visible = false
-mesh = SubResource("CapsuleMesh_gx1d1")
+mesh = SubResource("CapsuleMesh_3fsg1")
 skeleton = NodePath("../..")
 
 [node name="trail_weapon" parent="." instance=ExtResource("1_eutt0")]
-transform = Transform3D(-0.864924, 0.0864648, -0.4944, -0.129902, 0.91292, 0.386915, 0.484802, 0.398875, -0.778374, -0.559186, 0.542193, -0.904801)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.922061, -4.03046e-08)
 visible = false
+
+[node name="sword_debug" parent="." instance=ExtResource("6_37ai3")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
