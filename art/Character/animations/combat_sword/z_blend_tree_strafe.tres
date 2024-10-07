@@ -35,14 +35,14 @@ advance_expression = "sprint == false"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_f8whk"]
 states/walk_jog_run_jog_fwd/node = SubResource("AnimationNodeAnimation_0a7ju")
-states/walk_jog_run_jog_fwd/position = Vector2(405, 60.5)
+states/walk_jog_run_jog_fwd/position = Vector2(404, 60.5)
 states/walk_jog_run_run_fwd/node = SubResource("AnimationNodeAnimation_fmi3v")
-states/walk_jog_run_run_fwd/position = Vector2(386, 219)
+states/walk_jog_run_run_fwd/position = Vector2(404, 215)
 transitions = ["Start", "walk_jog_run_jog_fwd", SubResource("AnimationNodeStateMachineTransition_l2vn5"), "walk_jog_run_jog_fwd", "walk_jog_run_run_fwd", SubResource("AnimationNodeStateMachineTransition_uygdu"), "walk_jog_run_run_fwd", "walk_jog_run_jog_fwd", SubResource("AnimationNodeStateMachineTransition_wf7fu")]
-graph_offset = Vector2(3, -113)
+graph_offset = Vector2(-155, -1)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_jhl7d"]
-graph_offset = Vector2(-416.866, -55.1898)
+graph_offset = Vector2(-766.013, 13.9089)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_d6nw5")
 nodes/Animation/position = Vector2(-400, 240)
 nodes/BLOCK/node = SubResource("AnimationNodeBlend2_2qmsw")
@@ -50,7 +50,7 @@ nodes/BLOCK/position = Vector2(20, 140)
 "nodes/SET_F[2]/node" = SubResource("AnimationNodeTimeScale_dv2rj")
 "nodes/SET_F[2]/position" = Vector2(-153.488, 92.4686)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_f8whk")
-nodes/StateMachine/position = Vector2(-410, 60)
+nodes/StateMachine/position = Vector2(-420, 60)
 node_connections = [&"BLOCK", 0, &"SET_F[2]", &"BLOCK", 1, &"Animation", &"SET_F[2]", 0, &"StateMachine", &"output", 0, &"BLOCK"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tjjhh"]

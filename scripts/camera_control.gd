@@ -43,8 +43,8 @@ func _ready():
 
 	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta):
+# NOTE - _physics causes jitter, but _process causes a strange bug that looks at your feet on 144hz monitor
+func _physics_process(delta: float) -> void:
 	#return
 	#print(str(get_viewport().size) + ", " + str(get_window().size))
 	

@@ -50,7 +50,7 @@ func release_situation_check(thrall : Actor) -> bool:
 func move_thrall(thrall : Actor, delta : float):	
 	var old_fallVel = thrall.velocity.y
 	# Get the motion delta.
-	thrall.velocity = ((thrall.animation_tree.get_root_motion_rotation_accumulator().inverse() * thrall.get_quaternion()) * thrall.animation_tree.get_root_motion_position() / thrall.LDT) * 2
+	thrall.velocity = ((thrall.animation_tree.get_root_motion_rotation_accumulator().inverse() * thrall.get_quaternion()) * thrall.animation_tree.get_root_motion_position() / delta)# * 2
 
 	# Phys ray
 	#var space_state = thrall.get_world_3d().direct_space_state

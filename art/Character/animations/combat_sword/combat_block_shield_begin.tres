@@ -409,3 +409,15 @@ tracks/57/path = NodePath("char/Skeleton3D:toe.L")
 tracks/57/interp = 0
 tracks/57/loop_wrap = true
 tracks/57/keys = PackedFloat32Array(0, 1, 5.3492e-08, -0.961248, 0.275684, 8.7582e-07)
+tracks/58/type = "value"
+tracks/58/imported = false
+tracks/58/enabled = true
+tracks/58/path = NodePath("..:block")
+tracks/58/interp = 1
+tracks/58/loop_wrap = true
+tracks/58/keys = {
+"times": PackedFloat32Array(0.0333333, 0.233333, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, false, true, true]
+}

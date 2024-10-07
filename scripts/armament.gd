@@ -54,12 +54,12 @@ func hurtbox_check() -> void:
 		#print("OUCH!" + hitbox.get_collider(x).name)
 		hitbox.add_exception_rid(hitbox.get_collider_rid(x))
 		var hit_actor = awful_practice_find_parent_actor(hitbox.get_collider(x))
-		var att_result = hit_actor.take_damage(2, attackID)
+		var att_result = hit_actor.take_damage(damage, attackID)
 		match att_result:
 			AttackState.HIT:
 				wielder.attack_hit.emit(hit_actor, attackID) 
 				spawn_hit_effect(hit_effect, hitbox.get_collision_point(x), hitbox.get_collision_point(x) + hitbox.get_collision_normal(x))
-				if hit_actor.health_current <= 0:
+				if hit_actor.character.health_current <= 0:
 					wielder.killed_something.emit()
 			AttackState.MISS:
 				pass 

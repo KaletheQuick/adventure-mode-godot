@@ -2,14 +2,7 @@ extends CharacterBody3D
 
 class_name Actor
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 6.5
-
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-
-
-#@onready var combo_bar = get_node("/root/level_test/CanvasLayer/ProgressBar")
+@export var character : Character
 
 var desired_move = Vector3.ZERO
 var desired_turn = 0.0 # left or right -+ 
@@ -18,33 +11,33 @@ var lock_targ_pos : Vector3 = Vector3.ZERO
 # 		 involved having the directing you were looking, IE turned towards
 #		 and the direction of movement, be separate. 
 
-var jump_dbounce = false # Have we recently jumped?
-var LDT = 0.01 # Last delta time, calling get_process_delta_time() in the physics loop was causing issues
+@export_group("Animation Flags")
 @export var block = false
-var parry = false
+@export var parry = false
 @export var attack_light = false
 @export var attack_jump = false
 @export var attack_heavy = false
 @export var dodge = false
+@export var sprint = false
+@export var invulnerable = false
 
 
-signal attack_hit(actor_hit, attack_id)
 
 @onready var animation_tree : AnimationTree = $AnimationTree 
+# SECTION Animation hacking system
+# animation set NAME
+# These hold nodes that need to be updated with various values
+# See apply_animation_params to behold the shame
+var aset_BLOCK = []
+var aset_MOVE = []
+var aset_TURN = []
+var aset_JUMP = []
+# !SECTION
 
-# SECTION Faux ModeSwitcher
-## 0th index is default
+@export_group("Movement Packages")
+# 0th index is default and should always be possible to move too.
 @export var movement_sets : Array[MovementPackage] # NOTE - walk_root.tres needs to be put on the child AnimationTree, otherwise there are weird control errors.
 var current_moveset = 0
-var moveset_debug = ""
-@export var defaultANIMO : AnimationRootNode
-@export var glideANIMO : AnimationRootNode
-var termnalVel = -1.0
-var gliding = false
-var lastDesiredMoveY = 0
-var j_bounce = false
-
-var sprint = false
 
 var combat_mode = false
 var combat_relax_timer = 0
@@ -53,47 +46,32 @@ var combat_relax_timer = 0
 enum HandState {UNARMED, ONE_HAND, TWO_HAND}
 var hand_state : HandState = HandState.UNARMED
 
+@export_group("Dress Up")
 # SECTION Outfit
 @export var garments : Array[Garment] # NOTE Resource references
-
-# SECTION Variables for weapon and shiled hurt/hit boxes
-@export var right_weapon : ShapeCast3D
-var invulnerable = false
-@export var hit_effect : PackedScene
+@export_subgroup("Weapon (debug)") # TODO - replace with weapons in the Character class
 @export var to_equip_wep : Accessory
 var r_wep : Armament
-
+var l_wep : Armament
+# !SECTION
+@export_group("Character Stats") # TODO - Replace with things in the Character class
 var hurtboxes
-@export var max_health = 10.0
-var health_current = 10.0
-@export var max_stamina = 20.0 
-var stamina_current = 5.0
-@export var max_poise = 15.0
-var poise_current = 0.0
-var poise_regen_timer = 0.0
-var poise_regen_delay = 3.0
 var alive = true
 
-# SECTION ~ Demo specific things
-@export var demo_sit_lounge = false
-
-# SECTION Signals for leveling bar
+# SECTION Signals 
+# SECTION for leveling bar
 signal killed_something
 signal xp_get
 signal item_get(item_name)
+signal attack_hit(actor_hit, attack_id)
+# !SECTION Signals
+# !SECTION
 
-# SECTION Animation hacking system
-# animation set NAME
-var aset_BLOCK = []
-var aset_MOVE = []
-var aset_TURN = []
-var aset_JUMP = []
-
+@onready var start_pos = global_position
 
 func _enter_tree() -> void:
 	if name != "1" && multiplayer.get_unique_id() > 1:
 		set_multiplayer_authority(str(name).to_int())
-
 		get_parent().get_parent().find_child("Player Sockets").find_child("p1_psock_adventure").enthrall_new_thrall(self)
 		var cam_gant = get_parent().get_parent().find_child("cam_gantry_playerFollow")
 		cam_gant.thrall = self
@@ -103,29 +81,31 @@ func _enter_tree() -> void:
 		var netman = get_parent()
 		netman.outfit_control.dress_up_controller = self.find_child("DresserUpper")
 
+	# TODO - Remove this hack, better grouping required
 	if "skele" in name:
 		add_to_group("enemies")
 	else:
 		add_to_group("players")
 
 func _ready():
-	health_current = max_health
-	stamina_current = max_stamina
-	poise_current = max_poise
-#	animation_tree.tree_root = defaultANIMO
+	character = character.duplicate()
+	character.reset()
 	hurtboxes = find_hurtboxes_recursive(self)
 	dress_up()
 	compile_new_anim_tree()
 
-	# NOTE TEST equip weapon as accessory... maybe? idk what is even going on here now
-	var dup = $DresserUpper as DresserUpper
-	dup.accessory_equip(to_equip_wep)
-	r_wep = dup.accessory_item(to_equip_wep).get_child(0) as Armament
-	r_wep.equip_armament(self)
 
-func stop_movement():
-	desired_move = Vector3.ZERO
-#	velocity = Vector3.ZERO
+
+## Spawn or Respawn setup
+func spawn():
+	character.reset()
+	global_position = start_pos
+	character.alive = true
+	animation_tree.active = true
+	current_moveset = 0
+	animation_tree["parameters/playback"].travel(movement_sets[current_moveset].name)
+	pass 
+
 
 func find_hurtboxes_recursive(node : Node):
 	var returnable = []
@@ -137,7 +117,8 @@ func find_hurtboxes_recursive(node : Node):
 	return returnable
 
 func dethrall():
-	stop_movement()
+	desired_move = Vector3.ZERO
+	desired_turn = Vector2.ZERO
 
 func enthrall():
 	return
@@ -146,61 +127,34 @@ func enthrall():
 
 func _process(delta):
 	action_q_process()
-	if health_current <= 0 and alive == true:
-		alive = false
+	if character.health_current <= 0 and character.alive == true:
+		# NOTE - A special case for death seems fine
+		character.alive = false
 		animation_tree.active = false
 		$skeleton/AnimationPlayer.play("death")
-	if alive == false:
+		await get_tree().create_timer(5).timeout
+		spawn()
+	if character.alive == false:
 		return
-	stamina_regen(delta)
-	moveset_debug = movement_sets[current_moveset].name + ": " + animation_tree.get("parameters/playback").get_current_node()
-	LDT = delta
-##	if jump_dbounce and is_on_floor() and desired_move.y < 0.5: # if we have completed a jump arc, and are not desiring to jump
-#		jump_dbounce = false
-	if desired_move != Vector3.ZERO and desired_move.length_squared() > 0.01:
-		pass
-	#	$Dir_arrow.look_at(global_position + desired_move)
+	character.stats_regen(delta)
 	
+	# TODO - get a better system for switching between movement or weapon states
 	if combat_mode:
 		##combat_relax_timer -= delta
 		if combat_relax_timer <= 0 or Input.is_action_just_pressed("p1_item_left_next"):
 			combat_mode = false
 
 	movement_package_checks()
-
-	# NOTE - thing idk
-	## if block:
-
+	movement_sets[current_moveset].move_thrall(self, delta)
 
 
 func _physics_process(delta):
 	if alive == false:
-		return
-	
-	apply_animation_params()
-	#animation_tree.set("parameters/Move Walk/blend_position", Vector2(( global_basis.inverse() * -desired_move).x,-( global_basis.inverse() * -desired_move).z))
-	if(desired_move.y > 0.5 and jump_dbounce == false) :
-		jump_dbounce = true
-		#print(velocity.length())
-		animation_tree.set("parameters/Jump w vel/blend_position", (desired_move * Vector3(1,0,1)).length() * 1.0) # TODO remove magic number. This is here to map a velocity range to animation blend 0-1
-		animation_tree.set("parameters/conditions/jump", true)
-	else:
-		animation_tree.set("parameters/conditions/jump", false)
-	if desired_move.y < 0.5 and jump_dbounce == true:
-		jump_dbounce = false
-	animation_tree.set("parameters/conditions/land", is_on_floor())
-
-
-	movement_sets[current_moveset].move_thrall(self, delta)
+		return	
+	apply_animation_params()	
 	_TEMPORARY_fall_death()
 	return
 
-func stamina_regen(delta):
-	stamina_current = clamp(stamina_current + delta, -100, max_stamina)
-	# And also poise
-	poise_regen_timer -= delta
-	if poise_regen_timer <= 0:
-		poise_current = clamp(poise_current + (delta * 10), 0, max_poise)
 
 
 
@@ -222,36 +176,16 @@ func apply_animation_params():
 		animation_tree.set(ani, desired_turn)
 	for ani in aset_JUMP:
 		animation_tree.set(ani, 1 if desired_move.y > 0.5 else 0)
-
-		
-# NOTE - Keeping this here to remember the huge shame
-#	var param_names = animation_tree.get_property_list() #._get_parameter_list()
-#	for item in param_names: # not actually param names now, still trying to get a list'
-#		if item.name.begins_with("parameters/"):
-#			if item.name.contains("MOVE") and item.name.contains("blend_position"):
-#				animation_tree.set(item.name, transformed_move_dir)
-#			elif item.name.contains("TURN") and (item.name.contains("blend_position") or item.name.contains("add_amount")):				
-#				animation_tree.set(item.name, desired_turn)
-#			elif item.name.contains("BLOCK"): # and item.name.contains("blend_position"):
-#				animation_tree.set(item.name, 1 if block else 0)
-#			elif item.name.contains("JUMP"): # and item.name.contains("blend_position"):
-#				animation_tree.set(item.name, 1 if desired_move.y > 0.5 else 0)
-				
-
-
+	# !SECTION
 
 func handle_movement(movement : Vector3):
 	desired_move = movement
 
-
 # Resets position to origin
 func _TEMPORARY_fall_death():
 	if global_position.y <= -20:
-		global_position = Vector3(0,1,0)
+		global_position = Vector3(0,0.1,0)
 
-
-func _on_coin_body_entered(body):
-	pass # Replace with function body.
 
 func movement_package_checks():
 	# Check to see if we need to move to a new state
@@ -265,21 +199,11 @@ func movement_package_checks():
 			
 			state_machine.travel(movement_sets[current_moveset].name)
 			return
-			animation_tree.tree_root = movement_sets[current_moveset].anim_tree
-			animation_tree.active = false
-			animation_tree.active = true
-			#print("Flicker switch")
-			return # quit early, good job everyone!
-
 	# Check to see if we need to bail out of our current state
 	if current_moveset != 0 and movement_sets[current_moveset].release_situation_check(self):
 		current_moveset = 0
 		state_machine.travel(movement_sets[current_moveset].name)
 		return
-		animation_tree.tree_root = movement_sets[current_moveset].anim_tree
-		animation_tree.active = false
-		animation_tree.active = true
-		#print("Flicker switch")
 
 var attackID = 0
 
@@ -292,13 +216,29 @@ func awful_practice_find_parent_actor(node : Node3D):
 	else:
 		return awful_practice_find_parent_actor(node.get_parent())
 	
-func TEMP_jumpy_check() -> bool:
-	return (!jump_dbounce and is_on_floor()) or !Input.is_action_pressed("p1_jump")
 
 func dress_up():
 	var dup = $DresserUpper as DresserUpper
-	for garment in garments:
+	if character.base_skin != null:
+		dup.garment_equip(character.base_skin)
+	else:
+		dup.garment_equip(character.under_skeleton)
+	for garment in character.outfit:
 		dup.garment_equip(garment)
+
+	# NOTE TEST equip weapon as accessory... maybe? idk what is even going on here now
+	# TODO Improve this
+	if character.hand_left != null:
+		character.hand_left = character.hand_left.duplicate()
+		character.hand_left.bones[0] = "prop.L" # NOTE - This is a workaround
+		dup.accessory_equip(character.hand_left)
+		l_wep = dup.accessory_item(character.hand_left).get_child(0) as Armament
+		l_wep.equip_armament(self)
+
+	if character.hand_right != null:
+		dup.accessory_equip(character.hand_right)
+		r_wep = dup.accessory_item(character.hand_right).get_child(0) as Armament
+		r_wep.equip_armament(self)
 
 var damage_attack_id_buffer = []
 func take_damage(damage : float, id : int) -> Armament.AttackState:
@@ -307,17 +247,17 @@ func take_damage(damage : float, id : int) -> Armament.AttackState:
 	var returnable = Armament.AttackState.HIT
 	if id not in damage_attack_id_buffer:
 		damage_attack_id_buffer.append(id)
-		if block && stamina_current > 0:
-			stamina_current -= damage
+		if block && character.stamina_current > 0:
+			character.stamina_current -= damage
 			enque_action("blocked_attack")
 			returnable = Armament.AttackState.BLOCKED
 		else:
-			health_current -= damage
-		poise_current -= 5
-		if poise_current <= 0:
-			poise_regen_timer = 0.5
+			character.health_current -= damage
+		character.poise_current -= 5
+		if character.poise_current <= 0:
+			character.poise_regen_timer = 0.5
 		else:
-			poise_regen_timer = poise_regen_delay
+			character.poise_regen_timer = character.poise_regen_delay
 	else:
 		returnable = Armament.AttackState.MISS
 	#if health_current <= 0:
@@ -372,17 +312,11 @@ func compile_new_anim_tree():
 			elif item.name.contains("JUMP"): # and item.name.contains("blend_position"):
 				aset_JUMP.append(item.name)
 
-			
-
-func on_anim_tree_exit() -> bool:
-	print("Exit time " + str(Engine.get_frames_drawn()))
-	return true
 
 # SECTION Action Queue and buffer system
 # NOTE - Action queue system. Things are put on and have a short 
 # buffer time after which they are knocked off. I am not sure if this
 # is a good approach, but I'm trying it out
-
 const ACTION_Q_BUFFER_TIME = 50.0 #milliseconds
 var action_q = {}
 
@@ -399,7 +333,6 @@ func action_q_process():
 		if action_q[key] <= curTick:
 			action_q.erase(key)
 
-
 func action_q_check(action : String, consume=false) -> bool: 
 	# NOTE - Warning, string comparisons. Not great. 
 	if action_q.size() == 0:
@@ -409,7 +342,7 @@ func action_q_check(action : String, consume=false) -> bool:
 			action_q.erase(action)
 		return true
 	return false
-
+# !SECTION - End action_q system
 
 # SECTION - Animation assistance functions 
 # To be called by animation keyframes 
@@ -437,7 +370,8 @@ func anim_spell_state(state : int):
 
 
 func anim_hurtbox_activate_right(duration : float):
-	stamina_current -= 2
+	character.stamina_current -= 2
+	character.stamina_regen_timer = character.stamina_regen_delay
 	r_wep.activate_strike(duration)
 	# TODO - left weapon
 
@@ -446,3 +380,4 @@ func invulnerability_time(time : float):
 	invulnerable = true
 	await timer.timeout
 	invulnerable = false
+# !SECTION - Animation helper functions

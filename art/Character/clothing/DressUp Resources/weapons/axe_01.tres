@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Dress Up/Resource Definitions/Accessory.gd" id="2_jlba7"]
 
 [resource]
-resource_name = "sword 01"
+resource_name = "axe 01"
 script = ExtResource("2_jlba7")
 accessory = ExtResource("1_q3dx4")
 offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)

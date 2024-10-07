@@ -27,7 +27,7 @@ func shape_check(thrall : Actor) -> bool:
 func move_thrall(thrall : Actor, delta : float):
 	var old_fallVel = thrall.velocity.y
 	# Get the motion delta.
-	thrall.velocity = ((thrall.animation_tree.get_root_motion_rotation_accumulator().inverse() * thrall.get_quaternion()) * thrall.animation_tree.get_root_motion_position() / thrall.LDT) * 2
+	thrall.velocity = ((thrall.animation_tree.get_root_motion_rotation_accumulator().inverse() * thrall.get_quaternion()) * thrall.animation_tree.get_root_motion_position() / delta) * 2
 
 
 #	if movement_extra_expression != "":

@@ -23,6 +23,7 @@ height = 1.455
 
 [node name="claymore" type="Node3D"]
 script = ExtResource("1_14iyh")
+damage = 6
 hit_effect = ExtResource("2_u6yws")
 block_effect = ExtResource("3_qwv4q")
 

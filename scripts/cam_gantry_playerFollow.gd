@@ -27,6 +27,9 @@ func _physics_process(delta: float) -> void:
 	cam.global_position = global_position + (global_basis.z * ray_cam_pos())
 	if freeze:
 		return
+	if velocity.length() > 10:
+		velocity = velocity.normalized() * 10
+		# NOTE - This is a hack, the velocity equation had a good feel too it, but went off the rails into the NaNosphere after a certain distance
 	#global_position = lerp(global_position, desired_pos, 0.01)
 	global_position += velocity * delta * 2#* (desired_pos - global_position).length()
 	#global_position = desired_pos #velocity * delta * (desired_pos - global_position).length()

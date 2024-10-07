@@ -108,6 +108,7 @@ height = 0.3
 
 [node name="axe" type="Node3D"]
 script = ExtResource("1_05eid")
+damage = 3
 hit_effect = ExtResource("2_fffj4")
 block_effect = ExtResource("3_ry28l")
 
