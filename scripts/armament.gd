@@ -9,11 +9,14 @@ var ouchtime = false
 @onready var trail = $trail_weapon
 
 var wielder : Actor # Thrall that wields this weapon
+var leftHandHeld = false 
 var attackID : int # random number to help prevent multi hits
 @export var hit_effect : PackedScene
 @export var block_effect : PackedScene
 
 enum AttackState {HIT, MISS, BLOCKED}
+
+var cur_strike_data
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -24,15 +27,25 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if ouchtime:
 		hurtbox_check()
+		if leftHandHeld and wielder.prop_L_hurtbox == false:
+			ouchtime_end()
+		elif wielder.prop_R_hurtbox == false:
+			ouchtime_end()
 
-func equip_armament(new_wielder : Actor) -> void:
+
+func equip_armament(new_wielder : Actor, left_hand : bool) -> void:
 	wielder = new_wielder
+	leftHandHeld = left_hand
 
-func activate_strike(duration : float) -> void:
+func activate_strike(dvalues : Dictionary) -> void:
 	if OS.is_debug_build():
 		hitbox_vis.visible = true
 
 	attackID = randi()
+	if dvalues == null:
+		cur_strike_data = {"physical":1.0 * damage}
+	else:
+		cur_strike_data = dvalues
 
 	for box in wielder.hurtboxes:
 		hitbox.add_exception(box)
@@ -41,8 +54,10 @@ func activate_strike(duration : float) -> void:
 	trail.restart()
 
 	# Pause for effect
-	await get_tree().create_timer(duration).timeout
+#	await get_tree().create_timer(duration).timeout
 
+
+func ouchtime_end():
 	hitbox_vis.visible = false
 	hitbox.clear_exceptions()
 	ouchtime = false
@@ -54,7 +69,7 @@ func hurtbox_check() -> void:
 		#print("OUCH!" + hitbox.get_collider(x).name)
 		hitbox.add_exception_rid(hitbox.get_collider_rid(x))
 		var hit_actor = awful_practice_find_parent_actor(hitbox.get_collider(x))
-		var att_result = hit_actor.take_damage(damage, attackID)
+		var att_result = hit_actor.take_damage(cur_strike_data, attackID)
 		match att_result:
 			AttackState.HIT:
 				wielder.attack_hit.emit(hit_actor, attackID) 

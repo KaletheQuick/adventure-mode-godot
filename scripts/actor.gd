@@ -14,12 +14,11 @@ var lock_targ_pos : Vector3 = Vector3.ZERO
 @export_group("Animation Flags")
 @export var block = false
 @export var parry = false
-@export var attack_light = false
-@export var attack_jump = false
-@export var attack_heavy = false
 @export var dodge = false
 @export var sprint = false
 @export var invulnerable = false
+@export var prop_L_hurtbox = false
+@export var prop_R_hurtbox = false
 
 
 
@@ -233,18 +232,21 @@ func dress_up():
 		character.hand_left.bones[0] = "prop.L" # NOTE - This is a workaround
 		dup.accessory_equip(character.hand_left)
 		l_wep = dup.accessory_item(character.hand_left).get_child(0) as Armament
-		l_wep.equip_armament(self)
+		l_wep.equip_armament(self, true)
 
 	if character.hand_right != null:
 		dup.accessory_equip(character.hand_right)
 		r_wep = dup.accessory_item(character.hand_right).get_child(0) as Armament
-		r_wep.equip_armament(self)
+		r_wep.equip_armament(self, false)
 
 var damage_attack_id_buffer = []
-func take_damage(damage : float, id : int) -> Armament.AttackState:
+func take_damage(damage_data : Dictionary, id : int) -> Armament.AttackState:
 	if invulnerable:
 		return Armament.AttackState.MISS # Dodged
 	var returnable = Armament.AttackState.HIT
+	var damage = 1
+	if "physical" in damage_data.keys():
+		damage = damage_data["physical"]
 	if id not in damage_attack_id_buffer:
 		damage_attack_id_buffer.append(id)
 		if block && character.stamina_current > 0:
@@ -369,10 +371,16 @@ func anim_spell_state(state : int):
 	new_spell.global_position = global_position + Vector3(0,1,0) + basis.z
 
 
-func anim_hurtbox_activate_right(duration : float):
-	character.stamina_current -= 2
+func anim_hurtbox_activate_right(stanima_cost : float, dvalues : Dictionary):
+	character.stamina_current -= stanima_cost
 	character.stamina_regen_timer = character.stamina_regen_delay
-	r_wep.activate_strike(duration)
+	r_wep.activate_strike(dvalues)
+	# TODO - left weapon
+
+func anim_hurtbox_activate_left(stanima_cost : float, dvalues : Dictionary):
+	character.stamina_current -= stanima_cost
+	character.stamina_regen_timer = character.stamina_regen_delay
+	l_wep.activate_strike(dvalues)
 	# TODO - left weapon
 
 func invulnerability_time(time : float):

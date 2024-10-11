@@ -112,9 +112,12 @@ func _collect_inputs(delta):
 	
 	thrall.handle_movement(go_dir)
 	if Input.get_action_strength("p1_block") > 0.5:
-		thrall.enque_action("block")	
-		if Input.is_action_just_released(player_prefix + "item_right_next"):
-			thrall.enque_action("blocked_attack")	
+		if is_instance_valid(thrall.l_wep) && is_instance_valid(thrall.r_wep):
+			thrall.enque_action("attack_power")
+		else:
+			thrall.enque_action("block")	
+			if Input.is_action_just_released(player_prefix + "item_right_next"):
+				thrall.enque_action("blocked_attack")	
 	if Input.get_action_strength("p1_attack_light") > 0.5:
 		thrall.enque_action("attack_light")
 	if Input.get_action_strength("p1_attack_heavy") > 0.5:
