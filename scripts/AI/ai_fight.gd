@@ -40,6 +40,7 @@ func move_fix():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	return
 	#patrol(delta)
 	shape1.global_position = goTo
 	#return
